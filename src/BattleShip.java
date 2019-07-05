@@ -9,7 +9,7 @@ public class BattleShip extends JFrame implements ActionListener {
     static char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'};
 
     // Button array
-    static JButton[] buttonArray = new JButton[100];
+    static JButton[][] buttonArray = new JButton[9][11];
 
     public BattleShip() {
         super("BattleShip");
@@ -27,14 +27,15 @@ public class BattleShip extends JFrame implements ActionListener {
         JPanel jPanel2 = new JPanel(new GridLayout(9, 11, 3, 3));
 
         // Generating all grids
-        for (int i = 9; i >= 1; i--) {
+        for (int i = 8; i >= 0; i--) {
             for (int j = 0; j < 11; j++) {
                 int buttonId = i * 10 - j + 1;
 
-                buttonArray[buttonId] = new JButton(alphabet[j] + " " + i);
-                buttonArray[buttonId].addActionListener(this);
+                buttonArray[i][j] = new JButton(alphabet[j] + " " + i);
+                buttonArray[i][j].setName(i + ", " + j);
+                buttonArray[i][j].addActionListener(this);
 
-                jPanel2.add(buttonArray[buttonId]);
+                jPanel2.add(buttonArray[i][j]);
             }
         }
 
@@ -46,7 +47,7 @@ public class BattleShip extends JFrame implements ActionListener {
         JButton temporaryButton = (JButton) e.getSource();
 
 
-        System.out.println(temporaryButton.getText() + " clicked");
+        System.out.println(temporaryButton.getText() + " clicked " + temporaryButton.getName());
 
         temporaryButton.setEnabled(false);
 

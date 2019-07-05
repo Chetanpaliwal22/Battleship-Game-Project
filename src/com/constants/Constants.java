@@ -1,6 +1,8 @@
 package com.constants;
 
-
+/**
+ * This class contains all the constants used across the project. 
+ */
 public class Constants {
 
 	public static final String carrier = "Carrier";

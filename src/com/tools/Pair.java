@@ -1,5 +1,8 @@
 package com.tools;
 
+/**
+ * This class is used across the project to store two integer pair information.
+ */
 public class Pair {
 
 	int i;

@@ -1,4 +1,4 @@
-package com.constants;
+package constants;
 
 /**
  * This class contains all the constants used across the project. 

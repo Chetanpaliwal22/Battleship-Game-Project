@@ -1,4 +1,5 @@
-import com.tools.Coordinate;
+package model;
+import tools.Coordinate;
 
 public class Ship {
 

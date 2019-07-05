@@ -1,4 +1,4 @@
-package com.tools;
+package tools;
 
 public class Coordinate {
 

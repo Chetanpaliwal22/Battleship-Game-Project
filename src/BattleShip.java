@@ -31,7 +31,7 @@ public class BattleShip extends JFrame implements ActionListener {
             for (int j = 0; j < 11; j++) {
                 int buttonId = i * 10 - j + 1;
 
-                buttonArray[i][j] = new JButton(alphabet[j] + " " + i);
+                buttonArray[i][j] = new JButton(alphabet[j] + " " + (i + 1));
                 buttonArray[i][j].setName(i + ", " + j);
                 buttonArray[i][j].addActionListener(this);
 
@@ -47,7 +47,7 @@ public class BattleShip extends JFrame implements ActionListener {
         JButton temporaryButton = (JButton) e.getSource();
 
 
-        System.out.println(temporaryButton.getText() + " clicked " + temporaryButton.getName());
+        System.out.println(temporaryButton.getText() + " clicked, coordinate: " + temporaryButton.getName());
 
         temporaryButton.setEnabled(false);
 

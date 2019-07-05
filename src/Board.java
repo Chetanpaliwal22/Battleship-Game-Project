@@ -18,7 +18,7 @@ public class Board {
 
     boolean shipsArePlaced = false;
 
-    int[][] waterGrid;
+    Ship[][] waterGrid;
 
     Ship[] ships;
 
@@ -55,34 +55,39 @@ public class Board {
         this.battleshipSize = battleshipSize;
         this.carrierSize = carrierSize;
 
-        this.waterGrid = new int[this.boardSize.x][this.boardSize.y];
+        this.waterGrid = new Ship[this.boardSize.x][this.boardSize.y];
+
+        this.ships = new Ship[ destroyerNb + submarineNb + cruiserNb + battleshipNb + carrierNb ];
 
     }
 
 
     /**
      * Allow the AI or human player to place the ships on the board
+     * WIP
      */
-    public void placeShips(){
+    public void placeShips() throws Exception {
+
+        if( shipsArePlaced ){ throw new Exception("Ships are already placed on the board."); }
 
         for(int i=0; i<destroyerNb; i++){
-            // place
+            ships[ships.length] = new Ship();
         }
 
         for(int i=0; i<submarineNb; i++){
-            // place
+            ships[ships.length] = new Ship();
         }
 
         for(int i=0; i<cruiserNb; i++){
-            // place
+            ships[ships.length] = new Ship();
         }
 
         for(int i=0; i<battleshipNb; i++){
-            // place
+            ships[ships.length] = new Ship();
         }
 
         for(int i=0; i<carrierNb; i++){
-            // place
+            ships[ships.length] = new Ship();
         }
 
         shipsArePlaced = true;
@@ -97,15 +102,22 @@ public class Board {
      */
     public int fireAtTarget(Coordinate target) throws Exception{
 
+        if( !shipsArePlaced ){ throw new Exception("Ships should be placed before playing."); }
+
+        // That's a miss
+        if( waterGrid[target.x][target.y] == null ) {
+
+            return 2;
+
         // Coordinate has already been fired at
-        if( waterGrid[target.x][target.y] == 0 ){
+        } else if( waterGrid[target.x][target.y].isAlreadyHit(target) ){
 
             return 0;
 
         // that's a hit !
-        } else if( waterGrid[target.x][target.y] == 1 ){
+        } else if( waterGrid[target.x][target.y].isHit(target) ){
 
-            if( this.shipIsSunked() ){ // ship is sunked
+            if( waterGrid[target.x][target.y].isSunk() ){ // ship has sunked
 
                 return 3;
 
@@ -114,33 +126,10 @@ public class Board {
                 return 1;
             }
 
-        // that's a miss ...
-        } else if( waterGrid[target.x][target.y] == 2 ){
-
-            return 2;
-
         // invalid coordinate
-        } else {
-            throw new Exception("Invalid coordinate provided as target.");
-        }
+        } else { throw new Exception("Invalid coordinate provided as target."); }
 
     }
 
-    /**
-     * check if one the ship on the board has sunked
-     * @return
-     */
-    private boolean shipIsSunked(){
-
-        // loop over all ship coordinate, return 1 if all coordinate of a given ship
-        // were hit
-
-        for(int i=0; i<this.ships.length; i++){
-            // check
-        }
-
-        return false;
-
-    }
 
 }

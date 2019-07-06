@@ -3,8 +3,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.AI;
 
 public class BattleShip extends JFrame implements ActionListener {
+
+    AI myAI = new AI();
+
     static final int WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2, HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2;
 
     static char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'};

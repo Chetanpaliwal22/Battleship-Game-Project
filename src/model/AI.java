@@ -5,11 +5,19 @@ public class AI {
 
     private Coordinate boardSize;
 
-    public void AI(){
-        computeProbabilisticGrid(5, new Coordinate(3, 3));
+    public AI(){
+        try {
+            computeProbabilisticGrid(5, new Coordinate(10, 11));
+        } catch(Exception e){
+            System.out.println(e);
+        }
     }
 
-    private void computeProbabilisticGrid(int shipLength, Coordinate boardSize){
+    private void computeProbabilisticGrid(int shipLength, Coordinate boardSize) throws Exception{
+
+        if(shipLength > boardSize.x || shipLength > boardSize.y ){
+            throw new Exception("shipLength cannot be bigger x or y");
+        }
 
         this.boardSize = boardSize;
 
@@ -19,8 +27,8 @@ public class AI {
         // vertical ship position probability //
 
         // compute weight on first column
-        for(int i=0; i< boardSize.y-shipLength; i++) { // start position
-            for (int j = 0; j < boardSize.y - shipLength; j++) { // loop over shipLength
+        for(int i=0; i< boardSize.y-shipLength +1; i++) { // start position
+            for (int j = 0; j < shipLength; j++) { // loop over shipLength
                 probabilisticGridX[0][i+j] += 1;
             }
         }
@@ -32,11 +40,12 @@ public class AI {
             }
         }
 
+
         // horizontal ship position probability //
 
         // compute weight on first row
-        for(int i=0; i< boardSize.x-shipLength; i++) { // start position
-            for (int j = 0; j < boardSize.x - shipLength; j++) { // loop over shipLength
+        for(int i=0; i< boardSize.x-shipLength +1; i++) { // start position
+            for (int j = 0; j < shipLength; j++) { // loop over shipLength
                 probabilisticGridY[i+j][0] += 1;
             }
         }
@@ -44,7 +53,7 @@ public class AI {
         // copy weight of first row to every other row
         for(int i = 1; i< boardSize.y; i++){ // for every other row
             for(int j = 0; j< boardSize.x; j++){ // for every values of the first row
-                probabilisticGridY[j][i] = probabilisticGridY[j][i]; // copy
+                probabilisticGridY[j][i] = probabilisticGridY[j][0]; // copy
             }
         }
 
@@ -62,14 +71,15 @@ public class AI {
             }
         }
 
+
         // convert weights to probabilities //
 
         for(int i = 0; i< boardSize.x; i++){
             for(int j = 0; j< boardSize.y; j++){
                 finalProbabilisticGrid[i][j] = finalProbabilisticGrid[i][j] / totalCount;
-                System.out.println( finalProbabilisticGrid[i][j] + " ");
+                System.out.print( finalProbabilisticGrid[i][j] + " ");
             }
-            System.out.println( "\n");
+            System.out.println();
         }
 
     }

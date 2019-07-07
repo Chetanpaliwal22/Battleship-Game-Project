@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.AI;
+import tools.Coordinate;
 
 public class BattleShip extends JFrame implements ActionListener {
 
@@ -37,7 +38,7 @@ public class BattleShip extends JFrame implements ActionListener {
                 int buttonId = i * 10 - j + 1;
 
                 buttonArray[i][j] = new JButton(alphabet[j] + " " + (i + 1));
-                buttonArray[i][j].setName(i + ", " + j);
+                buttonArray[i][j].setName(i + "," + j);
                 buttonArray[i][j].addActionListener(this);
 
                 jPanel2.add(buttonArray[i][j]);
@@ -49,15 +50,23 @@ public class BattleShip extends JFrame implements ActionListener {
 
     // Button click method
     public void actionPerformed(ActionEvent e) {
+    	try {
         JButton temporaryButton = (JButton) e.getSource();
 
 
         System.out.println(temporaryButton.getText() + " clicked, coordinate: " + temporaryButton.getName());
 
         temporaryButton.setEnabled(false);
+        
+        Coordinate target = new Coordinate(Integer.parseInt(temporaryButton.getName().split(",")[0]),Integer.parseInt(temporaryButton.getName().split(",")[1]));
+        
+        myAI.recomputeProbabilisticGrid(5, new Coordinate(10, 11), target);
 
         temporaryButton.setText("Hit");
-    }
+    	}catch(Exception exception) {
+    		exception.printStackTrace();
+    	}
+    	}
 
     public static void main(String[] args) {
         BattleShip gui = new BattleShip();

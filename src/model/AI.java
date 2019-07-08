@@ -17,8 +17,8 @@ public class AI {
 	// int[][] probabilisticGridX = new int[boardSize.x][boardSize.y];
 	// int[][] probabilisticGridY = new int[boardSize.x][boardSize.y];
 
-	int[][] probabilisticGridX = new int[10][11];
-	int[][] probabilisticGridY = new int[10][11];
+	int[][] probabilisticGridX = new int[9][11];
+	int[][] probabilisticGridY = new int[9][11];
 
 	private void computeProbabilisticGrid(int shipLength, Coordinate boardSize) throws Exception {
 
@@ -86,7 +86,8 @@ public class AI {
 
 	}
 
-	public void recomputeProbabilisticGrid(int shipLength, Coordinate boardSize, Coordinate target) throws Exception {
+	public float[][] recomputeProbabilisticGrid(int shipLength, Coordinate boardSize, Coordinate target)
+			throws Exception {
 
 		if (shipLength > boardSize.x || shipLength > boardSize.y) {
 			throw new Exception("shipLength cannot be bigger x or y");
@@ -121,6 +122,7 @@ public class AI {
 			}
 			System.out.println();
 		}
-
+		return finalProbabilisticGrid;
 	}
+
 }

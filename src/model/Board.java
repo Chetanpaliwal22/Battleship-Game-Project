@@ -20,7 +20,7 @@ public class Board {
     int battleshipSize;
     int carrierSize;
 
-    boolean shipsArePlaced = false;
+    boolean gameHasStarted = false;
 
     Ship[][] waterGrid;
 
@@ -41,7 +41,7 @@ public class Board {
      * @param battleshipSize
      * @param carrierSize
      */
-    public void Board(Coordinate boardSize,
+    public Board(Coordinate boardSize,
         int destroyerNb, int submarineNb, int cruiserNb, int battleshipNb, int carrierNb,
         int destroyerSize, int submarineSize, int cruiserSize, int battleshipSize, int carrierSize){
 
@@ -65,36 +65,37 @@ public class Board {
 
     }
 
+    /**
+     * set that the game has started
+     */
+    public void setGameHasStarted(){
+        gameHasStarted = true;
+    }
+
+    public void placeShipsRandomly(){
+
+        // hardcoded for now
+
+        Coordinate[] ship1Coordinate = { new Coordinate(4, 1), new Coordinate(4, 2) };
+        Coordinate[] ship2Coordinate = { new Coordinate(3, 7), new Coordinate(4, 7), new Coordinate(5, 7) };
+        Coordinate[] ship3Coordinate = { new Coordinate(0 ,1), new Coordinate(0, 2), new Coordinate(0, 3) };
+        Coordinate[] ship4Coordinate = { new Coordinate(5, 3), new Coordinate(6, 3), new Coordinate(7, 3), new Coordinate(8, 3) };
+        Coordinate[] ship5Coordinate = { new Coordinate(2, 0), new Coordinate(2, 1), new Coordinate(2, 2), new Coordinate(2, 3), new Coordinate(2, 4) };
+
+        //ships = { new Ship(), new Ship(), new Ship(), new Ship(), new Ship() }
+    }
+
 
     /**
      * Allow the AI or human player to place the ships on the board
      * WIP
      */
-    public void placeShips() throws Exception {
+    public void placeShip(Coordinate[] shipCoordinate) throws Exception {
 
-        if( shipsArePlaced ){ throw new Exception("Ships are already placed on the board."); }
+        if( gameHasStarted ){ throw new Exception("Can't move the ships after the beginning of the game."); }
 
-//        for(int i=0; i<destroyerNb; i++){
-//            ships[ships.length] = new Ship();
-//        }
-//
-//        for(int i=0; i<submarineNb; i++){
-//            ships[ships.length] = new Ship();
-//        }
-//
-//        for(int i=0; i<cruiserNb; i++){
-//            ships[ships.length] = new Ship();
-//        }
-//
-//        for(int i=0; i<battleshipNb; i++){
-//            ships[ships.length] = new Ship();
-//        }
-//
-//        for(int i=0; i<carrierNb; i++){
-//            ships[ships.length] = new Ship();
-//        }
 
-        shipsArePlaced = true;
+
     }
 
 
@@ -106,7 +107,7 @@ public class Board {
      */
     public int fireAtTarget(Coordinate target) throws Exception{
 
-        if( !shipsArePlaced ){ throw new Exception("Ships should be placed before playing."); }
+        if( !gameHasStarted ){ throw new Exception("Ships should be placed before playing."); }
 
         // That's a miss
         if( waterGrid[target.x][target.y] == null ) {

@@ -22,7 +22,6 @@ public class Renderer extends JComponent {
     public static int targetShipId = -1;
 
     public Renderer() {
-        setBackground(new Color(99, 222, 231));
 //        setOpaque(true);
 
         holeImageSize = (BattleShip.WIDTH / 2) / 11 - 2;
@@ -37,6 +36,9 @@ public class Renderer extends JComponent {
     }
 
     public void paintComponent(Graphics g) {
+
+        setBackground(new Color(99, 222, 231));
+        setBackground(new Color(88, 111, 78));
 
         if (clearAll) {
             g.clearRect(0, 0, getWidth(), getHeight());

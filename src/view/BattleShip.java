@@ -7,10 +7,12 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import constants.Constants;
 import controller.Mouse;
 import model.AI;
 import model.Ship;
 import tools.Coordinate;
+import model.Board;
 
 public class BattleShip extends JFrame implements ActionListener {
 
@@ -138,6 +140,20 @@ public class BattleShip extends JFrame implements ActionListener {
     public static void main(String[] args) {
         battleShip = new BattleShip();
         battleShip.setVisible(true);
+
+        /*Board humanBoard = new Board(Constants.BOARD_SIZE,
+                1, 1, 1, 1, 1,
+                Constants.DESTROYER_SIZE, Constants.SUBMARINE_SIZE, Constants.CRUISER_SIZE,
+                Constants.BATTLESHIP_SIZE, Constants.CARRIER_SIZE);*/
+
+        /*Board AIBoard = new Board(Constants.BOARD_SIZE,
+                1, 1, 1, 1, 1,
+                Constants.DESTROYER_SIZE, Constants.SUBMARINE_SIZE, Constants.CRUISER_SIZE,
+                Constants.BATTLESHIP_SIZE, Constants.CARRIER_SIZE);*/
+
+
+
+
 
         shipList.add(new Ship(2, 2, 6, 1));
         shipList.add(new Ship(3, 3, 2, 3));

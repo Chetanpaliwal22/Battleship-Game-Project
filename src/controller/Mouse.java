@@ -1,11 +1,12 @@
 package controller;
 
-import view.BattleShip;
-import view.Renderer;
+import view.MainWindow;
+//import view.Renderer;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/*
 public class Mouse implements MouseListener {
     public static boolean leftClicked = false;
 
@@ -14,10 +15,10 @@ public class Mouse implements MouseListener {
         if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
 
             if (leftClicked) {
-                if (BattleShip.shipList.get(Renderer.targetShipId).direction < 4)
-                    BattleShip.shipList.get(Renderer.targetShipId).direction += 1;
+                if (MainWindow.shipList.get(Renderer.targetShipId).direction < 4)
+                    MainWindow.shipList.get(Renderer.targetShipId).direction += 1;
                 else
-                    BattleShip.shipList.get(Renderer.targetShipId).direction = 1;
+                    MainWindow.shipList.get(Renderer.targetShipId).direction = 1;
             }
         }
     }
@@ -51,3 +52,4 @@ public class Mouse implements MouseListener {
 
     }
 }
+*/

@@ -1,8 +1,5 @@
 package model;
 import tools.Coordinate;
-import view.BattleShip;
-
-import java.util.ArrayList;
 
 public class Board {
 
@@ -82,20 +79,103 @@ public class Board {
         Coordinate[] ship4Coordinate = { new Coordinate(5, 3), new Coordinate(6, 3), new Coordinate(7, 3), new Coordinate(8, 3) };
         Coordinate[] ship5Coordinate = { new Coordinate(2, 0), new Coordinate(2, 1), new Coordinate(2, 2), new Coordinate(2, 3), new Coordinate(2, 4) };
 
-        //ships = { new Ship(), new Ship(), new Ship(), new Ship(), new Ship() }
+        try {
+            placeShip(ship1Coordinate);
+            placeShip(ship1Coordinate);
+            placeShip(ship1Coordinate);
+            placeShip(ship1Coordinate);
+            placeShip(ship1Coordinate);
+
+        } catch(Exception e){ System.out.println(e); }
     }
 
 
     /**
-     * Allow the AI or human player to place the ships on the board
-     * WIP
+     * Allow human or AI to place a new ship on the board
+     * @param newShipCoordinate
+     * @throws Exception
      */
-    public void placeShip(Coordinate[] shipCoordinate) throws Exception {
+    public void placeShip(Coordinate[] newShipCoordinate) throws Exception {
 
-        if( gameHasStarted ){ throw new Exception("Can't move the ships after the beginning of the game."); }
+        if( gameHasStarted ){
+            throw new Exception("Can't move the ships after the beginning of the game.");
+        }
+
+        if( doShipCollide(newShipCoordinate) ){
+            throw new Exception("New ship coordinate collides with another ship.");
+        }
+
+        // create a new ship
+        Ship newShip = new Ship(newShipCoordinate.length, newShipCoordinate);
+
+        // add ship reference to the grid
+        for(int i=0; i<newShipCoordinate.length; i++){
+            waterGrid[ newShipCoordinate[i].x ][ newShipCoordinate[i].y ] = newShip;
+        }
+
+        // add ship to ship index
+        ships[ships.length] = newShip;
+    }
 
 
+    /**
+     * Allow human to modify the placement of a ship on the board
+     * @param shipIndex
+     * @param newShipCoordinate
+     * @throws Exception
+     */
+    public void modifyShipPlace(int shipIndex, Coordinate[] newShipCoordinate) throws Exception {
 
+        if( gameHasStarted ){
+            throw new Exception("Can't move the ships after the beginning of the game.");
+        }
+
+        if( shipIndex < 0 || shipIndex > ships.length ){
+            throw new Exception("Invalid ship index.");
+        }
+
+        if( doShipCollide(newShipCoordinate) ){
+            throw new Exception("New ship coordinate collides with another ship.");
+        }
+
+        // get ship position
+        Coordinate[] shipCoordinate = ships[shipIndex].getPosition();
+
+        // loop over previous ship coordinate, and remove
+        for(int i=0; i<shipCoordinate.length; i++){
+            waterGrid[ shipCoordinate[i].x ][ shipCoordinate[i].y ] = null;
+        }
+
+        // loop over new coordinate to add the new ship to the board
+        for(int i=0; i<newShipCoordinate.length; i++){
+            waterGrid[ newShipCoordinate[i].x ][ newShipCoordinate[i].y ] = ships[shipIndex];
+        }
+
+    }
+
+
+    /**
+     * check for collision between the provided coordinates and the board
+     * @param newShipCoordinate
+     * @return
+     */
+    private boolean doShipCollide( Coordinate[] newShipCoordinate ) throws Exception {
+
+        for(int i=0; i<newShipCoordinate.length; i++) {
+
+            if (newShipCoordinate[i].x < 0 || newShipCoordinate[i].x > boardSize.x
+                    || newShipCoordinate[i].y < 0 || newShipCoordinate[i].y > boardSize.y) {
+
+                throw new Exception("Ship coordinate outside the grid.");
+            }
+
+            if (!waterGrid[newShipCoordinate[i].x][newShipCoordinate[i].y].equals(null)) {
+                return true;
+            }
+
+        }
+
+        return false;
     }
 
 
@@ -137,30 +217,24 @@ public class Board {
     }
 
 
+    /**
+     * return the state of the board as a 2 dimensional array of integer
+     * WIP
+     * @return
+     */
+    public int[][] getBoardState() {
 
+        int[][] boardState = new int[boardSize.x][boardSize.y];
 
-    // The following methods needed to correct
-    // The following methods needed to correct
+        for (int i=0; i<boardSize.x; i++) {
+            for(int j=0; j<boardSize.y; j++){
+                if(true){
+                    boardState[i][j] = 1;
+                }
+            }
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        return boardState;
+    }
 
 }

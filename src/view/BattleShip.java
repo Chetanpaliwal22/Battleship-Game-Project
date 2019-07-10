@@ -140,6 +140,8 @@ public class BattleShip extends JFrame implements ActionListener {
     public static void main(String[] args) {
         battleShip = new BattleShip();
         battleShip.setVisible(true);
+        
+        boolean allShipSunkFlag = false;
 
         /*Board humanBoard = new Board(Constants.BOARD_SIZE,
                 1, 1, 1, 1, 1,
@@ -172,7 +174,20 @@ public class BattleShip extends JFrame implements ActionListener {
         // }
 
         // MAIN GAME LOOP OF THE GAME
+        
+        Player humanPlayer = new Player("human");
+        Player AIPlayer = new Plyaer("AI");
+        
+        while(!allShipSunkFlag) {
+        
+        //Human plays the first move.
+        
+       //Play the move from ui.
+        
+        AIPlayer.getNextMove(/*2darryasargument*/);
 
+        
+        }
 
     }
 

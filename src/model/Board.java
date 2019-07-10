@@ -1,5 +1,8 @@
 package model;
 import tools.Coordinate;
+import view.BattleShip;
+
+import java.util.ArrayList;
 
 public class Board {
 
@@ -71,25 +74,25 @@ public class Board {
 
         if( shipsArePlaced ){ throw new Exception("Ships are already placed on the board."); }
 
-        for(int i=0; i<destroyerNb; i++){
-            ships[ships.length] = new Ship();
-        }
-
-        for(int i=0; i<submarineNb; i++){
-            ships[ships.length] = new Ship();
-        }
-
-        for(int i=0; i<cruiserNb; i++){
-            ships[ships.length] = new Ship();
-        }
-
-        for(int i=0; i<battleshipNb; i++){
-            ships[ships.length] = new Ship();
-        }
-
-        for(int i=0; i<carrierNb; i++){
-            ships[ships.length] = new Ship();
-        }
+//        for(int i=0; i<destroyerNb; i++){
+//            ships[ships.length] = new Ship();
+//        }
+//
+//        for(int i=0; i<submarineNb; i++){
+//            ships[ships.length] = new Ship();
+//        }
+//
+//        for(int i=0; i<cruiserNb; i++){
+//            ships[ships.length] = new Ship();
+//        }
+//
+//        for(int i=0; i<battleshipNb; i++){
+//            ships[ships.length] = new Ship();
+//        }
+//
+//        for(int i=0; i<carrierNb; i++){
+//            ships[ships.length] = new Ship();
+//        }
 
         shipsArePlaced = true;
     }
@@ -131,6 +134,32 @@ public class Board {
         } else { throw new Exception("Invalid coordinate provided as target."); }
 
     }
+
+
+
+
+    // The following methods needed to correct
+    // The following methods needed to correct
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

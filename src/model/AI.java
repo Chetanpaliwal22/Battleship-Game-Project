@@ -1,5 +1,6 @@
 package model;
 
+import constants.Constants;
 import tools.Coordinate;
 
 public class AI {
@@ -8,7 +9,7 @@ public class AI {
 
 	public AI() {
 		try {
-			computeProbabilisticGrid(5, new Coordinate(9, 11));
+			computeProbabilisticGrid(5, new Coordinate(11, 9));
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -17,8 +18,8 @@ public class AI {
 	// int[][] probabilisticGridX = new int[boardSize.x][boardSize.y];
 	// int[][] probabilisticGridY = new int[boardSize.x][boardSize.y];
 
-	int[][] probabilisticGridX = new int[9][11];
-	int[][] probabilisticGridY = new int[9][11];
+	int[][] probabilisticGridX = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+	int[][] probabilisticGridY = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
 
 	private void computeProbabilisticGrid(int shipLength, Coordinate boardSize) throws Exception {
 
@@ -125,4 +126,20 @@ public class AI {
 		return finalProbabilisticGrid;
 	}
 
+	public Coordinate getNextMove(float[][] doubles, int row, int col) {
+		Coordinate currentCoordinate = new Coordinate(0, 0);
+		float currentHighest = 0;
+
+		for (int i = 0; i < row; row++) {
+			for (int j = 0; j < col; col++) {
+				float value = doubles[i][j];
+				if (value > currentHighest) {
+					currentHighest = value;
+					currentCoordinate.x = i;
+					currentCoordinate.y = j;
+				}
+			}
+		}
+		return currentCoordinate;
+	}
 }

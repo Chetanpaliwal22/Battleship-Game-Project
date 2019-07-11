@@ -77,9 +77,12 @@ public class MainWindow extends JFrame implements ActionListener {
         JButton startGameButton = new JButton("Start game");
         startGameButton.addActionListener((ActionEvent e) -> {
             startedGame = true;
+<<<<<<< HEAD
+=======
 //            gameStateComponent.setText("Game started!!!");
 //            gameStateComponent.setText("\nOne emeny ship has been sunk");
 
+>>>>>>> master
             startGameButton.setVisible(false);
 //            JOptionPane.showMessageDialog(this, "Player wins!!!!!!");
         });
@@ -118,7 +121,10 @@ public class MainWindow extends JFrame implements ActionListener {
             for (int j = 0; j < 11; j++) {
 
                 buttonArray[i][j] = new JButton(alphabet[j] + " " + (i + 1));
+<<<<<<< HEAD
+=======
                 buttonArray[i][j].setName(j + "," + i);
+>>>>>>> master
                 buttonArray[i][j].addActionListener(this);
 
                 boardPanel.add(buttonArray[i][j]);

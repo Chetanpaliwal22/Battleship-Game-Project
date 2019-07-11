@@ -1,21 +1,13 @@
 package model;
 import tools.Coordinate;
+<<<<<<< HEAD
+import constants.Constants;
+=======
+>>>>>>> master
 
 public class Board {
 
     Coordinate boardSize;
-
-    int destroyerNb;
-    int submarineNb;
-    int cruiserNb;
-    int battleshipNb;
-    int carrierNb;
-
-    int destroyerSize;
-    int submarineSize;
-    int cruiserSize;
-    int battleshipSize;
-    int carrierSize;
 
     boolean gameHasStarted = false;
 
@@ -27,38 +19,15 @@ public class Board {
     /**
      * argument constructor
      * @param boardSize
-     * @param destroyerNb
-     * @param submarineNb
-     * @param cruiserNb
-     * @param battleshipNb
-     * @param carrierNb
-     * @param destroyerSize
-     * @param submarineSize
-     * @param cruiserSize
-     * @param battleshipSize
-     * @param carrierSize
      */
-    public Board(Coordinate boardSize,
-        int destroyerNb, int submarineNb, int cruiserNb, int battleshipNb, int carrierNb,
-        int destroyerSize, int submarineSize, int cruiserSize, int battleshipSize, int carrierSize){
+    public Board(Coordinate boardSize){
 
         this.boardSize = boardSize;
 
-        this.destroyerNb = destroyerNb;
-        this.submarineNb = submarineNb;
-        this.cruiserNb = cruiserNb;
-        this.battleshipNb = battleshipNb;
-        this.carrierNb = carrierNb;
-
-        this.destroyerSize = destroyerSize;
-        this.submarineSize = submarineSize;
-        this.cruiserSize = cruiserSize;
-        this.battleshipSize = battleshipSize;
-        this.carrierSize = carrierSize;
-
         this.waterGrid = new Ship[this.boardSize.x][this.boardSize.y];
 
-        this.ships = new Ship[ destroyerNb + submarineNb + cruiserNb + battleshipNb + carrierNb ];
+        int nbShips = Constants.DESTROYER_NB + Constants.SUBMARINE_NB + Constants.CRUISER_NB + Constants.BATTLESHIP_NB + Constants.CARRIER_NB;
+        this.ships = new Ship[ nbShips ];
 
     }
 
@@ -123,6 +92,7 @@ public class Board {
      * @param shipIndex
      * @param newShipCoordinate
      * @throws Exception
+<<<<<<< HEAD
      */
     public void modifyShipPlace(int shipIndex, Coordinate[] newShipCoordinate) throws Exception {
 
@@ -159,16 +129,23 @@ public class Board {
      * @param newShipCoordinate
      * @return
      */
+=======
+
+>>>>>>> master
     private boolean doShipCollide( Coordinate[] newShipCoordinate ) throws Exception {
 
         for(int i=0; i<newShipCoordinate.length; i++) {
 
             if (newShipCoordinate[i].x < 0 || newShipCoordinate[i].x > boardSize.x
                     || newShipCoordinate[i].y < 0 || newShipCoordinate[i].y > boardSize.y) {
+<<<<<<< HEAD
 
                 throw new Exception("Ship coordinate outside the grid.");
             }
 
+=======
+
+>>>>>>> master
             if (!waterGrid[newShipCoordinate[i].x][newShipCoordinate[i].y].equals(null)) {
                 return true;
             }

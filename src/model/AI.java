@@ -2,28 +2,112 @@ package model;
 
 import constants.Constants;
 import tools.Coordinate;
+import tools.GridHelper;
 
 public class AI {
 
 	private Coordinate boardSize;
 
+	// int[][] probabilisticGridX = new int[boardSize.x][boardSize.y];
+	// int[][] probabilisticGridY = new int[boardSize.x][boardSize.y];
+
+	private int[][] countGrid;
+
+	//private int[][] probabilisticGridX = new int[9][11];
+	//private int[][] probabilisticGridY = new int[9][11];
+
+	//
+	private int[][] destroyerCountGrid;
+	private int[][] submarineCountGrid;
+	private int[][] cruiserCountGrid;
+	private int[][] battleshipCountGrid;
+	private int[][] carrierCountGrid;
+
+	private int nbDestroyerDestroyed = 0;
+	private int nbSubmarineDestroyed = 0;
+	private int nbCruiserDestroyed = 0;
+	private int nbBattleshipDestroyed = 0;
+	private int nbCarrierDestroyed = 0;
+
+	// current grids //
+
+	boolean isInitialized = false;
+
+	private Coordinate previousTarget;
+
+	/**
+	 * default constructor
+	 */
 	public AI() {
 		try {
-			computeProbabilisticGrid(5, new Coordinate(11, 9));
+<<<<<<< HEAD
+			computeCountGrid();
+			isInitialized = true;
+=======
+>>>>>>> master
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
 
-	// int[][] probabilisticGridX = new int[boardSize.x][boardSize.y];
-	// int[][] probabilisticGridY = new int[boardSize.x][boardSize.y];
+	/**
+	 * compute the probabilitic grid, called by constructor initially
+	 * @return
+	 * @throws Exception
+	 */
+	private void computeCountGrid() throws Exception {
 
-	int[][] probabilisticGridX = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
-	int[][] probabilisticGridY = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+		int[][] finalCountGrid = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
 
-	private void computeProbabilisticGrid(int shipLength, Coordinate boardSize) throws Exception {
+		// loop over nb of ships and their respective sizes on the board
+		this.destroyerCountGrid = specificCountGrid(Constants.DESTROYER_SIZE);
+		this.submarineCountGrid = specificCountGrid(Constants.SUBMARINE_SIZE);
+		this.cruiserCountGrid = specificCountGrid(Constants.CRUISER_SIZE);
+		this.battleshipCountGrid = specificCountGrid(Constants.BATTLESHIP_SIZE);
+		this.carrierCountGrid = specificCountGrid(Constants.CARRIER_SIZE);
 
-		if (shipLength > boardSize.x || shipLength > boardSize.y) {
+		for(int i=0; i<Constants.DESTROYER_NB; i++){
+			GridHelper.add( finalCountGrid, this.destroyerCountGrid );
+		}
+
+		for(int i=0; i<Constants.DESTROYER_NB; i++){
+			GridHelper.add( finalCountGrid, this.submarineCountGrid );
+		}
+
+		for(int i=0; i<Constants.DESTROYER_NB; i++){
+			GridHelper.add( finalCountGrid, this.cruiserCountGrid );
+		}
+
+		for(int i=0; i<Constants.DESTROYER_NB; i++){
+			GridHelper.add( finalCountGrid, this.battleshipCountGrid );
+		}
+
+		for(int i=0; i<Constants.DESTROYER_NB; i++){
+			GridHelper.add( finalCountGrid, this.carrierCountGrid );
+		}
+
+<<<<<<< HEAD
+		//finalCountGrid = GridHelper.divideByScalar( finalCountGrid, Constants.BATTLESHIP_NB );
+=======
+
+>>>>>>> master
+
+		this.countGrid = finalCountGrid;
+	}
+
+
+	/**
+	 * compute a specific Count grid, helper for computeCountGrid
+	 * @param shipSize
+	 * @return
+	 * @throws Exception
+	 */
+	private int[][] specificCountGrid(int shipSize) throws Exception {
+
+		int[][] probabilisticGridX = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+		int[][] probabilisticGridY = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+
+		if (shipSize > boardSize.x || shipSize > boardSize.y) {
 			throw new Exception("shipLength cannot be bigger x or y");
 		}
 
@@ -32,8 +116,8 @@ public class AI {
 		// vertical ship position probability //
 
 		// compute weight on first column
-		for (int i = 0; i < boardSize.y - shipLength + 1; i++) { // start position
-			for (int j = 0; j < shipLength; j++) { // loop over shipLength
+		for (int i = 0; i < boardSize.y - shipSize + 1; i++) { // start position
+			for (int j = 0; j < shipSize; j++) { // loop over shipLength
 				probabilisticGridX[0][i + j] += 1;
 			}
 		}
@@ -48,8 +132,8 @@ public class AI {
 		// horizontal ship position probability //
 
 		// compute weight on first row
-		for (int i = 0; i < boardSize.x - shipLength + 1; i++) { // start position
-			for (int j = 0; j < shipLength; j++) { // loop over shipLength
+		for (int i = 0; i < boardSize.x - shipSize + 1; i++) { // start position
+			for (int j = 0; j < shipSize; j++) { // loop over shipLength
 				probabilisticGridY[i + j][0] += 1;
 			}
 		}
@@ -63,7 +147,8 @@ public class AI {
 
 		// add vertical and horizontal probability grid //
 
-		float[][] finalProbabilisticGrid = new float[boardSize.x][boardSize.y];
+		int[][] specificCountGrid = new int[boardSize.x][boardSize.y];
+
 		int cellCount = 0;
 		long totalCount = 0;
 
@@ -71,59 +156,129 @@ public class AI {
 			for (int j = 0; j < boardSize.y; j++) {
 				cellCount = probabilisticGridX[i][j] + probabilisticGridY[i][j];
 				totalCount += cellCount;
-				finalProbabilisticGrid[i][j] = cellCount;
+				specificCountGrid[i][j] = cellCount;
 			}
 		}
 
 		// convert weights to probabilities //
 
-		for (int i = 0; i < boardSize.x; i++) {
+		/*for (int i = 0; i < boardSize.x; i++) {
 			for (int j = 0; j < boardSize.y; j++) {
-				finalProbabilisticGrid[i][j] = finalProbabilisticGrid[i][j] / totalCount;
-				System.out.print(finalProbabilisticGrid[i][j] + " ");
+				specificCountGrid[i][j] = specificCountGrid[i][j] / totalCount;
+				System.out.print(specificCountGrid[i][j] + " ");
 			}
 			System.out.println();
-		}
+		}*/
+
+		return specificCountGrid;
+	}
+
+
+	/**
+	 * register the result of the previous move
+	 * @param code
+	 */
+	public void receiveResult( int code ) throws Exception {
+
+		// if(code == 2){ // miss
+
+		updateCountGrid( this.previousTarget, code );
 
 	}
 
-	public float[][] recomputeProbabilisticGrid(int shipLength, Coordinate boardSize, Coordinate target)
-			throws Exception {
+	/**
+	 * After a move is registered, update the probabilistic grid
+	 * @param target
+	 * @param code
+	 * @throws Exception
+	 */
+	private void updateCountGrid( Coordinate target, int code) throws Exception {
 
-		if (shipLength > boardSize.x || shipLength > boardSize.y) {
-			throw new Exception("shipLength cannot be bigger x or y");
-		}
+		int[][] countGridToUpdate = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
 
-		System.out.println("Recomputing Probability.");
+		// update probabilistic grid related to each ship length //
 
-		float[][] finalProbabilisticGrid = new float[boardSize.x][boardSize.y];
-		int cellCount = 0;
+		this.destroyerCountGrid = updateSpecificCountGrid( this.destroyerCountGrid, target, code);
+
+		this.submarineCountGrid = updateSpecificCountGrid( this.submarineCountGrid, target, code);
+
+		this.cruiserCountGrid = updateSpecificCountGrid( this.cruiserCountGrid, target, code);
+
+		this.battleshipCountGrid = updateSpecificCountGrid( this.battleshipCountGrid, target, code);
+
+		this.carrierCountGrid = updateSpecificCountGrid( this.carrierCountGrid, target, code);
+
+
+		// add them together to get the new final probabilistic grid
+
+		for(int i=0; i<Constants.DESTROYER_NB - this.nbDestroyerDestroyed; i++){
+			GridHelper.add( countGridToUpdate, this.destroyerCountGrid ); }
+
+		for(int i=0; i<Constants.SUBMARINE_NB - this.nbSubmarineDestroyed; i++){
+			GridHelper.add( countGridToUpdate, this.submarineCountGrid ); }
+
+		for(int i=0; i<Constants.CRUISER_NB - this.nbCruiserDestroyed; i++){
+			GridHelper.add( countGridToUpdate, this.cruiserCountGrid ); }
+
+		for(int i=0; i<Constants.BATTLESHIP_NB - this.nbBattleshipDestroyed; i++){
+			GridHelper.add( countGridToUpdate, this.battleshipCountGrid ); }
+
+		for(int i=0; i<Constants.CARRIER_NB - this.nbCarrierDestroyed; i++){
+			GridHelper.add( countGridToUpdate, this.carrierCountGrid ); }
+
+		/*countGridToUpdate = GridHelper.divideByScalar(
+				countGridToUpdate,
+				Constants.SHIP_NB - this.nbDestroyerDestroyed - this.nbSubmarineDestroyed
+				- this.nbCruiserDestroyed - this.nbBattleshipDestroyed - this.nbCarrierDestroyed);*/
+
+		this.countGrid = countGridToUpdate;
+	}
+
+
+	/**
+	 * update a specific probabilistic grid given the new information
+	 * @return
+	 */
+	public int[][] updateSpecificCountGrid(
+		int[][] countGridToUpdate, Coordinate target, int code) throws Exception {
+
+		countGridToUpdate[target.x][target.y] = 0;
+		return countGridToUpdate;
+	}
+
+
+	/**
+	 * get the next move from the AI player
+	 * @return
+	 */
+	public Coordinate getNextMove(){
+
 		long totalCount = 0;
 
-		probabilisticGridX[target.x][target.y] = 0;
-		probabilisticGridY[target.x][target.y] = 0;
-
-		for (int i = 0; i < boardSize.x; i++) {
-			for (int j = 0; j < boardSize.y; j++) {
-				cellCount = probabilisticGridX[i][j] + probabilisticGridY[i][j];
-				totalCount += cellCount;
-				finalProbabilisticGrid[i][j] = cellCount;
+		for (int i = 0; i < Constants.BOARD_SIZE.x; i++) {
+			for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
+				totalCount += countGrid[i][j];
 			}
 		}
 
-		totalCount = (long) (totalCount - finalProbabilisticGrid[target.x][target.y]);
-		finalProbabilisticGrid[target.x][target.y] = 0;
+		Coordinate currentCoordinate = new Coordinate(0, 0);
+		float currentHighest = 0;
 
-		// convert weights to probabilities //
+		for (int i = 0; i < Constants.BOARD_SIZE.x; i++) {
+			for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
 
-		for (int i = 0; i < boardSize.x; i++) {
-			for (int j = 0; j < boardSize.y; j++) {
-				finalProbabilisticGrid[i][j] = finalProbabilisticGrid[i][j] / totalCount;
-				System.out.print(finalProbabilisticGrid[i][j] + " ");
+				float value = countGrid[i][j] / totalCount;
+
+				if (value > currentHighest) {
+					currentHighest = value;
+					currentCoordinate.x = i;
+					currentCoordinate.y = j;
+				}
 			}
-			System.out.println();
 		}
-		return finalProbabilisticGrid;
+
+		this.previousTarget = currentCoordinate;
+		return currentCoordinate;
 	}
 
 	public Coordinate getNextMove(float[][] doubles, int row, int col) {

@@ -4,6 +4,7 @@ package view;
 
 import constants.Constants;
 import controller.Mouse;
+import sun.applet.Main;
 
 import javax.swing.*;
 import java.awt.*;

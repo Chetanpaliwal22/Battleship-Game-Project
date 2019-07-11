@@ -1,6 +1,6 @@
 package model;
 import tools.Coordinate;
-import view.BattleShip;
+import view.MainWindow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class Ship {
      * @param size
      * @param position
      */
-    public void Ship(int size, Coordinate[] position){
+    public Ship(int size, Coordinate[] position){
 
         this.position = position;
         this.size = size;
@@ -27,11 +27,27 @@ public class Ship {
     /**
      * default constructor
      */
-    public void Ship(){
+    public Ship(){
 
         this.position = new Coordinate[]{new Coordinate(0, 0), new Coordinate(0, 1)};
         this.size = 2;
 
+    }
+
+    /**
+     * get list of coordinate of the ship
+     * @return
+     */
+    public Coordinate[] getPosition(){
+        return position;
+    }
+
+    /**
+     * get size of the ship
+     * @return
+     */
+    public int getSize(){
+        return size;
     }
 
 
@@ -102,9 +118,7 @@ public class Ship {
 
     public int length = 0;
 
-    /*
-     * Direction the ship faces 1: Right 2: Down 3: Left 4: Up
-     */
+    // Direction the ship faces 1: Right 2: Down 3: Left 4: Up
     public int direction = 0;
 
     // The occupied grids of this ship
@@ -289,14 +303,14 @@ public class Ship {
         }
 
         // Check the collision
-        for (int i = 0; i < BattleShip.shipList.size(); i++) {
-            if (BattleShip.shipList.get(i) != this) {
+        for (int i = 0; i < MainWindow.shipList.size(); i++) {
+            if (MainWindow.shipList.get(i) != this) {
                 // Compare the coordinates of this ship to other ships' coordinates
                 for (int j = 0; j < occupiedGridX.size(); j++) {
-                    for (int gridIndex = 0; gridIndex < BattleShip.shipList.get(i).occupiedGridX.size(); gridIndex++) {
+                    for (int gridIndex = 0; gridIndex < MainWindow.shipList.get(i).occupiedGridX.size(); gridIndex++) {
                         // Check if they have the same X and Y
-                        if (occupiedGridX.get(j) == BattleShip.shipList.get(i).occupiedGridX.get(gridIndex)
-                                & occupiedGridY.get(j) == BattleShip.shipList.get(i).occupiedGridY.get(gridIndex)) {
+                        if (occupiedGridX.get(j) == MainWindow.shipList.get(i).occupiedGridX.get(gridIndex)
+                                & occupiedGridY.get(j) == MainWindow.shipList.get(i).occupiedGridY.get(gridIndex)) {
                             validity = false;
                             return false;
                         }

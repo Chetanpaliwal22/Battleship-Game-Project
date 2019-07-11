@@ -169,6 +169,9 @@ public class MainWindow extends JFrame implements ActionListener {
 
                 temporaryButton.setEnabled(false);
 
+
+                // Human player turn to play //
+
                 Coordinate target = new Coordinate(Integer.parseInt(temporaryButton.getName().split(",")[0]),
                         Integer.parseInt(temporaryButton.getName().split(",")[1]));
 
@@ -181,6 +184,22 @@ public class MainWindow extends JFrame implements ActionListener {
                 } else if( result == 2 ){
                     temporaryButton.setText("Sunk !!!");
                 }
+
+
+                // AI turn to play //
+
+                target = myAI.getNextMove();
+
+                result = humanBoard.fireAtTarget( target );
+
+                if( result == 0 ){
+                    temporaryButton.setText("Miss");
+                } else if( result == 1 ){
+                    temporaryButton.setText("Hit !");
+                } else if( result == 2 ){
+                    temporaryButton.setText("Sunk !!!");
+                }
+
 
             } catch (Exception exception) {
                 exception.printStackTrace();

@@ -13,6 +13,7 @@ import model.AI;
 import model.Ship;
 import tools.Coordinate;
 import model.Board;
+import model.Player;
 
 public class BattleShip extends JFrame implements ActionListener {
 
@@ -176,7 +177,7 @@ public class BattleShip extends JFrame implements ActionListener {
         // MAIN GAME LOOP OF THE GAME
         
         Player humanPlayer = new Player("human");
-        Player AIPlayer = new Plyaer("AI");
+        Player AIPlayer = new Player("AI");
         
         while(!allShipSunkFlag) {
         
@@ -184,7 +185,7 @@ public class BattleShip extends JFrame implements ActionListener {
         
        //Play the move from ui.
         
-        AIPlayer.getNextMove(/*2darryasargument*/);
+        AIPlayer.getNextMove(9, 11, null);
 
         
         }

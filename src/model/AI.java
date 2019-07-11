@@ -40,8 +40,11 @@ public class AI {
 	 */
 	public AI() {
 		try {
+<<<<<<< HEAD
 			computeCountGrid();
 			isInitialized = true;
+=======
+>>>>>>> master
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -83,7 +86,11 @@ public class AI {
 			GridHelper.add( finalCountGrid, this.carrierCountGrid );
 		}
 
+<<<<<<< HEAD
 		//finalCountGrid = GridHelper.divideByScalar( finalCountGrid, Constants.BATTLESHIP_NB );
+=======
+
+>>>>>>> master
 
 		this.countGrid = finalCountGrid;
 	}

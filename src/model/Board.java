@@ -1,6 +1,9 @@
 package model;
 import tools.Coordinate;
+<<<<<<< HEAD
 import constants.Constants;
+=======
+>>>>>>> master
 
 public class Board {
 
@@ -89,6 +92,7 @@ public class Board {
      * @param shipIndex
      * @param newShipCoordinate
      * @throws Exception
+<<<<<<< HEAD
      */
     public void modifyShipPlace(int shipIndex, Coordinate[] newShipCoordinate) throws Exception {
 
@@ -125,16 +129,23 @@ public class Board {
      * @param newShipCoordinate
      * @return
      */
+=======
+
+>>>>>>> master
     private boolean doShipCollide( Coordinate[] newShipCoordinate ) throws Exception {
 
         for(int i=0; i<newShipCoordinate.length; i++) {
 
             if (newShipCoordinate[i].x < 0 || newShipCoordinate[i].x > boardSize.x
                     || newShipCoordinate[i].y < 0 || newShipCoordinate[i].y > boardSize.y) {
+<<<<<<< HEAD
 
                 throw new Exception("Ship coordinate outside the grid.");
             }
 
+=======
+
+>>>>>>> master
             if (!waterGrid[newShipCoordinate[i].x][newShipCoordinate[i].y].equals(null)) {
                 return true;
             }

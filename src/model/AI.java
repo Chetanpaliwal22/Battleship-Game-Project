@@ -74,8 +74,6 @@ public class AI {
 		}
 
 		this.countGrid = finalCountGrid;
-
-        System.out.println("YEP");
 	}
 
 
@@ -231,7 +229,7 @@ public class AI {
 				totalCount += countGrid[i][j];
 			}
 		}
-		
+
 		Coordinate currentCoordinate = new Coordinate(0, 0);
 		float currentHighest = 0;
 

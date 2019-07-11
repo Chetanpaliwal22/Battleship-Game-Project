@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Ship {
 
-    private Coordinate[] position;
-    private Coordinate[] hitPosition;
+    private ArrayList<Coordinate> position;
+    private ArrayList<Coordinate> hitPosition;
     private int size;
     private boolean isAlive = true;
 
@@ -21,7 +21,9 @@ public class Ship {
      */
     public Ship(int size, Coordinate[] position) {
 
-        this.position = position;
+        for(int i=0; i<position.length; i++){
+            this.position.add(position[i]);
+        }
         this.size = size;
 
     }
@@ -31,9 +33,9 @@ public class Ship {
      */
     public Ship() {
 
-        this.position = new Coordinate[]{new Coordinate(0, 0), new Coordinate(0, 1)};
+        this.position.add( new Coordinate(0, 0) );
+        this.position.add( new Coordinate(0, 1) );
         this.size = 2;
-
     }
 
     /**
@@ -41,9 +43,7 @@ public class Ship {
      *
      * @return
      */
-    public Coordinate[] getPosition() {
-        return position;
-    }
+    public ArrayList<Coordinate> getPosition() { return position; }
 
     /**
      * get size of the ship
@@ -80,26 +80,22 @@ public class Ship {
 
         if (isAlive) {
 
-            for (int i = 0; i < position.length; i++) {
+            for (int i = 0; i < this.position.size(); i++){
 
-                if (position[i].equals(target)) {
+                if (this.position.get(i).equals(target)) {
 
-                    hitPosition[hitPosition.length] = position[i];
+                    hitPosition.add(this.position.get(i));
 
-                    if (hitPosition.length == position.length) {
+                    if (hitPosition.size() == position.size()) {
                         isAlive = false;
                     }
 
                     return true;
                 }
-
             }
-
-            return false;
-
-        } else {
-            return false;
         }
+
+        return false;
     }
 
 
@@ -115,8 +111,8 @@ public class Ship {
             return true;
         }
 
-        for (int i = 0; i < hitPosition.length; i++) {
-            if (hitPosition[i].equals(target)) {
+        for (int i = 0; i < hitPosition.size(); i++) {
+            if (hitPosition.get(i).equals(target)) {
                 return true;
             }
         }

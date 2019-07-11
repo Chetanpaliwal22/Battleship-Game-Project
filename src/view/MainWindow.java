@@ -21,6 +21,7 @@ public class MainWindow extends JFrame implements ActionListener {
     AI myAI = new AI();
 
     Board humanBoard = new Board();
+
     Board AIBoard = new Board();
 
     private static Mouse mouse;
@@ -43,6 +44,8 @@ public class MainWindow extends JFrame implements ActionListener {
     public MainWindow() {
 
         super("BattleShip");
+
+        AIBoard.placeShipsRandomly();
 
         setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 
@@ -179,10 +182,11 @@ public class MainWindow extends JFrame implements ActionListener {
 
                 if( result == 0 ){
                     temporaryButton.setText("Miss");
+                    System.out.println("Human => missed.");
                 } else if( result == 1 ){
-                    temporaryButton.setText("Hit !");
+                    temporaryButton.setText("Human => hit !");
                 } else if( result == 2 ){
-                    temporaryButton.setText("Sunk !!!");
+                    temporaryButton.setText("Human => Sunk !!!");
                 }
 
 
@@ -194,11 +198,14 @@ public class MainWindow extends JFrame implements ActionListener {
 
                 if( result == 0 ){
                     temporaryButton.setText("Miss");
+                    System.out.println("AI => missed.");
                 } else if( result == 1 ){
-                    temporaryButton.setText("Hit !");
+                    temporaryButton.setText("AI => hit !");
                 } else if( result == 2 ){
-                    temporaryButton.setText("Sunk !!!");
+                    temporaryButton.setText("AI => Sunk !!!");
                 }
+
+                System.out.println(" ");
 
 
             } catch (Exception exception) {

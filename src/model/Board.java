@@ -46,10 +46,10 @@ public class Board {
 
         try {
             placeShip(ship1Coordinate);
-            placeShip(ship1Coordinate);
-            placeShip(ship1Coordinate);
-            placeShip(ship1Coordinate);
-            placeShip(ship1Coordinate);
+            placeShip(ship2Coordinate);
+            placeShip(ship3Coordinate);
+            placeShip(ship4Coordinate);
+            placeShip(ship5Coordinate);
 
         } catch(Exception e){ System.out.println(e); }
     }
@@ -79,7 +79,7 @@ public class Board {
         }
 
         // add ship to ship index
-        ships[ships.length] = newShip;
+        ships[ships.length-1] = newShip;
     }
 
 
@@ -104,7 +104,7 @@ public class Board {
         }
 
         // get ship position
-        Coordinate[] shipCoordinate = ships[shipIndex].getPosition();
+        Coordinate[] shipCoordinate = (Coordinate[]) ships[shipIndex].getPosition().toArray();
 
         // loop over previous ship coordinate, and remove
         for(int i=0; i<shipCoordinate.length; i++){
@@ -133,7 +133,7 @@ public class Board {
                 throw new Exception("Ship coordinate outside the grid.");
             }
 
-            if (!waterGrid[newShipCoordinate[i].x][newShipCoordinate[i].y].equals(null)) {
+            if ( waterGrid[newShipCoordinate[i].x][newShipCoordinate[i].y] != null ) {
                 return true;
             }
 

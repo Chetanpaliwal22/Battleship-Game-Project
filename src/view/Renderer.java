@@ -4,6 +4,7 @@ package view;
 
 import constants.Constants;
 import controller.Mouse;
+import sun.applet.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,8 @@ public class Renderer extends JComponent {
     public static int holeImageSize = 0;
 
     private Image holeImage, missedHoleImage, hitHoleImage, shipImage, horizontalShipImage, redShipImage, horizontalRedShipImage;
+
+    private Image targetImage;
 
     int mouseX = 0, mouseY = 0;
 
@@ -38,6 +41,8 @@ public class Renderer extends JComponent {
         horizontalShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/ShipHorizontal.png");
         redShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/RedShip.png");
         horizontalRedShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/RedShipHorizontal.png");
+
+        targetImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/Target.png");
     }
 
     public void paintComponent(Graphics g) {
@@ -55,8 +60,7 @@ public class Renderer extends JComponent {
             int nearestX = 0, nearestY = 0;
 
             // Check if the mouse is clicked
-            if (Mouse.leftClicked) {
-
+            if (Mouse.leftClicked && !MainWindow.startedGame) {
                 mouseX = MouseInfo.getPointerInfo().getLocation().x - MainWindow.getWindowLocationX();
                 mouseY = MouseInfo.getPointerInfo().getLocation().y - MainWindow.getWindowLocationY() - 100;
 
@@ -136,7 +140,7 @@ public class Renderer extends JComponent {
                 }
 
                 if (i != targetShipId) {
-                    if (Mouse.leftClicked)
+                    if (Mouse.leftClicked && !MainWindow.startedGame)
                         MainWindow.shipList.get(i).validateLocation();
 
                     if (MainWindow.shipList.get(i).direction == 1 | MainWindow.shipList.get(i).direction == 3) {
@@ -219,6 +223,7 @@ public class Renderer extends JComponent {
                     else
                         graphics2D.drawImage(holeImage, relativeX, relativeY, 20, 20, this);
 
+
                     if (!calculatedHolePositions) {
                         holeLocationX[j][i] = relativeX + 5;
                         holeLocationY[j][i] = relativeY + 5;
@@ -233,7 +238,7 @@ public class Renderer extends JComponent {
 
         // Use sleep method to reduce the performance overhead
         try {
-            if (Mouse.leftClicked)
+            if (Mouse.leftClicked && !MainWindow.startedGame)
                 Thread.sleep(8);
             else
                 Thread.sleep(75);

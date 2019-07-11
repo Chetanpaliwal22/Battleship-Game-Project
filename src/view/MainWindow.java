@@ -79,11 +79,29 @@ public class MainWindow extends JFrame implements ActionListener {
         //  create and add start game button to top panel //
 
         JButton startGameButton = new JButton("Start game");
-        startGameButton.addActionListener((ActionEvent e) -> {
-            startedGame = true;
 
-            startGameButton.setVisible(false);
+        startGameButton.addActionListener((ActionEvent e) -> {
+
+            AIBoard.setGameHasStarted();
+            humanBoard.setGameHasStarted();
+
+            boolean positionsAreCorrect = true;
+            for (int i = 0; i < shipList.size(); i++) {
+                if (!shipList.get(i).validity) {
+                    positionsAreCorrect = false;
+                    break;
+                }
+            }
+            if (positionsAreCorrect) {
+                gameStateComponent.setText("Game has started");
+                startedGame = true;
+//            gameStateComponent.setText("Game started!!!");
+//            gameStateComponent.setText("\nOne emeny ship has been sunk");
+                startGameButton.setVisible(false);
 //            JOptionPane.showMessageDialog(this, "Player wins!!!!!!");
+            } else {
+                gameStateComponent.setText("Positions of your ships are illegal");
+            }
         });
 
 

@@ -19,6 +19,14 @@ public class Constants {
     public static final int SUBMARINE_SIZE = 3;
     public static final int DESTROYER_SIZE = 2;
 
-    public static final Coordinate BOARD_SIZE = new Coordinate(9, 11);
+    public static final int CARRIER_NB = 1;
+    public static final int BATTLESHIP_NB = 1;
+    public static final int CRUISER_NB = 1;
+    public static final int SUBMARINE_NB = 1;
+    public static final int DESTROYER_NB = 1;
+
+    public static final int SHIP_NB = CARRIER_NB + BATTLESHIP_NB + CRUISER_NB + SUBMARINE_NB + DESTROYER_NB;
+
+    public static final Coordinate BOARD_SIZE = new Coordinate(11, 9);
     public static final int WINDOW_WIDTH = 1280, WINDOW_HEIGHT = 720;
 }

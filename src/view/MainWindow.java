@@ -21,6 +21,10 @@ public class MainWindow extends JFrame implements ActionListener {
 
     private static Mouse mouse;
 
+    public static boolean startedGame = false;
+
+    private JLabel gameStateComponent;
+
     // A list contains all the five ships
     public static List<Ship> shipList = new ArrayList<Ship>();
 
@@ -34,7 +38,7 @@ public class MainWindow extends JFrame implements ActionListener {
      */
     public MainWindow() {
 
-        super("MainWindow");
+        super("BattleShip");
 
         setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 
@@ -57,7 +61,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
         // create and add game state component top panel//
 
-        JLabel gameStateComponent = new JLabel();
+        gameStateComponent = new JLabel();
         gameStateComponent.setText("Place your ships and start the game");
         gameStateComponent.setSize(10, 5);
         gameStateComponent.setHorizontalAlignment(JLabel.CENTER);
@@ -71,7 +75,13 @@ public class MainWindow extends JFrame implements ActionListener {
         //  create and add start game button to top panel //
 
         JButton startGameButton = new JButton("Start game");
-        startGameButton.setBackground(Color.magenta);
+        startGameButton.addActionListener((ActionEvent e) -> {
+            startedGame = true;
+            gameStateComponent.setText("Game started!!!");
+            startGameButton.setVisible(false);
+//            JOptionPane.showMessageDialog(this, "Player wins!!!!!!");
+        });
+
 
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.gridx = 1;
@@ -129,22 +139,24 @@ public class MainWindow extends JFrame implements ActionListener {
     // // Button click method
     public void actionPerformed(ActionEvent e) {
 
-        try {
-            JButton temporaryButton = (JButton) e.getSource();
+        if (startedGame) {
+            try {
+                JButton temporaryButton = (JButton) e.getSource();
 
-            System.out.println(temporaryButton.getText() + " clicked, coordinate: " + temporaryButton.getName());
+                System.out.println(temporaryButton.getText() + " clicked, coordinate: " + temporaryButton.getName());
 
-            temporaryButton.setEnabled(false);
+                temporaryButton.setEnabled(false);
 
-            Coordinate target = new Coordinate(Integer.parseInt(temporaryButton.getName().split(",")[0]),
-                    Integer.parseInt(temporaryButton.getName().split(",")[1]));
+                Coordinate target = new Coordinate(Integer.parseInt(temporaryButton.getName().split(",")[0]),
+                        Integer.parseInt(temporaryButton.getName().split(",")[1]));
 
-            myAI.recomputeProbabilisticGrid(5, new Coordinate(Constants.BOARD_SIZE.x, Constants.BOARD_SIZE.y), target);
+                myAI.recomputeProbabilisticGrid(5, new Coordinate(Constants.BOARD_SIZE.x, Constants.BOARD_SIZE.y), target);
 
-            temporaryButton.setText("Hit");
+                temporaryButton.setText("Hit");
 
-        } catch (Exception exception) {
-            exception.printStackTrace();
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
         }
     }
 

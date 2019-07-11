@@ -1,4 +1,5 @@
 package model;
+
 import tools.Coordinate;
 import view.MainWindow;
 
@@ -14,10 +15,11 @@ public class Ship {
 
     /**
      * argument constructor
+     *
      * @param size
      * @param position
      */
-    public Ship(int size, Coordinate[] position){
+    public Ship(int size, Coordinate[] position) {
 
         this.position = position;
         this.size = size;
@@ -27,7 +29,7 @@ public class Ship {
     /**
      * default constructor
      */
-    public Ship(){
+    public Ship() {
 
         this.position = new Coordinate[]{new Coordinate(0, 0), new Coordinate(0, 1)};
         this.size = 2;
@@ -36,28 +38,31 @@ public class Ship {
 
     /**
      * get list of coordinate of the ship
+     *
      * @return
      */
-    public Coordinate[] getPosition(){
+    public Coordinate[] getPosition() {
         return position;
     }
 
     /**
      * get size of the ship
+     *
      * @return
      */
-    public int getSize(){
+    public int getSize() {
         return size;
     }
 
 
     /**
      * check if ship has sunk
+     *
      * @return
      */
-    public boolean isSunk(){
+    public boolean isSunk() {
 
-        if( !isAlive ){
+        if (!isAlive) {
             return true;
         } else {
             return false;
@@ -67,20 +72,23 @@ public class Ship {
 
     /**
      * check if provided position is a hit
+     *
      * @param target
      * @return
      */
-    public boolean isHit(Coordinate target){
+    public boolean isHit(Coordinate target) {
 
-        if( isAlive ){
+        if (isAlive) {
 
-            for(int i=0; i<position.length; i++){
+            for (int i = 0; i < position.length; i++) {
 
-                if( position[i].equals(target) ){
+                if (position[i].equals(target)) {
 
                     hitPosition[hitPosition.length] = position[i];
 
-                    if( hitPosition.length == position.length ){ isAlive = false; }
+                    if (hitPosition.length == position.length) {
+                        isAlive = false;
+                    }
 
                     return true;
                 }
@@ -89,28 +97,33 @@ public class Ship {
 
             return false;
 
-        } else { return false; }
+        } else {
+            return false;
+        }
     }
 
 
     /**
      * check if position already received a hit
+     *
      * @param target
      * @return
      */
-    public boolean isAlreadyHit(Coordinate target){
+    public boolean isAlreadyHit(Coordinate target) {
 
-        if( !isAlive ){ return true; }
+        if (!isAlive) {
+            return true;
+        }
 
-        for(int i=0; i<hitPosition.length; i++){
-            if( hitPosition[i].equals(target) ){ return true; }
+        for (int i = 0; i < hitPosition.length; i++) {
+            if (hitPosition[i].equals(target)) {
+                return true;
+            }
         }
 
         return false;
 
     }
-
-
 
 
     // The coordinates based on the window

@@ -1,9 +1,6 @@
 package model;
 import tools.Coordinate;
-<<<<<<< HEAD
 import constants.Constants;
-=======
->>>>>>> master
 
 public class Board {
 
@@ -18,11 +15,10 @@ public class Board {
 
     /**
      * argument constructor
-     * @param boardSize
      */
-    public Board(Coordinate boardSize){
+    public Board(){
 
-        this.boardSize = boardSize;
+        this.boardSize = Constants.BOARD_SIZE;
 
         this.waterGrid = new Ship[this.boardSize.x][this.boardSize.y];
 
@@ -92,7 +88,6 @@ public class Board {
      * @param shipIndex
      * @param newShipCoordinate
      * @throws Exception
-<<<<<<< HEAD
      */
     public void modifyShipPlace(int shipIndex, Coordinate[] newShipCoordinate) throws Exception {
 
@@ -129,23 +124,15 @@ public class Board {
      * @param newShipCoordinate
      * @return
      */
-=======
-
->>>>>>> master
     private boolean doShipCollide( Coordinate[] newShipCoordinate ) throws Exception {
 
         for(int i=0; i<newShipCoordinate.length; i++) {
 
             if (newShipCoordinate[i].x < 0 || newShipCoordinate[i].x > boardSize.x
                     || newShipCoordinate[i].y < 0 || newShipCoordinate[i].y > boardSize.y) {
-<<<<<<< HEAD
-
                 throw new Exception("Ship coordinate outside the grid.");
             }
 
-=======
-
->>>>>>> master
             if (!waterGrid[newShipCoordinate[i].x][newShipCoordinate[i].y].equals(null)) {
                 return true;
             }
@@ -169,11 +156,6 @@ public class Board {
         // That's a miss
         if( waterGrid[target.x][target.y] == null ) {
 
-            return 2;
-
-        // Coordinate has already been fired at
-        } else if( waterGrid[target.x][target.y].isAlreadyHit(target) ){
-
             return 0;
 
         // that's a hit !
@@ -181,11 +163,11 @@ public class Board {
 
             if( waterGrid[target.x][target.y].isSunk() ){ // ship has sunked
 
-                return 3;
+                return 1;
 
             } else {
 
-                return 1;
+                return 2;
             }
 
         // invalid coordinate

@@ -11,6 +11,7 @@ import java.util.List;
 import controller.Mouse;
 import main.Game;
 import model.AI;
+import model.Board;
 import model.Ship;
 import tools.Coordinate;
 import constants.Constants;
@@ -18,6 +19,9 @@ import constants.Constants;
 public class MainWindow extends JFrame implements ActionListener {
 
     AI myAI = new AI();
+
+    Board humanBoard = new Board();
+    Board AIBoard = new Board();
 
     private static Mouse mouse;
 
@@ -77,12 +81,7 @@ public class MainWindow extends JFrame implements ActionListener {
         JButton startGameButton = new JButton("Start game");
         startGameButton.addActionListener((ActionEvent e) -> {
             startedGame = true;
-<<<<<<< HEAD
-=======
-//            gameStateComponent.setText("Game started!!!");
-//            gameStateComponent.setText("\nOne emeny ship has been sunk");
 
->>>>>>> master
             startGameButton.setVisible(false);
 //            JOptionPane.showMessageDialog(this, "Player wins!!!!!!");
         });
@@ -121,10 +120,7 @@ public class MainWindow extends JFrame implements ActionListener {
             for (int j = 0; j < 11; j++) {
 
                 buttonArray[i][j] = new JButton(alphabet[j] + " " + (i + 1));
-<<<<<<< HEAD
-=======
                 buttonArray[i][j].setName(j + "," + i);
->>>>>>> master
                 buttonArray[i][j].addActionListener(this);
 
                 boardPanel.add(buttonArray[i][j]);
@@ -158,9 +154,15 @@ public class MainWindow extends JFrame implements ActionListener {
                 Coordinate target = new Coordinate(Integer.parseInt(temporaryButton.getName().split(",")[0]),
                         Integer.parseInt(temporaryButton.getName().split(",")[1]));
 
-                myAI.recomputeProbabilisticGrid(5, new Coordinate(Constants.BOARD_SIZE.x, Constants.BOARD_SIZE.y), target);
+                int result = AIBoard.fireAtTarget( target );
 
-                temporaryButton.setText("Hit");
+                if( result == 0 ){
+                    temporaryButton.setText("Miss");
+                } else if( result == 1 ){
+                    temporaryButton.setText("Hit !");
+                } else if( result == 2 ){
+                    temporaryButton.setText("Sunk !!!");
+                }
 
             } catch (Exception exception) {
                 exception.printStackTrace();

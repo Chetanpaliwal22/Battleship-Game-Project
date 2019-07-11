@@ -9,7 +9,7 @@ import java.util.List;
 
 //import controller.Mouse;
 import controller.Mouse;
-import main.main;
+import main.Game;
 import model.AI;
 import model.Ship;
 import tools.Coordinate;
@@ -149,11 +149,11 @@ public class MainWindow extends JFrame implements ActionListener {
     }
 
     public static int getWindowLocationX() {
-        return main.mainWindow.getLocationOnScreen().x;
+        return Game.mainWindow.getLocationOnScreen().x;
     }
 
     public static int getWindowLocationY() {
-        return main.mainWindow.getLocationOnScreen().y;
+        return Game.mainWindow.getLocationOnScreen().y;
     }
 
 }

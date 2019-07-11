@@ -4,7 +4,7 @@ import constants.Constants;
 import model.Board;
 import view.MainWindow;
 
-public class main {
+public class Game {
 
     public static MainWindow mainWindow;
 

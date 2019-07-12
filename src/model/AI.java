@@ -207,8 +207,7 @@ public class AI {
 		int[][] countGridToUpdate, Coordinate target, int code) throws Exception {
 
 		if( code == 0 ){
-			countGridToUpdate[0][0] = 0;
-			countGridToUpdate[0][7] = 0;
+			countGridToUpdate[target.y][target.x] = 0;
 		} else if( code == 1 ){
 			//countGridToUpdate[target.y][target.x] = 0;
 		} else if( code == 2 ){

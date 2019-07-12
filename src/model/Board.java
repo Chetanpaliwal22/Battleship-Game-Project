@@ -2,6 +2,8 @@ package model;
 import tools.Coordinate;
 import constants.Constants;
 
+import java.util.ArrayList;
+
 public class Board {
 
     Coordinate boardSize;
@@ -11,7 +13,7 @@ public class Board {
     Ship[][] waterGrid;
     int[][] waterGridState;
 
-    Ship[] ships;
+    private ArrayList<Ship> ships;
 
 
     /**
@@ -25,7 +27,7 @@ public class Board {
         this.waterGridState = new int[this.boardSize.x][this.boardSize.y];
 
         int nbShips = Constants.DESTROYER_NB + Constants.SUBMARINE_NB + Constants.CRUISER_NB + Constants.BATTLESHIP_NB + Constants.CARRIER_NB;
-        this.ships = new Ship[ nbShips ];
+        this.ships = new ArrayList<Ship>();
 
     }
 
@@ -82,7 +84,7 @@ public class Board {
         }
 
         // add ship to ship index
-        ships[ships.length-1] = newShip;
+        ships.add( newShip ) ;
     }
 
 
@@ -98,7 +100,7 @@ public class Board {
             throw new Exception("Can't move the ships after the beginning of the game.");
         }
 
-        if( shipIndex < 0 || shipIndex > ships.length ){
+        if( shipIndex < 0 || shipIndex > ships.size() ){
             throw new Exception("Invalid ship index.");
         }
 
@@ -107,7 +109,7 @@ public class Board {
         }
 
         // get ship position
-        Coordinate[] shipCoordinate = (Coordinate[]) ships[shipIndex].getPosition().toArray();
+        Coordinate[] shipCoordinate = (Coordinate[]) ships.get(shipIndex).getPosition().toArray();
 
         // loop over previous ship coordinate, and remove
         for(int i=0; i<shipCoordinate.length; i++){
@@ -116,7 +118,7 @@ public class Board {
 
         // loop over new coordinate to add the new ship to the board
         for(int i=0; i<newShipCoordinate.length; i++){
-            waterGrid[ newShipCoordinate[i].y ][ newShipCoordinate[i].x ] = ships[shipIndex];
+            waterGrid[ newShipCoordinate[i].y ][ newShipCoordinate[i].x ] = ships.get(shipIndex);
         }
 
     }

@@ -12,6 +12,7 @@ import controller.Mouse;
 import main.Game;
 import model.AI;
 import model.Board;
+import model.FrontEndShip;
 import model.Ship;
 import tools.Coordinate;
 import constants.Constants;
@@ -31,7 +32,7 @@ public class MainWindow extends JFrame implements ActionListener {
     private JLabel gameStateComponent;
 
     // A list contains all the five ships
-    public static List<Ship> shipList = new ArrayList<Ship>();
+    public static List<FrontEndShip> shipList = new ArrayList<FrontEndShip>();
 
     static char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'};
 
@@ -166,11 +167,11 @@ public class MainWindow extends JFrame implements ActionListener {
         // finally, add all components to main window
         add(gameBoardPanel);
 
-        shipList.add(new Ship(2, 2, 6, 1));
-        shipList.add(new Ship(3, 3, 2, 3));
-        shipList.add(new Ship(3, 1, 7, 4));
-        shipList.add(new Ship(4, 3, 2, 6));
-        shipList.add(new Ship(5, 3, 4, 9));
+        shipList.add(new FrontEndShip(2, 2, 6, 1));
+        shipList.add(new FrontEndShip(3, 3, 2, 3));
+        shipList.add(new FrontEndShip(3, 1, 7, 4));
+        shipList.add(new FrontEndShip(4, 3, 2, 6));
+        shipList.add(new FrontEndShip(5, 3, 4, 9));
     }
 
     // // Button click method

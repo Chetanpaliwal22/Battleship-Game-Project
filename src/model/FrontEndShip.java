@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FrontEndShip {
+
     // The coordinates based on the window
     public double x = 0, y = 0;
 

@@ -23,8 +23,8 @@ public class Board {
 
         this.boardSize = Constants.BOARD_SIZE;
 
-        this.waterGrid = new Ship[this.boardSize.y][this.boardSize.x];
-        this.waterGridState = new int[this.boardSize.y][this.boardSize.x];
+        this.waterGrid = new Ship[this.boardSize.x][this.boardSize.y];
+        this.waterGridState = new int[this.boardSize.x][this.boardSize.y];
 
         int nbShips = Constants.DESTROYER_NB + Constants.SUBMARINE_NB + Constants.CRUISER_NB + Constants.BATTLESHIP_NB + Constants.CARRIER_NB;
         this.ships = new ArrayList<Ship>();
@@ -200,12 +200,30 @@ public class Board {
      */
     public void printStateGrid(){
 
-        for(int i=this.boardSize.y-1; i>=0; i--){
-            for(int j=0; j<this.boardSize.x; j++){
+        System.out.println("State grid :");
+        for(int i=this.boardSize.x-1; i>=0; i--){
+            for(int j=0; j<this.boardSize.y; j++){
                 System.out.print(waterGridState[i][j]);
             }
             System.out.println();
         }
     }
 
+
+    public void printShipGrid(){
+
+        System.out.println("Ship grid :");
+        for(int i=this.boardSize.x-1; i>=0; i--){
+            for(int j=0; j<this.boardSize.y; j++){
+                if( waterGrid[i][j] != null){
+                    System.out.print(1);
+                } else {
+                    System.out.print(0);
+                }
+
+            }
+            System.out.println();
+        }
+
+    }
 }

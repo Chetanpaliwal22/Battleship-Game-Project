@@ -25,6 +25,7 @@ public class Ship {
         for (int i = 0; i < position.length; i++) {
             this.position.add(position[i]);
         }
+
         this.size = size;
 
     }

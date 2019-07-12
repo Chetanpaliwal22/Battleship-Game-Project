@@ -98,11 +98,10 @@ public class MainWindow extends JFrame implements ActionListener {
                 for (int i = 0; i < shipList.size(); i++) {
 
                     Coordinate[] CoordinateArray = new Coordinate[shipList.get(i).size];
-
                     for (int j = 0; j < shipList.get(i).occupiedGridX.size(); j++) {
-                        CoordinateArray[i] = new Coordinate(shipList.get(i).occupiedGridX.get(j), shipList.get(i).occupiedGridY.get(j));
-                        System.out.println(i + ": " + CoordinateArray[i].x + ", " + CoordinateArray[i].y);
+                        CoordinateArray[j] = new Coordinate(shipList.get(i).occupiedGridX.get(j), shipList.get(i).occupiedGridY.get(j));
                     }
+
                     try {
                         humanBoard.placeShip(CoordinateArray);
                     } catch (Exception ex) {
@@ -188,9 +187,15 @@ public class MainWindow extends JFrame implements ActionListener {
 
                 // Human player turn to play //
 
+                /*Coordinate target = new Coordinate(
+                        (Integer.parseInt(temporaryButton.getName().split(",")[1]) - 1),
+                        (Integer.parseInt(temporaryButton.getName().split(",")[0]) - 1));*/
                 Coordinate target = new Coordinate(
                         (Integer.parseInt(temporaryButton.getName().split(",")[0]) - 1),
                         (Integer.parseInt(temporaryButton.getName().split(",")[1]) - 1));
+
+                //System.out.println((Integer.parseInt(temporaryButton.getName().split(",")[0]) - 1));
+                //System.out.println((Integer.parseInt(temporaryButton.getName().split(",")[1]) - 1));
 
                 int result = AIBoard.fireAtTarget(target);
 
@@ -206,6 +211,7 @@ public class MainWindow extends JFrame implements ActionListener {
                 }
 
                 humanBoard.printStateGrid();
+                //humanBoard.printShipGrid();
                 
                 // AI turn to play //
 
@@ -229,6 +235,7 @@ public class MainWindow extends JFrame implements ActionListener {
                 }
 
                 AIBoard.printStateGrid();
+                //AIBoard.printShipGrid();
                 //myAI.printGrid();
 
                 System.out.println("\n///////////////////////////\n");

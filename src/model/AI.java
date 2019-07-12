@@ -39,8 +39,7 @@ public class AI {
 
 	/**
 	 * compute the probabilitic grid, called by constructor initially
-	 * @return
-	 * @throws Exception
+	 * @throws Exception throws exception
 	 */
 	private void computeCountGrid() throws Exception {
 
@@ -80,9 +79,9 @@ public class AI {
 
 	/**
 	 * compute a specific Count grid, helper for computeCountGrid
-	 * @param shipSize
-	 * @return
-	 * @throws Exception
+	 * @param shipSize AI accpts shipSize as input
+	 * @return It returns the count grid
+	 * @throws Exception throws exception
 	 */
 	private int[][] specificCountGrid(int shipSize) throws Exception {
 
@@ -146,7 +145,8 @@ public class AI {
 
 	/**
 	 * register the result of the previous move
-	 * @param code
+	 * @param code AI accpts code as input
+	 * @throws Exception throws exception
 	 */
 	public void receiveResult( int code ) throws Exception {
 
@@ -156,9 +156,9 @@ public class AI {
 
 	/**
 	 * After a move is registered, update the probabilistic grid
-	 * @param target
-	 * @param code
-	 * @throws Exception
+	 * @param target accepts target as input
+	 * @param code  accepts code as input
+	 * @throws Exception if there is an error
 	 */
 	private void updateCountGrid( Coordinate target, int code) throws Exception {
 
@@ -201,7 +201,11 @@ public class AI {
 
 	/**
 	 * update a specific probabilistic grid given the new information
-	 * @return
+	 * @param countGridToUpdate accepts countGrid as input
+	 * @param target accepts target coordinate as input
+	 * @param code accepts code as a input
+	 * @return the updated count grid
+	 * @exception Exception if any error 
 	 */
 	public int[][] updateSpecificCountGrid(
 		int[][] countGridToUpdate, Coordinate target, int code) throws Exception {
@@ -228,7 +232,7 @@ public class AI {
 
 	/**
 	 * get the next move from the AI player
-	 * @return
+	 * @return the coordinate of next move
 	 */
 	public Coordinate getNextMove(){
 

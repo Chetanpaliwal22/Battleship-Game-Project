@@ -61,8 +61,8 @@ public class Board {
 
     /**
      * Allow human or AI to place a new ship on the board
-     * @param newShipCoordinate
-     * @throws Exception
+     * @param newShipCoordinate - New Ship Coordinate
+     * @throws Exception - Throws Error if the ships are moved after the game has started.
      */
     public void placeShip(Coordinate[] newShipCoordinate) throws Exception {
 
@@ -149,9 +149,9 @@ public class Board {
 
     /**
      * process a fire on the board and respond accordingly
-     * @param target
-     * @return
-     * @throws Exception
+     * @param target accpt target as prameter
+     * @return the int code for result
+     * @throws Exception throws exception
      */
     public int fireAtTarget(Coordinate target) throws Exception{
 
@@ -186,7 +186,7 @@ public class Board {
     /**
      * return the state of the board as a 2 dimensional array of integer
      * WIP
-     * @return
+     * @return the board state
      */
     public int[][] getBoardState() {
 

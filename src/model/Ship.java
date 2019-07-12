@@ -17,8 +17,8 @@ public class Ship {
     /**
      * argument constructor
      *
-     * @param size
-     * @param position
+     * @param size accepts size as input 
+     * @param position accepts position as input
      */
     public Ship(int size, Coordinate[] position) {
 
@@ -33,7 +33,7 @@ public class Ship {
     /**
      * get list of coordinate of the ship
      *
-     * @return
+     * @return arraylist of ship coordinate
      */
     public ArrayList<Coordinate> getPosition() {
         return position;
@@ -42,7 +42,7 @@ public class Ship {
     /**
      * get size of the ship
      *
-     * @return
+     * @return int size of the ship
      */
     public int getSize() {
         return size;
@@ -52,7 +52,7 @@ public class Ship {
     /**
      * check if ship has sunk
      *
-     * @return
+     * @return boolean if ship is sunk
      */
     public boolean isSunk() {
 
@@ -67,8 +67,8 @@ public class Ship {
     /**
      * check if provided position is a hit
      *
-     * @param target
-     * @return
+     * @param target of the hit ship
+     * @return boolean if it is a hit
      */
     public boolean isHit(Coordinate target) {
 
@@ -96,8 +96,8 @@ public class Ship {
     /**
      * check if position already received a hit
      *
-     * @param target
-     * @return
+     * @param target accepts target coordinate as input
+     * @return boolean if already hit
      */
     public boolean isAlreadyHit(Coordinate target) {
 

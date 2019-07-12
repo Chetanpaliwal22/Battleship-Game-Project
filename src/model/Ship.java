@@ -29,16 +29,6 @@ public class Ship {
     }
 
     /**
-     * default constructor
-     */
-    public Ship() {
-
-        this.position.add( new Coordinate(0, 0) );
-        this.position.add( new Coordinate(0, 1) );
-        this.size = 2;
-    }
-
-    /**
      * get list of coordinate of the ship
      *
      * @return

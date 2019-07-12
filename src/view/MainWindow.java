@@ -36,7 +36,7 @@ public class MainWindow extends JFrame implements ActionListener {
     static char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'};
 
     // Button array
-    static JButton[][] buttonArray = new JButton[9][11];
+    static JButton[][] buttonArray = new JButton[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
 
     /**
      * default constructor
@@ -135,14 +135,14 @@ public class MainWindow extends JFrame implements ActionListener {
         addMouseListener(mouse);
 
         // create board to display
-        JPanel boardPanel = new JPanel(new GridLayout(9, 11, 3, 3));
+        JPanel boardPanel = new JPanel(new GridLayout(Constants.BOARD_SIZE.x, Constants.BOARD_SIZE.y, 3, 3));
         //jPanel2.setMaximumSize(new Dimension(Constants.BOARD_PIXEL_SIZE.x / 2, Constants.BOARD_PIXEL_SIZE.x / 2 - 2 * Renderer.holeImageSize));
         boardPanel.setMaximumSize(new Dimension(Constants.WINDOW_WIDTH / 2, Constants.WINDOW_WIDTH / 2 - 2 * Renderer.holeImageSize));
 
         // Generate the grid to display
 
-        for (int i = 8; i >= 0; i--) {
-            for (int j = 0; j < 11; j++) {
+        for (int i = Constants.BOARD_SIZE.x-1; i >= 0; i--) {
+            for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
 
                 buttonArray[i][j] = new JButton(alphabet[j] + " " + (i + 1));
                 buttonArray[i][j].setName(j + "," + i);

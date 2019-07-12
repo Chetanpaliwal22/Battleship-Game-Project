@@ -168,12 +168,12 @@ public class Board {
             if( waterGrid[target.x][target.y].isSunk() ){ // ship has sunked
 
                 waterGridState[ target.x ][ target.y ] = 2;
-                return 1;
+                return 2;
 
             } else {
 
                 waterGridState[ target.x ][ target.y ] = 2;
-                return 2;
+                return 1;
             }
 
         // invalid coordinate
@@ -190,6 +190,20 @@ public class Board {
     public int[][] getBoardState() {
 
         return waterGridState;
+    }
+
+
+    /**
+     * print the grid in the console
+     */
+    public void printGrid(){
+
+        for(int i=0; i<this.boardSize.x; i++){
+            for(int j=0; j<this.boardSize.y; j++){
+                System.out.print(waterGridState[i][j]);
+            }
+            System.out.println();
+        }
     }
 
 }

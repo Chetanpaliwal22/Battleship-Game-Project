@@ -6,6 +6,9 @@ import view.MainWindow;
 
 import java.util.ArrayList;
 
+/**
+ * Class to represent a player board
+ */
 public class Board {
 
     Coordinate boardSize;
@@ -75,10 +78,6 @@ public class Board {
             throw new Exception("Can't move the ships after the beginning of the game.");
         }
 
-        /*if( doShipCollide(newShipCoordinate) ){
-            throw new Exception("New ship coordinate collides with another ship.");
-        }*/
-
         // create a new ship
         Ship newShip = new Ship(newShipCoordinate.length, newShipCoordinate);
 
@@ -93,66 +92,6 @@ public class Board {
 
 
     /**
-     * Allow human to modify the placement of a ship on the board
-     * @param shipIndex
-     * @param newShipCoordinate
-     * @throws Exception
-     */
-    /*public void modifyShipPlace(int shipIndex, Coordinate[] newShipCoordinate) throws Exception {
-
-        if( gameHasStarted ){
-            throw new Exception("Can't move the ships after the beginning of the game.");
-        }
-
-        if( shipIndex < 0 || shipIndex > ships.size() ){
-            throw new Exception("Invalid ship index.");
-        }
-
-        if( doShipCollide(newShipCoordinate) ){
-            throw new Exception("New ship coordinate collides with another ship.");
-        }
-
-        // get ship position
-        Coordinate[] shipCoordinate = (Coordinate[]) ships.get(shipIndex).getPosition().toArray();
-
-        // loop over previous ship coordinate, and remove
-        for(int i=0; i<shipCoordinate.length; i++){
-            waterGrid[ shipCoordinate[i].y ][ shipCoordinate[i].x ] = null;
-        }
-
-        // loop over new coordinate to add the new ship to the board
-        for(int i=0; i<newShipCoordinate.length; i++){
-            waterGrid[ newShipCoordinate[i].y ][ newShipCoordinate[i].x ] = ships.get(shipIndex);
-        }
-
-    }*/
-
-
-    /**
-     * check for collision between the provided coordinates and the board
-     * @param newShipCoordinate
-     * @return
-     */
-    /*private boolean doShipCollide( Coordinate[] newShipCoordinate ) throws Exception {
-
-        for(int i=0; i<newShipCoordinate.length; i++) {
-
-            if (newShipCoordinate[i].y < 0 || newShipCoordinate[i].y > boardSize.y
-                    || newShipCoordinate[i].x < 0 || newShipCoordinate[i].y > boardSize.x) {
-                throw new Exception("Ship coordinate outside the grid.");
-            }
-
-            if ( waterGrid[newShipCoordinate[i].x][newShipCoordinate[i].y] != null ) {
-                return true;
-            }
-
-        }
-
-        return false;
-    }*/
-
-
-    /**
      * process a fire on the board and respond accordingly
      *
      * @param target
@@ -161,34 +100,31 @@ public class Board {
      */
     public int fireAtTarget(Coordinate target) throws Exception {
 
-        if (!gameHasStarted) {
-            throw new Exception("Ships should be placed before playing.");
-        }
+        if (!gameHasStarted) { throw new Exception("Ships should be placed before playing."); }
 
-        // That's a miss
-        if (waterGrid[target.y][target.x] == null) {
+        if (waterGrid[target.y][target.x] == null) { // That's a miss
 
             waterGridState[target.y][target.x] = 1;
+
             return 0;
 
-            // that's a hit !
-        } else if (waterGrid[target.y][target.x].isHit(target)) {
+        } else if (waterGrid[target.y][target.x].isHit(target)) { // that's a hit !
 
             if (waterGrid[target.y][target.x].isSunk()) { // ship has sunk
 
                 waterGridState[target.y][target.x] = 2;
+
                 return 2;
 
             } else {
 
                 waterGridState[target.y][target.x] = 2;
+
                 return 1;
             }
 
             // invalid coordinate
-        } else {
-            throw new Exception("Invalid coordinate provided as target.");
-        }
+        } else { throw new Exception("Invalid coordinate provided as target."); }
 
     }
 
@@ -199,10 +135,7 @@ public class Board {
      *
      * @return
      */
-    public int[][] getBoardState() {
-
-        return waterGridState;
-    }
+    public int[][] getBoardState() { return waterGridState; }
 
 
     /**
@@ -211,6 +144,7 @@ public class Board {
     public void printStateGrid() {
 
         System.out.println("State grid :");
+
         for (int i = this.boardSize.x - 1; i >= 0; i--) {
             for (int j = 0; j < this.boardSize.y; j++) {
                 System.out.print(waterGridState[i][j]);
@@ -225,13 +159,15 @@ public class Board {
     public void printShipGrid() {
 
         System.out.println("Ship grid :");
+
         for (int i = this.boardSize.x - 1; i >= 0; i--) {
             for (int j = 0; j < this.boardSize.y; j++) {
+
                 if (waterGrid[i][j] != null) {
+
                     System.out.print(1);
-                } else {
-                    System.out.print(0);
-                }
+
+                } else { System.out.print(0); }
 
             }
             System.out.println();
@@ -239,36 +175,48 @@ public class Board {
 
     }
 
+    /**
+     * check if all ship are sunk
+     */
     public void checkSunk() {
+
         for (int i = 0; i < MainWindow.shipList.size(); i++) {
 
             if (!MainWindow.shipList.get(i).sunk) {
                 int hitCount = 0;
 
                 for (int j = 0; j < MainWindow.shipList.get(i).occupiedGridX.size(); j++) {
-                    if (MainWindow.humanBoard.getBoardState()[MainWindow.shipList.get(i).occupiedGridY.get(j)][MainWindow.shipList.get(i).occupiedGridX.get(j)] == 1 | MainWindow.humanBoard.getBoardState()[MainWindow.shipList.get(i).occupiedGridY.get(j)][MainWindow.shipList.get(i).occupiedGridX.get(j)] == 2) {
+
+                    if (MainWindow.humanBoard.getBoardState()[MainWindow.shipList.get(i).occupiedGridY.get(j)][MainWindow.shipList.get(i).occupiedGridX.get(j)] == 1 |
+                            MainWindow.humanBoard.getBoardState()[MainWindow.shipList.get(i).occupiedGridY.get(j)][MainWindow.shipList.get(i).occupiedGridX.get(j)] == 2) {
+
                         hitCount += 1;
                     }
                 }
 
-                if (hitCount == MainWindow.shipList.get(i).size) {
-                    MainWindow.shipList.get(i).sunk = true;
-                }
+                if (hitCount == MainWindow.shipList.get(i).size) { MainWindow.shipList.get(i).sunk = true; }
             }
         }
     }
 
+
+    /**
+     * check number of sunk ship
+     * @return
+     */
     public boolean checkPlayerSunkShips() {
+
         int numberOfSunkShips = 0;
 
         for (int i = 0; i < MainWindow.shipList.size(); i++) {
-            if (MainWindow.shipList.get(i).sunk)
-                numberOfSunkShips += 1;
+
+            if (MainWindow.shipList.get(i).sunk){ numberOfSunkShips += 1; }
         }
 
-        if (numberOfSunkShips == 5)
+        if (numberOfSunkShips == 5) {
+
             return true;
-        else
-            return false;
+
+        } else{ return false; }
     }
 }

@@ -8,7 +8,12 @@ import controller.Mouse;
 import javax.swing.*;
 import java.awt.*;
 
+
+/**
+ * Handle graphic rendering
+ */
 public class Renderer extends JComponent {
+
     private boolean clearAll = false;
 
     private boolean calculatedHolePositions = false;
@@ -23,11 +28,10 @@ public class Renderer extends JComponent {
 
     int mouseX = 0, mouseY = 0;
 
-    // The id showing which ship is being picked up
-    public static int targetShipId = -1;
+
+    public static int targetShipId = -1; // The id showing which ship is being picked up
 
     public Renderer() {
-        // setOpaque(true);
 
         holeImageSize = (Constants.WINDOW_WIDTH / 2) / Constants.BOARD_SIZE.y - 2;
 
@@ -40,17 +44,24 @@ public class Renderer extends JComponent {
         horizontalShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/ShipHorizontal.png");
         redShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/RedShip.png");
         horizontalRedShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/RedShipHorizontal.png");
-
         targetImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/Target.png");
     }
 
+
+    /**
+     * a method to render the graphic in the window
+     * @param g
+     */
     public void paintComponent(Graphics g) {
         setBackground(new Color(88, 111, 78));
         setBackground(new Color(99, 222, 231));
 
         if (clearAll) {
+
             g.clearRect(0, 0, getWidth(), getHeight());
+
         } else {
+
             Graphics2D graphics2D = (Graphics2D) g;
 
             g.setColor(new Color(99, 222, 231));
@@ -135,6 +146,7 @@ public class Renderer extends JComponent {
                 }
 
                 if (i != targetShipId) {
+
                     if (Mouse.leftClicked && !MainWindow.startedGame)
                         MainWindow.shipList.get(i).validateLocation();
 
@@ -169,7 +181,9 @@ public class Renderer extends JComponent {
                                             .get(i).pivotGridY] - (int) (offset * holeImageSize),
                                     40, MainWindow.shipList.get(i).size * holeImageSize - 2, this);
                     }
+
                 } else {
+
                     if (targetShipId > -1) {
                         MainWindow.shipList.get(targetShipId)
                                 .recalculate(MainWindow.shipList.get(targetShipId).direction, nearestX, nearestY);
@@ -230,17 +244,21 @@ public class Renderer extends JComponent {
             graphics2D.finalize();
         }
 
-        // Use sleep method to reduce the performance overhead
-        try {
+
+        try { // Use sleep method to reduce the performance overhead
+
             if (Mouse.leftClicked && !MainWindow.startedGame)
                 Thread.sleep(8);
             else
                 Thread.sleep(75);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
+
+        } catch (InterruptedException ex) { Thread.currentThread().interrupt(); }
     }
 
+
+    /**
+     * clear the content of the window
+     */
     public void clearAll() {
         clearAll = true;
         repaint();

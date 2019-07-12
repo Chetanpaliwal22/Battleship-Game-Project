@@ -40,7 +40,7 @@ public class AI {
 	/**
 	 * compute the probabilitic grid, called by constructor initially
 	 * @return
-	 * @throws Exception
+	 * @throws Exception throws Exception
 	 */
 	private void computeCountGrid() throws Exception {
 
@@ -213,14 +213,6 @@ public class AI {
 		} else if( code == 2 ){
 			countGridToUpdate[target.y][target.x] = 0;
 		}
-
-		/*System.out.println("OHOH");
-		for(int i=0; i<this.boardSize.x; i++){
-			for(int j=0; j<this.boardSize.y; j++){
-				System.out.print(countGridToUpdate[i][j] + " ");
-			}
-			System.out.print("");
-		}*/
 
 		return countGridToUpdate;
 	}

@@ -1,12 +1,12 @@
 package model;
-
-import constants.Constants;
 import tools.Coordinate;
-import view.MainWindow;
 
 import java.util.ArrayList;
-import java.util.List;
 
+
+/**
+ * a class to handle the logic of a ship
+ */
 public class Ship {
 
     private ArrayList<Coordinate> position = new ArrayList<Coordinate>();
@@ -35,18 +35,15 @@ public class Ship {
      *
      * @return
      */
-    public ArrayList<Coordinate> getPosition() {
-        return position;
-    }
+    public ArrayList<Coordinate> getPosition() { return position; }
+
 
     /**
      * get size of the ship
      *
      * @return
      */
-    public int getSize() {
-        return size;
-    }
+    public int getSize() { return size; }
 
 
     /**
@@ -57,10 +54,10 @@ public class Ship {
     public boolean isSunk() {
 
         if (!isAlive) {
+
             return true;
-        } else {
-            return false;
-        }
+
+        } else { return false; }
     }
 
 
@@ -80,9 +77,7 @@ public class Ship {
 
                     hitPosition.add(this.position.get(i));
 
-                    if (hitPosition.size() == position.size()) {
-                        isAlive = false;
-                    }
+                    if (hitPosition.size() == position.size()) { isAlive = false; }
 
                     return true;
                 }
@@ -101,11 +96,10 @@ public class Ship {
      */
     public boolean isAlreadyHit(Coordinate target) {
 
-        if (!isAlive) {
-            return true;
-        }
+        if (!isAlive) { return true; }
 
         for (int i = 0; i < hitPosition.size(); i++) {
+
             if (hitPosition.get(i).equals(target)) {
                 return true;
             }

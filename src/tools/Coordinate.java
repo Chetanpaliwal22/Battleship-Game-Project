@@ -15,11 +15,17 @@ public class Coordinate {
 		y= b;
 	}
 
+	/**
+	 * override equals method
+	 * @param other
+	 * @return
+	 */
 	public boolean equals(Coordinate other){
+
 		if( other.x == x && other.y == y ){
+
 			return true;
-		} else {
-			return false;
-		}
+
+		} else { return false; }
 	}
 }

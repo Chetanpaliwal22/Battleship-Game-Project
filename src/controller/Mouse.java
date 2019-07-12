@@ -6,10 +6,15 @@ import view.Renderer;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+
+/**
+ * Handle mouse event
+ */
 public class Mouse implements MouseListener {
 	public static boolean leftClicked = false;
 
 	public void mouseClicked(MouseEvent mouseEvent) {
+
 		// Right click
 		if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
 
@@ -24,7 +29,9 @@ public class Mouse implements MouseListener {
 		}
 	}
 
+
 	public void mousePressed(MouseEvent mouseEvent) {
+
 		// Left click
 		if (mouseEvent.getButton() == MouseEvent.BUTTON1) {
 			leftClicked = true;

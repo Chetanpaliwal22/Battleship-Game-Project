@@ -6,6 +6,10 @@ import view.MainWindow;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * helper for ship rendering
+ */
 public class FrontEndShip {
 
     // The coordinates based on the window
@@ -24,7 +28,14 @@ public class FrontEndShip {
 
     public boolean validity = true;
 
-    // Constructor for initializing the attributes
+
+    /**
+     * argument constructor
+     * @param shipSize
+     * @param shipDirection
+     * @param shipPivotGridX
+     * @param shipPivotGridY
+     */
     public FrontEndShip(int shipSize, int shipDirection, int shipPivotGridX, int shipPivotGridY) {
 
         size = shipSize;
@@ -32,8 +43,13 @@ public class FrontEndShip {
         recalculate(shipDirection, shipPivotGridX, shipPivotGridY);
     }
 
-    // Every time the direction or location of the ship changed, recalculate its
-    // occupied grids
+
+    /**
+     * recalculate occupied grid when a ship's position is changed
+     * @param shipDirection
+     * @param shipPivotGridX
+     * @param shipPivotGridY
+     */
     public void recalculate(int shipDirection, int shipPivotGridX, int shipPivotGridY) {
 
         direction = shipDirection;
@@ -180,8 +196,13 @@ public class FrontEndShip {
         }
     }
 
-    // Check if the ship is outside the board
+
+    /**
+     * check ship's position on the board
+     * @return
+     */
     public boolean validateLocation() {
+
         for (int i = 0; i < occupiedGridX.size(); i++) {
             if (occupiedGridX.get(i) < 0 | occupiedGridX.get(i) >= Constants.BOARD_SIZE.y) {
                 validity = false;

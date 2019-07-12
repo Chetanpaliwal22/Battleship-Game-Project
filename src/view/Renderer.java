@@ -8,7 +8,12 @@ import controller.Mouse;
 import javax.swing.*;
 import java.awt.*;
 
+
+/**
+ * handle the rendering of graphic components
+ */
 public class Renderer extends JComponent {
+
     private boolean clearAll = false;
 
     private boolean calculatedHolePositions = false;
@@ -23,11 +28,13 @@ public class Renderer extends JComponent {
 
     int mouseX = 0, mouseY = 0;
 
-    // The id showing which ship is being picked up
-    public static int targetShipId = -1;
+    public static int targetShipId = -1; // The id showing which ship is being picked up
 
+
+    /**
+     * default constructor
+     */
     public Renderer() {
-        // setOpaque(true);
 
         holeImageSize = (Constants.WINDOW_WIDTH / 2) / Constants.BOARD_SIZE.y - 2;
 
@@ -40,11 +47,16 @@ public class Renderer extends JComponent {
         horizontalShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/ShipHorizontal.png");
         redShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/RedShip.png");
         horizontalRedShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/RedShipHorizontal.png");
-
         targetImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/Target.png");
     }
 
+
+    /**
+     * method to update the display
+     * @param g
+     */
     public void paintComponent(Graphics g) {
+
         setBackground(new Color(88, 111, 78));
         setBackground(new Color(99, 222, 231));
 
@@ -59,7 +71,7 @@ public class Renderer extends JComponent {
             int nearestX = 0, nearestY = 0;
 
             // Check if the mouse is clicked
-            if (Mouse.leftClicked && !MainWindow.startedGame) {
+            if (Mouse.leftClicked && !MainWindow.gameHasStarted) {
                 mouseX = MouseInfo.getPointerInfo().getLocation().x - MainWindow.getWindowLocationX();
                 mouseY = MouseInfo.getPointerInfo().getLocation().y - MainWindow.getWindowLocationY() - 100;
 
@@ -135,7 +147,7 @@ public class Renderer extends JComponent {
                 }
 
                 if (i != targetShipId) {
-                    if (Mouse.leftClicked && !MainWindow.startedGame)
+                    if (Mouse.leftClicked && !MainWindow.gameHasStarted)
                         MainWindow.shipList.get(i).validateLocation();
 
                     if (MainWindow.shipList.get(i).direction == 1 | MainWindow.shipList.get(i).direction == 3) {
@@ -211,11 +223,6 @@ public class Renderer extends JComponent {
                     int relativeX = holeImageSize / 2 + j * holeImageSize;
                     int relativeY = holeImageSize / 2 + (Constants.BOARD_SIZE.x - i - 1) * holeImageSize;
 
-//                    if (j == 6)
-//                        graphics2D.drawImage(missedHoleImage, relativeX, relativeY, 20, 20, this);
-//                    else if (j == 9)
-//                        graphics2D.drawImage(hitHoleImage, relativeX, relativeY, 20, 20, this);
-//                    else
                     graphics2D.drawImage(holeImage, relativeX, relativeY, 20, 20, this);
 
                     if (!calculatedHolePositions) {
@@ -232,7 +239,7 @@ public class Renderer extends JComponent {
 
         // Use sleep method to reduce the performance overhead
         try {
-            if (Mouse.leftClicked && !MainWindow.startedGame)
+            if (Mouse.leftClicked && !MainWindow.gameHasStarted)
                 Thread.sleep(8);
             else
                 Thread.sleep(75);
@@ -241,7 +248,11 @@ public class Renderer extends JComponent {
         }
     }
 
+    /**
+     * clear the display
+     */
     public void clearAll() {
+
         clearAll = true;
         repaint();
     }

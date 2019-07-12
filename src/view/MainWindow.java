@@ -7,37 +7,39 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-//import controller.Mouse;
 import controller.Mouse;
 import main.Game;
 import model.AI;
 import model.Board;
 import model.FrontEndShip;
-import model.Ship;
 import tools.Coordinate;
 import constants.Constants;
 
+
+/**
+ * Configure main window of the game
+ */
 public class MainWindow extends JFrame implements ActionListener {
 
-    AI myAI = new AI();
+    private AI myAI = new AI();
 
-    Board humanBoard = new Board();
+    private Board humanBoard = new Board();
 
-    Board AIBoard = new Board();
+    private Board AIBoard = new Board();
 
     private static Mouse mouse;
 
-    public static boolean startedGame = false;
+    public static boolean gameHasStarted = false;
 
     private JLabel gameStateComponent;
 
     // A list contains all the five ships
     public static List<FrontEndShip> shipList = new ArrayList<FrontEndShip>();
 
-    static char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'};
+    private static char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'};
 
     // Button array
-    static JButton[][] buttonArray = new JButton[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+    private static JButton[][] buttonArray = new JButton[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
 
     /**
      * default constructor
@@ -67,6 +69,7 @@ public class MainWindow extends JFrame implements ActionListener {
         topPanel.setBackground(Color.YELLOW);
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
 
+
         // create and add game state component top panel//
 
         gameStateComponent = new JLabel();
@@ -79,6 +82,7 @@ public class MainWindow extends JFrame implements ActionListener {
         gridBagConstraints.gridy = 0;
 
         topPanel.add(gameStateComponent, gridBagConstraints);
+
 
         //  create and add start game button to top panel //
 
@@ -111,12 +115,12 @@ public class MainWindow extends JFrame implements ActionListener {
 
                 AIBoard.setGameHasStarted();
                 humanBoard.setGameHasStarted();
+                gameHasStarted = true;
+
                 gameStateComponent.setText("Game has started");
-                startedGame = true;
                 startGameButton.setVisible(false);
-            } else {
-                gameStateComponent.setText("Positions of your ships are illegal");
-            }
+
+            } else { gameStateComponent.setText("Positions of your ships are illegal"); }
         });
 
 
@@ -144,10 +148,9 @@ public class MainWindow extends JFrame implements ActionListener {
 
         // create board to display
         JPanel boardPanel = new JPanel(new GridLayout(Constants.BOARD_SIZE.x, Constants.BOARD_SIZE.y, 3, 3));
-        //jPanel2.setMaximumSize(new Dimension(Constants.BOARD_PIXEL_SIZE.x / 2, Constants.BOARD_PIXEL_SIZE.x / 2 - 2 * Renderer.holeImageSize));
         boardPanel.setMaximumSize(new Dimension(Constants.WINDOW_WIDTH / 2, Constants.WINDOW_WIDTH / 2 + 2 * Renderer.holeImageSize));
 
-        // Generate the grid to display
+        // Generate the grid to display and add to gameBoardPanel
 
         for (int i = Constants.BOARD_SIZE.x - 1; i >= 0; i--) {
             for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
@@ -163,8 +166,10 @@ public class MainWindow extends JFrame implements ActionListener {
         boardPanel.setBackground(Color.red);
         gameBoardPanel.add(boardPanel);
 
-        // finally, add all components to main window
-        add(gameBoardPanel);
+        add(gameBoardPanel); // add all components to main window
+
+
+        // add the Ships of the Human player on his board //
 
         shipList.add(new FrontEndShip(2, 2, 6, 1));
         shipList.add(new FrontEndShip(3, 3, 2, 3));
@@ -173,15 +178,17 @@ public class MainWindow extends JFrame implements ActionListener {
         shipList.add(new FrontEndShip(5, 3, 4, 9));
     }
 
-    // // Button click method
+
+    /**
+     * Main gaming loop where player will play turn by turn
+     * @param e
+     */
     public void actionPerformed(ActionEvent e) {
 
-        if (startedGame) {
+        if (gameHasStarted) {
             try {
                 JButton temporaryButton = (JButton) e.getSource();
-
                 System.out.println("Human click on " + temporaryButton.getText() + ", coordinate " + temporaryButton.getName());
-
                 temporaryButton.setEnabled(false);
 
 
@@ -206,9 +213,10 @@ public class MainWindow extends JFrame implements ActionListener {
 
                 // for debugging
                 //humanBoard.printStateGrid();
-                humanBoard.printShipGrid();
-                System.out.println("");
-                
+                //humanBoard.printShipGrid();
+                //System.out.println("");
+
+
                 // AI turn to play //
 
                 target = myAI.getNextMove();
@@ -232,26 +240,19 @@ public class MainWindow extends JFrame implements ActionListener {
 
                 // for debugging
                 //AIBoard.printStateGrid();
-                AIBoard.printShipGrid();
+                //AIBoard.printShipGrid();
                 //myAI.printCountGrid();
-                System.out.println("");
+                //System.out.println("");
 
-                System.out.println("///////////////////////////\n");
+                //System.out.println("///////////////////////////\n");
 
 
-            } catch (Exception exception) {
-
-                exception.printStackTrace();
-            }
+            } catch (Exception exception) { exception.printStackTrace(); }
         }
     }
 
-    public static int getWindowLocationX() {
-        return Game.mainWindow.getLocationOnScreen().x;
-    }
+    public static int getWindowLocationX() { return Game.mainWindow.getLocationOnScreen().x; }
 
-    public static int getWindowLocationY() {
-        return Game.mainWindow.getLocationOnScreen().y;
-    }
+    public static int getWindowLocationY() { return Game.mainWindow.getLocationOnScreen().y; }
 
 }

@@ -1,5 +1,9 @@
 package tools;
 
+
+/**
+ * Helper for grid computation
+ */
 public class GridHelper {
 
     /**

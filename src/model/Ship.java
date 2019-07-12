@@ -1,18 +1,17 @@
 package model;
 
-import constants.Constants;
 import tools.Coordinate;
-import view.MainWindow;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class Ship {
 
     private ArrayList<Coordinate> position = new ArrayList<Coordinate>();
     private ArrayList<Coordinate> hitPosition = new ArrayList<Coordinate>();
-    public int size;
+
     private boolean isAlive = true;
+
+    public int size;
+
 
     /**
      * argument constructor
@@ -27,7 +26,6 @@ public class Ship {
         }
 
         this.size = size;
-
     }
 
     /**
@@ -35,18 +33,15 @@ public class Ship {
      *
      * @return arraylist of ship coordinate
      */
-    public ArrayList<Coordinate> getPosition() {
-        return position;
-    }
+    public ArrayList<Coordinate> getPosition() { return position; }
+
 
     /**
      * get size of the ship
      *
      * @return int size of the ship
      */
-    public int getSize() {
-        return size;
-    }
+    public int getSize() { return size; }
 
 
     /**
@@ -57,10 +52,10 @@ public class Ship {
     public boolean isSunk() {
 
         if (!isAlive) {
+
             return true;
-        } else {
-            return false;
-        }
+
+        } else { return false; }
     }
 
 
@@ -80,9 +75,7 @@ public class Ship {
 
                     hitPosition.add(this.position.get(i));
 
-                    if (hitPosition.size() == position.size()) {
-                        isAlive = false;
-                    }
+                    if (hitPosition.size() == position.size()) { isAlive = false; }
 
                     return true;
                 }
@@ -101,9 +94,7 @@ public class Ship {
      */
     public boolean isAlreadyHit(Coordinate target) {
 
-        if (!isAlive) {
-            return true;
-        }
+        if (!isAlive) { return true; }
 
         for (int i = 0; i < hitPosition.size(); i++) {
             if (hitPosition.get(i).equals(target)) {
@@ -112,6 +103,5 @@ public class Ship {
         }
 
         return false;
-
     }
 }

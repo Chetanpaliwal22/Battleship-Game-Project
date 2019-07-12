@@ -27,6 +27,6 @@ public class Constants {
 
     public static final int SHIP_NB = CARRIER_NB + BATTLESHIP_NB + CRUISER_NB + SUBMARINE_NB + DESTROYER_NB;
 
-    public static final Coordinate BOARD_SIZE = new Coordinate(11, 9);
+    public static final Coordinate BOARD_SIZE = new Coordinate(11, 9); // y, x !!
     public static final int WINDOW_WIDTH = 1280, WINDOW_HEIGHT = 720;
 }

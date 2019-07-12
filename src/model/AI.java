@@ -28,13 +28,13 @@ public class AI {
 	 * default constructor
 	 */
 	public AI() {
-		try {
-		    boardSize = Constants.BOARD_SIZE;
-			computeCountGrid();
-			isInitialized = true;
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+
+		boardSize = Constants.BOARD_SIZE;
+
+		try{ computeCountGrid(); }
+		catch(Exception e){ e.printStackTrace(); }
+
+		isInitialized = true;
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class AI {
 	 */
 	private void computeCountGrid() throws Exception {
 
-		int[][] finalCountGrid = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+		int[][] finalCountGrid = new int[Constants.BOARD_SIZE.y][Constants.BOARD_SIZE.x];
 
 		// loop over nb of ships and their respective sizes on the board
 		this.destroyerCountGrid = specificCountGrid(Constants.DESTROYER_SIZE);
@@ -74,6 +74,9 @@ public class AI {
 		}
 
 		this.countGrid = finalCountGrid;
+
+		System.out.println("OK");
+		printGrid();
 	}
 
 
@@ -85,8 +88,8 @@ public class AI {
 	 */
 	private int[][] specificCountGrid(int shipSize) throws Exception {
 
-		int[][] probabilisticGridX = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
-		int[][] probabilisticGridY = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+		int[][] probabilisticGridX = new int[Constants.BOARD_SIZE.y][Constants.BOARD_SIZE.x];
+		int[][] probabilisticGridY = new int[Constants.BOARD_SIZE.y][Constants.BOARD_SIZE.x];
 
 		if (shipSize > boardSize.x || shipSize > boardSize.y) {
 			throw new Exception("shipLength cannot be bigger x or y");
@@ -95,15 +98,15 @@ public class AI {
 		// vertical ship position probability //
 
 		// compute weight on first column
-		for (int i = 0; i < boardSize.y - shipSize +1; i++) { // start position
+		for (int i = 0; i < boardSize.x - shipSize +1; i++) { // start position
 			for (int j = 0; j < shipSize; j++) { // loop over shipLength
 				probabilisticGridX[0][i + j] += 1;
 			}
 		}
 
 		// copy weight of first column to every other column
-		for (int i = 1; i < boardSize.x; i++) { // for every other column
-			for (int j = 0; j < boardSize.y; j++) { // for every values of the first columns
+		for (int i = 1; i < boardSize.y; i++) { // for every other column
+			for (int j = 0; j < boardSize.x; j++) { // for every values of the first columns
 				probabilisticGridX[i][j] = probabilisticGridX[0][j]; // copy
 			}
 		}
@@ -111,28 +114,28 @@ public class AI {
 		// horizontal ship position probability //
 
 		// compute weight on first row
-		for (int i = 0; i < boardSize.x - shipSize +1; i++) { // start position
+		for (int i = 0; i < boardSize.y - shipSize +1; i++) { // start position
 			for (int j = 0; j < shipSize; j++) { // loop over shipLength
 				probabilisticGridY[i + j][0] += 1;
 			}
 		}
 
 		// copy weight of first row to every other row
-		for (int i = 1; i < boardSize.y; i++) { // for every other row
-			for (int j = 0; j < boardSize.x; j++) { // for every values of the first row
+		for (int i = 1; i < boardSize.x; i++) { // for every other row
+			for (int j = 0; j < boardSize.y; j++) { // for every values of the first row
 				probabilisticGridY[j][i] = probabilisticGridY[j][0]; // copy
 			}
 		}
 
 		// add vertical and horizontal probability grid //
 
-		int[][] specificCountGrid = new int[boardSize.x][boardSize.y];
+		int[][] specificCountGrid = new int[this.boardSize.y][this.boardSize.x];
 
 		int cellCount = 0;
 		long totalCount = 0;
 
-		for (int i = 0; i < boardSize.x; i++) {
-			for (int j = 0; j < boardSize.y; j++) {
+		for (int i = 0; i < boardSize.y; i++) {
+			for (int j = 0; j < boardSize.x; j++) {
 				cellCount = probabilisticGridX[i][j] + probabilisticGridY[i][j];
 				totalCount += cellCount;
 				specificCountGrid[i][j] = cellCount;
@@ -161,7 +164,7 @@ public class AI {
 	 */
 	private void updateCountGrid( Coordinate target, int code) throws Exception {
 
-		int[][] countGridToUpdate = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+		int[][] countGridToUpdate = new int[Constants.BOARD_SIZE.y][Constants.BOARD_SIZE.x];
 
 		// update probabilistic grid related to each ship length //
 
@@ -217,49 +220,38 @@ public class AI {
 	 */
 	public Coordinate getNextMove(){
 
-		long totalCount = 0;
-
-		for (int i = 0; i < Constants.BOARD_SIZE.x; i++) {
-			for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
-				totalCount += countGrid[i][j];
-			}
-		}
-
-		System.out.println(totalCount);
-
 		Coordinate currentCoordinate = new Coordinate(0, 0);
 		float currentHighest = 0;
 
-		for (int i = 0; i < Constants.BOARD_SIZE.x; i++) {
-			for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
+		for (int i = 0; i < Constants.BOARD_SIZE.y; i++) {
+			for (int j = 0; j < Constants.BOARD_SIZE.x; j++) {
 
-				float value = countGrid[i][j] / totalCount;
+				float value = countGrid[i][j];
 
 				if (value > currentHighest) {
 					currentHighest = value;
-					currentCoordinate.x = i;
-					currentCoordinate.y = j;
+					currentCoordinate.y = i;
+					currentCoordinate.x = j;
 				}
 			}
 		}
+
 		this.previousTarget = currentCoordinate;
 		return currentCoordinate;
 	}
 
-	public Coordinate getNextMove(float[][] doubles, int row, int col) {
-		Coordinate currentCoordinate = new Coordinate(0, 0);
-		float currentHighest = 0;
 
-		for (int i = 0; i < row; row++) {
-			for (int j = 0; j < col; col++) {
-				float value = doubles[i][j];
-				if (value > currentHighest) {
-					currentHighest = value;
-					currentCoordinate.x = i;
-					currentCoordinate.y = j;
-				}
+	/**
+	 * display the content of the AI count grid in the console
+	 */
+	public void printGrid(){
+
+		System.out.println("AI count grid :");
+		for(int i=0; i<this.boardSize.y; i++){
+			for(int j=0; j<this.boardSize.x; j++){
+				System.out.print(this.countGrid[i][j]);
 			}
+			System.out.println("");
 		}
-		return currentCoordinate;
 	}
 }

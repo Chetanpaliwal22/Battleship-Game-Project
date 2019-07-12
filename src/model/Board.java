@@ -78,7 +78,7 @@ public class Board {
 
         // add ship reference to the grid
         for(int i=0; i<newShipCoordinate.length; i++){
-            waterGrid[ newShipCoordinate[i].x ][ newShipCoordinate[i].y ] = newShip;
+            waterGrid[ newShipCoordinate[i].y ][ newShipCoordinate[i].x ] = newShip;
         }
 
         // add ship to ship index
@@ -111,12 +111,12 @@ public class Board {
 
         // loop over previous ship coordinate, and remove
         for(int i=0; i<shipCoordinate.length; i++){
-            waterGrid[ shipCoordinate[i].x ][ shipCoordinate[i].y ] = null;
+            waterGrid[ shipCoordinate[i].y ][ shipCoordinate[i].x ] = null;
         }
 
         // loop over new coordinate to add the new ship to the board
         for(int i=0; i<newShipCoordinate.length; i++){
-            waterGrid[ newShipCoordinate[i].x ][ newShipCoordinate[i].y ] = ships[shipIndex];
+            waterGrid[ newShipCoordinate[i].y ][ newShipCoordinate[i].x ] = ships[shipIndex];
         }
 
     }
@@ -131,12 +131,12 @@ public class Board {
 
         for(int i=0; i<newShipCoordinate.length; i++) {
 
-            if (newShipCoordinate[i].x < 0 || newShipCoordinate[i].x > boardSize.x
-                    || newShipCoordinate[i].y < 0 || newShipCoordinate[i].y > boardSize.y) {
+            if (newShipCoordinate[i].y < 0 || newShipCoordinate[i].y > boardSize.y
+                    || newShipCoordinate[i].x < 0 || newShipCoordinate[i].y > boardSize.x) {
                 throw new Exception("Ship coordinate outside the grid.");
             }
 
-            if ( waterGrid[newShipCoordinate[i].x][newShipCoordinate[i].y] != null ) {
+            if ( waterGrid[newShipCoordinate[i].y][newShipCoordinate[i].x] != null ) {
                 return true;
             }
 
@@ -157,22 +157,22 @@ public class Board {
         if( !gameHasStarted ){ throw new Exception("Ships should be placed before playing."); }
 
         // That's a miss
-        if( waterGrid[target.x][target.y] == null ) {
+        if( waterGrid[target.y][target.x] == null ) {
 
-            waterGridState[ target.x ][ target.y ] = 1;
+            waterGridState[ target.y ][ target.x ] = 1;
             return 0;
 
         // that's a hit !
-        } else if( waterGrid[target.x][target.y].isHit(target) ){
+        } else if( waterGrid[target.y][target.x].isHit(target) ){
 
-            if( waterGrid[target.x][target.y].isSunk() ){ // ship has sunked
+            if( waterGrid[target.y][target.x].isSunk() ){ // ship has sunked
 
-                waterGridState[ target.x ][ target.y ] = 2;
+                waterGridState[ target.y ][ target.x ] = 2;
                 return 2;
 
             } else {
 
-                waterGridState[ target.x ][ target.y ] = 2;
+                waterGridState[ target.y ][ target.x ] = 2;
                 return 1;
             }
 
@@ -198,8 +198,8 @@ public class Board {
      */
     public void printGrid(){
 
-        for(int i=0; i<this.boardSize.x; i++){
-            for(int j=0; j<this.boardSize.y; j++){
+        for(int i=0; i<this.boardSize.y; i++){
+            for(int j=0; j<this.boardSize.x; j++){
                 System.out.print(waterGridState[i][j]);
             }
             System.out.println();

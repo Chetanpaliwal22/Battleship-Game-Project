@@ -45,11 +45,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
         super("BattleShip");
 
-        System.out.println("CA");
-
         AIBoard.placeShipsRandomly();
-
-        System.out.println("CATA");
 
         setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 
@@ -144,7 +140,7 @@ public class MainWindow extends JFrame implements ActionListener {
         for (int i = Constants.BOARD_SIZE.x-1; i >= 0; i--) {
             for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
 
-                buttonArray[i][j] = new JButton(alphabet[j] + " " + (i + 1));
+                buttonArray[i][j] = new JButton(alphabet[j] + "" + (i + 1));
                 buttonArray[i][j].setName((j+1) + "," + (i+1));
                 buttonArray[i][j].addActionListener(this);
 
@@ -172,27 +168,28 @@ public class MainWindow extends JFrame implements ActionListener {
             try {
                 JButton temporaryButton = (JButton) e.getSource();
 
-                System.out.println(temporaryButton.getText() + " clicked, coordinate: " + temporaryButton.getName());
+                System.out.println( "Human click on " + temporaryButton.getText() + ", coordinate " + temporaryButton.getName());
 
                 temporaryButton.setEnabled(false);
 
 
                 // Human player turn to play //
 
-                Coordinate target = new Coordinate(Integer.parseInt(temporaryButton.getName().split(",")[0]),
-                        Integer.parseInt(temporaryButton.getName().split(",")[1]));
+                Coordinate target = new Coordinate(
+                        (Integer.parseInt(temporaryButton.getName().split(",")[0]) -1),
+                        (Integer.parseInt(temporaryButton.getName().split(",")[1]) - 1));
 
                 int result = AIBoard.fireAtTarget( target );
 
                 if( result == 0 ){
                     temporaryButton.setText("Human => Miss");
-                    System.out.println("Human => missed.");
+                    System.out.println("Human => missed\n");
                 } else if( result == 1 ){
                     temporaryButton.setText("Human => hit !");
-                    System.out.println("Human => hit !");
+                    System.out.println("Human => hit !\n");
                 } else if( result == 2 ){
                     temporaryButton.setText("Human => Sunk !!!");
-                    System.out.println("Human => Sunk !!!");
+                    System.out.println("Human => Sunk !!!\n");
                 }
 
 
@@ -200,22 +197,26 @@ public class MainWindow extends JFrame implements ActionListener {
 
                 target = myAI.getNextMove();
 
+                System.out.println("AI click on xx, coordinate " + target.x + "," + target.y);
+
                 result = humanBoard.fireAtTarget( target );
 
                 myAI.receiveResult(result);
 
                 if( result == 0 ){
                     temporaryButton.setText("AI => Miss");
-                    System.out.println("AI => missed.");
+                    System.out.println("AI => missed.\n");
                 } else if( result == 1 ){
                     temporaryButton.setText("AI => hit !");
-                    System.out.println("AI => hit !");
+                    System.out.println("AI => hit !\n");
                 } else if( result == 2 ){
                     temporaryButton.setText("AI => Sunk !!!");
-                    System.out.println("AI => Sunk !!!");
+                    System.out.println("AI => Sunk !!!\n");
                 }
 
-                System.out.println(" ");
+                myAI.printGrid();
+
+                System.out.println("\n///////////////////////////\n");
 
 
             } catch (Exception exception) {

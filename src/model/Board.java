@@ -2,6 +2,8 @@ package model;
 import tools.Coordinate;
 import constants.Constants;
 
+import java.util.ArrayList;
+
 public class Board {
 
     Coordinate boardSize;
@@ -11,7 +13,7 @@ public class Board {
     Ship[][] waterGrid;
     int[][] waterGridState;
 
-    Ship[] ships;
+    ArrayList<Ship> ships = new ArrayList<Ship>();
 
 
     /**
@@ -25,7 +27,6 @@ public class Board {
         this.waterGridState = new int[this.boardSize.x][this.boardSize.y];
 
         int nbShips = Constants.DESTROYER_NB + Constants.SUBMARINE_NB + Constants.CRUISER_NB + Constants.BATTLESHIP_NB + Constants.CARRIER_NB;
-        this.ships = new Ship[ nbShips ];
 
     }
 
@@ -40,49 +41,45 @@ public class Board {
 
         // hardcoded for now
 
-        Coordinate[] ship1Coordinate = { new Coordinate(4, 1), new Coordinate(4, 2) };
-        Coordinate[] ship2Coordinate = { new Coordinate(3, 7), new Coordinate(4, 7), new Coordinate(5, 7) };
-        Coordinate[] ship3Coordinate = { new Coordinate(0 ,1), new Coordinate(0, 2), new Coordinate(0, 3) };
-        Coordinate[] ship4Coordinate = { new Coordinate(5, 3), new Coordinate(6, 3), new Coordinate(7, 3), new Coordinate(8, 3) };
-        Coordinate[] ship5Coordinate = { new Coordinate(2, 0), new Coordinate(2, 1), new Coordinate(2, 2), new Coordinate(2, 3), new Coordinate(2, 4) };
-
+        Ship ship1 = new Ship(2, 2, 6, 1);
+        Ship ship2 = new Ship(3, 3, 2, 3);
+        Ship ship3 = new Ship(3, 1, 8, 4);
+        Ship ship4 = new Ship(4, 3, 2, 7);
+        Ship ship5 = new Ship(5, 3, 4, 5);
 
         try {
-            placeShip(ship1Coordinate);
-            placeShip(ship2Coordinate);
-            placeShip(ship3Coordinate);
-            placeShip(ship4Coordinate);
-            placeShip(ship5Coordinate);
+            placeShip(ship1);
+            placeShip(ship2);
+            placeShip(ship3);
+            placeShip(ship4);
+            placeShip(ship5);
 
-        } catch(Exception e){ System.out.println(e); }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
 
     /**
      * Allow human or AI to place a new ship on the board
-     * @param newShipCoordinate
+     * @param shipToPlace
      * @throws Exception
      */
-    public void placeShip(Coordinate[] newShipCoordinate) throws Exception {
+    public void placeShip(Ship shipToPlace) throws Exception {
 
         if( gameHasStarted ){
             throw new Exception("Can't move the ships after the beginning of the game.");
         }
 
-        if( doShipCollide(newShipCoordinate) ){
-            throw new Exception("New ship coordinate collides with another ship.");
-        }
-
-        // create a new ship
-        Ship newShip = new Ship(newShipCoordinate.length, newShipCoordinate);
+        Coordinate[] shipCoordinate = (Coordinate[]) shipToPlace.getPosition().toArray( new Coordinate[shipToPlace.getPosition().size()] );
 
         // add ship reference to the grid
-        for(int i=0; i<newShipCoordinate.length; i++){
-            waterGrid[ newShipCoordinate[i].y ][ newShipCoordinate[i].x ] = newShip;
+        for(int i=0; i<shipCoordinate.length; i++){
+            waterGrid[ shipCoordinate[i].y ][ shipCoordinate[i].x ] = shipToPlace;
         }
 
         // add ship to ship index
-        ships[ships.length-1] = newShip;
+        ships.add( shipToPlace );
     }
 
 
@@ -92,7 +89,7 @@ public class Board {
      * @param newShipCoordinate
      * @throws Exception
      */
-    public void modifyShipPlace(int shipIndex, Coordinate[] newShipCoordinate) throws Exception {
+    /*public void modifyShipPlace(int shipIndex, Coordinate[] newShipCoordinate) throws Exception {
 
         if( gameHasStarted ){
             throw new Exception("Can't move the ships after the beginning of the game.");
@@ -119,7 +116,7 @@ public class Board {
             waterGrid[ newShipCoordinate[i].y ][ newShipCoordinate[i].x ] = ships[shipIndex];
         }
 
-    }
+    }*/
 
 
     /**
@@ -127,7 +124,7 @@ public class Board {
      * @param newShipCoordinate
      * @return
      */
-    private boolean doShipCollide( Coordinate[] newShipCoordinate ) throws Exception {
+    /*private boolean doShipCollide( Coordinate[] newShipCoordinate ) throws Exception {
 
         for(int i=0; i<newShipCoordinate.length; i++) {
 
@@ -143,7 +140,7 @@ public class Board {
         }
 
         return false;
-    }
+    }*/
 
 
     /**
@@ -198,8 +195,8 @@ public class Board {
      */
     public void printGrid(){
 
-        for(int i=0; i<this.boardSize.y; i++){
-            for(int j=0; j<this.boardSize.x; j++){
+        for(int i=this.boardSize.x-1; i>=0; i--){
+            for(int j=0; j<this.boardSize.y; j++){
                 System.out.print(waterGridState[i][j]);
             }
             System.out.println();

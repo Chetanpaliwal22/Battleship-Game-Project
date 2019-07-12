@@ -18,11 +18,10 @@ import constants.Constants;
 
 public class MainWindow extends JFrame implements ActionListener {
 
-    AI myAI = new AI();
+    private AI myAI;
 
-    Board humanBoard = new Board();
-
-    Board AIBoard = new Board();
+    private Board humanBoard;
+    private Board AIBoard;
 
     private static Mouse mouse;
 
@@ -45,6 +44,10 @@ public class MainWindow extends JFrame implements ActionListener {
 
         super("BattleShip");
 
+        myAI = new AI();
+
+        AIBoard = new Board();
+        humanBoard = new Board();
         AIBoard.placeShipsRandomly();
 
         setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
@@ -98,10 +101,7 @@ public class MainWindow extends JFrame implements ActionListener {
             if (positionsAreCorrect) {
                 gameStateComponent.setText("Game has started");
                 startedGame = true;
-//            gameStateComponent.setText("Game started!!!");
-//            gameStateComponent.setText("\nOne emeny ship has been sunk");
                 startGameButton.setVisible(false);
-//            JOptionPane.showMessageDialog(this, "Player wins!!!!!!");
             } else {
                 gameStateComponent.setText("Positions of your ships are illegal");
             }
@@ -159,6 +159,8 @@ public class MainWindow extends JFrame implements ActionListener {
         shipList.add(new Ship(3, 1, 8, 4));
         shipList.add(new Ship(4, 3, 2, 7));
         shipList.add(new Ship(5, 3, 4, 5));
+
+
     }
 
     // // Button click method
@@ -181,6 +183,8 @@ public class MainWindow extends JFrame implements ActionListener {
 
                 int result = AIBoard.fireAtTarget( target );
 
+                humanBoard.printGrid();
+
                 if( result == 0 ){
                     temporaryButton.setText("Human => Miss");
                     System.out.println("Human => missed\n");
@@ -202,6 +206,8 @@ public class MainWindow extends JFrame implements ActionListener {
                 result = humanBoard.fireAtTarget( target );
 
                 myAI.receiveResult(result);
+
+                AIBoard.printGrid();
 
                 if( result == 0 ){
                     temporaryButton.setText("AI => Miss");

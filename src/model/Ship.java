@@ -19,13 +19,63 @@ public class Ship {
      * @param size
      * @param position
      */
-    public Ship(int size, Coordinate[] position) {
+    /*public Ship(int size, Coordinate[] position) {
 
         for(int i=0; i<position.length; i++){
             this.position.add(position[i]);
         }
         this.size = size;
+    }*/
 
+    /**
+     * argument constructor
+     * @param shipSize
+     * @param shipDirection
+     * @param shipPivotGridX
+     * @param shipPivotGridY
+     */
+    public Ship(int shipSize, int shipDirection, int shipPivotGridX, int shipPivotGridY) {
+
+        this.size = shipSize;
+
+        this.position = orientationToPosition(shipSize, shipDirection, shipPivotGridX, shipPivotGridY);
+
+        recalculate(shipDirection, shipPivotGridX, shipPivotGridY);
+    }
+
+
+    /**
+     * convert orientation to position
+     * @param shipSize
+     * @param shipDirection
+     * @param shipPivotGridX
+     * @param shipPivotGridY
+     * @return
+     */
+    private ArrayList<Coordinate> orientationToPosition(int shipSize, int shipDirection, int shipPivotGridX, int shipPivotGridY){
+
+        ArrayList<Coordinate> newPosition = new ArrayList<Coordinate>();
+        Coordinate increment = new Coordinate(0, 0);
+
+        if( shipDirection == 1 ){
+            increment.x = 1;
+
+        } else if( shipDirection == 2 ){
+            increment.y = -1;
+
+        } else if( shipDirection == 3 ){
+            increment.x = -1;
+
+        } else if( shipDirection == 4 ){
+            increment.y = 1;
+        }
+
+        Coordinate tmp = new Coordinate(0,0);
+        for(int i=0; i<shipSize; i++){
+            newPosition.add( new Coordinate( shipPivotGridX+(i*increment.y), shipPivotGridY+(i*increment.x) ) );
+        }
+
+        return newPosition;
     }
 
     /**
@@ -112,6 +162,12 @@ public class Ship {
     }
 
 
+
+
+
+    ////////////////////////////////////////////////////////////
+
+
     // The coordinates based on the window
     public double x = 0, y = 0;
 
@@ -128,12 +184,6 @@ public class Ship {
 
     public boolean validity = true;
 
-    // Constructor for initializing the attributes
-    public Ship(int shipLength, int shipDirection, int shipPivotGridX, int shipPivotGridY) {
-        length = shipLength;
-
-        recalculate(shipDirection, shipPivotGridX, shipPivotGridY);
-    }
 
     // Every time the direction or location of the ship changed, recalculate its
     // occupied grids
@@ -148,7 +198,7 @@ public class Ship {
         occupiedGridX = new ArrayList<Integer>();
         occupiedGridY = new ArrayList<Integer>();
 
-        if (length == 2) {
+        if (this.size == 2) {
             // Check the ship direction
             if (direction == 1) {
                 occupiedGridX.add(shipPivotGridX);
@@ -175,7 +225,7 @@ public class Ship {
                 occupiedGridX.add(shipPivotGridX);
                 occupiedGridY.add(shipPivotGridY + 1);
             }
-        } else if (length == 3) {
+        } else if (size == 3) {
             // Check the ship direction
             if (direction == 1 | direction == 3) {
                 occupiedGridX.add(shipPivotGridX);
@@ -196,7 +246,7 @@ public class Ship {
                 occupiedGridX.add(shipPivotGridX);
                 occupiedGridY.add(shipPivotGridY + 1);
             }
-        } else if (length == 4) {
+        } else if (size == 4) {
             // Check the ship direction
             if (direction == 1) {
                 occupiedGridX.add(shipPivotGridX);
@@ -247,7 +297,7 @@ public class Ship {
                 occupiedGridX.add(shipPivotGridX);
                 occupiedGridY.add(shipPivotGridY + 2);
             }
-        } else if (length == 5) {
+        } else if (size == 5) {
             // Check the ship direction
             if (direction == 1 | direction == 3) {
                 occupiedGridX.add(shipPivotGridX);

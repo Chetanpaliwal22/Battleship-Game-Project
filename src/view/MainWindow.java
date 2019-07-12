@@ -206,8 +206,8 @@ public class MainWindow extends JFrame implements ActionListener {
 
                 // for debugging
                 //humanBoard.printStateGrid();
-                //humanBoard.printShipGrid();
-                //System.out.println("");
+                humanBoard.printShipGrid();
+                System.out.println("");
                 
                 // AI turn to play //
 
@@ -232,9 +232,9 @@ public class MainWindow extends JFrame implements ActionListener {
 
                 // for debugging
                 //AIBoard.printStateGrid();
-                //AIBoard.printShipGrid();
+                AIBoard.printShipGrid();
                 //myAI.printCountGrid();
-                //System.out.println("");
+                System.out.println("");
 
                 System.out.println("///////////////////////////\n");
 

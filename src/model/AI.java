@@ -209,9 +209,9 @@ public class AI {
 		if( code == 0 ){
 			countGridToUpdate[target.y][target.x] = 0;
 		} else if( code == 1 ){
-			//countGridToUpdate[target.y][target.x] = 0;
+			countGridToUpdate[target.y][target.x] = 0;
 		} else if( code == 2 ){
-			//countGridToUpdate[target.y][target.x] = 0;
+			countGridToUpdate[target.y][target.x] = 0;
 		}
 
 		/*System.out.println("OHOH");

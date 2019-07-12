@@ -145,7 +145,7 @@ public class MainWindow extends JFrame implements ActionListener {
             for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
 
                 buttonArray[i][j] = new JButton(alphabet[j] + " " + (i + 1));
-                buttonArray[i][j].setName(j + "," + i);
+                buttonArray[i][j].setName((j+1) + "," + (i+1));
                 buttonArray[i][j].addActionListener(this);
 
                 boardPanel.add(buttonArray[i][j]);

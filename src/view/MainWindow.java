@@ -18,10 +18,11 @@ import constants.Constants;
 
 public class MainWindow extends JFrame implements ActionListener {
 
-    private AI myAI;
+    AI myAI = new AI();
 
-    private Board humanBoard;
-    private Board AIBoard;
+    Board humanBoard = new Board();
+
+    Board AIBoard = new Board();
 
     private static Mouse mouse;
 
@@ -44,16 +45,12 @@ public class MainWindow extends JFrame implements ActionListener {
 
         super("BattleShip");
 
-        myAI = new AI();
-
-        AIBoard = new Board();
-        humanBoard = new Board();
         AIBoard.placeShipsRandomly();
 
         setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 
-        setLocation((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - 1280 / 2,
-                (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - 720 / 2);
+        setLocation((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - Constants.WINDOW_WIDTH / 2,
+                (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - Constants.WINDOW_HEIGHT / 2);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -101,7 +98,10 @@ public class MainWindow extends JFrame implements ActionListener {
             if (positionsAreCorrect) {
                 gameStateComponent.setText("Game has started");
                 startedGame = true;
+//            gameStateComponent.setText("Game started!!!");
+//            gameStateComponent.setText("\nOne emeny ship has been sunk");
                 startGameButton.setVisible(false);
+//            JOptionPane.showMessageDialog(this, "Player wins!!!!!!");
             } else {
                 gameStateComponent.setText("Positions of your ships are illegal");
             }
@@ -133,15 +133,15 @@ public class MainWindow extends JFrame implements ActionListener {
         // create board to display
         JPanel boardPanel = new JPanel(new GridLayout(Constants.BOARD_SIZE.x, Constants.BOARD_SIZE.y, 3, 3));
         //jPanel2.setMaximumSize(new Dimension(Constants.BOARD_PIXEL_SIZE.x / 2, Constants.BOARD_PIXEL_SIZE.x / 2 - 2 * Renderer.holeImageSize));
-        boardPanel.setMaximumSize(new Dimension(Constants.WINDOW_WIDTH / 2, Constants.WINDOW_WIDTH / 2 - 2 * Renderer.holeImageSize));
+        boardPanel.setMaximumSize(new Dimension(Constants.WINDOW_WIDTH / 2, Constants.WINDOW_WIDTH / 2 + 2 * Renderer.holeImageSize));
 
         // Generate the grid to display
 
-        for (int i = Constants.BOARD_SIZE.x-1; i >= 0; i--) {
+        for (int i = Constants.BOARD_SIZE.x - 1; i >= 0; i--) {
             for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
 
                 buttonArray[i][j] = new JButton(alphabet[j] + "" + (i + 1));
-                buttonArray[i][j].setName((j+1) + "," + (i+1));
+                buttonArray[i][j].setName((j + 1) + "," + (i + 1));
                 buttonArray[i][j].addActionListener(this);
 
                 boardPanel.add(buttonArray[i][j]);
@@ -156,11 +156,9 @@ public class MainWindow extends JFrame implements ActionListener {
 
         shipList.add(new Ship(2, 2, 6, 1));
         shipList.add(new Ship(3, 3, 2, 3));
-        shipList.add(new Ship(3, 1, 8, 4));
-        shipList.add(new Ship(4, 3, 2, 7));
-        shipList.add(new Ship(5, 3, 4, 5));
-
-
+        shipList.add(new Ship(3, 1, 7, 4));
+        shipList.add(new Ship(4, 3, 2, 6));
+        shipList.add(new Ship(5, 3, 4, 9));
     }
 
     // // Button click method
@@ -170,7 +168,7 @@ public class MainWindow extends JFrame implements ActionListener {
             try {
                 JButton temporaryButton = (JButton) e.getSource();
 
-                System.out.println( "Human click on " + temporaryButton.getText() + ", coordinate " + temporaryButton.getName());
+                System.out.println("Human click on " + temporaryButton.getText() + ", coordinate " + temporaryButton.getName());
 
                 temporaryButton.setEnabled(false);
 
@@ -178,45 +176,40 @@ public class MainWindow extends JFrame implements ActionListener {
                 // Human player turn to play //
 
                 Coordinate target = new Coordinate(
-                        (Integer.parseInt(temporaryButton.getName().split(",")[0]) -1),
+                        (Integer.parseInt(temporaryButton.getName().split(",")[0]) - 1),
                         (Integer.parseInt(temporaryButton.getName().split(",")[1]) - 1));
 
-                int result = AIBoard.fireAtTarget( target );
+                int result = AIBoard.fireAtTarget(target);
 
-                humanBoard.printGrid();
-
-                if( result == 0 ){
+                if (result == 0) {
                     temporaryButton.setText("Human => Miss");
                     System.out.println("Human => missed\n");
-                } else if( result == 1 ){
+                } else if (result == 1) {
                     temporaryButton.setText("Human => hit !");
                     System.out.println("Human => hit !\n");
-                } else if( result == 2 ){
+                } else if (result == 2) {
                     temporaryButton.setText("Human => Sunk !!!");
                     System.out.println("Human => Sunk !!!\n");
                 }
-
-
+                
                 // AI turn to play //
 
                 target = myAI.getNextMove();
 
                 System.out.println("AI click on xx, coordinate " + target.x + "," + target.y);
 
-                result = humanBoard.fireAtTarget( target );
+                result = humanBoard.fireAtTarget(target);
 
                 myAI.receiveResult(result);
 
-                AIBoard.printGrid();
-
-                if( result == 0 ){
-                    temporaryButton.setText("AI => Miss");
+                if (result == 0) {
+                    temporaryButton.setText("Miss");
                     System.out.println("AI => missed.\n");
-                } else if( result == 1 ){
-                    temporaryButton.setText("AI => hit !");
+                } else if (result == 1) {
+                    temporaryButton.setText("Hit");
                     System.out.println("AI => hit !\n");
-                } else if( result == 2 ){
-                    temporaryButton.setText("AI => Sunk !!!");
+                } else if (result == 2) {
+                    temporaryButton.setText("Sunk");
                     System.out.println("AI => Sunk !!!\n");
                 }
 

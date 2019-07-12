@@ -13,7 +13,7 @@ public class Renderer extends JComponent {
 
     private boolean calculatedHolePositions = false;
 
-    public static int[][] holeLocationX = new int[11][9], holeLocationY = new int[11][9];
+    public static int[][] holeLocationX = new int[9][11], holeLocationY = new int[9][11];
 
     public static int holeImageSize = 0;
 
@@ -29,9 +29,9 @@ public class Renderer extends JComponent {
     public Renderer() {
         // setOpaque(true);
 
-        holeImageSize = (Constants.WINDOW_WIDTH / 2) / 11 - 2;
+        holeImageSize = (Constants.WINDOW_WIDTH / 2) / Constants.BOARD_SIZE.y - 2;
 
-        setMaximumSize(new Dimension(Constants.WINDOW_WIDTH / 2, Constants.WINDOW_WIDTH / 2 - 2 * holeImageSize));
+        setMaximumSize(new Dimension(Constants.WINDOW_WIDTH / 2, Constants.WINDOW_WIDTH / 2 + 2 * holeImageSize));
 
         holeImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/Hole.png");
         missedHoleImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/MissedHole.png");
@@ -54,7 +54,7 @@ public class Renderer extends JComponent {
             Graphics2D graphics2D = (Graphics2D) g;
 
             g.setColor(new Color(99, 222, 231));
-            g.fillRect(0, 0, Constants.WINDOW_WIDTH / 2, Constants.WINDOW_WIDTH / 2 - 2 * holeImageSize);
+            g.fillRect(0, 0, Constants.WINDOW_WIDTH / 2, Constants.WINDOW_WIDTH / 2 + 2 * holeImageSize);
 
             int nearestX = 0, nearestY = 0;
 
@@ -66,12 +66,8 @@ public class Renderer extends JComponent {
                 // Calculate the shortest distance to find the nearest hole
                 double shortestDistance = 999999999;
 
-                for (int i = 8; i >= 0; i--) {
-                    for (int j = 0; j < 11; j++) {
-                        // System.out.println((mouseX - holeLocationX[i][j]) * (mouseX -
-                        // holeLocationX[i][j]) + (mouseY - holeLocationY[i][j]) * (mouseY -
-                        // holeLocationY[i][j]) + " ??");
-
+                for (int i = Constants.BOARD_SIZE.x - 1; i >= 0; i--) {
+                    for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
                         double currentDistance = (mouseX - holeLocationX[j][i]) * (mouseX - holeLocationX[j][i])
                                 + (mouseY - holeLocationY[j][i]) * (mouseY - holeLocationY[j][i]);
                         if (currentDistance < shortestDistance) {
@@ -210,18 +206,17 @@ public class Renderer extends JComponent {
             }
 
             // Render all grids
-            for (int i = 8; i >= 0; i--) {
-                for (int j = 0; j < 11; j++) {
+            for (int i = Constants.BOARD_SIZE.x - 1; i >= 0; i--) {
+                for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
                     int relativeX = holeImageSize / 2 + j * holeImageSize;
-                    int relativeY = holeImageSize / 2 + (8 - i) * holeImageSize;
+                    int relativeY = holeImageSize / 2 + (Constants.BOARD_SIZE.x - i - 1) * holeImageSize;
 
-                    if (j == 6)
-                        graphics2D.drawImage(missedHoleImage, relativeX, relativeY, 20, 20, this);
-                    else if (j == 9)
-                        graphics2D.drawImage(hitHoleImage, relativeX, relativeY, 20, 20, this);
-                    else
-                        graphics2D.drawImage(holeImage, relativeX, relativeY, 20, 20, this);
-
+//                    if (j == 6)
+//                        graphics2D.drawImage(missedHoleImage, relativeX, relativeY, 20, 20, this);
+//                    else if (j == 9)
+//                        graphics2D.drawImage(hitHoleImage, relativeX, relativeY, 20, 20, this);
+//                    else
+                    graphics2D.drawImage(holeImage, relativeX, relativeY, 20, 20, this);
 
                     if (!calculatedHolePositions) {
                         holeLocationX[j][i] = relativeX + 5;

@@ -6,5 +6,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/jaco-mp3-player-0.9.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

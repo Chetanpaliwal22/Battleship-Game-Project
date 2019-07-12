@@ -1,5 +1,9 @@
 package main;
 
+import java.io.File;
+
+import constants.Constants;
+import jaco.mp3.player.MP3Player;
 import view.MainWindow;
 
 public class Game {
@@ -12,6 +16,13 @@ public class Game {
 
         mainWindow = new MainWindow();
         mainWindow.setVisible(true);
+       
+        try {        	 
+        	 new MP3Player(new File(Constants.MUSIC_FILE_NAME)).play();
+        	 
+        }catch(Exception e) {
+        	e.printStackTrace();
+        }
 
     }
 }

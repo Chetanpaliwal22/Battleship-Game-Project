@@ -7,19 +7,14 @@ public class Coordinate {
 
 	/**
 	 * constructor
-	 * @param a for the x coordinate 
-	 * @param b for the y coordinate 
+	 * @param a
+	 * @param b
 	 */
 	public Coordinate(int a, int b){
 		x =a;
 		y= b;
 	}
 
-	/**
-	 * override equals method
-	 * @param other
-	 * @return
-	 */
 	public boolean equals(Coordinate other){
 		if( other.x == x && other.y == y ){
 			return true;

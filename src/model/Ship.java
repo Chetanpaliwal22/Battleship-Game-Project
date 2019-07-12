@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Ship {
 
-    private ArrayList<Coordinate> position;
-    private ArrayList<Coordinate> hitPosition;
+    private ArrayList<Coordinate> position = new ArrayList<Coordinate>();
+    private ArrayList<Coordinate> hitPosition  = new ArrayList<Coordinate>();
     private int size;
     private boolean isAlive = true;
 

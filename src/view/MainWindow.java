@@ -185,12 +185,14 @@ public class MainWindow extends JFrame implements ActionListener {
                 int result = AIBoard.fireAtTarget( target );
 
                 if( result == 0 ){
-                    temporaryButton.setText("Miss");
+                    temporaryButton.setText("Human => Miss");
                     System.out.println("Human => missed.");
                 } else if( result == 1 ){
                     temporaryButton.setText("Human => hit !");
+                    System.out.println("Human => hit !");
                 } else if( result == 2 ){
                     temporaryButton.setText("Human => Sunk !!!");
+                    System.out.println("Human => Sunk !!!");
                 }
 
 
@@ -200,13 +202,17 @@ public class MainWindow extends JFrame implements ActionListener {
 
                 result = humanBoard.fireAtTarget( target );
 
+                myAI.receiveResult(result);
+
                 if( result == 0 ){
-                    temporaryButton.setText("Miss");
+                    temporaryButton.setText("AI => Miss");
                     System.out.println("AI => missed.");
                 } else if( result == 1 ){
                     temporaryButton.setText("AI => hit !");
+                    System.out.println("AI => hit !");
                 } else if( result == 2 ){
                     temporaryButton.setText("AI => Sunk !!!");
+                    System.out.println("AI => Sunk !!!");
                 }
 
                 System.out.println(" ");

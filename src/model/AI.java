@@ -149,8 +149,6 @@ public class AI {
 	 */
 	public void receiveResult( int code ) throws Exception {
 
-		// if(code == 2){ // miss
-
 		updateCountGrid( this.previousTarget, code );
 
 	}
@@ -181,24 +179,19 @@ public class AI {
 		// add them together to get the new final probabilistic grid
 
 		for(int i=0; i<Constants.DESTROYER_NB - this.nbDestroyerDestroyed; i++){
-			GridHelper.add( countGridToUpdate, this.destroyerCountGrid ); }
+			countGridToUpdate = GridHelper.add( countGridToUpdate, this.destroyerCountGrid ); }
 
 		for(int i=0; i<Constants.SUBMARINE_NB - this.nbSubmarineDestroyed; i++){
-			GridHelper.add( countGridToUpdate, this.submarineCountGrid ); }
+			countGridToUpdate = GridHelper.add( countGridToUpdate, this.submarineCountGrid ); }
 
 		for(int i=0; i<Constants.CRUISER_NB - this.nbCruiserDestroyed; i++){
-			GridHelper.add( countGridToUpdate, this.cruiserCountGrid ); }
+			countGridToUpdate = GridHelper.add( countGridToUpdate, this.cruiserCountGrid ); }
 
 		for(int i=0; i<Constants.BATTLESHIP_NB - this.nbBattleshipDestroyed; i++){
-			GridHelper.add( countGridToUpdate, this.battleshipCountGrid ); }
+			countGridToUpdate = GridHelper.add( countGridToUpdate, this.battleshipCountGrid ); }
 
 		for(int i=0; i<Constants.CARRIER_NB - this.nbCarrierDestroyed; i++){
-			GridHelper.add( countGridToUpdate, this.carrierCountGrid ); }
-
-		/*countGridToUpdate = GridHelper.divideByScalar(
-				countGridToUpdate,
-				Constants.SHIP_NB - this.nbDestroyerDestroyed - this.nbSubmarineDestroyed
-				- this.nbCruiserDestroyed - this.nbBattleshipDestroyed - this.nbCarrierDestroyed);*/
+			countGridToUpdate = GridHelper.add( countGridToUpdate, this.carrierCountGrid ); }
 
 		this.countGrid = countGridToUpdate;
 	}
@@ -211,7 +204,9 @@ public class AI {
 	public int[][] updateSpecificCountGrid(
 		int[][] countGridToUpdate, Coordinate target, int code) throws Exception {
 
-		countGridToUpdate[target.x][target.y] = 0;
+		if( code == 1 || code == 2 ){
+			countGridToUpdate[target.x][target.y] = 0;
+		}
 		return countGridToUpdate;
 	}
 
@@ -230,6 +225,8 @@ public class AI {
 			}
 		}
 
+		System.out.println(totalCount);
+
 		Coordinate currentCoordinate = new Coordinate(0, 0);
 		float currentHighest = 0;
 
@@ -245,7 +242,6 @@ public class AI {
 				}
 			}
 		}
-
 		this.previousTarget = currentCoordinate;
 		return currentCoordinate;
 	}

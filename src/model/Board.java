@@ -46,6 +46,7 @@ public class Board {
         Coordinate[] ship4Coordinate = { new Coordinate(5, 3), new Coordinate(6, 3), new Coordinate(7, 3), new Coordinate(8, 3) };
         Coordinate[] ship5Coordinate = { new Coordinate(2, 0), new Coordinate(2, 1), new Coordinate(2, 2), new Coordinate(2, 3), new Coordinate(2, 4) };
 
+
         try {
             placeShip(ship1Coordinate);
             placeShip(ship2Coordinate);

@@ -45,7 +45,11 @@ public class MainWindow extends JFrame implements ActionListener {
 
         super("BattleShip");
 
+        System.out.println("CA");
+
         AIBoard.placeShipsRandomly();
+
+        System.out.println("CATA");
 
         setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 

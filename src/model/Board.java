@@ -9,6 +9,7 @@ public class Board {
     boolean gameHasStarted = false;
 
     Ship[][] waterGrid;
+    int[][] waterGridState;
 
     Ship[] ships;
 
@@ -21,6 +22,7 @@ public class Board {
         this.boardSize = Constants.BOARD_SIZE;
 
         this.waterGrid = new Ship[this.boardSize.x][this.boardSize.y];
+        this.waterGridState = new int[this.boardSize.x][this.boardSize.y];
 
         int nbShips = Constants.DESTROYER_NB + Constants.SUBMARINE_NB + Constants.CRUISER_NB + Constants.BATTLESHIP_NB + Constants.CARRIER_NB;
         this.ships = new Ship[ nbShips ];
@@ -156,6 +158,7 @@ public class Board {
         // That's a miss
         if( waterGrid[target.x][target.y] == null ) {
 
+            waterGridState[ target.x ][ target.y ] = 1;
             return 0;
 
         // that's a hit !
@@ -163,10 +166,12 @@ public class Board {
 
             if( waterGrid[target.x][target.y].isSunk() ){ // ship has sunked
 
+                waterGridState[ target.x ][ target.y ] = 2;
                 return 1;
 
             } else {
 
+                waterGridState[ target.x ][ target.y ] = 2;
                 return 2;
             }
 
@@ -183,17 +188,7 @@ public class Board {
      */
     public int[][] getBoardState() {
 
-        int[][] boardState = new int[boardSize.x][boardSize.y];
-
-        for (int i=0; i<boardSize.x; i++) {
-            for(int j=0; j<boardSize.y; j++){
-                if(true){
-                    boardState[i][j] = 1;
-                }
-            }
-        }
-
-        return boardState;
+        return waterGridState;
     }
 
 }

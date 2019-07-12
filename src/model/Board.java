@@ -28,7 +28,6 @@ public class Board {
 
         int nbShips = Constants.DESTROYER_NB + Constants.SUBMARINE_NB + Constants.CRUISER_NB + Constants.BATTLESHIP_NB + Constants.CARRIER_NB;
         this.ships = new ArrayList<Ship>();
-
     }
 
     /**
@@ -196,7 +195,7 @@ public class Board {
 
 
     /**
-     * print the grid in the console
+     * print the state grid in the console
      */
     public void printStateGrid(){
 
@@ -209,7 +208,9 @@ public class Board {
         }
     }
 
-
+    /**
+     * print the ship grid in the console
+     */
     public void printShipGrid(){
 
         System.out.println("Ship grid :");

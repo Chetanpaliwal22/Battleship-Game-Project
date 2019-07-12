@@ -4,10 +4,10 @@ public class GridHelper {
 
     /**
      * add two grid together
-     * @param a
-     * @param b
-     * @return
-     * @throws Exception
+    * @param a for the first grid
+     * @param b for the second grid
+     * @return the sum of two float grid
+     * @throws Exception if any error occured
      */
     public static float[][] add(float[][] a, float[][] b) throws Exception {
 
@@ -28,10 +28,10 @@ public class GridHelper {
 
     /**
      * add two grid together
-     * @param a
-     * @param b
-     * @return
-     * @throws Exception
+     * @param a for the first array
+     * @param b for the second array
+     * @return the sum of two int array
+     * @throws Exception if any error 
      */
     public static int[][] add(int[][] a, int[][] b) throws Exception {
 
@@ -52,10 +52,10 @@ public class GridHelper {
 
     /**
      * compute mean of two grid
-     * @param a
-     * @param b
-     * @return
-     * @throws Exception
+      * @param a the first array
+     * @param b the second array
+     * @return the mean of two float array
+     * @throws Exception if any error 
      */
     public static float[][] mean(float[][] a, float[][] b) throws Exception {
 
@@ -72,10 +72,10 @@ public class GridHelper {
 
     /**
      * divide grid by scalar
-     * @param a
-     * @param b
-     * @return
-     * @throws Exception
+     * @param a the first array
+     * @param b the scaler quantity
+     * @return the divide result of array
+     * @throws Exception if any error 
      */
     public static float[][] divideByScalar(float[][] a, float b) throws Exception {
 

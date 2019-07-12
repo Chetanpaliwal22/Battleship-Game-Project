@@ -50,7 +50,7 @@ public class Renderer extends JComponent {
 
     /**
      * a method to render the graphic in the window
-     * @param g
+     * @param g grphics for the UI
      */
     public void paintComponent(Graphics g) {
         setBackground(new Color(88, 111, 78));

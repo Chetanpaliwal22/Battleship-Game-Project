@@ -7,8 +7,8 @@ public class Coordinate {
 
 	/**
 	 * constructor
-	 * @param a
-	 * @param b
+	 * @param a for the x coordinate 
+	 * @param b for the y coordinate 
 	 */
 	public Coordinate(int a, int b){
 		x =a;
@@ -17,8 +17,8 @@ public class Coordinate {
 
 	/**
 	 * override equals method
-	 * @param other
-	 * @return
+	 * @param other for the coordinate
+	 * @return boolean
 	 */
 	public boolean equals(Coordinate other){
 

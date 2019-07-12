@@ -11,7 +11,7 @@ public class Ship {
 
     private ArrayList<Coordinate> position = new ArrayList<Coordinate>();
     private ArrayList<Coordinate> hitPosition = new ArrayList<Coordinate>();
-    private int size;
+    public int size;
     private boolean isAlive = true;
 
     /**
@@ -118,8 +118,6 @@ public class Ship {
     // The coordinates based on the window
     public double x = 0, y = 0;
 
-    public int length = 0;
-
     // Direction the ship faces 1: Right 2: Down 3: Left 4: Up
     public int direction = 0;
 
@@ -132,8 +130,9 @@ public class Ship {
     public boolean validity = true;
 
     // Constructor for initializing the attributes
-    public Ship(int shipLength, int shipDirection, int shipPivotGridX, int shipPivotGridY) {
-        length = shipLength;
+    public Ship(int shipSize, int shipDirection, int shipPivotGridX, int shipPivotGridY) {
+
+        size = shipSize;
 
         recalculate(shipDirection, shipPivotGridX, shipPivotGridY);
     }
@@ -151,7 +150,7 @@ public class Ship {
         occupiedGridX = new ArrayList<Integer>();
         occupiedGridY = new ArrayList<Integer>();
 
-        if (length == 2) {
+        if (size == 2) {
             // Check the ship direction
             if (direction == 1) {
                 occupiedGridX.add(shipPivotGridX);
@@ -178,7 +177,7 @@ public class Ship {
                 occupiedGridX.add(shipPivotGridX);
                 occupiedGridY.add(shipPivotGridY + 1);
             }
-        } else if (length == 3) {
+        } else if (size == 3) {
             // Check the ship direction
             if (direction == 1 | direction == 3) {
                 occupiedGridX.add(shipPivotGridX);
@@ -199,7 +198,7 @@ public class Ship {
                 occupiedGridX.add(shipPivotGridX);
                 occupiedGridY.add(shipPivotGridY + 1);
             }
-        } else if (length == 4) {
+        } else if (size == 4) {
             // Check the ship direction
             if (direction == 1) {
                 occupiedGridX.add(shipPivotGridX);
@@ -250,7 +249,7 @@ public class Ship {
                 occupiedGridX.add(shipPivotGridX);
                 occupiedGridY.add(shipPivotGridY + 2);
             }
-        } else if (length == 5) {
+        } else if (size == 5) {
             // Check the ship direction
             if (direction == 1 | direction == 3) {
                 occupiedGridX.add(shipPivotGridX);

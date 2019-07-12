@@ -76,7 +76,6 @@ public class AI {
 		this.countGrid = finalCountGrid;
 
 		System.out.println("OK");
-		printGrid();
 	}
 
 

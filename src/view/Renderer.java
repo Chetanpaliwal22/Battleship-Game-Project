@@ -105,7 +105,7 @@ public class Renderer extends JComponent {
             for (int i = 0; i < MainWindow.shipList.size(); i++) {
                 double offset = 0;
 
-                switch (MainWindow.shipList.get(i).length) {
+                switch (MainWindow.shipList.get(i).size) {
                     case 2:
                         if (MainWindow.shipList.get(i).direction == 1)
                             offset = 0.5;
@@ -145,14 +145,14 @@ public class Renderer extends JComponent {
                                             .get(i).pivotGridY] - (int) (offset * holeImageSize),
                                     holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
                                             .get(i).pivotGridY] - 30 / 2,
-                                    MainWindow.shipList.get(i).length * holeImageSize - 2, 40, this);
+                                    MainWindow.shipList.get(i).size * holeImageSize - 2, 40, this);
                         else
                             graphics2D.drawImage(redShipImage,
                                     holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
                                             .get(i).pivotGridY] - (int) (offset * holeImageSize),
                                     holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
                                             .get(i).pivotGridY] - 30 / 2,
-                                    MainWindow.shipList.get(i).length * holeImageSize - 2, 40, this);
+                                    MainWindow.shipList.get(i).size * holeImageSize - 2, 40, this);
                     } else {
                         if (MainWindow.shipList.get(i).validity)
                             graphics2D.drawImage(horizontalShipImage,
@@ -160,14 +160,14 @@ public class Renderer extends JComponent {
                                             .get(i).pivotGridY] - 30 / 2,
                                     holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
                                             .get(i).pivotGridY] - (int) (offset * holeImageSize),
-                                    40, MainWindow.shipList.get(i).length * holeImageSize - 2, this);
+                                    40, MainWindow.shipList.get(i).size * holeImageSize - 2, this);
                         else
                             graphics2D.drawImage(horizontalRedShipImage,
                                     holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
                                             .get(i).pivotGridY] - 30 / 2,
                                     holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
                                             .get(i).pivotGridY] - (int) (offset * holeImageSize),
-                                    40, MainWindow.shipList.get(i).length * holeImageSize - 2, this);
+                                    40, MainWindow.shipList.get(i).size * holeImageSize - 2, this);
                     }
                 } else {
                     if (targetShipId > -1) {
@@ -182,11 +182,11 @@ public class Renderer extends JComponent {
                                 graphics2D.drawImage(shipImage,
                                         holeLocationX[nearestX][nearestY] - (int) (offset * holeImageSize),
                                         holeLocationY[nearestX][nearestY] - 30 / 2,
-                                        MainWindow.shipList.get(i).length * holeImageSize - 2, 40, this);
+                                        MainWindow.shipList.get(i).size * holeImageSize - 2, 40, this);
                             } else {
                                 graphics2D.drawImage(horizontalShipImage, holeLocationX[nearestX][nearestY] - 30 / 2,
                                         holeLocationY[nearestX][nearestY] - (int) (offset * holeImageSize), 40,
-                                        MainWindow.shipList.get(i).length * holeImageSize - 2, this);
+                                        MainWindow.shipList.get(i).size * holeImageSize - 2, this);
                             }
                         } else {
                             if (MainWindow.shipList.get(targetShipId).direction == 1
@@ -194,11 +194,11 @@ public class Renderer extends JComponent {
                                 graphics2D.drawImage(redShipImage,
                                         holeLocationX[nearestX][nearestY] - (int) (offset * holeImageSize),
                                         holeLocationY[nearestX][nearestY] - 30 / 2,
-                                        MainWindow.shipList.get(i).length * holeImageSize - 2, 40, this);
+                                        MainWindow.shipList.get(i).size * holeImageSize - 2, 40, this);
                             } else {
                                 graphics2D.drawImage(horizontalRedShipImage, holeLocationX[nearestX][nearestY] - 30 / 2,
                                         holeLocationY[nearestX][nearestY] - (int) (offset * holeImageSize), 40,
-                                        MainWindow.shipList.get(i).length * holeImageSize - 2, this);
+                                        MainWindow.shipList.get(i).size * holeImageSize - 2, this);
                             }
                         }
                     }

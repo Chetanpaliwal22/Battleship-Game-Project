@@ -23,8 +23,8 @@ public class Board {
 
         this.boardSize = Constants.BOARD_SIZE;
 
-        this.waterGrid = new Ship[this.boardSize.x][this.boardSize.y];
-        this.waterGridState = new int[this.boardSize.x][this.boardSize.y];
+        this.waterGrid = new Ship[this.boardSize.y][this.boardSize.x];
+        this.waterGridState = new int[this.boardSize.y][this.boardSize.x];
 
         int nbShips = Constants.DESTROYER_NB + Constants.SUBMARINE_NB + Constants.CRUISER_NB + Constants.BATTLESHIP_NB + Constants.CARRIER_NB;
         this.ships = new ArrayList<Ship>();
@@ -71,9 +71,9 @@ public class Board {
             throw new Exception("Can't move the ships after the beginning of the game.");
         }
 
-        if( doShipCollide(newShipCoordinate) ){
+        /*if( doShipCollide(newShipCoordinate) ){
             throw new Exception("New ship coordinate collides with another ship.");
-        }
+        }*/
 
         // create a new ship
         Ship newShip = new Ship(newShipCoordinate.length, newShipCoordinate);
@@ -94,7 +94,7 @@ public class Board {
      * @param newShipCoordinate
      * @throws Exception
      */
-    public void modifyShipPlace(int shipIndex, Coordinate[] newShipCoordinate) throws Exception {
+    /*public void modifyShipPlace(int shipIndex, Coordinate[] newShipCoordinate) throws Exception {
 
         if( gameHasStarted ){
             throw new Exception("Can't move the ships after the beginning of the game.");
@@ -121,7 +121,7 @@ public class Board {
             waterGrid[ newShipCoordinate[i].y ][ newShipCoordinate[i].x ] = ships.get(shipIndex);
         }
 
-    }
+    }*/
 
 
     /**
@@ -129,7 +129,7 @@ public class Board {
      * @param newShipCoordinate
      * @return
      */
-    private boolean doShipCollide( Coordinate[] newShipCoordinate ) throws Exception {
+    /*private boolean doShipCollide( Coordinate[] newShipCoordinate ) throws Exception {
 
         for(int i=0; i<newShipCoordinate.length; i++) {
 
@@ -138,14 +138,14 @@ public class Board {
                 throw new Exception("Ship coordinate outside the grid.");
             }
 
-            if ( waterGrid[newShipCoordinate[i].y][newShipCoordinate[i].x] != null ) {
+            if ( waterGrid[newShipCoordinate[i].x][newShipCoordinate[i].y] != null ) {
                 return true;
             }
 
         }
 
         return false;
-    }
+    }*/
 
 
     /**
@@ -167,7 +167,7 @@ public class Board {
         // that's a hit !
         } else if( waterGrid[target.y][target.x].isHit(target) ){
 
-            if( waterGrid[target.y][target.x].isSunk() ){ // ship has sunked
+            if( waterGrid[target.y][target.x].isSunk() ){ // ship has sunk
 
                 waterGridState[ target.y ][ target.x ] = 2;
                 return 2;
@@ -198,9 +198,9 @@ public class Board {
     /**
      * print the grid in the console
      */
-    public void printGrid(){
+    public void printStateGrid(){
 
-        for(int i=0; i<this.boardSize.y; i++){
+        for(int i=this.boardSize.y-1; i>=0; i--){
             for(int j=0; j<this.boardSize.x; j++){
                 System.out.print(waterGridState[i][j]);
             }

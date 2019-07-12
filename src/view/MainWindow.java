@@ -85,9 +85,6 @@ public class MainWindow extends JFrame implements ActionListener {
 
         startGameButton.addActionListener((ActionEvent e) -> {
 
-            AIBoard.setGameHasStarted();
-            humanBoard.setGameHasStarted();
-
             boolean positionsAreCorrect = true;
             for (int i = 0; i < shipList.size(); i++) {
                 if (!shipList.get(i).validity) {
@@ -96,12 +93,27 @@ public class MainWindow extends JFrame implements ActionListener {
                 }
             }
             if (positionsAreCorrect) {
+
+                for (int i = 0; i < shipList.size(); i++) {
+
+                    Coordinate[] CoordinateArray = new Coordinate[shipList.get(i).size];
+
+                    for (int j = 0; j < shipList.get(i).occupiedGridX.size(); j++) {
+                        CoordinateArray[i] = new Coordinate(shipList.get(i).occupiedGridX.get(j), shipList.get(i).occupiedGridY.get(j));
+                        System.out.println(i + ": " + CoordinateArray[i].x + ", " + CoordinateArray[i].y);
+                    }
+                    try {
+                        humanBoard.placeShip(CoordinateArray);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+
+                AIBoard.setGameHasStarted();
+                humanBoard.setGameHasStarted();
                 gameStateComponent.setText("Game has started");
                 startedGame = true;
-//            gameStateComponent.setText("Game started!!!");
-//            gameStateComponent.setText("\nOne emeny ship has been sunk");
                 startGameButton.setVisible(false);
-//            JOptionPane.showMessageDialog(this, "Player wins!!!!!!");
             } else {
                 gameStateComponent.setText("Positions of your ships are illegal");
             }
@@ -191,6 +203,8 @@ public class MainWindow extends JFrame implements ActionListener {
                     temporaryButton.setText("Human => Sunk !!!");
                     System.out.println("Human => Sunk !!!\n");
                 }
+
+                humanBoard.printStateGrid();
                 
                 // AI turn to play //
 
@@ -213,7 +227,8 @@ public class MainWindow extends JFrame implements ActionListener {
                     System.out.println("AI => Sunk !!!\n");
                 }
 
-                myAI.printGrid();
+                AIBoard.printStateGrid();
+                //myAI.printGrid();
 
                 System.out.println("\n///////////////////////////\n");
 

@@ -230,10 +230,11 @@ public class AI {
 	 */
 	public Coordinate getNextMoveNormal(){
 
-		Coordinate currentCoordinate = new Coordinate(0, 0);
+		
+		for (int i = 0; i < Constants.BOARD_SIZE.x; i++) {
+			Coordinate currentCoordinate = new Coordinate(0, 0);
 		float currentHighest = 0;
 
-		for (int i = 0; i < Constants.BOARD_SIZE.x; i++) {
 			for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
 
 				float value = countGrid[i][j];

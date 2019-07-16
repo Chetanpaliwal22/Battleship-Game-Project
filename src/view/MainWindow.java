@@ -43,6 +43,8 @@ public class MainWindow extends JFrame implements ActionListener {
     private int numberOfAISunkShips = 0;
 
     private boolean gameOver = false;
+    
+    private String gameMode = ""; 
 
 
     /**
@@ -239,8 +241,12 @@ public class MainWindow extends JFrame implements ActionListener {
                 if (!gameOver) {
 
                     // AI turn to play //
-
-                    target = myAI.getNextMove();
+                	
+                	if(gameMode.equalsIgnoreCase("normal")) {
+                    target = myAI.getNextMoveNormal();
+                	}else if(gameMode.equalsIgnoreCase("advanced")) {
+                		myAI.getNextMoveAdvanced();
+                	}
 
                     System.out.println("AI click on " + alphabet[target.x] + (target.y + 1) + ", coordinate " + (target.x + 1) + "," + (target.y + 1));
 

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 import constants.Constants;
 import tools.Coordinate;
 import tools.GridHelper;
@@ -226,7 +228,7 @@ public class AI {
 	 * get the next move from the AI player
 	* @return the coordinate of next move
 	 */
-	public Coordinate getNextMove(){
+	public Coordinate getNextMoveNormal(){
 
 		Coordinate currentCoordinate = new Coordinate(0, 0);
 		float currentHighest = 0;
@@ -247,7 +249,46 @@ public class AI {
 		this.previousTarget = currentCoordinate;
 		return currentCoordinate;
 	}
+	
+	/**
+	 * get the next five move from the AI player
+	* @return the coordinate list of next move
+	 */
+	public ArrayList<Coordinate> getNextMoveAdvanced(){
+		
+		ArrayList<Coordinate> coordinateList = new ArrayList<Coordinate>();
+		
+		
+		int[][] copyCountGrid = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+		
+		for(int i=0;i<Constants.BOARD_SIZE.x;i++) {
+			for(int j=0;j<Constants.BOARD_SIZE.y;j++) {
+		copyCountGrid[i][j] = countGrid[i][j];		
+			}
+		}
+		
+		for(int k=0;k<5;k++) {
+		Coordinate currentCoordinate = new Coordinate(0, 0);
+		float currentHighest = 0;
+		
+		for (int i = 0; i < Constants.BOARD_SIZE.x; i++) {
+			for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
 
+				float value = copyCountGrid[i][j];
+
+				if (value > currentHighest) {
+					currentHighest = value;
+					currentCoordinate.y = i;
+					currentCoordinate.x = j;
+				}
+			}
+		}
+		copyCountGrid[currentCoordinate.y][currentCoordinate.x] = Integer.MIN_VALUE;
+		coordinateList.add(currentCoordinate);
+		}	
+		    return coordinateList;		
+		
+	}
 
 	/**
 	 * display the content of the AI count grid in the console

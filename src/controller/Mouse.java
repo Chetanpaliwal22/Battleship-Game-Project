@@ -31,6 +31,9 @@ public class Mouse implements MouseListener {
 		// Left click
 		if (mouseEvent.getButton() == MouseEvent.BUTTON1) {
 			leftClicked = true;
+
+			if (MainWindow.startedGame)
+				MainWindow.buttonClick();
 		}
 
 		// Mouse wheel

@@ -4,13 +4,23 @@
     <list default="true" id="a3532a2a-cc23-46d1-9f56-31b65f5e9545" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Battleship-Game-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Battleship-Game-Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship-Game-Project/view/resources/HitHole.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship-Game-Project/view/resources/Hole.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship-Game-Project/view/resources/MissedHole.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship-Game-Project/view/resources/Target.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/Mouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Mouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/AI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Ship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tools/Coordinate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tools/Coordinate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Renderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/HitHole.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/Hole.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/MissedHole.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/RedShip.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/RedShipHorizontal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/Ship.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/ShipHorizontal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/Target.png" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,10 +35,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/tools/Coordinate.java">
+        <entry file="file://$PROJECT_DIR$/src/model/AI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="3900">
+              <caret line="262" column="44" selection-start-line="262" selection-start-column="44" selection-end-line="262" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -36,17 +46,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/constants/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="60" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="60" />
+            <state relative-caret-position="442">
+              <caret line="34" column="100" selection-start-line="34" selection-start-column="100" selection-end-line="34" selection-end-column="100" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/AI.java">
+        <entry file="file://$USER_HOME$/Desktop/Battleship-Game-Project/src/constants/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-159">
-              <caret line="215" selection-start-line="215" selection-end-line="215" />
+            <state relative-caret-position="397">
+              <caret line="33" column="3" selection-start-line="33" selection-start-column="3" selection-end-line="34" selection-end-column="100" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,41 +76,33 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+            <state relative-caret-position="360">
+              <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#843#844#0" expanded="true" />
-                <element signature="e#880#881#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/MainWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="208">
+              <caret line="76" column="75" selection-start-line="76" selection-start-column="75" selection-end-line="76" selection-end-column="75" />
               <folding>
-                <element signature="e#744#758#0" expanded="true" />
-                <element signature="e#9755#9756#0" expanded="true" />
-                <element signature="e#9863#9864#0" expanded="true" />
+                <element signature="e#11232#11233#0" expanded="true" />
+                <element signature="e#11340#11341#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/Ship.java">
+        <entry file="file://$USER_HOME$/Desktop/Battleship-Game-Project/src/view/MainWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="101" selection-start-line="101" selection-end-line="101" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#225#237#0" expanded="true" />
-                <element signature="e#302#314#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="236">
+              <caret line="70" column="7" lean-forward="true" selection-start-line="70" selection-start-column="7" selection-end-line="71" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -99,29 +110,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/Renderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="247" column="68" selection-start-line="247" selection-start-column="68" selection-end-line="247" selection-end-column="68" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="1263">
+              <caret line="367" column="1" selection-start-line="367" selection-start-column="1" selection-end-line="367" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/tools/GridHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-804">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controller/Mouse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
+            <state relative-caret-position="291">
+              <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -169,17 +168,17 @@
         <option value="$PROJECT_DIR$/src/view/GridBagLayoutDemo.java" />
         <option value="$PROJECT_DIR$/src/view/BattleShip.java" />
         <option value="$PROJECT_DIR$/src/Game.java" />
-        <option value="$PROJECT_DIR$/src/constants/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/Game.java" />
         <option value="$PROJECT_DIR$/src/model/FrontEndShip.java" />
         <option value="$PROJECT_DIR$/src/tools/GridHelper.java" />
         <option value="$PROJECT_DIR$/src/model/AI.java" />
         <option value="$PROJECT_DIR$/src/tools/Coordinate.java" />
         <option value="$PROJECT_DIR$/src/model/Board.java" />
-        <option value="$PROJECT_DIR$/src/view/MainWindow.java" />
         <option value="$PROJECT_DIR$/src/model/Ship.java" />
         <option value="$PROJECT_DIR$/src/view/Renderer.java" />
+        <option value="$PROJECT_DIR$/src/constants/Constants.java" />
         <option value="$PROJECT_DIR$/src/controller/Mouse.java" />
+        <option value="$PROJECT_DIR$/src/view/MainWindow.java" />
       </list>
     </option>
   </component>
@@ -196,6 +195,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -203,6 +203,11 @@
             <path>
               <item name="Battleship-Game-Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="Battleship-Game-Project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Battleship-Game-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Battleship-Game-Project" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Battleship-Game-Project" type="b2602c69:ProjectViewProjectNode" />
@@ -251,11 +256,17 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Battleship-Game-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Battleship-Game-Project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -269,6 +280,11 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/view/resources" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -372,10 +388,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="812" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14034152" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14806867" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -384,7 +400,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.217012" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21666667" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991276" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -456,35 +472,19 @@
     <entry file="file://$PROJECT_DIR$/src/view/BattleShip.java" />
     <entry file="file://$PROJECT_DIR$/src/main/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/FrontEndShip.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3060">
-          <caret line="204" selection-start-line="204" selection-end-line="204" />
+        <state relative-caret-position="300">
+          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/FrontEndShip.java" />
     <entry file="file://$PROJECT_DIR$/src/model/AI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-159">
-          <caret line="215" selection-start-line="215" selection-end-line="215" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/constants/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="60" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="60" />
+        <state relative-caret-position="3900">
+          <caret line="262" column="44" selection-start-line="262" selection-start-column="44" selection-end-line="262" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -497,24 +497,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+        <state relative-caret-position="360">
+          <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#843#844#0" expanded="true" />
-            <element signature="e#880#881#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/MainWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#744#758#0" expanded="true" />
-            <element signature="e#9755#9756#0" expanded="true" />
-            <element signature="e#9863#9864#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -531,16 +517,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Renderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="247" column="68" selection-start-line="247" selection-start-column="68" selection-end-line="247" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/tools/GridHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-804">
@@ -548,12 +524,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Desktop/Battleship-Game-Project/src/view/Renderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="31" lean-forward="true" selection-end-line="367" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/Battleship-Game-Project/src/constants/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="33" column="3" selection-start-line="33" selection-start-column="3" selection-end-line="34" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/constants/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="34" column="100" selection-start-line="34" selection-start-column="100" selection-end-line="34" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Renderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1263">
+          <caret line="367" column="1" selection-start-line="367" selection-start-column="1" selection-end-line="367" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/Battleship-Game-Project/src/controller/Mouse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="34" column="11" lean-forward="true" selection-start-line="34" selection-start-column="11" selection-end-line="35" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/Mouse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
+        <state relative-caret-position="291">
+          <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/Battleship-Game-Project/src/view/MainWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="70" column="7" lean-forward="true" selection-start-line="70" selection-start-column="7" selection-end-line="71" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/MainWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="76" column="75" selection-start-line="76" selection-start-column="75" selection-end-line="76" selection-end-column="75" />
+          <folding>
+            <element signature="e#11232#11233#0" expanded="true" />
+            <element signature="e#11340#11341#0" expanded="true" />
           </folding>
         </state>
       </provider>

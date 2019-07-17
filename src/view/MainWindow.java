@@ -44,7 +44,9 @@ public class MainWindow extends JFrame implements ActionListener {
 
     private boolean gameOver = false;
     
-    private String gameMode = ""; 
+    private String gameMode = "normal"; 
+
+ //   private String gameMode = "advanced"; 
 
 
     /**

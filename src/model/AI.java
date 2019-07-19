@@ -36,13 +36,15 @@ public class AI {
 	 */
 	public AI() {
 
-		boardSize = Constants.BOARD_SIZE;
+		this.boardSize = Constants.BOARD_SIZE;
 
-		coordinateToExclude = new ArrayList<Coordinate>(boardSize.x * boardSize.y);
+		this.coordinateToExclude = new ArrayList<Coordinate>(boardSize.x * boardSize.y);
 
 		try { updateCountGrid( -1 ); }
 
 		catch (Exception e) { e.printStackTrace(); }
+
+		printCountGrid();
 	}
 
 
@@ -54,14 +56,14 @@ public class AI {
 	private void updateCountGrid(int code) throws Exception {
 
 		// to temporarily hold the new count grid
-		int[][] countGridToUpdate = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+		int[][] countGridToUpdate = new int[boardSize.x][boardSize.y];
 
 		// update count grid related to each ship length //
-		this.destroyerCountGrid = updateSpecificCountGrid(this.destroyerCountGrid, Constants.DESTROYER_SIZE, code);
-		this.submarineCountGrid = updateSpecificCountGrid(this.submarineCountGrid, Constants.SUBMARINE_SIZE, code);
-		this.cruiserCountGrid = updateSpecificCountGrid(this.cruiserCountGrid, Constants.CRUISER_SIZE, code);
-		this.battleshipCountGrid = updateSpecificCountGrid(this.battleshipCountGrid, Constants.BATTLESHIP_SIZE, code);
-		this.carrierCountGrid = updateSpecificCountGrid(this.carrierCountGrid, Constants.CARRIER_SIZE, code);
+		this.destroyerCountGrid = updateSpecificCountGrid(Constants.DESTROYER_SIZE, code);
+		this.submarineCountGrid = updateSpecificCountGrid(Constants.SUBMARINE_SIZE, code);
+		this.cruiserCountGrid = updateSpecificCountGrid(Constants.CRUISER_SIZE, code);
+		this.battleshipCountGrid = updateSpecificCountGrid(Constants.BATTLESHIP_SIZE, code);
+		this.carrierCountGrid = updateSpecificCountGrid(Constants.CARRIER_SIZE, code);
 
 		// add them together to get the new final probabilistic grid
 
@@ -85,19 +87,19 @@ public class AI {
 			countGridToUpdate = GridHelper.add(countGridToUpdate, this.carrierCountGrid);
 		}
 
+		System.out.println("grid created");
 		this.countGrid = countGridToUpdate;
 	}
 
 
     /**
      * update a specific grount grid using the new information (or just initialize)
-     * @param countGridToUpdate
      * @param shipSize
      * @param code
      * @return
      * @throws Exception
      */
-	public int[][] updateSpecificCountGrid(int[][] countGridToUpdate, int shipSize, int code) throws Exception {
+	private int[][] updateSpecificCountGrid(int shipSize, int code) throws Exception {
 
         int[][] countGridX = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
         int[][] countGridY = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
@@ -119,14 +121,11 @@ public class AI {
                     for (int l = 0; l < coordinateToExclude.size(); l++) { // loop over known coordinates
                         if (coordinateToExclude.get(l).x == i && coordinateToExclude.get(l).y == j+k) {
                             impossiblePosition = true;
-                            break;
                         }
                     }
 
                     if( !impossiblePosition ){ // add possible ship position to count grid
-                        for (int l = 0; l < coordinateToExclude.size(); l++) { // loop over known coordinates
-                            countGridX[i][j+k] += 1;
-                        }
+                    	countGridX[i][j+k] += 1;
                     }
                 }
             }
@@ -144,14 +143,11 @@ public class AI {
                     for (int l = 0; l < coordinateToExclude.size(); l++) { // loop over known coordinates
                         if (coordinateToExclude.get(l).x == j+k && coordinateToExclude.get(l).y == i) {
                             impossiblePosition = true;
-                            break;
                         }
                     }
 
                     if( !impossiblePosition ){ // add possible ship position to count grid
-                        for (int l = 0; l < coordinateToExclude.size(); l++) { // loop over known coordinates
-                            countGridX[j+k][i] += 1;
-                        }
+                    	countGridX[j+k][i] += 1;
                     }
                 }
             }
@@ -161,18 +157,13 @@ public class AI {
 
         int[][] specificCountGrid = new int[this.boardSize.x][this.boardSize.y];
 
-        int cellCount = 0;
         for (int i = 0; i < boardSize.x; i++) {
             for (int j = 0; j < boardSize.y; j++) {
-                cellCount = countGridX[i][j] + countGridY[i][j];
-                specificCountGrid[i][j] = cellCount;
+                specificCountGrid[i][j] = countGridX[i][j] + countGridY[i][j];
             }
         }
 
-		// and then previous target count to zero
-        if(code != -1) { countGridToUpdate[this.previousTarget.y][this.previousTarget.x] = 0; }
-
-		return countGridToUpdate;
+		return specificCountGrid;
 	}
 
 
@@ -194,7 +185,7 @@ public class AI {
 
 		} else { this.previousTarget = getGlobalHighestCount(); }
 
-		coordinateToExclude.add( this.previousTarget );
+		coordinateToExclude.add( new Coordinate( this.previousTarget.y, this.previousTarget.x ) );
 
 		return this.previousTarget;
 	}
@@ -212,8 +203,8 @@ public class AI {
 
 				if (value > currentHighest) {
 					currentHighest = value;
-					currentCoordinate.y = i;
 					currentCoordinate.x = j;
+					currentCoordinate.y = i;
 				}
 			}
 		}
@@ -266,9 +257,7 @@ public class AI {
 			copyCountGrid[currentCoordinate.y][currentCoordinate.x] = Integer.MIN_VALUE;
 			coordinateList.add(currentCoordinate);
 		}
-
 		return coordinateList;
-
 	}
 
 

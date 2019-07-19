@@ -244,11 +244,9 @@ public class MainWindow extends JFrame implements ActionListener {
 
                     // AI turn to play //
                 	
-                	if(gameMode.equalsIgnoreCase("normal")) {
-                    target = myAI.getNextMoveNormal();
-                	}else if(gameMode.equalsIgnoreCase("advanced")) {
-                		myAI.getNextMoveAdvanced();
-                	}
+                	if(gameMode.equalsIgnoreCase("normal")) { target = myAI.getNextMove(); }
+
+                	else if(gameMode.equalsIgnoreCase("advanced")) { myAI.getFiveNextMove(); }
 
                     System.out.println("AI click on " + alphabet[target.x] + (target.y + 1) + ", coordinate " + (target.x + 1) + "," + (target.y + 1));
 

@@ -41,7 +41,7 @@ public class Mouse implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent mouseEvent) {
-		
+
 		if (mouseEvent.getButton() == MouseEvent.BUTTON1) {
 			leftClicked = false;
 		}

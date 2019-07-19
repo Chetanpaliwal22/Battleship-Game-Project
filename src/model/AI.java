@@ -9,9 +9,12 @@ import tools.GridHelper;
 public class AI {
 
 	private Coordinate boardSize;
+
+	boolean targetMode = false;
+
+	private Coordinate previousTarget = new Coordinate(-1, -1);
+
 	private int[][] countGrid;
-	boolean isInitialized = false;
-	private Coordinate previousTarget;
 
 	private int[][] destroyerCountGrid;
 	private int[][] submarineCountGrid;
@@ -25,6 +28,9 @@ public class AI {
 	private int nbBattleshipDestroyed = 0;
 	private int nbCarrierDestroyed = 0;
 
+	private ArrayList<Coordinate> coordinateToExclude;
+
+
 	/**
 	 * default constructor
 	 */
@@ -32,164 +38,30 @@ public class AI {
 
 		boardSize = Constants.BOARD_SIZE;
 
-		try {
-			computeCountGrid();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		coordinateToExclude = new ArrayList<Coordinate>(boardSize.x * boardSize.y);
 
-		isInitialized = true;
+		try { updateCountGrid( -1 ); }
+
+		catch (Exception e) { e.printStackTrace(); }
 	}
 
-	/**
-	 * compute the probabilitic grid, called by constructor initially
-	 * 
-	 * @throws Exception
-	 *             throws Exception
-	 */
-	private void computeCountGrid() throws Exception {
 
-		int[][] finalCountGrid = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
-
-		// loop over nb of ships and their respective sizes on the board
-		this.destroyerCountGrid = specificCountGrid(Constants.DESTROYER_SIZE);
-		this.submarineCountGrid = specificCountGrid(Constants.SUBMARINE_SIZE);
-		this.cruiserCountGrid = specificCountGrid(Constants.CRUISER_SIZE);
-		this.battleshipCountGrid = specificCountGrid(Constants.BATTLESHIP_SIZE);
-		this.carrierCountGrid = specificCountGrid(Constants.CARRIER_SIZE);
-
-		for (int i = 0; i < Constants.DESTROYER_NB; i++) {
-			finalCountGrid = GridHelper.add(finalCountGrid, this.destroyerCountGrid);
-		}
-
-		for (int i = 0; i < Constants.DESTROYER_NB; i++) {
-			finalCountGrid = GridHelper.add(finalCountGrid, this.submarineCountGrid);
-		}
-
-		for (int i = 0; i < Constants.DESTROYER_NB; i++) {
-			finalCountGrid = GridHelper.add(finalCountGrid, this.cruiserCountGrid);
-		}
-
-		for (int i = 0; i < Constants.DESTROYER_NB; i++) {
-			finalCountGrid = GridHelper.add(finalCountGrid, this.battleshipCountGrid);
-		}
-
-		for (int i = 0; i < Constants.DESTROYER_NB; i++) {
-			finalCountGrid = GridHelper.add(finalCountGrid, this.carrierCountGrid);
-		}
-
-		this.countGrid = finalCountGrid;
-
-	}
-
-	/**
-	 * compute a specific Count grid, helper for computeCountGrid
-	 * 
-	 * @param shipSize
-	 *            AI accepts shipSize as input
-	 * @return It returns the count grid
-	 * @throws Exception
-	 *             throws exception
-	 */
-	private int[][] specificCountGrid(int shipSize) throws Exception {
-
-		int[][] probabilisticGridX = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
-		int[][] probabilisticGridY = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
-
-		if (shipSize > boardSize.x || shipSize > boardSize.y) {
-			throw new Exception("shipLength cannot be bigger x or y");
-		}
-
-		// vertical ship position probability //
-
-		// compute weight on first column
-		for (int i = 0; i < boardSize.y - shipSize + 1; i++) { // start position
-			for (int j = 0; j < shipSize; j++) { // loop over shipLength
-				probabilisticGridX[0][i + j] += 1;
-			}
-		}
-
-		// copy weight of first column to every other column
-		for (int i = 1; i < boardSize.x; i++) { // for every other column
-			for (int j = 0; j < boardSize.y; j++) { // for every values of the first columns
-				probabilisticGridX[i][j] = probabilisticGridX[0][j]; // copy
-			}
-		}
-
-		// horizontal ship position probability //
-
-		// compute weight on first row
-		for (int i = 0; i < boardSize.x - shipSize + 1; i++) { // start position
-			for (int j = 0; j < shipSize; j++) { // loop over shipLength
-				probabilisticGridY[i + j][0] += 1;
-			}
-		}
-
-		// copy weight of first row to every other row
-		for (int i = 1; i < boardSize.y; i++) { // for every other row
-			for (int j = 0; j < boardSize.x; j++) { // for every values of the first row
-				probabilisticGridY[j][i] = probabilisticGridY[j][0]; // copy
-			}
-		}
-
-		// add vertical and horizontal probability grid //
-
-		int[][] specificCountGrid = new int[this.boardSize.x][this.boardSize.y];
-
-		int cellCount = 0;
-		long totalCount = 0;
-
-		for (int i = 0; i < boardSize.x; i++) {
-			for (int j = 0; j < boardSize.y; j++) {
-				cellCount = probabilisticGridX[i][j] + probabilisticGridY[i][j];
-				totalCount += cellCount;
-				specificCountGrid[i][j] = cellCount;
-			}
-		}
-
-		return specificCountGrid;
-	}
-
-	/**
-	 * register the result of the previous move
-	 * 
-	 * @param code
-	 *            AI accpts code as input
-	 * @throws Exception
-	 *             throws exception
-	 */
-	public void receiveResult(int code) throws Exception {
-
-		updateCountGrid(this.previousTarget, code);
-
-	}
-
-	/**
-	 * After a move is registered, update the probabilistic grid
-	 * 
-	 * @param target
-	 *            accepts target as input
-	 * @param code
-	 *            accepts code as input
-	 * @throws Exception
-	 *             if there is an error
-	 */
-	private void updateCountGrid(Coordinate target, int code) throws Exception {
+    /**
+     * update the count grid given th new information (or just initialize)
+     * @param code
+     * @throws Exception
+     */
+	private void updateCountGrid(int code) throws Exception {
 
 		// to temporarily hold the new count grid
 		int[][] countGridToUpdate = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
 
-		// update probabilistic grid related to each ship length //
-
-		this.destroyerCountGrid = updateSpecificCountGrid(this.destroyerCountGrid, target, code);
-
-		this.submarineCountGrid = updateSpecificCountGrid(this.submarineCountGrid, target, code);
-
-		this.cruiserCountGrid = updateSpecificCountGrid(this.cruiserCountGrid, target, code);
-
-		this.battleshipCountGrid = updateSpecificCountGrid(this.battleshipCountGrid, target, code);
-
-		this.carrierCountGrid = updateSpecificCountGrid(this.carrierCountGrid, target, code);
+		// update count grid related to each ship length //
+		this.destroyerCountGrid = updateSpecificCountGrid(this.destroyerCountGrid, Constants.DESTROYER_SIZE, code);
+		this.submarineCountGrid = updateSpecificCountGrid(this.submarineCountGrid, Constants.SUBMARINE_SIZE, code);
+		this.cruiserCountGrid = updateSpecificCountGrid(this.cruiserCountGrid, Constants.CRUISER_SIZE, code);
+		this.battleshipCountGrid = updateSpecificCountGrid(this.battleshipCountGrid, Constants.BATTLESHIP_SIZE, code);
+		this.carrierCountGrid = updateSpecificCountGrid(this.carrierCountGrid, Constants.CARRIER_SIZE, code);
 
 		// add them together to get the new final probabilistic grid
 
@@ -216,39 +88,120 @@ public class AI {
 		this.countGrid = countGridToUpdate;
 	}
 
-	/**
-	 * update a specific probabilistic grid given the new information
-	 * 
-	 * @param countGridToUpdate
-	 *            accepts countGrid as input
-	 * @param target
-	 *            accepts target coordinate as input
-	 * @param code
-	 *            accepts code as a input
-	 * @return the updated count grid
-	 * @exception Exception
-	 *                if any error
-	 */
-	public int[][] updateSpecificCountGrid(int[][] countGridToUpdate, Coordinate target, int code) throws Exception {
 
-		if (code == 0) {
-			countGridToUpdate[target.y][target.x] = 0;
-		} else if (code == 1) {
-			countGridToUpdate[target.y][target.x] = 0;
-		} else if (code == 2) {
-			countGridToUpdate[target.y][target.x] = 0;
-		}
+    /**
+     * update a specific grount grid using the new information (or just initialize)
+     * @param countGridToUpdate
+     * @param shipSize
+     * @param code
+     * @return
+     * @throws Exception
+     */
+	public int[][] updateSpecificCountGrid(int[][] countGridToUpdate, int shipSize, int code) throws Exception {
+
+        int[][] countGridX = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+        int[][] countGridY = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+
+        if (shipSize > boardSize.x || shipSize > boardSize.y) {
+            throw new Exception("shipLength cannot be bigger x or y");
+        }
+
+        // vertical ship position count //
+
+        // compute weight on first column
+        for(int i=0; i<boardSize.x; i++) { // for every column
+
+            for (int j=0; j<boardSize.y-shipSize + 1; j++) { // start position
+
+                for (int k=0; k<shipSize; k++) { // loop over shipLength
+
+                    boolean impossiblePosition = false;
+                    for (int l = 0; l < coordinateToExclude.size(); l++) { // loop over known coordinates
+                        if (coordinateToExclude.get(l).x == i && coordinateToExclude.get(l).y == j+k) {
+                            impossiblePosition = true;
+                            break;
+                        }
+                    }
+
+                    if( !impossiblePosition ){ // add possible ship position to count grid
+                        for (int l = 0; l < coordinateToExclude.size(); l++) { // loop over known coordinates
+                            countGridX[i][j+k] += 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        // horizontal ship position count //
+
+        for(int i=0; i<boardSize.y; i++) { // for every row
+
+            for (int j=0; j<boardSize.x-shipSize + 1; j++) { // start position
+
+                for (int k=0; k<shipSize; k++) { // loop over shipLength
+
+                    boolean impossiblePosition = false;
+                    for (int l = 0; l < coordinateToExclude.size(); l++) { // loop over known coordinates
+                        if (coordinateToExclude.get(l).x == j+k && coordinateToExclude.get(l).y == i) {
+                            impossiblePosition = true;
+                            break;
+                        }
+                    }
+
+                    if( !impossiblePosition ){ // add possible ship position to count grid
+                        for (int l = 0; l < coordinateToExclude.size(); l++) { // loop over known coordinates
+                            countGridX[j+k][i] += 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        // add vertical and horizontal count grid //
+
+        int[][] specificCountGrid = new int[this.boardSize.x][this.boardSize.y];
+
+        int cellCount = 0;
+        for (int i = 0; i < boardSize.x; i++) {
+            for (int j = 0; j < boardSize.y; j++) {
+                cellCount = countGridX[i][j] + countGridY[i][j];
+                specificCountGrid[i][j] = cellCount;
+            }
+        }
+
+		// and then previous target count to zero
+        if(code != -1) { countGridToUpdate[this.previousTarget.y][this.previousTarget.x] = 0; }
 
 		return countGridToUpdate;
 	}
+
 
 	/**
 	 * get the next move from the AI player
 	 * 
 	 * @return the coordinate of next move
 	 */
-	public Coordinate getNextMoveNormal() {
+	public Coordinate getNextMove() {
 		
+		if( false ){
+
+			int distanceToTarget = 1;
+			boolean goodTargetFound = false;
+
+			while( !goodTargetFound ){
+				;
+			}
+
+		} else { this.previousTarget = getGlobalHighestCount(); }
+
+		coordinateToExclude.add( this.previousTarget );
+
+		return this.previousTarget;
+	}
+
+
+	private Coordinate getGlobalHighestCount(){
+
 		Coordinate currentCoordinate = new Coordinate(0, 0);
 		float currentHighest = 0;
 		for (int i = 0; i < Constants.BOARD_SIZE.x; i++) {
@@ -265,16 +218,16 @@ public class AI {
 			}
 		}
 
-		this.previousTarget = currentCoordinate;
 		return currentCoordinate;
 	}
+
 
 	/**
 	 * get the next five move from the AI player
 	 * 
 	 * @return the coordinate list of next move
 	 */
-	public ArrayList<Coordinate> getNextMoveAdvanced() {
+	public ArrayList<Coordinate> getFiveNextMove() {
 
 		ArrayList<Coordinate> coordinateList = new ArrayList<Coordinate>();
 
@@ -318,6 +271,7 @@ public class AI {
 
 	}
 
+
 	/**
 	 * display the content of the AI count grid in the console
 	 */
@@ -330,6 +284,24 @@ public class AI {
 			}
 			System.out.println("");
 		}
+	}
+
+
+	/**
+	 * register the result of the previous move
+	 *
+	 * @param code
+	 *            AI accepts code as input
+	 * @throws Exception
+	 *             throws exception
+	 */
+	public void receiveResult(int code) throws Exception {
+
+		if( code == 1 ){ targetMode = true; }
+
+		else if( code == 2 ){ targetMode = false; }
+
+		updateCountGrid( code );
 	}
 
 }

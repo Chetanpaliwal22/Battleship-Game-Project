@@ -236,9 +236,9 @@ public class MainWindow extends JFrame implements ActionListener {
                 if (gameOver) { gameStateComponent.setText("Player wins !!!"); }
 
                 // for debugging
-                //humanBoard.printStateGrid();
-                //humanBoard.printShipGrid();
-                //System.out.println("");
+                humanBoard.printStateGrid();
+                humanBoard.printShipGrid();
+                System.out.println("");
 
                 if (!gameOver) {
 
@@ -289,8 +289,8 @@ public class MainWindow extends JFrame implements ActionListener {
                     if (gameOver) { gameStateComponent.setText("AI wins !!!"); }
 
                     // for debugging
-                    //AIBoard.printStateGrid();
-                    //AIBoard.printShipGrid();
+                    AIBoard.printStateGrid();
+                    AIBoard.printShipGrid();
                     myAI.printCountGrid();
                     System.out.println("");
 

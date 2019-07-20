@@ -12,6 +12,12 @@ public class AI {
 
 	boolean targetMode = false;
 
+	int direction = -1;
+	int distanceFromHit = 1;
+	boolean fixedDirection = false;
+	boolean seekAgain = false;
+	Coordinate axis;
+
 	private Coordinate previousTarget = new Coordinate(-1, -1);
 
 	private int[][] countGrid;
@@ -174,14 +180,77 @@ public class AI {
 	 */
 	public Coordinate getNextMove() {
 		
-		if( false ){
+		if( targetMode ){
 
-			int distanceToTarget = 1;
-			boolean goodTargetFound = false;
+			Coordinate bestNextTarget;
 
-			while( !goodTargetFound ){
-				;
+			if( !fixedDirection  ) { // direction is not known
+
+				int maxCount = 0;
+
+				System.out.println(this.axis.x);
+				System.out.println(this.axis.y);
+				System.out.println(countGrid[this.axis.x][this.axis.y]);
+				System.out.println();
+
+				maxCount = countGrid[this.axis.x+1][this.axis.y];
+				bestNextTarget = new Coordinate(this.axis.x, this.axis.y + 1);
+				System.out.println(countGrid[this.axis.x][this.axis.y + 1]);
+				direction = 0; // north by default
+
+
+				// find the best target around the last target //
+
+				if (countGrid[this.axis.x+1][this.axis.y] > maxCount) { // try south
+					maxCount = countGrid[this.axis.x+1][this.axis.y];
+					bestNextTarget = new Coordinate(this.axis.x, this.axis.y-1);
+					direction = 2;
+					System.out.println("to");
+				}
+
+				System.out.println(countGrid[this.axis.x][this.axis.y - 1]);
+
+				if (countGrid[this.axis.x][this.axis.y+1] > maxCount) { // try east
+					maxCount = countGrid[this.axis.x][this.axis.y+1];
+					bestNextTarget = new Coordinate(this.axis.x + 1, this.axis.y);
+					direction = 1;
+					System.out.println("to");
+				}
+
+				System.out.println(countGrid[this.axis.y][this.axis.x+1]);
+
+				if (countGrid[this.axis.x][this.axis.y-1] > maxCount) { // try west
+					maxCount = countGrid[this.axis.x][this.axis.y-1];
+					bestNextTarget = new Coordinate(this.axis.x - 1, this.axis.y);
+					direction = 3;
+					System.out.println("to");
+				}
+
+				System.out.println(countGrid[this.axis.y][this.axis.x-1]);
+
+				seekAgain = false;
+
+			} else { // direction is known
+
+				bestNextTarget = new Coordinate(this.axis.x, this.axis.y);
+
+				if( direction == 0 ) { // north
+					bestNextTarget = new Coordinate(this.axis.x, this.axis.y + distanceFromHit);
+
+				} else if( direction == 1 ){ // east
+					bestNextTarget = new Coordinate(this.axis.x + distanceFromHit, this.axis.y);
+
+				} else if( direction == 2 ){ // south
+					bestNextTarget = new Coordinate(this.axis.x , this.axis.y - distanceFromHit);
+
+				} else if( direction == 3 ){ // west
+					bestNextTarget = new Coordinate(this.axis.x - distanceFromHit, this.axis.y );
+				}
 			}
+
+			//System.out.println(bestNextTarget.x);
+			//System.out.println(bestNextTarget.y);
+			this.previousTarget = bestNextTarget;
 
 		} else { this.previousTarget = getGlobalHighestCount(); }
 
@@ -286,9 +355,49 @@ public class AI {
 	 */
 	public void receiveResult(int code) throws Exception {
 
-		if( code == 1 ){ targetMode = true; }
+		if ( code == 0 && targetMode && fixedDirection) { // change direction to seek ship position
 
-		else if( code == 2 ){ targetMode = false; }
+			if( direction == 0 ){ // if north, then go south
+
+				direction = 2;
+				distanceFromHit = 1;
+
+			} else if( direction == 1 ){ // if east, then go west
+
+				direction = 3;
+				distanceFromHit = 1;
+
+			} else if( direction == 2 ){ // if south, then go north
+
+				direction = 1;
+				distanceFromHit = 1;
+
+			} else if( direction == 3 ){ // if west, then go east
+
+				direction = 1;
+				distanceFromHit = 1;
+			}
+
+		} else if( code == 1 ){ // hit
+
+			if( targetMode ){
+
+				distanceFromHit += 1;
+				fixedDirection = true;
+
+			} else { // enable target mode
+
+				targetMode = true;
+				axis = this.previousTarget;
+			}
+
+		} else if( code == 2 ){ // sunk
+
+			targetMode = false;
+			direction = -1;
+			fixedDirection = false;
+			distanceFromHit = 1;
+		}
 
 		updateCountGrid( code );
 	}

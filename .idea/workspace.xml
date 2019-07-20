@@ -2,7 +2,120 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3532a2a-cc23-46d1-9f56-31b65f5e9545" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/model/GameTimer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Battleship-Game-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Battleship-Game-Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleshipMusic.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jaco-mp3-player-0.9.3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/jaco-mp3-player-0.9.3.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship-Game-Project/view/resources/HitHole.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship-Game-Project/view/resources/Hole.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship-Game-Project/view/resources/MissedHole.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship-Game-Project/view/resources/Target.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/Mouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Mouse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/allclasses-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/allclasses-noframe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/constant-values.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/constants/Constants.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/constants/class-use/Constants.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/constants/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/constants/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/constants/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/constants/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/controller/Mouse.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/controller/class-use/Mouse.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/controller/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/controller/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/controller/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/controller/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/deprecated-list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/help-doc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-10.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-11.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-12.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-13.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-14.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-15.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-16.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-17.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-18.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-19.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-20.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-21.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-22.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-5.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-6.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-7.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-8.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-9.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/main/Game.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/main/class-use/Game.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/main/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/main/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/main/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/main/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/model/AI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/model/Board.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/model/Ship.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/model/class-use/AI.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/model/class-use/Board.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/model/class-use/Ship.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/model/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/model/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/model/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/model/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/overview-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/overview-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/overview-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/package-list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/serialized-form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/test/UnitTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/test/class-use/UnitTest.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/test/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/test/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/test/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/test/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/tools/Coordinate.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/tools/GridHelper.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/tools/class-use/Coordinate.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/tools/class-use/GridHelper.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/tools/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/tools/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/tools/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/tools/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/view/FrontEndShip.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/view/MainWindow.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/view/Renderer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/view/class-use/FrontEndShip.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/view/class-use/MainWindow.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/view/class-use/Renderer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/view/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/view/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/view/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/doc/view/package-use.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/AI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tools/GridHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tools/GridHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/FrontEndShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/FrontEndShip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Renderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/HitHole.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/Hole.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/MissedHole.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/RedShip.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/RedShipHorizontal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/Ship.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/ShipHorizontal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/Target.png" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,18 +129,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/model/AI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="196" column="55" selection-start-line="196" selection-start-column="55" selection-end-line="196" selection-end-column="55" />
-              <folding>
-                <element signature="e#4584#4596#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tools/Coordinate.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -49,7 +150,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
+            <state relative-caret-position="2640">
               <caret line="182" column="40" selection-start-line="182" selection-start-column="40" selection-end-line="182" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -61,14 +162,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/MainWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="235" column="80" selection-start-line="235" selection-start-column="80" selection-end-line="235" selection-end-column="80" />
+            <state relative-caret-position="232">
+              <caret line="340" column="25" selection-start-line="340" selection-start-column="25" selection-end-line="340" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#9693#9694#0" expanded="true" />
-                <element signature="e#9755#9756#0" expanded="true" />
-                <element signature="e#9801#9802#0" expanded="true" />
-                <element signature="e#9863#9864#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -77,7 +174,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Ship.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="625">
+            <state relative-caret-position="487">
               <caret line="101" selection-start-line="101" selection-end-line="101" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -89,10 +186,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/Renderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="505">
-              <caret line="247" column="68" selection-start-line="247" selection-start-column="68" selection-end-line="247" selection-end-column="68" />
+            <state relative-caret-position="90">
+              <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/model/GameTimer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="57" column="45" selection-start-line="57" selection-start-column="45" selection-end-line="57" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1246#1247#0" expanded="true" />
+                <element signature="e#1313#1314#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -111,7 +219,7 @@
         <entry file="file://$PROJECT_DIR$/src/controller/Mouse.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="585">
-              <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -122,8 +230,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="13" selection-start-column="13" selection-end-column="13" />
+            <state relative-caret-position="315">
+              <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -172,16 +280,17 @@
         <option value="$PROJECT_DIR$/src/view/BattleShip.java" />
         <option value="$PROJECT_DIR$/src/Game.java" />
         <option value="$PROJECT_DIR$/src/constants/Constants.java" />
-        <option value="$PROJECT_DIR$/src/main/Game.java" />
         <option value="$PROJECT_DIR$/src/model/FrontEndShip.java" />
         <option value="$PROJECT_DIR$/src/tools/GridHelper.java" />
         <option value="$PROJECT_DIR$/src/tools/Coordinate.java" />
         <option value="$PROJECT_DIR$/src/model/Board.java" />
-        <option value="$PROJECT_DIR$/src/view/MainWindow.java" />
         <option value="$PROJECT_DIR$/src/model/Ship.java" />
         <option value="$PROJECT_DIR$/src/view/Renderer.java" />
         <option value="$PROJECT_DIR$/src/controller/Mouse.java" />
         <option value="$PROJECT_DIR$/src/model/AI.java" />
+        <option value="$PROJECT_DIR$/src/main/Game.java" />
+        <option value="$PROJECT_DIR$/src/view/MainWindow.java" />
+        <option value="$PROJECT_DIR$/src/model/GameTimer.java" />
       </list>
     </option>
   </component>
@@ -198,8 +307,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -379,10 +488,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="812" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22091782" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22389127" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -391,7 +500,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.217012" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21666667" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991276" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -399,7 +508,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3293348" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.2944384" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.29305556" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -461,31 +570,11 @@
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/BattleShip.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/FrontEndShip.java" />
     <entry file="file://$PROJECT_DIR$/src/model/AI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="196" column="55" selection-start-line="196" selection-start-column="55" selection-end-line="196" selection-end-column="55" />
-          <folding>
-            <element signature="e#4584#4596#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/constants/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="60" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="60" />
+        <state relative-caret-position="-501">
+          <caret line="211" column="55" selection-start-line="211" selection-start-column="55" selection-end-line="211" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -496,44 +585,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/constants/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="60" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
+        <state relative-caret-position="2640">
           <caret line="182" column="40" selection-start-line="182" selection-start-column="40" selection-end-line="182" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/MainWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="235" column="80" selection-start-line="235" selection-start-column="80" selection-end-line="235" selection-end-column="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#9693#9694#0" expanded="true" />
-            <element signature="e#9755#9756#0" expanded="true" />
-            <element signature="e#9801#9802#0" expanded="true" />
-            <element signature="e#9863#9864#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Ship.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Renderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="247" column="68" selection-start-line="247" selection-start-column="68" selection-end-line="247" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -550,9 +612,58 @@
     <entry file="file://$PROJECT_DIR$/src/controller/Mouse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="585">
-          <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Renderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Ship.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="487">
+          <caret line="101" selection-start-line="101" selection-end-line="101" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/MainWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="340" column="25" selection-start-line="340" selection-start-column="25" selection-end-line="340" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/GameTimer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="57" column="45" selection-start-line="57" selection-start-column="45" selection-end-line="57" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1246#1247#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
           </folding>
         </state>
       </provider>

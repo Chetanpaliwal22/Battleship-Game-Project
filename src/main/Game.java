@@ -19,7 +19,6 @@ public class Game {
        
         try {        	 
         	 new MP3Player(new File(Constants.MUSIC_FILE_NAME)).play();
-        	 
         }catch(Exception e) {
         	e.printStackTrace();
         }

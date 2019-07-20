@@ -4,21 +4,22 @@ package view;
 
 import constants.Constants;
 import controller.Mouse;
+import jaco.mp3.player.MP3Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 
 /**
  * Handle graphic rendering
  */
 public class Renderer extends JComponent {
-
-    private boolean clearAll = false;
-
     private boolean calculatedHolePositions = false;
 
     public static int[][] holeLocationX = new int[9][11], holeLocationY = new int[9][11];
+
+    public static int[][] aiBoardHoleLocationX = new int[9][11], aiBoardHoleLocationY = new int[9][11];
 
     public static int holeImageSize = 0;
 
@@ -28,239 +29,338 @@ public class Renderer extends JComponent {
 
     int mouseX = 0, mouseY = 0;
 
+    // The id showing which ship is being picked up
+    public static int targetShipId = -1;
 
-    public static int targetShipId = -1; // The id showing which ship is being picked up
+    // The coordinates to fire
+    public static int fireTargetX = -1, fireTargetY = -1;
+
+    // Animation attributes
+    private static int[] explosionBoardId = new int[5];
+
+    private static int[] explosionX = new int[5];
+    private static int[] explosionY = new int[5];
+    private static int[] explosionFrameIndex = new int[5];
+
+    private Image explosionImage[] = new Image[40];
 
     public Renderer() {
-
         holeImageSize = (Constants.WINDOW_WIDTH / 2) / Constants.BOARD_SIZE.y - 2;
 
-        setMaximumSize(new Dimension(Constants.WINDOW_WIDTH / 2, Constants.WINDOW_WIDTH / 2 + 2 * holeImageSize));
+        holeImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/Hole.png");
+        missedHoleImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/MissedHole.png");
+        hitHoleImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/HitHole.png");
+        shipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/Ship.png");
+        horizontalShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ShipHorizontal.png");
+        redShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/RedShip.png");
+        horizontalRedShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/RedShipHorizontal.png");
+        targetImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/Target.png");
 
-        holeImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/Hole.png");
-        missedHoleImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/MissedHole.png");
-        hitHoleImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/HitHole.png");
-        shipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/Ship.png");
-        horizontalShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/ShipHorizontal.png");
-        redShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/RedShip.png");
-        horizontalRedShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/RedShipHorizontal.png");
-        targetImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/Target.png");
+        for (int i = 1; i <= 40; i++) {
+            explosionImage[i - 1] = Toolkit.getDefaultToolkit().getImage("src/view/resources/animation/explosion/" + i + ".png");
+        }
     }
-
 
     /**
      * a method to render the graphic in the window
+     *
      * @param g grphics for the UI
      */
     public void paintComponent(Graphics g) {
         setBackground(new Color(88, 111, 78));
         setBackground(new Color(99, 222, 231));
 
-        if (clearAll) {
+        Graphics2D graphics2D = (Graphics2D) g;
 
-            g.clearRect(0, 0, getWidth(), getHeight());
+        // Human board background
+        g.setColor(new Color(99, 222, 231));
+        g.fillRect(0, 0, Constants.WINDOW_WIDTH / 2, Constants.WINDOW_HEIGHT);
 
-        } else {
+        // AI board background
+        g.setColor(new Color(168, 255, 0));
+        g.fillRect(Constants.WINDOW_WIDTH / 2, 0, Constants.WINDOW_WIDTH / 2, Constants.WINDOW_HEIGHT);
 
-            Graphics2D graphics2D = (Graphics2D) g;
+        int nearestX = 0, nearestY = 0;
 
-            g.setColor(new Color(99, 222, 231));
-            g.fillRect(0, 0, Constants.WINDOW_WIDTH / 2, Constants.WINDOW_WIDTH / 2 + 2 * holeImageSize);
+        mouseX = MouseInfo.getPointerInfo().getLocation().x - MainWindow.getWindowLocationX();
+        mouseY = MouseInfo.getPointerInfo().getLocation().y - MainWindow.getWindowLocationY() - 70;
 
-            int nearestX = 0, nearestY = 0;
+        // Check if the mouse is clicked
+        if (Mouse.leftClicked && !MainWindow.startedGame) {
+            // Calculate the shortest distance to find the nearest hole
+            double shortestDistance = 999999999;
 
-            // Check if the mouse is clicked
-            if (Mouse.leftClicked && !MainWindow.startedGame) {
-                mouseX = MouseInfo.getPointerInfo().getLocation().x - MainWindow.getWindowLocationX();
-                mouseY = MouseInfo.getPointerInfo().getLocation().y - MainWindow.getWindowLocationY() - 70;
+            for (int i = Constants.BOARD_SIZE.x - 1; i >= 0; i--) {
+                for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
+                    double currentDistance = (mouseX - holeLocationX[j][i]) * (mouseX - holeLocationX[j][i])
+                            + (mouseY - holeLocationY[j][i]) * (mouseY - holeLocationY[j][i]);
+                    if (currentDistance < shortestDistance) {
+                        shortestDistance = currentDistance;
 
-                // Calculate the shortest distance to find the nearest hole
-                double shortestDistance = 999999999;
+                        nearestX = j;
+                        nearestY = i;
+                    }
+                }
+            }
 
-                for (int i = Constants.BOARD_SIZE.x - 1; i >= 0; i--) {
-                    for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
-                        double currentDistance = (mouseX - holeLocationX[j][i]) * (mouseX - holeLocationX[j][i])
-                                + (mouseY - holeLocationY[j][i]) * (mouseY - holeLocationY[j][i]);
-                        if (currentDistance < shortestDistance) {
-                            shortestDistance = currentDistance;
+            if (targetShipId == -1) { // Find the nearest ship by searching all occupied grids
 
-                            nearestX = j;
-                            nearestY = i;
+                for (int i = 0; i < MainWindow.shipList.size(); i++) {
+                    for (int gridIndex = 0; gridIndex < MainWindow.shipList.get(i).occupiedGridX
+                            .size(); gridIndex++) {
+                        int distance = (nearestX - MainWindow.shipList.get(i).occupiedGridX.get(gridIndex))
+                                * (nearestX - MainWindow.shipList.get(i).occupiedGridX.get(gridIndex))
+                                + (nearestY - MainWindow.shipList.get(i).occupiedGridY.get(gridIndex))
+                                * (nearestY - MainWindow.shipList.get(i).occupiedGridY.get(gridIndex));
+
+                        if (distance < 1.2) {
+                            targetShipId = i;
+                            break;
                         }
                     }
                 }
+            }
 
-                if (targetShipId == -1) { // Find the nearest ship by searching all occupied grids
+        } else {
+            targetShipId = -1;
+        }
 
-                    for (int i = 0; i < MainWindow.shipList.size(); i++) {
-                        for (int gridIndex = 0; gridIndex < MainWindow.shipList.get(i).occupiedGridX
-                                .size(); gridIndex++) {
-                            int distance = (nearestX - MainWindow.shipList.get(i).occupiedGridX.get(gridIndex))
-                                    * (nearestX - MainWindow.shipList.get(i).occupiedGridX.get(gridIndex))
-                                    + (nearestY - MainWindow.shipList.get(i).occupiedGridY.get(gridIndex))
-                                    * (nearestY - MainWindow.shipList.get(i).occupiedGridY.get(gridIndex));
+        // Render all five ships
+        for (int i = 0; i < MainWindow.shipList.size(); i++) {
+            double offset = 0;
 
-                            if (distance < 1.2) {
-                                targetShipId = i;
-                                break;
-                            }
-                        }
-                    }
+            switch (MainWindow.shipList.get(i).size) {
+                case 2:
+                    if (MainWindow.shipList.get(i).direction == 1)
+                        offset = 0.5;
+                    else if (MainWindow.shipList.get(i).direction == 2)
+                        offset = 0.5;
+                    else if (MainWindow.shipList.get(i).direction == 3)
+                        offset = 1.25;
+                    else
+                        offset = 1.25;
+                    break;
+                case 3:
+                    offset = 1.25;
+                    break;
+                case 4:
+                    if (MainWindow.shipList.get(i).direction == 1)
+                        offset = 1.25;
+                    else if (MainWindow.shipList.get(i).direction == 2)
+                        offset = 1.25;
+                    else if (MainWindow.shipList.get(i).direction == 3)
+                        offset = 2.25;
+                    else
+                        offset = 2.25;
+                    break;
+                case 5:
+                    offset = 2.25;
+                    break;
+            }
+
+            if (i != targetShipId) {
+
+                if (Mouse.leftClicked && !MainWindow.startedGame)
+                    MainWindow.shipList.get(i).validateLocation();
+
+                if (MainWindow.shipList.get(i).direction == 1 | MainWindow.shipList.get(i).direction == 3) {
+                    if (MainWindow.shipList.get(i).validity & !MainWindow.shipList.get(i).sunk)
+                        graphics2D.drawImage(shipImage,
+                                holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
+                                        .get(i).pivotGridY] - (int) (offset * holeImageSize),
+                                holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
+                                        .get(i).pivotGridY] - 30 / 2,
+                                MainWindow.shipList.get(i).size * holeImageSize - 5, 40, this);
+                    else
+                        graphics2D.drawImage(redShipImage,
+                                holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
+                                        .get(i).pivotGridY] - (int) (offset * holeImageSize),
+                                holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
+                                        .get(i).pivotGridY] - 30 / 2,
+                                MainWindow.shipList.get(i).size * holeImageSize - 5, 40, this);
+                } else {
+                    if (MainWindow.shipList.get(i).validity & !MainWindow.shipList.get(i).sunk)
+                        graphics2D.drawImage(horizontalShipImage,
+                                holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
+                                        .get(i).pivotGridY] - 30 / 2,
+                                holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
+                                        .get(i).pivotGridY] - (int) (offset * holeImageSize),
+                                40, MainWindow.shipList.get(i).size * holeImageSize - 5, this);
+                    else
+                        graphics2D.drawImage(horizontalRedShipImage,
+                                holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
+                                        .get(i).pivotGridY] - 30 / 2,
+                                holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
+                                        .get(i).pivotGridY] - (int) (offset * holeImageSize),
+                                40, MainWindow.shipList.get(i).size * holeImageSize - 5, this);
                 }
 
             } else {
-                targetShipId = -1;
-            }
 
-            // Render all five ships
-            for (int i = 0; i < MainWindow.shipList.size(); i++) {
-                double offset = 0;
+                if (targetShipId > -1) {
+                    MainWindow.shipList.get(targetShipId)
+                            .recalculate(MainWindow.shipList.get(targetShipId).direction, nearestX, nearestY);
 
-                switch (MainWindow.shipList.get(i).size) {
-                    case 2:
-                        if (MainWindow.shipList.get(i).direction == 1)
-                            offset = 0.5;
-                        else if (MainWindow.shipList.get(i).direction == 2)
-                            offset = 0.5;
-                        else if (MainWindow.shipList.get(i).direction == 3)
-                            offset = 1.25;
-                        else
-                            offset = 1.25;
-                        break;
-                    case 3:
-                        offset = 1.25;
-                        break;
-                    case 4:
-                        if (MainWindow.shipList.get(i).direction == 1)
-                            offset = 1.25;
-                        else if (MainWindow.shipList.get(i).direction == 2)
-                            offset = 1.25;
-                        else if (MainWindow.shipList.get(i).direction == 3)
-                            offset = 2.25;
-                        else
-                            offset = 2.25;
-                        break;
-                    case 5:
-                        offset = 2.25;
-                        break;
-                }
+                    MainWindow.shipList.get(targetShipId).validateLocation();
 
-                if (i != targetShipId) {
-
-                    if (Mouse.leftClicked && !MainWindow.startedGame)
-                        MainWindow.shipList.get(i).validateLocation();
-
-                    if (MainWindow.shipList.get(i).direction == 1 | MainWindow.shipList.get(i).direction == 3) {
-                        if (MainWindow.shipList.get(i).validity & !MainWindow.shipList.get(i).sunk)
+                    if (MainWindow.shipList.get(targetShipId).validity & !MainWindow.shipList.get(targetShipId).sunk) {
+                        if (MainWindow.shipList.get(targetShipId).direction == 1
+                                | MainWindow.shipList.get(targetShipId).direction == 3) {
                             graphics2D.drawImage(shipImage,
-                                    holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
-                                            .get(i).pivotGridY] - (int) (offset * holeImageSize),
-                                    holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
-                                            .get(i).pivotGridY] - 30 / 2,
-                                    MainWindow.shipList.get(i).size * holeImageSize - 2, 40, this);
-                        else
-                            graphics2D.drawImage(redShipImage,
-                                    holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
-                                            .get(i).pivotGridY] - (int) (offset * holeImageSize),
-                                    holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
-                                            .get(i).pivotGridY] - 30 / 2,
-                                    MainWindow.shipList.get(i).size * holeImageSize - 2, 40, this);
-                    } else {
-                        if (MainWindow.shipList.get(i).validity & !MainWindow.shipList.get(i).sunk)
-                            graphics2D.drawImage(horizontalShipImage,
-                                    holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
-                                            .get(i).pivotGridY] - 30 / 2,
-                                    holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
-                                            .get(i).pivotGridY] - (int) (offset * holeImageSize),
-                                    40, MainWindow.shipList.get(i).size * holeImageSize - 2, this);
-                        else
-                            graphics2D.drawImage(horizontalRedShipImage,
-                                    holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
-                                            .get(i).pivotGridY] - 30 / 2,
-                                    holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
-                                            .get(i).pivotGridY] - (int) (offset * holeImageSize),
-                                    40, MainWindow.shipList.get(i).size * holeImageSize - 2, this);
-                    }
-
-                } else {
-
-                    if (targetShipId > -1) {
-                        MainWindow.shipList.get(targetShipId)
-                                .recalculate(MainWindow.shipList.get(targetShipId).direction, nearestX, nearestY);
-
-                        MainWindow.shipList.get(targetShipId).validateLocation();
-
-                        if (MainWindow.shipList.get(targetShipId).validity & !MainWindow.shipList.get(targetShipId).sunk) {
-                            if (MainWindow.shipList.get(targetShipId).direction == 1
-                                    | MainWindow.shipList.get(targetShipId).direction == 3) {
-                                graphics2D.drawImage(shipImage,
-                                        holeLocationX[nearestX][nearestY] - (int) (offset * holeImageSize),
-                                        holeLocationY[nearestX][nearestY] - 30 / 2,
-                                        MainWindow.shipList.get(i).size * holeImageSize - 2, 40, this);
-                            } else {
-                                graphics2D.drawImage(horizontalShipImage, holeLocationX[nearestX][nearestY] - 30 / 2,
-                                        holeLocationY[nearestX][nearestY] - (int) (offset * holeImageSize), 40,
-                                        MainWindow.shipList.get(i).size * holeImageSize - 2, this);
-                            }
+                                    holeLocationX[nearestX][nearestY] - (int) (offset * holeImageSize),
+                                    holeLocationY[nearestX][nearestY] - 30 / 2,
+                                    MainWindow.shipList.get(i).size * holeImageSize - 5, 40, this);
                         } else {
-                            if (MainWindow.shipList.get(targetShipId).direction == 1
-                                    | MainWindow.shipList.get(targetShipId).direction == 3) {
-                                graphics2D.drawImage(redShipImage,
-                                        holeLocationX[nearestX][nearestY] - (int) (offset * holeImageSize),
-                                        holeLocationY[nearestX][nearestY] - 30 / 2,
-                                        MainWindow.shipList.get(i).size * holeImageSize - 2, 40, this);
-                            } else {
-                                graphics2D.drawImage(horizontalRedShipImage, holeLocationX[nearestX][nearestY] - 30 / 2,
-                                        holeLocationY[nearestX][nearestY] - (int) (offset * holeImageSize), 40,
-                                        MainWindow.shipList.get(i).size * holeImageSize - 2, this);
-                            }
+                            graphics2D.drawImage(horizontalShipImage, holeLocationX[nearestX][nearestY] - 30 / 2,
+                                    holeLocationY[nearestX][nearestY] - (int) (offset * holeImageSize), 40,
+                                    MainWindow.shipList.get(i).size * holeImageSize - 5, this);
+                        }
+                    } else {
+                        if (MainWindow.shipList.get(targetShipId).direction == 1
+                                | MainWindow.shipList.get(targetShipId).direction == 3) {
+                            graphics2D.drawImage(redShipImage,
+                                    holeLocationX[nearestX][nearestY] - (int) (offset * holeImageSize),
+                                    holeLocationY[nearestX][nearestY] - 30 / 2,
+                                    MainWindow.shipList.get(i).size * holeImageSize - 5, 40, this);
+                        } else {
+                            graphics2D.drawImage(horizontalRedShipImage, holeLocationX[nearestX][nearestY] - 30 / 2,
+                                    holeLocationY[nearestX][nearestY] - (int) (offset * holeImageSize), 40,
+                                    MainWindow.shipList.get(i).size * holeImageSize - 5, this);
                         }
                     }
                 }
             }
+        }
 
-            // Render all grids
+        // Render all grids
+        for (int i = Constants.BOARD_SIZE.x - 1; i >= 0; i--) {
+            for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
+                int relativeX = 0, relativeY = 0;
+
+                if (MainWindow.humanBoard.getBoardState()[i][j] == 0)
+                    graphics2D.drawImage(holeImage, holeLocationX[j][i] - 5, holeLocationY[j][i] - 5, 20, 20, this);
+                else if (MainWindow.humanBoard.getBoardState()[i][j] == 1)
+                    graphics2D.drawImage(missedHoleImage, holeLocationX[j][i] - 5, holeLocationY[j][i] - 5, 20, 20, this);
+                else if (MainWindow.humanBoard.getBoardState()[i][j] == 2)
+                    graphics2D.drawImage(hitHoleImage, holeLocationX[j][i] - 5, holeLocationY[j][i] - 5, 20, 20, this);
+
+                if (MainWindow.AIBoard.getBoardState()[i][j] == 0)
+                    graphics2D.drawImage(holeImage, Constants.WINDOW_WIDTH / 2 + holeLocationX[j][i] - 5, holeLocationY[j][i] - 5, 20, 20, this);
+                else if (MainWindow.AIBoard.getBoardState()[i][j] == 1)
+                    graphics2D.drawImage(missedHoleImage, Constants.WINDOW_WIDTH / 2 + holeLocationX[j][i] - 5, holeLocationY[j][i] - 5, 20, 20, this);
+                else if (MainWindow.AIBoard.getBoardState()[i][j] == 2)
+                    graphics2D.drawImage(hitHoleImage, Constants.WINDOW_WIDTH / 2 + holeLocationX[j][i] - 5, holeLocationY[j][i] - 5, 20, 20, this);
+
+                if (!calculatedHolePositions) {
+                    relativeX = holeImageSize / 2 + j * holeImageSize;
+                    relativeY = holeImageSize / 2 + (Constants.BOARD_SIZE.x - i - 1) * holeImageSize;
+
+                    holeLocationX[j][i] = relativeX + 5;
+                    holeLocationY[j][i] = relativeY + 5;
+
+                    aiBoardHoleLocationX[j][i] = Constants.WINDOW_WIDTH / 2 + relativeX + 10;
+                    aiBoardHoleLocationY[j][i] = relativeY + 10;
+
+                    // Prewarm the animation function
+                    for (int index = 0; index < explosionX.length; index++) {
+                        if (explosionFrameIndex[index] < 40) {
+                            graphics2D.drawImage(explosionImage[explosionFrameIndex[index]], holeLocationX[explosionX[index]][explosionY[index]] - 50, holeLocationY[explosionX[index]][explosionY[index]] - 50, 100, 100, this);
+                            graphics2D.drawImage(explosionImage[explosionFrameIndex[index]], aiBoardHoleLocationX[explosionX[index]][explosionY[index]] - 50, aiBoardHoleLocationY[explosionX[index]][explosionY[index]] - 50, 100, 100, this);
+
+                            explosionFrameIndex[index] += 1;
+                        } else {
+                            explosionX[index] = -1;
+                            explosionY[index] = -1;
+                        }
+                    }
+                }
+            }
+        }
+
+        calculatedHolePositions = true;
+
+        if (MainWindow.startedGame) {
+            // Calculate the shortest distance to find the nearest hole
+            double shortestDistance = 999999999;
+
             for (int i = Constants.BOARD_SIZE.x - 1; i >= 0; i--) {
                 for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
-                    int relativeX = holeImageSize / 2 + j * holeImageSize;
-                    int relativeY = holeImageSize / 2 + (Constants.BOARD_SIZE.x - i - 1) * holeImageSize;
+                    double currentDistance = (mouseX - aiBoardHoleLocationX[j][i]) * (mouseX - aiBoardHoleLocationX[j][i])
+                            + (mouseY - aiBoardHoleLocationY[j][i]) * (mouseY - aiBoardHoleLocationY[j][i]);
+                    if (currentDistance < shortestDistance) {
+                        shortestDistance = currentDistance;
 
-                    if (MainWindow.humanBoard.getBoardState()[i][j] == 0)
-                        graphics2D.drawImage(holeImage, relativeX, relativeY, 20, 20, this);
-                    else if (MainWindow.humanBoard.getBoardState()[i][j] == 1)
-                        graphics2D.drawImage(missedHoleImage, relativeX, relativeY, 20, 20, this);
-                    else if (MainWindow.humanBoard.getBoardState()[i][j] == 2)
-                        graphics2D.drawImage(hitHoleImage, relativeX, relativeY, 20, 20, this);
-
-                    if (!calculatedHolePositions) {
-                        holeLocationX[j][i] = relativeX + 5;
-                        holeLocationY[j][i] = relativeY + 5;
+                        fireTargetX = j;
+                        fireTargetY = i;
                     }
                 }
             }
 
-            calculatedHolePositions = true;
-
-            graphics2D.finalize();
+            // Render the target image following the cursor
+            if (Renderer.fireTargetX != -1 & Renderer.fireTargetY != -1) {
+                if (shortestDistance < 1000 & MainWindow.AIBoard.getBoardState()[Renderer.fireTargetY][Renderer.fireTargetX] == 0) {
+                    graphics2D.drawImage(targetImage, aiBoardHoleLocationX[fireTargetX][fireTargetY] - 35, aiBoardHoleLocationY[fireTargetX][fireTargetY] - 35, 70, 70, this);
+                } else {
+                    fireTargetX = -1;
+                    fireTargetY = -1;
+                }
+            }
         }
 
+        for (int animationIndex = 0; animationIndex < explosionX.length; animationIndex++) {
+            if (explosionX[animationIndex] != -1) {
+                if (explosionFrameIndex[animationIndex] < 40) {
+                    if (explosionBoardId[animationIndex] == 1)
+                        graphics2D.drawImage(explosionImage[explosionFrameIndex[animationIndex]], holeLocationX[explosionX[animationIndex]][explosionY[animationIndex]] - 50, holeLocationY[explosionX[animationIndex]][explosionY[animationIndex]] - 50, 100, 100, this);
+                    else if (explosionBoardId[animationIndex] == 2)
+                        graphics2D.drawImage(explosionImage[explosionFrameIndex[animationIndex]], aiBoardHoleLocationX[explosionX[animationIndex]][explosionY[animationIndex]] - 50, aiBoardHoleLocationY[explosionX[animationIndex]][explosionY[animationIndex]] - 50, 100, 100, this);
 
-        try { // Use sleep method to reduce the performance overhead
+                    explosionFrameIndex[animationIndex] += 1;
+                } else {
+                    explosionX[animationIndex] = -1;
+                    explosionY[animationIndex] = -1;
+                }
+            }
+        }
 
-            if (Mouse.leftClicked && !MainWindow.startedGame)
-                Thread.sleep(8);
-            else
-                Thread.sleep(75);
+        graphics2D.finalize();
 
-        } catch (InterruptedException ex) { Thread.currentThread().interrupt(); }
+        // Use sleep method to reduce the performance overhead
+        try {
+            if (calculatedHolePositions)
+                Thread.sleep(12);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
     }
 
+    public static void playExplosionAnimation(int boardId, int targetExplosionX, int targetExplosionY) {
+        assignExplosionAnimation(boardId, targetExplosionX, targetExplosionY);
 
-    /**
-     * clear the content of the window
-     */
-    public void clearAll() {
-        clearAll = true;
-        repaint();
+        try {
+            new MP3Player(new File(Constants.EXPLOSION_SOUND)).play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void assignExplosionAnimation(int boardId, int targetExplosionX, int targetExplosionY) {
+        for (int i = 0; i < explosionX.length; i++) {
+            if (explosionX[i] == -1) {
+                explosionBoardId[i] = boardId;
+                explosionFrameIndex[i] = 0;
+                explosionX[i] = targetExplosionX;
+                explosionY[i] = targetExplosionY;
+                return;
+            }
+        }
+    }
+
+    public static void playWaterSplashSound() {
+        try {
+            new MP3Player(new File(Constants.WATER_SPLASH_SOUND)).play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

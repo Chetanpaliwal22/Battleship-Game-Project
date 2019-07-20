@@ -30,5 +30,7 @@ public class Constants {
     public static final Coordinate BOARD_SIZE = new Coordinate(11, 9); // y, x !!
     public static final int WINDOW_WIDTH = 1024, WINDOW_HEIGHT = 725;
     
-    public static final String MUSIC_FILE_NAME = "BattleshipMusic.mp3";
+    public static final String MUSIC_FILE_NAME = "src/view/resources/audio/BattleshipMusic.mp3";
+    public static final String EXPLOSION_SOUND = "src/view/resources/audio/ExplosionSound.mp3";
+    public static final String WATER_SPLASH_SOUND = "src/view/resources/audio/WaterSplashSound.mp3";
 }

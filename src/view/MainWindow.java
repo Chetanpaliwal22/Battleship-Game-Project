@@ -88,6 +88,23 @@ public class MainWindow extends JFrame {
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
 
 
+//        // Create and add game rules label top panel//
+//
+//        JLabel gameRulesLabel = new JLabel();
+//        gameRulesLabel.setText(String.format("<html><div WIDTH=%d>%s</div></html>", Constants.WINDOW_WIDTH / 4, "Rules: Each time timer will count down from 10 seconds. If players plays a move withing these 10 seconds."));
+//        gameRulesLabel.setHorizontalAlignment(JLabel.LEFT);
+//
+//        gridBagConstraints.fill = GridBagConstraints.VERTICAL;
+//        gridBagConstraints.weightx = 0.5;
+//        gridBagConstraints.weighty = 1;
+//        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+//        gridBagConstraints.gridwidth = 1;
+//        gridBagConstraints.gridheight = 3;
+//        gridBagConstraints.gridx = 0;
+//        gridBagConstraints.gridy = 0;
+//
+//        topPanel.add(gameRulesLabel, gridBagConstraints);
+
         // create and add game state component top panel//
 
         gameStateComponent = new JLabel();
@@ -96,8 +113,9 @@ public class MainWindow extends JFrame {
         gameStateComponent.setHorizontalAlignment(JLabel.CENTER);
 
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
 
         topPanel.add(gameStateComponent, gridBagConstraints);
 
@@ -151,8 +169,9 @@ public class MainWindow extends JFrame {
         });
 
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
 
         topPanel.add(startGameButton, gridBagConstraints);
 
@@ -160,12 +179,13 @@ public class MainWindow extends JFrame {
         timerLabel = new JLabel();
         timerLabel.setText("Time 00:00");
         timerLabel.setSize(10, 5);
-        timerLabel.setHorizontalAlignment(JLabel.RIGHT);
+        timerLabel.setHorizontalAlignment(JLabel.CENTER);
 
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
 
         topPanel.add(timerLabel, gridBagConstraints);
 
@@ -207,7 +227,7 @@ public class MainWindow extends JFrame {
 
         // finally, add all components to main window
         add(gameBoardPanel);
-
+        JOptionPane.showMessageDialog(Game.mainWindow, String.format("<html><div WIDTH=%d>%s</div></html>", Constants.WINDOW_WIDTH / 4, "Rules: Each time timer will count down from 10 seconds. If players plays a move withing these 10 seconds."));
         shipList.add(new FrontEndShip(2, 2, 6, 1));
         shipList.add(new FrontEndShip(3, 3, 2, 3));
         shipList.add(new FrontEndShip(3, 1, 7, 4));
@@ -232,7 +252,7 @@ public class MainWindow extends JFrame {
 
                         if (result == 0) {
 
-                            Renderer.playWaterSplashSound();
+                            Renderer.playWaterSplashAnimation(2, Renderer.fireTargetX, Renderer.fireTargetY);
 
                             System.out.println("Human => miss\n");
 
@@ -288,7 +308,7 @@ public class MainWindow extends JFrame {
 
                             if (result == 0) {
 
-                                Renderer.playWaterSplashSound();
+                                Renderer.playWaterSplashAnimation(1, target.x, target.y);
 
                                 gameStateComponent.setText("AI => Miss");
                                 System.out.println("AI => miss\n");
@@ -329,9 +349,9 @@ public class MainWindow extends JFrame {
                             }
 
                             // for debugging
-                            //AIBoard.printStateGrid();
+//                            AIBoard.printStateGrid();
                             //AIBoard.printShipGrid();
-                            //myAI.printCountGrid();
+//                            myAI.printCountGrid();
                             //System.out.println("");
 
                             // Continue the timer

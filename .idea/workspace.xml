@@ -2,120 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3532a2a-cc23-46d1-9f56-31b65f5e9545" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/model/GameTimer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Battleship-Game-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Battleship-Game-Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BattleshipMusic.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/jaco-mp3-player-0.9.3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/jaco-mp3-player-0.9.3.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship-Game-Project/view/resources/HitHole.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship-Game-Project/view/resources/Hole.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship-Game-Project/view/resources/MissedHole.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship-Game-Project/view/resources/Target.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/Mouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Mouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/allclasses-frame.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/allclasses-noframe.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/constant-values.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/constants/Constants.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/constants/class-use/Constants.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/constants/package-frame.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/constants/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/constants/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/constants/package-use.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/controller/Mouse.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/controller/class-use/Mouse.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/controller/package-frame.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/controller/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/controller/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/controller/package-use.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/deprecated-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/help-doc.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-10.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-11.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-12.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-13.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-14.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-15.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-16.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-17.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-18.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-19.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-20.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-21.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-22.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-4.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-5.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-6.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-7.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-8.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index-files/index-9.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/main/Game.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/main/class-use/Game.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/main/package-frame.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/main/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/main/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/main/package-use.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/model/AI.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/model/Board.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/model/Ship.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/model/class-use/AI.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/model/class-use/Board.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/model/class-use/Ship.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/model/package-frame.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/model/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/model/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/model/package-use.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/overview-frame.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/overview-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/overview-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/package-list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/serialized-form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/stylesheet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/test/UnitTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/test/class-use/UnitTest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/test/package-frame.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/test/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/test/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/test/package-use.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/tools/Coordinate.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/tools/GridHelper.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/tools/class-use/Coordinate.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/tools/class-use/GridHelper.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/tools/package-frame.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/tools/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/tools/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/tools/package-use.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/view/FrontEndShip.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/view/MainWindow.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/view/Renderer.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/view/class-use/FrontEndShip.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/view/class-use/MainWindow.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/view/class-use/Renderer.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/view/package-frame.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/view/package-summary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/view/package-tree.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/doc/view/package-use.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/AI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tools/GridHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tools/GridHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/FrontEndShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/FrontEndShip.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/25.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/28.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/29.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/30.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/9.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Renderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/HitHole.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/Hole.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/MissedHole.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/RedShip.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/RedShipHorizontal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/Ship.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/ShipHorizontal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/Target.png" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -159,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/MainWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="340" column="25" selection-start-line="340" selection-start-column="25" selection-end-line="340" selection-end-column="25" />
+            <state relative-caret-position="177">
+              <caret line="354" column="33" lean-forward="true" selection-start-line="354" selection-start-column="33" selection-end-line="354" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -174,8 +93,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Ship.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="101" selection-start-line="101" selection-end-line="101" />
+            <state relative-caret-position="52">
+              <caret line="72" selection-start-line="72" selection-end-line="72" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -186,20 +105,25 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/Renderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+            <state relative-caret-position="156">
+              <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/GameTimer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="57" column="45" selection-start-line="57" selection-start-column="45" selection-end-line="57" selection-end-column="45" />
+            <state relative-caret-position="645">
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1191#1192#0" expanded="true" />
                 <element signature="e#1246#1247#0" expanded="true" />
+                <element signature="e#1280#1281#0" expanded="true" />
                 <element signature="e#1313#1314#0" expanded="true" />
               </folding>
             </state>
@@ -230,8 +154,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+            <state relative-caret-position="225">
+              <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -285,12 +209,12 @@
         <option value="$PROJECT_DIR$/src/tools/Coordinate.java" />
         <option value="$PROJECT_DIR$/src/model/Board.java" />
         <option value="$PROJECT_DIR$/src/model/Ship.java" />
-        <option value="$PROJECT_DIR$/src/view/Renderer.java" />
         <option value="$PROJECT_DIR$/src/controller/Mouse.java" />
         <option value="$PROJECT_DIR$/src/model/AI.java" />
-        <option value="$PROJECT_DIR$/src/main/Game.java" />
-        <option value="$PROJECT_DIR$/src/view/MainWindow.java" />
         <option value="$PROJECT_DIR$/src/model/GameTimer.java" />
+        <option value="$PROJECT_DIR$/src/main/Game.java" />
+        <option value="$PROJECT_DIR$/src/view/Renderer.java" />
+        <option value="$PROJECT_DIR$/src/view/MainWindow.java" />
       </list>
     </option>
   </component>
@@ -308,7 +232,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -319,48 +242,7 @@
             <path>
               <item name="Battleship-Game-Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="Battleship-Game-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Battleship-Game-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleship-Game-Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Battleship-Game-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleship-Game-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="constants" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Battleship-Game-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleship-Game-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Battleship-Game-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleship-Game-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Battleship-Game-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleship-Game-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Battleship-Game-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleship-Game-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Battleship-Game-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleship-Game-Project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="tools" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Battleship-Game-Project" type="b2602c69:ProjectViewProjectNode" />
@@ -368,10 +250,26 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Battleship-Game-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Battleship-Game-Project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Battleship-Game-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Battleship-Game-Project" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="animation" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -380,11 +278,19 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/view/resources/animation/waterSplash" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/view/resources/animation/waterSplash" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/view/resources/animation/waterSplash" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -491,7 +397,7 @@
     <frame x="0" y="23" width="1440" height="812" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22389127" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2453505" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -560,15 +466,9 @@
     <entry file="file://$PROJECT_DIR$/src/view/GridbagDemo.java" />
     <entry file="file://$PROJECT_DIR$/src/view/GridBagLayoutDemo.java" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/javax/swing/BoxLayout.java" />
-    <entry file="file://$PROJECT_DIR$/src/view/resources/Hole.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/resources/RedShip.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/resources/RedShipHorizontal.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/resources/Hole.png" />
+    <entry file="file://$PROJECT_DIR$/src/view/resources/RedShip.png" />
+    <entry file="file://$PROJECT_DIR$/src/view/resources/RedShipHorizontal.png" />
     <entry file="file://$PROJECT_DIR$/src/view/BattleShip.java" />
     <entry file="file://$PROJECT_DIR$/src/model/FrontEndShip.java" />
     <entry file="file://$PROJECT_DIR$/src/model/AI.java">
@@ -602,6 +502,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/GameTimer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1191#1192#0" expanded="true" />
+            <element signature="e#1246#1247#0" expanded="true" />
+            <element signature="e#1280#1281#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/tools/GridHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -621,8 +535,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+        <state relative-caret-position="225">
+          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Ship.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -631,15 +555,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/Renderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Ship.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
+        <state relative-caret-position="156">
+          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -648,22 +565,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/MainWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="340" column="25" selection-start-line="340" selection-start-column="25" selection-end-line="340" selection-end-column="25" />
+        <state relative-caret-position="177">
+          <caret line="354" column="33" lean-forward="true" selection-start-line="354" selection-start-column="33" selection-end-line="354" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/GameTimer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="57" column="45" selection-start-line="57" selection-start-column="45" selection-end-line="57" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1246#1247#0" expanded="true" />
-            <element signature="e#1313#1314#0" expanded="true" />
           </folding>
         </state>
       </provider>

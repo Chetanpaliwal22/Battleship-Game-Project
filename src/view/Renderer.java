@@ -44,6 +44,16 @@ public class Renderer extends JComponent {
 
     private Image explosionImage[] = new Image[40];
 
+
+    // Animation attributes
+    private static int[] waterSplashBoardId = new int[5];
+
+    private static int[] waterSplashX = new int[5];
+    private static int[] waterSplashY = new int[5];
+    private static int[] waterSplashFrameIndex = new int[5];
+
+    private Image waterSplashImage[] = new Image[30];
+
     public Renderer() {
         holeImageSize = (Constants.WINDOW_WIDTH / 2) / Constants.BOARD_SIZE.y - 2;
 
@@ -56,9 +66,12 @@ public class Renderer extends JComponent {
         horizontalRedShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/RedShipHorizontal.png");
         targetImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/Target.png");
 
-        for (int i = 1; i <= 40; i++) {
+        for (int i = 1; i <= 30; i++)
+            waterSplashImage[i - 1] = Toolkit.getDefaultToolkit().getImage("src/view/resources/animation/waterSplash/" + i + ".png");
+
+        for (int i = 1; i <= 40; i++)
             explosionImage[i - 1] = Toolkit.getDefaultToolkit().getImage("src/view/resources/animation/explosion/" + i + ".png");
-        }
+
     }
 
     /**
@@ -307,6 +320,24 @@ public class Renderer extends JComponent {
             }
         }
 
+        // Water splash animation
+        for (int animationIndex = 0; animationIndex < waterSplashX.length; animationIndex++) {
+            if (waterSplashX[animationIndex] != -1) {
+                if (waterSplashFrameIndex[animationIndex] < 30) {
+                    if (waterSplashBoardId[animationIndex] == 1)
+                        graphics2D.drawImage(waterSplashImage[waterSplashFrameIndex[animationIndex]], holeLocationX[waterSplashX[animationIndex]][waterSplashY[animationIndex]] - 50, holeLocationY[waterSplashX[animationIndex]][waterSplashY[animationIndex]] - 50, 100, 100, this);
+                    else if (waterSplashBoardId[animationIndex] == 2)
+                        graphics2D.drawImage(waterSplashImage[waterSplashFrameIndex[animationIndex]], aiBoardHoleLocationX[waterSplashX[animationIndex]][waterSplashY[animationIndex]] - 50, aiBoardHoleLocationY[waterSplashX[animationIndex]][waterSplashY[animationIndex]] - 50, 100, 100, this);
+
+                    waterSplashFrameIndex[animationIndex] += 1;
+                } else {
+                    waterSplashX[animationIndex] = -1;
+                    waterSplashY[animationIndex] = -1;
+                }
+            }
+        }
+
+        // Explosion animation
         for (int animationIndex = 0; animationIndex < explosionX.length; animationIndex++) {
             if (explosionX[animationIndex] != -1) {
                 if (explosionFrameIndex[animationIndex] < 40) {
@@ -334,6 +365,28 @@ public class Renderer extends JComponent {
         }
     }
 
+    public static void playWaterSplashAnimation(int boardId, int targetWaterSplashX, int targetWaterSplashY) {
+        assignWaterSplashAnimation(boardId, targetWaterSplashX, targetWaterSplashY);
+
+        try {
+            new MP3Player(new File(Constants.WATER_SPLASH_SOUND)).play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void assignWaterSplashAnimation(int boardId, int targetWaterSplashX, int targetWaterSplashY) {
+        for (int i = 0; i < waterSplashX.length; i++) {
+            if (waterSplashX[i] == -1) {
+                waterSplashBoardId[i] = boardId;
+                waterSplashFrameIndex[i] = 0;
+                waterSplashX[i] = targetWaterSplashX;
+                waterSplashY[i] = targetWaterSplashY;
+                return;
+            }
+        }
+    }
+
     public static void playExplosionAnimation(int boardId, int targetExplosionX, int targetExplosionY) {
         assignExplosionAnimation(boardId, targetExplosionX, targetExplosionY);
 
@@ -356,11 +409,11 @@ public class Renderer extends JComponent {
         }
     }
 
-    public static void playWaterSplashSound() {
-        try {
-            new MP3Player(new File(Constants.WATER_SPLASH_SOUND)).play();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void playWaterSplashSound() {
+//        try {
+//            new MP3Player(new File(Constants.WATER_SPLASH_SOUND)).play();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

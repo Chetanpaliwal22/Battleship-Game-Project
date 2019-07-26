@@ -122,23 +122,27 @@ public class AI {
         // compute weight on first column
         for(int i=0; i<boardSize.x; i++) { // for every column
 
-            for (int j=0; j<boardSize.y-shipSize + 1; j++) { // start position
+			for (int j = 0; j < boardSize.y - shipSize + 1; j++) { // start position
 
-                for (int k=0; k<shipSize; k++) { // loop over shipLength
+				boolean impossiblePosition = false;
 
-                    boolean impossiblePosition = false;
-                    for (int l = 0; l < coordinateToExclude.size(); l++) { // loop over known coordinates
-                        if (coordinateToExclude.get(l).x == i && coordinateToExclude.get(l).y == j+k) {
-                            impossiblePosition = true;
-                        }
-                    }
+				for (int k=0; k<shipSize; k++) { // loop over shipLength
+					for (int l = 0; l < coordinateToExclude.size(); l++) { // loop over known coordinates
+						if (coordinateToExclude.get(l).x == i && coordinateToExclude.get(l).y == j + k) {
+							impossiblePosition = true;
+							break;
+						}
+					}
+				}
 
-                    if( !impossiblePosition ){ // add possible ship position to count grid
-                    	countGridX[i][j+k] += 1;
-                    }
-                }
-            }
-        }
+				if (!impossiblePosition) { // add possible ship position to count grid
+					for (int k=0; k<shipSize; k++) { // loop over shipLength
+						countGridX[i][j + k] += 1;
+					}
+				}
+
+			}
+		}
 
         // horizontal ship position count //
 
@@ -146,16 +150,19 @@ public class AI {
 
             for (int j=0; j<boardSize.x-shipSize + 1; j++) { // start position
 
+				boolean impossiblePosition = false;
+
                 for (int k=0; k<shipSize; k++) { // loop over shipLength
+					for (int l = 0; l < coordinateToExclude.size(); l++) { // loop over known coordinates
+						if (coordinateToExclude.get(l).x == j+k && coordinateToExclude.get(l).y == i) {
+							impossiblePosition = true;
+							break;
+						}
+					}
+				}
 
-                    boolean impossiblePosition = false;
-                    for (int l = 0; l < coordinateToExclude.size(); l++) { // loop over known coordinates
-                        if (coordinateToExclude.get(l).x == j+k && coordinateToExclude.get(l).y == i) {
-                            impossiblePosition = true;
-                        }
-                    }
-
-                    if( !impossiblePosition ){ // add possible ship position to count grid
+				if( !impossiblePosition ){ // add possible ship position to count grid
+					for (int k=0; k<shipSize; k++) { // loop over shipLength
                     	countGridX[j+k][i] += 1;
                     }
                 }
@@ -184,7 +191,7 @@ public class AI {
 	 */
 	public boolean inBound(int x, int y){
 
-		if( x < 0 || x > boardSize.x || y < 0 || y > boardSize.y ){ return false; }
+		if( x < 0 || x >= boardSize.x || y < 0 || y >= boardSize.y ){ return false; }
 		else { return true; }
 	}
 
@@ -213,22 +220,28 @@ public class AI {
 					direction = 0; // north by default
 				}
 
-				if ( inBound(this.axis.y-1, this.axis.x) && countGrid[this.axis.y-1][this.axis.x] > maxCount) { // try south
-					maxCount = countGrid[this.axis.y-1][this.axis.x];
-					bestNextTarget = new Coordinate(this.axis.x, this.axis.y-1);
-					direction = 2;
+				if ( inBound(this.axis.y-1, this.axis.x) ){
+					if( countGrid[this.axis.y-1][this.axis.x] > maxCount){
+						maxCount = countGrid[this.axis.y - 1][this.axis.x];
+						bestNextTarget = new Coordinate(this.axis.x, this.axis.y - 1);
+						direction = 2;
+					}
 				}
 
-				if ( inBound(this.axis.y, this.axis.x+1) && countGrid[this.axis.y][this.axis.x+1] > maxCount) { // try east
-					maxCount = countGrid[this.axis.y][this.axis.x+1];
-					bestNextTarget = new Coordinate(this.axis.x + 1, this.axis.y);
-					direction = 1;
+				if ( inBound(this.axis.y, this.axis.x+1)) { // try east
+					if( countGrid[this.axis.y][this.axis.x+1] > maxCount ) {
+						maxCount = countGrid[this.axis.y][this.axis.x + 1];
+						bestNextTarget = new Coordinate(this.axis.x + 1, this.axis.y);
+						direction = 1;
+					}
 				}
 
-				if ( inBound(this.axis.y, this.axis.x-1) && countGrid[this.axis.y][this.axis.x-1] > maxCount) { // try west
-					maxCount = countGrid[this.axis.y][this.axis.x-1];
-					bestNextTarget = new Coordinate(this.axis.x - 1, this.axis.y);
-					direction = 3;
+				if ( inBound(this.axis.y, this.axis.x-1) ) { // try west
+					if( countGrid[this.axis.y][this.axis.x-1] > maxCount ) {
+						maxCount = countGrid[this.axis.y][this.axis.x - 1];
+						bestNextTarget = new Coordinate(this.axis.x - 1, this.axis.y);
+						direction = 3;
+					}
 				}
 
 				seekAgain = false;
@@ -238,16 +251,40 @@ public class AI {
 				bestNextTarget = new Coordinate(this.axis.x, this.axis.y);
 
 				if( direction == 0 ) { // north
-					bestNextTarget = new Coordinate(this.axis.x, this.axis.y + distanceFromHit);
+					if( inBound(this.axis.y+distanceFromHit, this.axis.x) ) {
+						bestNextTarget = new Coordinate(this.axis.x, this.axis.y + distanceFromHit);
+					} else { // else go south
+						distanceFromHit = 1;
+						bestNextTarget = new Coordinate(this.axis.x, this.axis.y - distanceFromHit);
+						direction = 2;
+					}
 
 				} else if( direction == 1 ){ // east
-					bestNextTarget = new Coordinate(this.axis.x + distanceFromHit, this.axis.y);
+					if( inBound(this.axis.y, this.axis.x+distanceFromHit) ) {
+						bestNextTarget = new Coordinate(this.axis.x + distanceFromHit, this.axis.y);
+					} else { // else go west
+						distanceFromHit = 1;
+						bestNextTarget = new Coordinate(this.axis.x - distanceFromHit, this.axis.y);
+						direction = 3;
+					}
 
 				} else if( direction == 2 ){ // south
-					bestNextTarget = new Coordinate(this.axis.x , this.axis.y - distanceFromHit);
+					if( inBound(this.axis.y-distanceFromHit, this.axis.x) ) {
+						bestNextTarget = new Coordinate(this.axis.x, this.axis.y - distanceFromHit);
+					} else { // else go north
+						distanceFromHit = 1;
+						bestNextTarget = new Coordinate(this.axis.x, this.axis.y + distanceFromHit);
+						direction = 0;
+					}
 
 				} else if( direction == 3 ){ // west
-					bestNextTarget = new Coordinate(this.axis.x - distanceFromHit, this.axis.y );
+					if (inBound(this.axis.y, this.axis.x - distanceFromHit)) {
+						bestNextTarget = new Coordinate(this.axis.x - distanceFromHit, this.axis.y );
+					} else { // else go east
+						distanceFromHit = 1;
+						bestNextTarget = new Coordinate(this.axis.x + distanceFromHit, this.axis.y );
+						direction = 1;
+					}
 				}
 			}
 

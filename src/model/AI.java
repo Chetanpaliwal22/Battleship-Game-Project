@@ -191,45 +191,34 @@ public class AI {
 
 				int maxCount = 0;
 
-				System.out.println(this.axis.x);
-				System.out.println(this.axis.y);
-				System.out.println(countGrid[this.axis.x][this.axis.y]);
-				System.out.println();
-
-				maxCount = countGrid[this.axis.x+1][this.axis.y];
+				maxCount = countGrid[this.axis.y+1][this.axis.x];
 				bestNextTarget = new Coordinate(this.axis.x, this.axis.y + 1);
-				System.out.println(countGrid[this.axis.x][this.axis.y + 1]);
 				direction = 0; // north by default
 
 
 				// find the best target around the last target //
 
-				if (countGrid[this.axis.x+1][this.axis.y] > maxCount) { // try south
-					maxCount = countGrid[this.axis.x+1][this.axis.y];
+				if (countGrid[this.axis.y-1][this.axis.x] > maxCount) { // try south
+					maxCount = countGrid[this.axis.y-1][this.axis.x];
 					bestNextTarget = new Coordinate(this.axis.x, this.axis.y-1);
 					direction = 2;
-					System.out.println("to");
 				}
 
-				System.out.println(countGrid[this.axis.x][this.axis.y - 1]);
+				System.out.println(countGrid[this.axis.y-1][this.axis.x]);
 
-				if (countGrid[this.axis.x][this.axis.y+1] > maxCount) { // try east
-					maxCount = countGrid[this.axis.x][this.axis.y+1];
+				if (countGrid[this.axis.y][this.axis.x+1] > maxCount) { // try east
+					maxCount = countGrid[this.axis.y][this.axis.x+1];
 					bestNextTarget = new Coordinate(this.axis.x + 1, this.axis.y);
 					direction = 1;
-					System.out.println("to");
 				}
 
 				System.out.println(countGrid[this.axis.y][this.axis.x+1]);
 
-				if (countGrid[this.axis.x][this.axis.y-1] > maxCount) { // try west
-					maxCount = countGrid[this.axis.x][this.axis.y-1];
+				if (countGrid[this.axis.y][this.axis.x-1] > maxCount) { // try west
+					maxCount = countGrid[this.axis.y][this.axis.x-1];
 					bestNextTarget = new Coordinate(this.axis.x - 1, this.axis.y);
 					direction = 3;
-					System.out.println("to");
 				}
-
-				System.out.println(countGrid[this.axis.y][this.axis.x-1]);
 
 				seekAgain = false;
 
@@ -251,8 +240,6 @@ public class AI {
 				}
 			}
 
-			//System.out.println(bestNextTarget.x);
-			//System.out.println(bestNextTarget.y);
 			this.previousTarget = bestNextTarget;
 
 		} else { this.previousTarget = getGlobalHighestCount(); }

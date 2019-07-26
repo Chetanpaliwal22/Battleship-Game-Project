@@ -37,7 +37,8 @@ public class AI {
 	private int nbBattleshipDestroyed = 0;
 	private int nbCarrierDestroyed = 0;
 
-	private ArrayList<Coordinate> coordinateToExclude;
+	private ArrayList<Coordinate> missToExclude;
+	private ArrayList<Coordinate> toExclude;
 
 
 	/**
@@ -47,7 +48,8 @@ public class AI {
 
 		this.boardSize = Constants.BOARD_SIZE;
 
-		this.coordinateToExclude = new ArrayList<Coordinate>(boardSize.x * boardSize.y);
+		this.missToExclude = new ArrayList<Coordinate>(boardSize.x * boardSize.y);
+		this.toExclude = new ArrayList<Coordinate>(boardSize.x * boardSize.y);
 
 		try { updateCountGrid( -1 ); }
 
@@ -96,6 +98,10 @@ public class AI {
 			countGridToUpdate = GridHelper.add(countGridToUpdate, this.carrierCountGrid);
 		}
 
+		for(int i=0; i<this.toExclude.size(); i++){
+			countGridToUpdate[this.toExclude.get(i).x][this.toExclude.get(i).y] = 0;
+		}
+
 		System.out.println("grid created");
 		this.countGrid = countGridToUpdate;
 	}
@@ -127,8 +133,8 @@ public class AI {
 				boolean impossiblePosition = false;
 
 				for (int k=0; k<shipSize; k++) { // loop over shipLength
-					for (int l = 0; l < coordinateToExclude.size(); l++) { // loop over known coordinates
-						if (coordinateToExclude.get(l).x == i && coordinateToExclude.get(l).y == j + k) {
+					for (int l = 0; l < missToExclude.size(); l++) { // loop over known coordinates
+						if (missToExclude.get(l).x == i && missToExclude.get(l).y == j + k) {
 							impossiblePosition = true;
 							break;
 						}
@@ -153,8 +159,8 @@ public class AI {
 				boolean impossiblePosition = false;
 
                 for (int k=0; k<shipSize; k++) { // loop over shipLength
-					for (int l = 0; l < coordinateToExclude.size(); l++) { // loop over known coordinates
-						if (coordinateToExclude.get(l).x == j+k && coordinateToExclude.get(l).y == i) {
+					for (int l = 0; l < missToExclude.size(); l++) { // loop over known coordinates
+						if (missToExclude.get(l).x == j+k && missToExclude.get(l).y == i) {
 							impossiblePosition = true;
 							break;
 						}
@@ -292,8 +298,6 @@ public class AI {
 
 		} else { this.previousTarget = getGlobalHighestCount(); }
 
-		coordinateToExclude.add( new Coordinate( this.previousTarget.y, this.previousTarget.x ) );
-
 		return this.previousTarget;
 	}
 
@@ -393,28 +397,32 @@ public class AI {
 	 */
 	public void receiveResult(int code) throws Exception {
 
-		if ( code == 0 && targetMode && fixedDirection) { // change direction to seek ship position
+		if ( code == 0 ) { // change direction to seek ship position
 
-			if( direction == 0 ){ // if north, then go south
+			if( targetMode && fixedDirection ) {
 
-				direction = 2;
-				distanceFromHit = 1;
+				if (direction == 0) { // if north, then go south
 
-			} else if( direction == 1 ){ // if east, then go west
+					direction = 2;
+					distanceFromHit = 1;
 
-				direction = 3;
-				distanceFromHit = 1;
+				} else if (direction == 1) { // if east, then go west
 
-			} else if( direction == 2 ){ // if south, then go north
+					direction = 3;
+					distanceFromHit = 1;
 
-				direction = 1;
-				distanceFromHit = 1;
+				} else if (direction == 2) { // if south, then go north
 
-			} else if( direction == 3 ){ // if west, then go east
+					direction = 1;
+					distanceFromHit = 1;
 
-				direction = 1;
-				distanceFromHit = 1;
-			}
+				} else if (direction == 3) { // if west, then go east
+
+					direction = 1;
+					distanceFromHit = 1;
+				}
+
+			} else { missToExclude.add(new Coordinate(this.previousTarget.y, this.previousTarget.x)); }
 
 		} else if( code == 1 ){ // hit
 
@@ -436,6 +444,8 @@ public class AI {
 			fixedDirection = false;
 			distanceFromHit = 1;
 		}
+
+		toExclude.add(new Coordinate(this.previousTarget.y, this.previousTarget.x));
 
 		updateCountGrid( code );
 	}

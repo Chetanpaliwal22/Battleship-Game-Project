@@ -1,5 +1,9 @@
 package tools;
 
+
+/**
+ * This util class contains the basic method applied of the grid across the applicaiton
+ */
 public class GridHelper {
 
     /**

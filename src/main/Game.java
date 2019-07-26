@@ -6,6 +6,10 @@ import constants.Constants;
 import jaco.mp3.player.MP3Player;
 import view.MainWindow;
 
+/**
+ * This class is the starting point of the Game. 
+ */
+
 public class Game {
 
     public static MainWindow mainWindow;

@@ -1,5 +1,8 @@
 package tools;
 
+/**
+ * This util class contains the description of the cooridate x and y used across the project
+ */
 public class Coordinate {
 
 	public int x;

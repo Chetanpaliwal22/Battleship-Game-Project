@@ -177,6 +177,19 @@ public class AI {
 
 
 	/**
+	 * check if x and y coordinate are in bound
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public boolean inBound(int x, int y){
+
+		if( x < 0 || x > boardSize.x || y < 0 || y > boardSize.y ){ return false; }
+		else { return true; }
+	}
+
+
+	/**
 	 * get the next move from the AI player
 	 * 
 	 * @return the coordinate of next move
@@ -190,31 +203,29 @@ public class AI {
 			if( !fixedDirection  ) { // direction is not known
 
 				int maxCount = 0;
-
-				maxCount = countGrid[this.axis.y+1][this.axis.x];
-				bestNextTarget = new Coordinate(this.axis.x, this.axis.y + 1);
-				direction = 0; // north by default
-
+				bestNextTarget = this.previousTarget;
 
 				// find the best target around the last target //
 
-				if (countGrid[this.axis.y-1][this.axis.x] > maxCount) { // try south
+				if( inBound(this.axis.y+1, this.axis.x) ){
+					maxCount = countGrid[this.axis.y+1][this.axis.x];
+					bestNextTarget = new Coordinate(this.axis.x, this.axis.y + 1);
+					direction = 0; // north by default
+				}
+
+				if ( inBound(this.axis.y-1, this.axis.x) && countGrid[this.axis.y-1][this.axis.x] > maxCount) { // try south
 					maxCount = countGrid[this.axis.y-1][this.axis.x];
 					bestNextTarget = new Coordinate(this.axis.x, this.axis.y-1);
 					direction = 2;
 				}
 
-				System.out.println(countGrid[this.axis.y-1][this.axis.x]);
-
-				if (countGrid[this.axis.y][this.axis.x+1] > maxCount) { // try east
+				if ( inBound(this.axis.y, this.axis.x+1) && countGrid[this.axis.y][this.axis.x+1] > maxCount) { // try east
 					maxCount = countGrid[this.axis.y][this.axis.x+1];
 					bestNextTarget = new Coordinate(this.axis.x + 1, this.axis.y);
 					direction = 1;
 				}
 
-				System.out.println(countGrid[this.axis.y][this.axis.x+1]);
-
-				if (countGrid[this.axis.y][this.axis.x-1] > maxCount) { // try west
+				if ( inBound(this.axis.y, this.axis.x-1) && countGrid[this.axis.y][this.axis.x-1] > maxCount) { // try west
 					maxCount = countGrid[this.axis.y][this.axis.x-1];
 					bestNextTarget = new Coordinate(this.axis.x - 1, this.axis.y);
 					direction = 3;

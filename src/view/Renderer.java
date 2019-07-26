@@ -1,16 +1,13 @@
 package view;
 
-//import controller.Mouse;
-
 import constants.Constants;
 import controller.Mouse;
-
 import javax.swing.*;
 import java.awt.*;
 
 
 /**
- * Handle graphic rendering
+ * This class Handle graphic rendering
  */
 public class Renderer extends JComponent {
 

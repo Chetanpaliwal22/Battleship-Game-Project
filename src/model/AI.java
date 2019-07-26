@@ -2,6 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * This class contains the backend logic of AI
+ */
 import constants.Constants;
 import tools.Coordinate;
 import tools.GridHelper;

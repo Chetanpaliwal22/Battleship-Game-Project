@@ -6,10 +6,18 @@ import view.Renderer;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * This class contains all the information about the user action and maps it to the business application.
+ */
+
 public class Mouse implements MouseListener {
 
 	public static boolean leftClicked = false;
 
+	 /**
+     * This methods handles the mouse event nd render the UI
+     * @param mouseEvent mouse event action from the user 
+     */
 	public void mouseClicked(MouseEvent mouseEvent) {
 
 		// Right click
@@ -26,6 +34,10 @@ public class Mouse implements MouseListener {
 		}
 	}
 
+	/**
+     * This methods handles the mouse action left click
+     * @param mouseEvent mouse click from the user
+     */
 	public void mousePressed(MouseEvent mouseEvent) {
 
 		// Left click
@@ -39,6 +51,10 @@ public class Mouse implements MouseListener {
 		}
 	}
 
+	/**
+     * This methods handles the mouse action - released
+     * @param mouseEvent mouse event action from the user - mouse released 
+     */
 	@Override
 	public void mouseReleased(MouseEvent mouseEvent) {
 

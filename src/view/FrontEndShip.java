@@ -5,6 +5,10 @@ import constants.Constants;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * This class contains the description of the front end ship
+ */
 public class FrontEndShip {
 
     // The coordinates based on the window

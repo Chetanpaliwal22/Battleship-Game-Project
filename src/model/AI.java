@@ -50,9 +50,9 @@ public class AI {
 
 
     /**
-     * update the count grid given th new information (or just initialize)
-     * @param code
-     * @throws Exception
+     * update the count grid given the new information (or just initialize)
+     * @param code attack result 
+     * @throws Exception thorws exception if the ship length is bigger then the board size
      */
 	private void updateCountGrid(int code) throws Exception {
 
@@ -94,11 +94,11 @@ public class AI {
 
     /**
      * update a specific grount grid using the new information (or just initialize)
-     * @param countGridToUpdate
-     * @param shipSize
-     * @param code
-     * @return
-     * @throws Exception
+     * @param countGridToUpdate the grid to be updated
+     * @param shipSize ship size 
+     * @param code code attack result 
+     * @return updated grid
+     * @throws Exception thorws exception if the ship length is bigger then the board size
      */
 	public int[][] updateSpecificCountGrid(int[][] countGridToUpdate, int shipSize, int code) throws Exception {
 
@@ -236,6 +236,7 @@ public class AI {
 
 		int[][] copyCountGrid = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
 
+		System.out.println(countGrid);
 		for (int i = 0; i < Constants.BOARD_SIZE.x; i++) {
 			for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
 				copyCountGrid[i][j] = countGrid[i][j];

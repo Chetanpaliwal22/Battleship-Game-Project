@@ -16,7 +16,7 @@ import constants.Constants;
 
 
 /**
- * main window of the game
+ * This class is main window of the game
  */
 public class MainWindow extends JFrame implements ActionListener {
 

@@ -274,7 +274,19 @@ public class Renderer extends JComponent {
                     aiBoardHoleLocationX[j][i] = Constants.WINDOW_WIDTH / 2 + relativeX + 10;
                     aiBoardHoleLocationY[j][i] = relativeY + 10;
 
-                    // Prewarm the animation function
+                    // Prewarm the animation
+                    for (int index = 0; index < waterSplashX.length; index++) {
+                        if (waterSplashFrameIndex[index] < 30) {
+                            graphics2D.drawImage(waterSplashImage[waterSplashFrameIndex[index]], holeLocationX[waterSplashX[index]][waterSplashY[index]] - 50, holeLocationY[waterSplashX[index]][waterSplashY[index]] - 50, 100, 100, this);
+                            graphics2D.drawImage(waterSplashImage[waterSplashFrameIndex[index]], aiBoardHoleLocationX[waterSplashX[index]][waterSplashY[index]] - 50, aiBoardHoleLocationY[waterSplashX[index]][waterSplashY[index]] - 50, 100, 100, this);
+
+                            waterSplashFrameIndex[index] += 1;
+                        } else {
+                            waterSplashX[index] = -1;
+                            waterSplashY[index] = -1;
+                        }
+                    }
+
                     for (int index = 0; index < explosionX.length; index++) {
                         if (explosionFrameIndex[index] < 40) {
                             graphics2D.drawImage(explosionImage[explosionFrameIndex[index]], holeLocationX[explosionX[index]][explosionY[index]] - 50, holeLocationY[explosionX[index]][explosionY[index]] - 50, 100, 100, this);

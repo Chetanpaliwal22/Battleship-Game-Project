@@ -2,39 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3532a2a-cc23-46d1-9f56-31b65f5e9545" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/14.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/15.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/17.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/18.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/19.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/20.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/21.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/22.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/23.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/24.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/25.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/26.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/27.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/28.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/29.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/30.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/animation/waterSplash/9.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Renderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/images/HitHole.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/HitHole.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/images/Hole.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/Hole.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/images/MissedHole.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/MissedHole.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/resources/images/Target.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/Target.png" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -78,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/MainWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="354" column="33" lean-forward="true" selection-start-line="354" selection-start-column="33" selection-end-line="354" selection-end-column="33" />
+            <state relative-caret-position="987">
+              <caret line="268" column="70" lean-forward="true" selection-start-line="268" selection-start-column="70" selection-end-line="268" selection-end-column="70" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -93,7 +67,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Ship.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
+            <state relative-caret-position="1050">
               <caret line="72" selection-start-line="72" selection-end-line="72" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -102,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/Renderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+            <state relative-caret-position="155">
+              <caret line="278" column="61" selection-start-line="278" selection-start-column="61" selection-end-line="278" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -126,15 +100,6 @@
                 <element signature="e#1280#1281#0" expanded="true" />
                 <element signature="e#1313#1314#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/tools/GridHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
             </state>
           </provider>
         </entry>
@@ -213,8 +178,8 @@
         <option value="$PROJECT_DIR$/src/model/AI.java" />
         <option value="$PROJECT_DIR$/src/model/GameTimer.java" />
         <option value="$PROJECT_DIR$/src/main/Game.java" />
-        <option value="$PROJECT_DIR$/src/view/Renderer.java" />
         <option value="$PROJECT_DIR$/src/view/MainWindow.java" />
+        <option value="$PROJECT_DIR$/src/view/Renderer.java" />
       </list>
     </option>
   </component>
@@ -232,6 +197,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -269,7 +235,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -397,7 +362,7 @@
     <frame x="0" y="23" width="1440" height="812" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2453505" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24892704" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -502,6 +467,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Ship.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1050">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/GameTimer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
@@ -543,10 +518,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Ship.java">
+    <entry file="file://$PROJECT_DIR$/src/view/MainWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        <state relative-caret-position="987">
+          <caret line="268" column="70" lean-forward="true" selection-start-line="268" selection-start-column="70" selection-end-line="268" selection-end-column="70" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -555,18 +530,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/Renderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/MainWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="354" column="33" lean-forward="true" selection-start-line="354" selection-start-column="33" selection-end-line="354" selection-end-column="33" />
+        <state relative-caret-position="155">
+          <caret line="278" column="61" selection-start-line="278" selection-start-column="61" selection-end-line="278" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

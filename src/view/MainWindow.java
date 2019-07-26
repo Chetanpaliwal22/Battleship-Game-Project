@@ -350,8 +350,8 @@ public class MainWindow extends JFrame {
 
                             // for debugging
 //                            AIBoard.printStateGrid();
-                            //AIBoard.printShipGrid();
-//                            myAI.printCountGrid();
+//                            AIBoard.printShipGrid();
+                            myAI.printCountGrid();
                             //System.out.println("");
 
                             // Continue the timer

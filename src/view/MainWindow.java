@@ -6,11 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import controller.Mouse;
 import main.Game;
 import model.AI;
 import model.Board;
+import model.GameTimer;
 import tools.Coordinate;
 import constants.Constants;
 
@@ -18,19 +21,21 @@ import constants.Constants;
 /**
  * This class is main window of the game
  */
-public class MainWindow extends JFrame implements ActionListener {
+public class MainWindow extends JFrame {
 
-    AI myAI = new AI();
+    static AI myAI = new AI();
 
     public static Board humanBoard = new Board();
 
-    Board AIBoard = new Board();
+    public static Board AIBoard = new Board();
 
     private static Mouse mouse;
 
     public static boolean startedGame = false;
 
-    private JLabel gameStateComponent;
+    private static JLabel gameStateComponent;
+
+    public static JLabel timerLabel;
 
     // A list contains all the five ships
     public static List<FrontEndShip> shipList = new ArrayList<FrontEndShip>();
@@ -40,13 +45,13 @@ public class MainWindow extends JFrame implements ActionListener {
     // Button array
     static JButton[][] buttonArray = new JButton[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
 
-    private int numberOfAISunkShips = 0;
+    private static int numberOfAISunkShips = 0;
 
-    private boolean gameOver = false;
-    
-    private String gameMode = "normal"; 
+    private static boolean gameOver = false;
 
- //   private String gameMode = "advanced"; 
+    private static String gameMode = "normal";
+
+    //   private String gameMode = "advanced";
 
 
     /**
@@ -68,11 +73,19 @@ public class MainWindow extends JFrame implements ActionListener {
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         setBackground(Color.green);
+        setResizable(false);
+
+        // Initialize the timer class
+        java.util.Timer timer = new Timer();
+        TimerTask task = new GameTimer();
+
+        timer.schedule(task, 0, 1000);
 
         // create top panel
 
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new GridBagLayout());
+        topPanel.setPreferredSize(new Dimension(Constants.WINDOW_WIDTH, 70));
         topPanel.setMaximumSize(new Dimension(Constants.WINDOW_WIDTH, 70));
         topPanel.setBackground(Color.YELLOW);
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
@@ -86,8 +99,9 @@ public class MainWindow extends JFrame implements ActionListener {
         gameStateComponent.setHorizontalAlignment(JLabel.CENTER);
 
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
 
         topPanel.add(gameStateComponent, gridBagConstraints);
 
@@ -122,7 +136,9 @@ public class MainWindow extends JFrame implements ActionListener {
 
                         humanBoard.placeShip(CoordinateArray);
 
-                    } catch (Exception ex) { ex.printStackTrace(); }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 }
 
                 AIBoard.setGameHasStarted();
@@ -131,18 +147,31 @@ public class MainWindow extends JFrame implements ActionListener {
                 startedGame = true;
                 startGameButton.setVisible(false);
 
-            } else { gameStateComponent.setText("Positions of your ships are illegal"); }
+            } else {
+                gameStateComponent.setText("Positions of your ships are illegal");
+            }
         });
 
-
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
 
         topPanel.add(startGameButton, gridBagConstraints);
 
-        add(topPanel); // finally add top panel to window
+        // Create a timer text to the top panel
+        timerLabel = new JLabel();
+        timerLabel.setText("Time 00:00");
+        timerLabel.setSize(10, 5);
+        timerLabel.setHorizontalAlignment(JLabel.CENTER);
 
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+
+        topPanel.add(timerLabel, gridBagConstraints);
+
+        add(topPanel); // finally add top panel to window
 
         // create and add main game panel that contains the two game boards //
 
@@ -157,29 +186,31 @@ public class MainWindow extends JFrame implements ActionListener {
         mouse = new Mouse();
         addMouseListener(mouse);
 
-        // create board to display
-        JPanel boardPanel = new JPanel(new GridLayout(Constants.BOARD_SIZE.x, Constants.BOARD_SIZE.y, 3, 3));
-        //jPanel2.setMaximumSize(new Dimension(Constants.BOARD_PIXEL_SIZE.x / 2, Constants.BOARD_PIXEL_SIZE.x / 2 - 2 * Renderer.holeImageSize));
-        boardPanel.setMaximumSize(new Dimension(Constants.WINDOW_WIDTH / 2, Constants.WINDOW_WIDTH / 2 + 2 * Renderer.holeImageSize));
-
-        // Generate the grid to display
-
-        for (int i = Constants.BOARD_SIZE.x - 1; i >= 0; i--) {
-            for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
-
-                buttonArray[i][j] = new JButton(alphabet[j] + "" + (i + 1));
-                buttonArray[i][j].setName((j + 1) + "," + (i + 1));
-                buttonArray[i][j].addActionListener(this);
-
-                boardPanel.add(buttonArray[i][j]);
-            }
-        }
-
-        boardPanel.setBackground(Color.red);
-        gameBoardPanel.add(boardPanel);
+//        // create board to display
+//        JPanel boardPanel = new JPanel(new GridLayout(Constants.BOARD_SIZE.x, Constants.BOARD_SIZE.y, 3, 3));
+//        //jPanel2.setMaximumSize(new Dimension(Constants.BOARD_PIXEL_SIZE.x / 2, Constants.BOARD_PIXEL_SIZE.x / 2 - 2 * Renderer.holeImageSize));
+//        boardPanel.setMaximumSize(new Dimension(Constants.WINDOW_WIDTH / 2, Constants.WINDOW_WIDTH / 2 + 2 * Renderer.holeImageSize));
+//
+//        // Generate the grid to display
+//
+//        for (int i = Constants.BOARD_SIZE.x - 1; i >= 0; i--) {
+//            for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
+//
+//                buttonArray[i][j] = new JButton(alphabet[j] + "" + (i + 1));
+//                buttonArray[i][j].setName((j + 1) + "," + (i + 1));
+//                buttonArray[i][j].addActionListener(this);
+//
+//                boardPanel.add(buttonArray[i][j]);
+//            }
+//        }
+//
+//        boardPanel.setBackground(Color.red);
+//        gameBoardPanel.add(boardPanel);
 
         // finally, add all components to main window
         add(gameBoardPanel);
+
+        JOptionPane.showMessageDialog(Game.mainWindow, String.format("<html><div WIDTH=%d>%s</div></html>", Constants.WINDOW_WIDTH / 4, "Rules: Each time timer will count down from 10 seconds. If players plays a move withing these 10 seconds."));
 
         shipList.add(new FrontEndShip(2, 2, 6, 1));
         shipList.add(new FrontEndShip(3, 3, 2, 3));
@@ -188,116 +219,137 @@ public class MainWindow extends JFrame implements ActionListener {
         shipList.add(new FrontEndShip(5, 3, 4, 9));
     }
 
-    // // Button click method
-    public void actionPerformed(ActionEvent e) {
-
+    // Button click method
+    public static void buttonClick() {
         if (startedGame & !gameOver) {
+            if (Renderer.fireTargetX != -1 & Renderer.fireTargetY != -1) {
+                if (MainWindow.AIBoard.getBoardState()[Renderer.fireTargetY][Renderer.fireTargetX] == 0) {
+                    if (startedGame & !gameOver) {
+                        try {
+                            // Human player turn to play //
 
-            try {
+                            System.out.println("Human click on " + alphabet[Renderer.fireTargetX] + "" + (Renderer.fireTargetY + 1) + ", coordinate " + (Renderer.fireTargetX + 1) + ", " + (Renderer.fireTargetY + 1));
 
-                JButton temporaryButton = (JButton) e.getSource();
-                System.out.println("Human click on " + temporaryButton.getText() + ", coordinate " + temporaryButton.getName());
-                temporaryButton.setEnabled(false);
+                            Coordinate target = new Coordinate(Renderer.fireTargetX, Renderer.fireTargetY);
 
+                            int result = AIBoard.fireAtTarget(target);
 
-                // Human player turn to play //
+                            if (result == 0) {
 
-                Coordinate target = new Coordinate(
-                        (Integer.parseInt(temporaryButton.getName().split(",")[0]) - 1),
-                        (Integer.parseInt(temporaryButton.getName().split(",")[1]) - 1));
+                                Renderer.playWaterSplashAnimation(2, Renderer.fireTargetX, Renderer.fireTargetY);
+                                System.out.println("Human => miss\n");
 
-                int result = AIBoard.fireAtTarget(target);
+                            } else if (result == 1) {
 
-                if (result == 0) {
+                                Renderer.playExplosionAnimation(2, Renderer.fireTargetX, Renderer.fireTargetY);
+                                System.out.println("Human => hit !\n");
 
-                    temporaryButton.setText("Miss");
-                    System.out.println("Human => miss\n");
+                            } else if (result == 2) {
 
-                } else if (result == 1) {
+                                Renderer.playExplosionAnimation(2, Renderer.fireTargetX, Renderer.fireTargetY);
+                                System.out.println("Human => Sunk !!!\n");
 
-                    temporaryButton.setText("Hit");
-                    System.out.println("Human => hit !\n");
+                                numberOfAISunkShips += 1;
 
-                } else if (result == 2) {
+                                if (numberOfAISunkShips == 5) {
 
-                    temporaryButton.setText("Sunk");
-                    System.out.println("Human => Sunk !!!\n");
+                                    JOptionPane.showMessageDialog(Game.mainWindow, "Player wins !!!");
+                                    gameStateComponent.setText("Player wins !!!");
+                                    gameOver = true;
+                                }
+                            }
 
-                    numberOfAISunkShips += 1;
+                            if (gameOver) {
+                                gameStateComponent.setText("Player wins !!!");
+                            }
 
-                    if (numberOfAISunkShips == 5) {
+                            // for debugging
+                            humanBoard.printStateGrid();
+                            humanBoard.printShipGrid();
+                            System.out.println("");
 
-                        JOptionPane.showMessageDialog(this, "Player wins !!!");
-                        gameStateComponent.setText("Player wins !!!");
-                        gameOver = true;
+                            if (!gameOver) {
+
+                                // AI turn to play //
+
+                                // Pause the timer
+                                GameTimer.pause();
+
+                                if (gameMode.equalsIgnoreCase("normal")) {
+                                    target = myAI.getNextMove();
+                                }
+
+                                //else if(gameMode.equalsIgnoreCase("advanced")) { myAI.getFiveNextMove(); }
+
+                                System.out.println("AI click on " + alphabet[target.x] + (target.y + 1) + ", coordinate " + (target.x + 1) + "," + (target.y + 1));
+
+                                result = humanBoard.fireAtTarget(target);
+
+                                myAI.receiveResult(result);
+
+                                if (result == 0) {
+
+                                    Renderer.playWaterSplashAnimation(1, target.x, target.y);
+
+                                    gameStateComponent.setText("AI => Miss");
+                                    System.out.println("AI => miss\n");
+
+                                } else if (result == 1) {
+
+                                    humanBoard.checkSunk();
+
+                                    if (humanBoard.checkPlayerSunkShips()) {
+
+                                        JOptionPane.showMessageDialog(Game.mainWindow, "AI wins !!!");
+                                        gameOver = true;
+                                    }
+
+                                    Renderer.playExplosionAnimation(1, target.x, target.y);
+
+                                    gameStateComponent.setText("AI => Hit !");
+                                    System.out.println("AI => hit !\n");
+
+                                } else if (result == 2) {
+
+                                    humanBoard.checkSunk();
+
+                                    if (humanBoard.checkPlayerSunkShips()) {
+
+                                        JOptionPane.showMessageDialog(Game.mainWindow, "AI wins !!!");
+                                        gameOver = true;
+                                    }
+
+                                    Renderer.playExplosionAnimation(1, target.x, target.y);
+
+                                    gameStateComponent.setText("AI => Sunk !!!");
+                                    System.out.println("AI => Sunk !!!\n");
+                                }
+
+                                if (gameOver) {
+                                    gameStateComponent.setText("AI wins !!!");
+                                }
+
+                                // for debugging
+                                AIBoard.printStateGrid();
+                                AIBoard.printShipGrid();
+                                myAI.printCountGrid();
+                                System.out.println("");
+
+                                // Continue the timer
+                                GameTimer.start();
+
+                                System.out.println("///////////////////////////\n");
+                            }
+
+                        } catch (Exception exception) {
+                            exception.printStackTrace();
+                        }
                     }
                 }
-
-                if (gameOver) { gameStateComponent.setText("Player wins !!!"); }
-
-                // for debugging
-                humanBoard.printStateGrid();
-                humanBoard.printShipGrid();
-                System.out.println("");
-
-                if (!gameOver) {
-
-                    // AI turn to play //
-                	
-                	if(gameMode.equalsIgnoreCase("normal")) { target = myAI.getNextMove(); }
-
-                	//else if(gameMode.equalsIgnoreCase("advanced")) { myAI.getFiveNextMove(); }
-
-                    System.out.println("AI click on " + alphabet[target.x] + (target.y + 1) + ", coordinate " + (target.x + 1) + "," + (target.y + 1));
-
-                    result = humanBoard.fireAtTarget(target);
-
-                    myAI.receiveResult(result);
-
-                    if (result == 0) {
-
-                        gameStateComponent.setText("AI => Miss");
-                        System.out.println("AI => miss\n");
-
-                    } else if (result == 1) {
-
-                        humanBoard.checkSunk();
-
-                        if (humanBoard.checkPlayerSunkShips()) {
-
-                            JOptionPane.showMessageDialog(this, "AI wins !!!");
-                            gameOver = true;
-                        }
-
-                        gameStateComponent.setText("AI => Hit !");
-                        System.out.println("AI => hit !\n");
-
-                    } else if (result == 2) {
-
-                        humanBoard.checkSunk();
-
-                        if (humanBoard.checkPlayerSunkShips()) {
-
-                            JOptionPane.showMessageDialog(this, "AI wins !!!");
-                            gameOver = true;
-                        }
-
-                        gameStateComponent.setText("AI => Sunk !!!");
-                        System.out.println("AI => Sunk !!!\n");
-                    }
-
-                    if (gameOver) { gameStateComponent.setText("AI wins !!!"); }
-
-                    // for debugging
-                    AIBoard.printStateGrid();
-                    AIBoard.printShipGrid();
-                    myAI.printCountGrid();
-                    System.out.println("");
-
-                    System.out.println("///////////////////////////\n");
-                }
-
-            } catch (Exception exception) { exception.printStackTrace(); }
+            }
+        } else {
+            // Pause the timer
+            GameTimer.pause();
         }
     }
 

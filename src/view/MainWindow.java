@@ -271,18 +271,36 @@ public class MainWindow extends JFrame {
 
                                 if (numberOfAISunkShips == 5) {
 
-                                    JOptionPane.showMessageDialog(Game.mainWindow, "Player wins !!!");
+                                    // Pause the timer
+                                    GameTimer.pause();
+
+                                    playerWins = true;
+
+                                    timerLabel.setText("Final Score: " + score.calculateFinalScore());
+
+                                    ImageIcon icon = null;
+
+                                    int numberOfStars = score.calculateStars();
+
+                                    if (numberOfStars == 1)
+                                        icon = new ImageIcon(Constants.ONE_STAR);
+                                    else if (numberOfStars == 2)
+                                        icon = new ImageIcon(Constants.TWO_STARS);
+                                    else if (numberOfStars == 3)
+                                        icon = new ImageIcon(Constants.THREE_STARS);
+                                    else if (numberOfStars == 4)
+                                        icon = new ImageIcon(Constants.FOUR_STARS);
+                                    else if (numberOfStars == 5)
+                                        icon = new ImageIcon(Constants.FIVE_STARS);
+
+                                    JOptionPane.showMessageDialog(Game.mainWindow, "Congratulations!! You were able to defeat AI.\nYour score is " + score.returnFinalScore() + " points.\n", "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
+
                                     gameStateComponent.setText("Player wins !!!");
                                     gameOver = true;
                                 }
                             }
 
                             if (gameOver) {
-                                // Pause the timer
-                                GameTimer.pause();
-
-                                timerLabel.setText("Final Score: " + score.calculateFinalScore());
-
                                 gameStateComponent.setText("Player wins !!!");
                             }
 
@@ -323,7 +341,27 @@ public class MainWindow extends JFrame {
 
                                     if (humanBoard.checkPlayerSunkShips()) {
 
-                                        JOptionPane.showMessageDialog(Game.mainWindow, "AI wins !!!");
+                                        // Pause the timer
+                                        GameTimer.pause();
+
+                                        timerLabel.setText("Final Score: " + score.calculateFinalScore());
+
+                                        ImageIcon icon = null;
+
+                                        int numberOfStars = score.calculateStars();
+
+                                        if (numberOfStars == 1)
+                                            icon = new ImageIcon(Constants.ONE_STAR);
+                                        else if (numberOfStars == 2)
+                                            icon = new ImageIcon(Constants.TWO_STARS);
+                                        else if (numberOfStars == 3)
+                                            icon = new ImageIcon(Constants.THREE_STARS);
+                                        else if (numberOfStars == 4)
+                                            icon = new ImageIcon(Constants.FOUR_STARS);
+                                        else if (numberOfStars == 5)
+                                            icon = new ImageIcon(Constants.FIVE_STARS);
+
+                                        JOptionPane.showMessageDialog(Game.mainWindow, "Boohoo !! AI Won !! Keep Trying.\nYour score is " + score.returnFinalScore() + " points.\n", "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
                                         gameOver = true;
                                     }
 
@@ -340,7 +378,27 @@ public class MainWindow extends JFrame {
 
                                     if (humanBoard.checkPlayerSunkShips()) {
 
-                                        JOptionPane.showMessageDialog(Game.mainWindow, "AI wins !!!");
+                                        // Pause the timer
+                                        GameTimer.pause();
+
+                                        timerLabel.setText("Final Score: " + score.calculateFinalScore());
+
+                                        ImageIcon icon = null;
+
+                                        int numberOfStars = score.calculateStars();
+
+                                        if (numberOfStars == 1)
+                                            icon = new ImageIcon(Constants.ONE_STAR);
+                                        else if (numberOfStars == 2)
+                                            icon = new ImageIcon(Constants.TWO_STARS);
+                                        else if (numberOfStars == 3)
+                                            icon = new ImageIcon(Constants.THREE_STARS);
+                                        else if (numberOfStars == 4)
+                                            icon = new ImageIcon(Constants.FOUR_STARS);
+                                        else if (numberOfStars == 5)
+                                            icon = new ImageIcon(Constants.FIVE_STARS);
+
+                                        JOptionPane.showMessageDialog(Game.mainWindow, "Boohoo !! AI Won !! Keep Trying.\nYou scored " + score.returnFinalScore() + " points.\n", "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
                                         gameOver = true;
                                     }
 
@@ -349,11 +407,6 @@ public class MainWindow extends JFrame {
                                 }
 
                                 if (gameOver) {
-                                    // Pause the timer
-                                    GameTimer.pause();
-
-                                    timerLabel.setText("Final Score: " + score.calculateFinalScore());
-
                                     gameStateComponent.setText("AI wins !!!");
                                 }
 

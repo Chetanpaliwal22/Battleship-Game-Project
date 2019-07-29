@@ -130,7 +130,7 @@ public class Renderer extends JComponent {
                                 + (nearestY - MainWindow.shipList.get(i).occupiedGridY.get(gridIndex))
                                 * (nearestY - MainWindow.shipList.get(i).occupiedGridY.get(gridIndex));
 
-                        if (distance < 1.2) {
+                        if (distance < 1.5) {
                             targetShipId = i;
                             break;
                         }

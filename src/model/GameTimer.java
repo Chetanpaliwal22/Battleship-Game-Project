@@ -1,6 +1,5 @@
 package model;
 
-import sun.applet.Main;
 import view.MainWindow;
 
 import java.util.TimerTask;

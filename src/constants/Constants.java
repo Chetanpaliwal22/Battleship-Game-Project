@@ -32,6 +32,12 @@ public class Constants {
 
     public static final String ICON = "src/view/resources/images/Icon.png";
 
+    public static final String FIVE_STARS = "src/view/resources/images/FiveStars.png";
+    public static final String FOUR_STARS = "src/view/resources/images/FourStars.png";
+    public static final String THREE_STARS = "src/view/resources/images/ThreeStars.png";
+    public static final String TWO_STARS = "src/view/resources/images/TwoStars.png";
+    public static final String ONE_STAR = "src/view/resources/images/OneStar.png";
+
     public static final String MUSIC_FILE_NAME = "src/view/resources/audio/BattleshipMusic.mp3";
     public static final String EXPLOSION_SOUND = "src/view/resources/audio/ExplosionSound.mp3";
     public static final String WATER_SPLASH_SOUND = "src/view/resources/audio/WaterSplashSound.mp3";

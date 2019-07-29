@@ -1,28 +1,39 @@
 package model;
 
+import sun.applet.Main;
 import view.MainWindow;
 
 import java.util.TimerTask;
 
 public class GameTimer extends TimerTask {
+    private static Score score = new Score();
+
     private static boolean startTimer = false;
 
-    private static int totalMinutes = 0, totalSeconds = 0;
+    private static int totalMinutes = 0, totalSeconds = 10;
 
     private static String timeString = "";
 
     public void run() {
-        if (startTimer) {
-            if (totalSeconds >= 60) {
-                totalSeconds = 0;
-                totalMinutes += 1;
-            } else {
-                totalSeconds += 1;
+        if (!MainWindow.gameOver) {
+            if (startTimer) {
+//            if (totalSeconds >= 60) {
+//                totalSeconds = 0;
+//                totalMinutes += 1;
+//            } else {
+//                totalSeconds += 1;
+//            }
+
+                if (totalSeconds > 0)
+                    totalSeconds -= 1;
+                else {
+                    score.numberOfMissedTime += 1;
+                    pause();
+                }
+
+                formatTime();
+                MainWindow.timerLabel.setText("Time " + timeString);
             }
-
-            formatTime();
-
-            MainWindow.timerLabel.setText("Time " + timeString);
         }
     }
 
@@ -30,14 +41,14 @@ public class GameTimer extends TimerTask {
     private static void formatTime() {
         if (totalMinutes < 10) {
             if (totalSeconds < 10)
-                timeString = "0" + totalMinutes + ":0" + totalSeconds;
+                timeString = "0" + totalMinutes + ":0" + totalSeconds + " Missed Time: " + score.numberOfMissedTime;
             else
-                timeString = "0" + totalMinutes + ":" + totalSeconds;
+                timeString = "0" + totalMinutes + ":" + totalSeconds + " Missed Time: " + score.numberOfMissedTime;
         } else {
             if (totalSeconds < 10)
-                timeString = totalMinutes + ":0" + totalSeconds;
+                timeString = totalMinutes + ":0" + totalSeconds + " Missed Time: " + score.numberOfMissedTime;
             else
-                timeString =totalMinutes + ":" + totalSeconds;
+                timeString = totalMinutes + ":" + totalSeconds + " Missed Time: " + score.numberOfMissedTime;
         }
     }
 
@@ -59,7 +70,7 @@ public class GameTimer extends TimerTask {
     }
 
     public static void reset() {
-        totalSeconds = 0;
+        totalSeconds = 10;
         totalMinutes = 0;
     }
 }

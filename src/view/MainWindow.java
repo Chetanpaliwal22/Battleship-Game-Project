@@ -14,6 +14,7 @@ import main.Game;
 import model.AI;
 import model.Board;
 import model.GameTimer;
+import model.Score;
 import tools.Coordinate;
 import constants.Constants;
 
@@ -31,6 +32,8 @@ public class MainWindow extends JFrame {
 
     private static Mouse mouse;
 
+    private static Score score = new Score();
+
     public static boolean startedGame = false;
 
     private static JLabel gameStateComponent;
@@ -47,7 +50,9 @@ public class MainWindow extends JFrame {
 
     private static int numberOfAISunkShips = 0;
 
-    private static boolean gameOver = false;
+    public static boolean gameOver = false;
+
+    public static boolean playerWins = false;
 
     private static String gameMode = "normal";
 
@@ -147,6 +152,12 @@ public class MainWindow extends JFrame {
                 startedGame = true;
                 startGameButton.setVisible(false);
 
+                // Reset the timer
+                GameTimer.reset();
+
+                // Start the timer
+                GameTimer.start();
+
             } else {
                 gameStateComponent.setText("Positions of your ships are illegal");
             }
@@ -210,7 +221,8 @@ public class MainWindow extends JFrame {
         // finally, add all components to main window
         add(gameBoardPanel);
 
-        JOptionPane.showMessageDialog(Game.mainWindow, String.format("<html><div WIDTH=%d>%s</div></html>", Constants.WINDOW_WIDTH / 4, "Rules: Each time timer will count down from 10 seconds. If players plays a move withing these 10 seconds."));
+        ImageIcon icon = new ImageIcon(Constants.ICON);
+        JOptionPane.showMessageDialog(Game.mainWindow, "Welcome to the advanced version of Battleship Game.\n\n Rule:\n\n1. Each time you will get 10 seconds to make a move.\n2. If you take more than 10 seconds, you will lose 5 points.\n\nScore:\n\nWinning : 10 Points\n\n5 Star : Score 100.\n4 Star : 80 <= Score <= 90\n3 Star : 70 <= Score < 80\n2 Star : 60 <= Score < 70\n1 Star : 30 <= Score < 60\n0 Star : Score < 30\n\nPress Ok and Enjoy the Game.", "Rule", JOptionPane.INFORMATION_MESSAGE, icon);
 
         shipList.add(new FrontEndShip(2, 2, 6, 1));
         shipList.add(new FrontEndShip(3, 3, 2, 3));
@@ -227,6 +239,12 @@ public class MainWindow extends JFrame {
                     if (startedGame & !gameOver) {
                         try {
                             // Human player turn to play //
+
+                            // Reset the timer
+                            GameTimer.reset();
+
+                            // Start the timer
+                            GameTimer.start();
 
                             System.out.println("Human click on " + alphabet[Renderer.fireTargetX] + "" + (Renderer.fireTargetY + 1) + ", coordinate " + (Renderer.fireTargetX + 1) + ", " + (Renderer.fireTargetY + 1));
 
@@ -260,6 +278,11 @@ public class MainWindow extends JFrame {
                             }
 
                             if (gameOver) {
+                                // Pause the timer
+                                GameTimer.pause();
+
+                                timerLabel.setText("Final Score: " + score.calculateFinalScore());
+
                                 gameStateComponent.setText("Player wins !!!");
                             }
 
@@ -311,6 +334,8 @@ public class MainWindow extends JFrame {
 
                                 } else if (result == 2) {
 
+                                    Renderer.playExplosionAnimation(1, target.x, target.y);
+
                                     humanBoard.checkSunk();
 
                                     if (humanBoard.checkPlayerSunkShips()) {
@@ -319,13 +344,16 @@ public class MainWindow extends JFrame {
                                         gameOver = true;
                                     }
 
-                                    Renderer.playExplosionAnimation(1, target.x, target.y);
-
                                     gameStateComponent.setText("AI => Sunk !!!");
                                     System.out.println("AI => Sunk !!!\n");
                                 }
 
                                 if (gameOver) {
+                                    // Pause the timer
+                                    GameTimer.pause();
+
+                                    timerLabel.setText("Final Score: " + score.calculateFinalScore());
+
                                     gameStateComponent.setText("AI wins !!!");
                                 }
 
@@ -347,9 +375,6 @@ public class MainWindow extends JFrame {
                     }
                 }
             }
-        } else {
-            // Pause the timer
-            GameTimer.pause();
         }
     }
 

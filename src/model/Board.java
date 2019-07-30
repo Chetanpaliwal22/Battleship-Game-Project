@@ -68,6 +68,7 @@ public class Board {
 
     /**
      * Allow human or AI to place a new ship on the board
+     *
      * @param newShipCoordinate - New Ship Coordinate
      * @throws Exception - Throws Error if the ships are moved after the game has started.
      */
@@ -93,13 +94,15 @@ public class Board {
     /**
      * process a fire on the board and respond accordingly
      *
-        * @param target accept target as prameter
+     * @param target accept target as prameter
      * @return the  code for result
      * @throws Exception throws exception
      */
     public int fireAtTarget(Coordinate target) throws Exception {
 
-        if (!gameHasStarted) { throw new Exception("Ships should be placed before playing."); }
+        if (!gameHasStarted) {
+            throw new Exception("Ships should be placed before playing.");
+        }
 
         if (waterGrid[target.y][target.x] == null) { // That's a miss
 
@@ -123,18 +126,29 @@ public class Board {
             }
 
             // invalid coordinate
-        } else { throw new Exception("Invalid coordinate provided as target."); }
+        } else {
+            throw new Exception("Invalid coordinate provided as target.");
+        }
 
     }
 
+    public ArrayList<Ship> getShips() {
+        return ships;
+    }
 
     /**
      * return the state of the board as a 2 dimensional array of integer
      * WIP
-      * @return the board state
+     *
+     * @return the board state
      */
-    public int[][] getBoardState() { return waterGridState; }
+    public int[][] getBoardState() {
+        return waterGridState;
+    }
 
+    public void setBoardState(int[][] boardState) {
+        waterGridState = boardState;
+    }
 
     /**
      * print the state grid in the console
@@ -165,7 +179,9 @@ public class Board {
 
                     System.out.print(1);
 
-                } else { System.out.print(0); }
+                } else {
+                    System.out.print(0);
+                }
 
             }
             System.out.println();
@@ -192,7 +208,9 @@ public class Board {
                     }
                 }
 
-                if (hitCount == MainWindow.shipList.get(i).size) { MainWindow.shipList.get(i).sunk = true; }
+                if (hitCount == MainWindow.shipList.get(i).size) {
+                    MainWindow.shipList.get(i).sunk = true;
+                }
             }
         }
     }
@@ -200,6 +218,7 @@ public class Board {
 
     /**
      * check number of sunk ship
+     *
      * @return the board state
      */
     public boolean checkPlayerSunkShips() {
@@ -208,13 +227,17 @@ public class Board {
 
         for (int i = 0; i < MainWindow.shipList.size(); i++) {
 
-            if (MainWindow.shipList.get(i).sunk){ numberOfSunkShips += 1; }
+            if (MainWindow.shipList.get(i).sunk) {
+                numberOfSunkShips += 1;
+            }
         }
 
         if (numberOfSunkShips == 5) {
 
             return true;
 
-        } else{ return false; }
+        } else {
+            return false;
+        }
     }
 }

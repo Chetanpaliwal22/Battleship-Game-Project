@@ -11,10 +11,7 @@ import java.util.TimerTask;
 
 import controller.Mouse;
 import main.Game;
-import model.AI;
-import model.Board;
-import model.GameTimer;
-import model.Score;
+import model.*;
 import tools.Coordinate;
 import constants.Constants;
 
@@ -34,6 +31,8 @@ public class MainWindow extends JFrame {
 
     private static Score score = new Score();
 
+    private static DataManager dataManager = new DataManager();
+
     public static boolean startedGame = false;
 
     private static JLabel gameStateComponent;
@@ -45,10 +44,7 @@ public class MainWindow extends JFrame {
 
     static char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'};
 
-    // Button array
-    static JButton[][] buttonArray = new JButton[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
-
-    private static int numberOfAISunkShips = 0;
+    public static int numberOfAISunkShips = 0;
 
     public static boolean gameOver = false;
 
@@ -115,6 +111,9 @@ public class MainWindow extends JFrame {
 
         JButton startGameButton = new JButton("Start game");
 
+        startGameButton.setPreferredSize(new Dimension(50, 20));
+        startGameButton.setMaximumSize(new Dimension(50, 20));
+
         startGameButton.addActionListener((ActionEvent e) -> {
 
             boolean positionsAreCorrect = true;
@@ -152,9 +151,6 @@ public class MainWindow extends JFrame {
                 startedGame = true;
                 startGameButton.setVisible(false);
 
-                // Reset the timer
-                GameTimer.reset();
-
                 // Start the timer
                 GameTimer.start();
 
@@ -182,6 +178,98 @@ public class MainWindow extends JFrame {
 
         topPanel.add(timerLabel, gridBagConstraints);
 
+
+        // create and add save button to top panel
+
+        JButton saveButton = new JButton("Save");
+
+        saveButton.setPreferredSize(new Dimension(50, 20));
+        saveButton.setMaximumSize(new Dimension(50, 20));
+
+        saveButton.addActionListener((ActionEvent e) -> {
+            dataManager.save();
+        });
+
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+
+        topPanel.add(saveButton, gridBagConstraints);
+
+
+        // create and add load button to top panel
+
+        JButton loadButton = new JButton("Load");
+
+        loadButton.setPreferredSize(new Dimension(50, 20));
+        loadButton.setMaximumSize(new Dimension(50, 20));
+
+        loadButton.addActionListener((ActionEvent e) -> {
+            myAI = new AI();
+
+            humanBoard = new Board();
+
+            AIBoard = new Board();
+
+            // load the data from xml file
+            dataManager.load();
+
+            AIBoard.setGameHasStarted();
+            humanBoard.setGameHasStarted();
+            gameStateComponent.setText("Game has started");
+            startedGame = true;
+            startGameButton.setVisible(false);
+
+
+//            int[][] targetBoardState = humanBoard.getBoardState();
+//
+//            Coordinate target;
+//
+//            System.out.println(targetBoardState.length + ", " + targetBoardState[0].length + "   ???????");
+//            for (int i = 0; i < targetBoardState.length; i++) {
+//                for (int j = 0; j < targetBoardState[0].length; j++) {
+//                    System.out.println(j + "   ???????");
+//
+//                    if (targetBoardState[i][j] != 0) {
+//                        target = new Coordinate(j, i);
+//
+//                        try {
+//                            AIBoard.fireAtTarget(target);
+//                        } catch (Exception ex) {
+//                            ex.printStackTrace();
+//                        }
+//                    }
+//                }
+//            }
+//
+//
+//            targetBoardState = AIBoard.getBoardState();
+//
+//            for (int i = 0; i < targetBoardState.length; i++) {
+//                for (int j = 0; j < targetBoardState[0].length; j++) {
+//                    if (targetBoardState[i][j] != 0) {
+//                        target = new Coordinate(j, i);
+//
+//                        try {
+//                            int result = humanBoard.fireAtTarget(target);
+//                            System.out.println(result + "   ------------");
+//                            myAI.receiveResult(result);
+//                        } catch (Exception ex) {
+//                            ex.printStackTrace();
+//                        }
+//                    }
+//                }
+//            }
+
+            // Start the timer
+            GameTimer.start();
+        });
+
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+
+        topPanel.add(loadButton, gridBagConstraints);
+
         add(topPanel); // finally add top panel to window
 
         // create and add main game panel that contains the two game boards //
@@ -196,27 +284,6 @@ public class MainWindow extends JFrame {
         // Register the mouse event
         mouse = new Mouse();
         addMouseListener(mouse);
-
-//        // create board to display
-//        JPanel boardPanel = new JPanel(new GridLayout(Constants.BOARD_SIZE.x, Constants.BOARD_SIZE.y, 3, 3));
-//        //jPanel2.setMaximumSize(new Dimension(Constants.BOARD_PIXEL_SIZE.x / 2, Constants.BOARD_PIXEL_SIZE.x / 2 - 2 * Renderer.holeImageSize));
-//        boardPanel.setMaximumSize(new Dimension(Constants.WINDOW_WIDTH / 2, Constants.WINDOW_WIDTH / 2 + 2 * Renderer.holeImageSize));
-//
-//        // Generate the grid to display
-//
-//        for (int i = Constants.BOARD_SIZE.x - 1; i >= 0; i--) {
-//            for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
-//
-//                buttonArray[i][j] = new JButton(alphabet[j] + "" + (i + 1));
-//                buttonArray[i][j].setName((j + 1) + "," + (i + 1));
-//                buttonArray[i][j].addActionListener(this);
-//
-//                boardPanel.add(buttonArray[i][j]);
-//            }
-//        }
-//
-//        boardPanel.setBackground(Color.red);
-//        gameBoardPanel.add(boardPanel);
 
         // finally, add all components to main window
         add(gameBoardPanel);

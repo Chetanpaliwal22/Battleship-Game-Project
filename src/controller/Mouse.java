@@ -1,5 +1,6 @@
 package controller;
 
+import model.DataManager;
 import view.MainWindow;
 import view.Renderer;
 
@@ -23,7 +24,6 @@ public class Mouse implements MouseListener {
 
         // Right click
         if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
-
             if (leftClicked) {
                 if (Renderer.targetShipId != -1) {
                     if (MainWindow.shipList.get(Renderer.targetShipId).direction < 4)

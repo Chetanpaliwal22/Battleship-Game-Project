@@ -234,7 +234,7 @@ public class DataManager {
             numberOfAISunkShipsElement.appendChild(document.createTextNode(MainWindow.numberOfAISunkShips + ""));
             root.appendChild(numberOfAISunkShipsElement);
 
-            // front end ships element
+            // frontEndShips element
             Element frontEndShipsElement = document.createElement("frontEndShips");
             root.appendChild(frontEndShipsElement);
 

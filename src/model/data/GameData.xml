@@ -2,7 +2,7 @@
 <data>
     <userName>???</userName>
     <score>100</score>
-    <numberOfAISunkShips>0</numberOfAISunkShips>
+    <numberOfAISunkShips>1</numberOfAISunkShips>
     <frontEndShips>
         <ship>
             <coordinate>
@@ -195,19 +195,7 @@
                 <positionX>0</positionX>
                 <positionY>6</positionY>
             </position>
-            <hitPositionSize>3</hitPositionSize>
-            <hitPosition>
-                <hitPositionX>1</hitPositionX>
-                <hitPositionY>6</hitPositionY>
-            </hitPosition>
-            <hitPosition>
-                <hitPositionX>0</hitPositionX>
-                <hitPositionY>6</hitPositionY>
-            </hitPosition>
-            <hitPosition>
-                <hitPositionX>2</hitPositionX>
-                <hitPositionY>6</hitPositionY>
-            </hitPosition>
+            <hitPositionSize>0</hitPositionSize>
             <size>4</size>
             <isAlive>true</isAlive>
         </ship>
@@ -247,11 +235,7 @@
                 <positionX>4</positionX>
                 <positionY>2</positionY>
             </position>
-            <hitPositionSize>1</hitPositionSize>
-            <hitPosition>
-                <hitPositionX>4</hitPositionX>
-                <hitPositionY>1</hitPositionY>
-            </hitPosition>
+            <hitPositionSize>0</hitPositionSize>
             <size>2</size>
             <isAlive>true</isAlive>
         </ship>
@@ -268,11 +252,7 @@
                 <positionX>5</positionX>
                 <positionY>7</positionY>
             </position>
-            <hitPositionSize>1</hitPositionSize>
-            <hitPosition>
-                <hitPositionX>5</hitPositionX>
-                <hitPositionY>7</hitPositionY>
-            </hitPosition>
+            <hitPositionSize>0</hitPositionSize>
             <size>3</size>
             <isAlive>true</isAlive>
         </ship>
@@ -289,11 +269,7 @@
                 <positionX>0</positionX>
                 <positionY>3</positionY>
             </position>
-            <hitPositionSize>1</hitPositionSize>
-            <hitPosition>
-                <hitPositionX>0</hitPositionX>
-                <hitPositionY>2</hitPositionY>
-            </hitPosition>
+            <hitPositionSize>0</hitPositionSize>
             <size>3</size>
             <isAlive>true</isAlive>
         </ship>
@@ -314,11 +290,7 @@
                 <positionX>8</positionX>
                 <positionY>3</positionY>
             </position>
-            <hitPositionSize>1</hitPositionSize>
-            <hitPosition>
-                <hitPositionX>7</hitPositionX>
-                <hitPositionY>3</hitPositionY>
-            </hitPosition>
+            <hitPositionSize>0</hitPositionSize>
             <size>4</size>
             <isAlive>true</isAlive>
         </ship>
@@ -343,17 +315,29 @@
                 <positionX>2</positionX>
                 <positionY>4</positionY>
             </position>
-            <hitPositionSize>2</hitPositionSize>
+            <hitPositionSize>5</hitPositionSize>
             <hitPosition>
                 <hitPositionX>2</hitPositionX>
                 <hitPositionY>0</hitPositionY>
             </hitPosition>
             <hitPosition>
                 <hitPositionX>2</hitPositionX>
+                <hitPositionY>1</hitPositionY>
+            </hitPosition>
+            <hitPosition>
+                <hitPositionX>2</hitPositionX>
+                <hitPositionY>2</hitPositionY>
+            </hitPosition>
+            <hitPosition>
+                <hitPositionX>2</hitPositionX>
+                <hitPositionY>3</hitPositionY>
+            </hitPosition>
+            <hitPosition>
+                <hitPositionX>2</hitPositionX>
                 <hitPositionY>4</hitPositionY>
             </hitPosition>
             <size>5</size>
-            <isAlive>true</isAlive>
+            <isAlive>false</isAlive>
         </ship>
     </AIShips>
     <humanBoard>
@@ -431,15 +415,15 @@
             <coordinate>
                 <x>1</x>
                 <y>5</y>
-                <state>1</state>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>6</y>
                 <state>0</state>
             </coordinate>
             <coordinate>
                 <x>1</x>
+                <y>6</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>1</x>
                 <y>7</y>
                 <state>0</state>
             </coordinate>
@@ -526,15 +510,15 @@
             <coordinate>
                 <x>3</x>
                 <y>6</y>
-                <state>1</state>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>7</y>
                 <state>0</state>
             </coordinate>
             <coordinate>
                 <x>3</x>
+                <y>7</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
                 <y>8</y>
                 <state>0</state>
             </coordinate>
@@ -621,7 +605,7 @@
             <coordinate>
                 <x>5</x>
                 <y>7</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>5</x>
@@ -631,17 +615,17 @@
             <coordinate>
                 <x>6</x>
                 <y>0</y>
-                <state>2</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>6</x>
                 <y>1</y>
-                <state>2</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>6</x>
                 <y>2</y>
-                <state>2</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -686,7 +670,7 @@
             <coordinate>
                 <x>7</x>
                 <y>2</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>7</x>
@@ -706,7 +690,7 @@
             <coordinate>
                 <x>7</x>
                 <y>6</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>7</x>
@@ -741,7 +725,7 @@
             <coordinate>
                 <x>8</x>
                 <y>4</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>8</x>
@@ -915,20 +899,20 @@
             <coordinate>
                 <x>1</x>
                 <y>2</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>3</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>4</y>
                 <state>2</state>
             </coordinate>
             <coordinate>
                 <x>1</x>
+                <y>3</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>1</x>
+                <y>4</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>1</x>
                 <y>5</y>
                 <state>0</state>
             </coordinate>
@@ -940,7 +924,7 @@
             <coordinate>
                 <x>1</x>
                 <y>7</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>1</x>
@@ -950,20 +934,20 @@
             <coordinate>
                 <x>2</x>
                 <y>0</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>2</x>
+                <y>1</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>2</x>
+                <y>2</y>
                 <state>2</state>
             </coordinate>
             <coordinate>
                 <x>2</x>
-                <y>1</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>2</x>
-                <y>2</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>2</x>
                 <y>3</y>
                 <state>0</state>
             </coordinate>
@@ -1005,35 +989,35 @@
             <coordinate>
                 <x>3</x>
                 <y>2</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>3</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>4</y>
-                <state>1</state>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>5</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>6</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>7</y>
                 <state>2</state>
             </coordinate>
             <coordinate>
                 <x>3</x>
+                <y>3</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>4</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>5</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>6</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>7</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
                 <y>8</y>
                 <state>0</state>
             </coordinate>
@@ -1045,7 +1029,7 @@
             <coordinate>
                 <x>4</x>
                 <y>1</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>4</x>
@@ -1055,7 +1039,7 @@
             <coordinate>
                 <x>4</x>
                 <y>3</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>4</x>
@@ -1080,7 +1064,7 @@
             <coordinate>
                 <x>4</x>
                 <y>8</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>5</x>
@@ -1095,12 +1079,12 @@
             <coordinate>
                 <x>5</x>
                 <y>2</y>
-                <state>0</state>
+                <state>1</state>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>3</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>5</x>
@@ -1110,7 +1094,7 @@
             <coordinate>
                 <x>5</x>
                 <y>5</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>5</x>
@@ -1135,17 +1119,17 @@
             <coordinate>
                 <x>6</x>
                 <y>1</y>
-                <state>1</state>
-            </coordinate>
-            <coordinate>
-                <x>6</x>
-                <y>2</y>
                 <state>0</state>
             </coordinate>
             <coordinate>
                 <x>6</x>
-                <y>3</y>
+                <y>2</y>
                 <state>1</state>
+            </coordinate>
+            <coordinate>
+                <x>6</x>
+                <y>3</y>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -1185,7 +1169,7 @@
             <coordinate>
                 <x>7</x>
                 <y>2</y>
-                <state>0</state>
+                <state>1</state>
             </coordinate>
             <coordinate>
                 <x>7</x>
@@ -1200,7 +1184,7 @@
             <coordinate>
                 <x>7</x>
                 <y>5</y>
-                <state>2</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>7</x>
@@ -1235,7 +1219,7 @@
             <coordinate>
                 <x>8</x>
                 <y>3</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>8</x>
@@ -1270,7 +1254,7 @@
             <coordinate>
                 <x>9</x>
                 <y>1</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -1355,17 +1339,16 @@
         </waterGridState>
     </AIBoard>
     <AI>
-        <targetMode>true1</targetMode>
-        <direction />
-        <distanceFromHit>2</distanceFromHit>
+        <targetMode>false</targetMode>
+        <direction>-1</direction>
+        <distanceFromHit>1</distanceFromHit>
         <seekAgain>false</seekAgain>
         <axis>
-            tools.Coordinate@42a5f03f
-            <x>16</x>
-            <y />
+            <x>2</x>
+            <y>3</y>
         </axis>
         <previousTarget>
-            <x>26</x>
+            <x>33</x>
             <y />
         </previousTarget>
         <countGrid>
@@ -1397,109 +1380,109 @@
             <coordinate>
                 <x>0</x>
                 <y>5</y>
-                <value>16</value>
-            </coordinate>
-            <coordinate>
-                <x>0</x>
-                <y>6</y>
-                <value>17</value>
-            </coordinate>
-            <coordinate>
-                <x>0</x>
-                <y>7</y>
-                <value>15</value>
-            </coordinate>
-            <coordinate>
-                <x>0</x>
-                <y>8</y>
-                <value>10</value>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>0</y>
-                <value>15</value>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>1</y>
-                <value>19</value>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>2</y>
-                <value>12</value>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>3</y>
-                <value>18</value>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>4</y>
-                <value>12</value>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>5</y>
-                <value>0</value>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>6</y>
-                <value>7</value>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>7</y>
-                <value>13</value>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>8</y>
-                <value>13</value>
-            </coordinate>
-            <coordinate>
-                <x>2</x>
-                <y>0</y>
-                <value>15</value>
-            </coordinate>
-            <coordinate>
-                <x>2</x>
-                <y>1</y>
-                <value>15</value>
-            </coordinate>
-            <coordinate>
-                <x>2</x>
-                <y>2</y>
-                <value>0</value>
-            </coordinate>
-            <coordinate>
-                <x>2</x>
-                <y>3</y>
-                <value>16</value>
-            </coordinate>
-            <coordinate>
-                <x>2</x>
-                <y>4</y>
-                <value>17</value>
-            </coordinate>
-            <coordinate>
-                <x>2</x>
-                <y>5</y>
-                <value>17</value>
-            </coordinate>
-            <coordinate>
-                <x>2</x>
-                <y>6</y>
-                <value>16</value>
-            </coordinate>
-            <coordinate>
-                <x>2</x>
-                <y>7</y>
                 <value>21</value>
             </coordinate>
             <coordinate>
+                <x>0</x>
+                <y>6</y>
+                <value>19</value>
+            </coordinate>
+            <coordinate>
+                <x>0</x>
+                <y>7</y>
+                <value>15</value>
+            </coordinate>
+            <coordinate>
+                <x>0</x>
+                <y>8</y>
+                <value>10</value>
+            </coordinate>
+            <coordinate>
+                <x>1</x>
+                <y>0</y>
+                <value>15</value>
+            </coordinate>
+            <coordinate>
+                <x>1</x>
+                <y>1</y>
+                <value>20</value>
+            </coordinate>
+            <coordinate>
+                <x>1</x>
+                <y>2</y>
+                <value>15</value>
+            </coordinate>
+            <coordinate>
+                <x>1</x>
+                <y>3</y>
+                <value>25</value>
+            </coordinate>
+            <coordinate>
+                <x>1</x>
+                <y>4</y>
+                <value>24</value>
+            </coordinate>
+            <coordinate>
+                <x>1</x>
+                <y>5</y>
+                <value>26</value>
+            </coordinate>
+            <coordinate>
+                <x>1</x>
+                <y>6</y>
+                <value>24</value>
+            </coordinate>
+            <coordinate>
+                <x>1</x>
+                <y>7</y>
+                <value>20</value>
+            </coordinate>
+            <coordinate>
+                <x>1</x>
+                <y>8</y>
+                <value>15</value>
+            </coordinate>
+            <coordinate>
+                <x>2</x>
+                <y>0</y>
+                <value>15</value>
+            </coordinate>
+            <coordinate>
+                <x>2</x>
+                <y>1</y>
+                <value>15</value>
+            </coordinate>
+            <coordinate>
+                <x>2</x>
+                <y>2</y>
+                <value>0</value>
+            </coordinate>
+            <coordinate>
+                <x>2</x>
+                <y>3</y>
+                <value>16</value>
+            </coordinate>
+            <coordinate>
+                <x>2</x>
+                <y>4</y>
+                <value>17</value>
+            </coordinate>
+            <coordinate>
+                <x>2</x>
+                <y>5</y>
+                <value>26</value>
+            </coordinate>
+            <coordinate>
+                <x>2</x>
+                <y>6</y>
+                <value>27</value>
+            </coordinate>
+            <coordinate>
+                <x>2</x>
+                <y>7</y>
+                <value>24</value>
+            </coordinate>
+            <coordinate>
                 <x>2</x>
                 <y>8</y>
                 <value>19</value>
@@ -1527,27 +1510,27 @@
             <coordinate>
                 <x>3</x>
                 <y>4</y>
-                <value>14</value>
+                <value>21</value>
             </coordinate>
             <coordinate>
                 <x>3</x>
                 <y>5</y>
-                <value>12</value>
+                <value>29</value>
             </coordinate>
             <coordinate>
                 <x>3</x>
                 <y>6</y>
-                <value>0</value>
+                <value>30</value>
             </coordinate>
             <coordinate>
                 <x>3</x>
                 <y>7</y>
-                <value>10</value>
+                <value>26</value>
             </coordinate>
             <coordinate>
                 <x>3</x>
                 <y>8</y>
-                <value>17</value>
+                <value>21</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
@@ -1562,32 +1545,32 @@
             <coordinate>
                 <x>4</x>
                 <y>2</y>
+                <value>17</value>
+            </coordinate>
+            <coordinate>
+                <x>4</x>
+                <y>3</y>
+                <value>9</value>
+            </coordinate>
+            <coordinate>
+                <x>4</x>
+                <y>4</y>
+                <value>0</value>
+            </coordinate>
+            <coordinate>
+                <x>4</x>
+                <y>5</y>
                 <value>14</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
-                <y>3</y>
-                <value>9</value>
-            </coordinate>
-            <coordinate>
-                <x>4</x>
-                <y>4</y>
-                <value>0</value>
-            </coordinate>
-            <coordinate>
-                <x>4</x>
-                <y>5</y>
-                <value>11</value>
-            </coordinate>
-            <coordinate>
-                <x>4</x>
                 <y>6</y>
-                <value>10</value>
+                <value>24</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
                 <y>7</y>
-                <value>12</value>
+                <value>24</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
@@ -1607,7 +1590,7 @@
             <coordinate>
                 <x>5</x>
                 <y>2</y>
-                <value>10</value>
+                <value>17</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
@@ -1617,42 +1600,42 @@
             <coordinate>
                 <x>5</x>
                 <y>4</y>
-                <value>6</value>
+                <value>10</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>5</y>
-                <value>8</value>
+                <value>14</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>6</y>
-                <value>7</value>
+                <value>28</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>7</y>
-                <value>0</value>
+                <value>26</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>8</y>
-                <value>17</value>
+                <value>22</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
                 <y>0</y>
-                <value>0</value>
+                <value>22</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
                 <y>1</y>
-                <value>0</value>
+                <value>26</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
                 <y>2</y>
-                <value>0</value>
+                <value>27</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -1662,7 +1645,7 @@
             <coordinate>
                 <x>6</x>
                 <y>4</y>
-                <value>9</value>
+                <value>15</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -1672,12 +1655,12 @@
             <coordinate>
                 <x>6</x>
                 <y>6</y>
-                <value>6</value>
+                <value>20</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
                 <y>7</y>
-                <value>9</value>
+                <value>21</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -1687,92 +1670,92 @@
             <coordinate>
                 <x>7</x>
                 <y>0</y>
-                <value>17</value>
+                <value>21</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>1</y>
-                <value>17</value>
+                <value>26</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>2</y>
-                <value>0</value>
+                <value>30</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>3</y>
-                <value>12</value>
+                <value>25</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>4</y>
-                <value>7</value>
+                <value>30</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>5</y>
-                <value>7</value>
+                <value>20</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>6</y>
-                <value>0</value>
+                <value>30</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>7</y>
-                <value>10</value>
+                <value>26</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>8</y>
-                <value>17</value>
-            </coordinate>
-            <coordinate>
-                <x>8</x>
-                <y>0</y>
-                <value>18</value>
-            </coordinate>
-            <coordinate>
-                <x>8</x>
-                <y>1</y>
                 <value>21</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
+                <y>0</y>
+                <value>19</value>
+            </coordinate>
+            <coordinate>
+                <x>8</x>
+                <y>1</y>
+                <value>24</value>
+            </coordinate>
+            <coordinate>
+                <x>8</x>
                 <y>2</y>
-                <value>10</value>
+                <value>28</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>3</y>
-                <value>15</value>
+                <value>27</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>4</y>
-                <value>0</value>
+                <value>30</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>5</y>
-                <value>11</value>
+                <value>23</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>6</y>
-                <value>10</value>
+                <value>28</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>7</y>
-                <value>18</value>
+                <value>24</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>8</y>
-                <value>18</value>
+                <value>19</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -1787,7 +1770,7 @@
             <coordinate>
                 <x>9</x>
                 <y>2</y>
-                <value>18</value>
+                <value>24</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -1797,7 +1780,7 @@
             <coordinate>
                 <x>9</x>
                 <y>4</y>
-                <value>18</value>
+                <value>27</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -1807,12 +1790,12 @@
             <coordinate>
                 <x>9</x>
                 <y>6</y>
-                <value>18</value>
+                <value>24</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
                 <y>7</y>
-                <value>19</value>
+                <value>20</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -1832,7 +1815,7 @@
             <coordinate>
                 <x>10</x>
                 <y>2</y>
-                <value>17</value>
+                <value>19</value>
             </coordinate>
             <coordinate>
                 <x>10</x>
@@ -1842,7 +1825,7 @@
             <coordinate>
                 <x>10</x>
                 <y>4</y>
-                <value>18</value>
+                <value>22</value>
             </coordinate>
             <coordinate>
                 <x>10</x>
@@ -1852,7 +1835,7 @@
             <coordinate>
                 <x>10</x>
                 <y>6</y>
-                <value>17</value>
+                <value>19</value>
             </coordinate>
             <coordinate>
                 <x>10</x>
@@ -1894,15 +1877,15 @@
             <coordinate>
                 <x>0</x>
                 <y>5</y>
-                <value>2</value>
-            </coordinate>
-            <coordinate>
-                <x>0</x>
-                <y>6</y>
                 <value>3</value>
             </coordinate>
             <coordinate>
                 <x>0</x>
+                <y>6</y>
+                <value>3</value>
+            </coordinate>
+            <coordinate>
+                <x>0</x>
                 <y>7</y>
                 <value>3</value>
             </coordinate>
@@ -1934,25 +1917,25 @@
             <coordinate>
                 <x>1</x>
                 <y>4</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>5</y>
-                <value>0</value>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>6</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>7</y>
                 <value>4</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
+                <y>5</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>1</x>
+                <y>6</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>1</x>
+                <y>7</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>1</x>
                 <y>8</y>
                 <value>3</value>
             </coordinate>
@@ -1984,12 +1967,12 @@
             <coordinate>
                 <x>2</x>
                 <y>5</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>2</x>
                 <y>6</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>2</x>
@@ -2029,17 +2012,17 @@
             <coordinate>
                 <x>3</x>
                 <y>5</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>3</x>
                 <y>6</y>
-                <value>0</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>3</x>
                 <y>7</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>3</x>
@@ -2079,12 +2062,12 @@
             <coordinate>
                 <x>4</x>
                 <y>6</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
                 <y>7</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
@@ -2124,17 +2107,17 @@
             <coordinate>
                 <x>5</x>
                 <y>6</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>7</y>
-                <value>0</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>8</y>
-                <value>2</value>
+                <value>3</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -2149,7 +2132,7 @@
             <coordinate>
                 <x>6</x>
                 <y>2</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -2169,104 +2152,104 @@
             <coordinate>
                 <x>6</x>
                 <y>6</y>
-                <value>2</value>
-            </coordinate>
-            <coordinate>
-                <x>6</x>
-                <y>7</y>
                 <value>3</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
-                <y>8</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>7</x>
-                <y>0</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>7</x>
-                <y>1</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>7</x>
-                <y>2</y>
-                <value>0</value>
-            </coordinate>
-            <coordinate>
-                <x>7</x>
-                <y>3</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>7</x>
-                <y>4</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>7</x>
-                <y>5</y>
-                <value>2</value>
-            </coordinate>
-            <coordinate>
-                <x>7</x>
-                <y>6</y>
-                <value>0</value>
-            </coordinate>
-            <coordinate>
-                <x>7</x>
-                <y>7</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>7</x>
-                <y>8</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>8</x>
-                <y>0</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>8</x>
-                <y>1</y>
-                <value>4</value>
-            </coordinate>
-            <coordinate>
-                <x>8</x>
-                <y>2</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>8</x>
-                <y>3</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>8</x>
-                <y>4</y>
-                <value>0</value>
-            </coordinate>
-            <coordinate>
-                <x>8</x>
-                <y>5</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>8</x>
-                <y>6</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>8</x>
                 <y>7</y>
                 <value>4</value>
             </coordinate>
             <coordinate>
+                <x>6</x>
+                <y>8</y>
+                <value>3</value>
+            </coordinate>
+            <coordinate>
+                <x>7</x>
+                <y>0</y>
+                <value>3</value>
+            </coordinate>
+            <coordinate>
+                <x>7</x>
+                <y>1</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>7</x>
+                <y>2</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>7</x>
+                <y>3</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>7</x>
+                <y>4</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>7</x>
+                <y>5</y>
+                <value>3</value>
+            </coordinate>
+            <coordinate>
+                <x>7</x>
+                <y>6</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>7</x>
+                <y>7</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>7</x>
+                <y>8</y>
+                <value>3</value>
+            </coordinate>
+            <coordinate>
+                <x>8</x>
+                <y>0</y>
+                <value>3</value>
+            </coordinate>
+            <coordinate>
+                <x>8</x>
+                <y>1</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>8</x>
+                <y>2</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>8</x>
+                <y>3</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>8</x>
+                <y>4</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>8</x>
+                <y>5</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>8</x>
+                <y>6</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>8</x>
+                <y>7</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
                 <x>8</x>
                 <y>8</y>
                 <value>3</value>
@@ -2294,7 +2277,7 @@
             <coordinate>
                 <x>9</x>
                 <y>4</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -2391,15 +2374,15 @@
             <coordinate>
                 <x>0</x>
                 <y>5</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>0</x>
-                <y>6</y>
                 <value>4</value>
             </coordinate>
             <coordinate>
                 <x>0</x>
+                <y>6</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>0</x>
                 <y>7</y>
                 <value>3</value>
             </coordinate>
@@ -2426,27 +2409,27 @@
             <coordinate>
                 <x>1</x>
                 <y>3</y>
-                <value>4</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>4</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>5</y>
-                <value>0</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>6</y>
-                <value>2</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>7</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
@@ -2481,12 +2464,12 @@
             <coordinate>
                 <x>2</x>
                 <y>5</y>
-                <value>4</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>2</x>
                 <y>6</y>
-                <value>4</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>2</x>
@@ -2521,27 +2504,27 @@
             <coordinate>
                 <x>3</x>
                 <y>4</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>3</x>
                 <y>5</y>
-                <value>3</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>3</x>
                 <y>6</y>
-                <value>0</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>3</x>
                 <y>7</y>
-                <value>2</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>3</x>
                 <y>8</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
@@ -2576,12 +2559,12 @@
             <coordinate>
                 <x>4</x>
                 <y>6</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
                 <y>7</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
@@ -2601,7 +2584,7 @@
             <coordinate>
                 <x>5</x>
                 <y>2</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
@@ -2616,22 +2599,22 @@
             <coordinate>
                 <x>5</x>
                 <y>5</y>
-                <value>2</value>
+                <value>3</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>6</y>
-                <value>2</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>7</y>
-                <value>0</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>8</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -2646,7 +2629,7 @@
             <coordinate>
                 <x>6</x>
                 <y>2</y>
-                <value>4</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -2656,7 +2639,7 @@
             <coordinate>
                 <x>6</x>
                 <y>4</y>
-                <value>2</value>
+                <value>3</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -2666,12 +2649,12 @@
             <coordinate>
                 <x>6</x>
                 <y>6</y>
-                <value>2</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
                 <y>7</y>
-                <value>2</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -2681,47 +2664,47 @@
             <coordinate>
                 <x>7</x>
                 <y>0</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>1</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>2</y>
-                <value>0</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>3</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>4</y>
-                <value>2</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>5</y>
-                <value>2</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>6</y>
-                <value>0</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>7</y>
-                <value>2</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>8</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
@@ -2736,27 +2719,27 @@
             <coordinate>
                 <x>8</x>
                 <y>2</y>
-                <value>3</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>3</y>
-                <value>4</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>4</y>
-                <value>0</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>5</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>6</y>
-                <value>3</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
@@ -2781,7 +2764,7 @@
             <coordinate>
                 <x>9</x>
                 <y>2</y>
-                <value>4</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -2791,7 +2774,7 @@
             <coordinate>
                 <x>9</x>
                 <y>4</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -2801,7 +2784,7 @@
             <coordinate>
                 <x>9</x>
                 <y>6</y>
-                <value>4</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -2836,7 +2819,7 @@
             <coordinate>
                 <x>10</x>
                 <y>4</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>10</x>
@@ -2888,15 +2871,15 @@
             <coordinate>
                 <x>0</x>
                 <y>5</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>0</x>
-                <y>6</y>
                 <value>4</value>
             </coordinate>
             <coordinate>
                 <x>0</x>
+                <y>6</y>
+                <value>4</value>
+            </coordinate>
+            <coordinate>
+                <x>0</x>
                 <y>7</y>
                 <value>3</value>
             </coordinate>
@@ -2923,27 +2906,27 @@
             <coordinate>
                 <x>1</x>
                 <y>3</y>
-                <value>4</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>4</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>5</y>
-                <value>0</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>6</y>
-                <value>2</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>7</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
@@ -2978,12 +2961,12 @@
             <coordinate>
                 <x>2</x>
                 <y>5</y>
-                <value>4</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>2</x>
                 <y>6</y>
-                <value>4</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>2</x>
@@ -3018,27 +3001,27 @@
             <coordinate>
                 <x>3</x>
                 <y>4</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>3</x>
                 <y>5</y>
-                <value>3</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>3</x>
                 <y>6</y>
-                <value>0</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>3</x>
                 <y>7</y>
-                <value>2</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>3</x>
                 <y>8</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
@@ -3073,12 +3056,12 @@
             <coordinate>
                 <x>4</x>
                 <y>6</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
                 <y>7</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
@@ -3098,7 +3081,7 @@
             <coordinate>
                 <x>5</x>
                 <y>2</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
@@ -3113,22 +3096,22 @@
             <coordinate>
                 <x>5</x>
                 <y>5</y>
-                <value>2</value>
+                <value>3</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>6</y>
-                <value>2</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>7</y>
-                <value>0</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>8</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -3143,7 +3126,7 @@
             <coordinate>
                 <x>6</x>
                 <y>2</y>
-                <value>4</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -3153,7 +3136,7 @@
             <coordinate>
                 <x>6</x>
                 <y>4</y>
-                <value>2</value>
+                <value>3</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -3163,12 +3146,12 @@
             <coordinate>
                 <x>6</x>
                 <y>6</y>
-                <value>2</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
                 <y>7</y>
-                <value>2</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -3178,47 +3161,47 @@
             <coordinate>
                 <x>7</x>
                 <y>0</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>1</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>2</y>
-                <value>0</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>3</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>4</y>
-                <value>2</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>5</y>
-                <value>2</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>6</y>
-                <value>0</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>7</y>
-                <value>2</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>8</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
@@ -3233,27 +3216,27 @@
             <coordinate>
                 <x>8</x>
                 <y>2</y>
-                <value>3</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>3</y>
-                <value>4</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>4</y>
-                <value>0</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>5</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>6</y>
-                <value>3</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
@@ -3278,7 +3261,7 @@
             <coordinate>
                 <x>9</x>
                 <y>2</y>
-                <value>4</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -3288,7 +3271,7 @@
             <coordinate>
                 <x>9</x>
                 <y>4</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -3298,7 +3281,7 @@
             <coordinate>
                 <x>9</x>
                 <y>6</y>
-                <value>4</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -3333,7 +3316,7 @@
             <coordinate>
                 <x>10</x>
                 <y>4</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>10</x>
@@ -3385,12 +3368,12 @@
             <coordinate>
                 <x>0</x>
                 <y>5</y>
-                <value>4</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>0</x>
                 <y>6</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>0</x>
@@ -3415,37 +3398,37 @@
             <coordinate>
                 <x>1</x>
                 <y>2</y>
-                <value>2</value>
+                <value>3</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>3</y>
-                <value>4</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>4</y>
-                <value>2</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>5</y>
-                <value>0</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>6</y>
-                <value>0</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>7</y>
-                <value>2</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>8</y>
-                <value>2</value>
+                <value>3</value>
             </coordinate>
             <coordinate>
                 <x>2</x>
@@ -3475,17 +3458,17 @@
             <coordinate>
                 <x>2</x>
                 <y>5</y>
-                <value>4</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>2</x>
                 <y>6</y>
-                <value>3</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>2</x>
                 <y>7</y>
-                <value>4</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>2</x>
@@ -3510,49 +3493,49 @@
             <coordinate>
                 <x>3</x>
                 <y>3</y>
-                <value>5</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>3</x>
                 <y>4</y>
+                <value>5</value>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>5</y>
+                <value>7</value>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>6</y>
+                <value>7</value>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>7</y>
+                <value>6</value>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>8</y>
+                <value>5</value>
+            </coordinate>
+            <coordinate>
+                <x>4</x>
+                <y>0</y>
+                <value>5</value>
+            </coordinate>
+            <coordinate>
+                <x>4</x>
+                <y>1</y>
+                <value>5</value>
+            </coordinate>
+            <coordinate>
+                <x>4</x>
+                <y>2</y>
                 <value>3</value>
             </coordinate>
             <coordinate>
-                <x>3</x>
-                <y>5</y>
-                <value>2</value>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>6</y>
-                <value>0</value>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>7</y>
-                <value>2</value>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>8</y>
-                <value>4</value>
-            </coordinate>
-            <coordinate>
-                <x>4</x>
-                <y>0</y>
-                <value>5</value>
-            </coordinate>
-            <coordinate>
-                <x>4</x>
-                <y>1</y>
-                <value>5</value>
-            </coordinate>
-            <coordinate>
-                <x>4</x>
-                <y>2</y>
-                <value>2</value>
-            </coordinate>
-            <coordinate>
                 <x>4</x>
                 <y>3</y>
                 <value>2</value>
@@ -3565,17 +3548,17 @@
             <coordinate>
                 <x>4</x>
                 <y>5</y>
-                <value>2</value>
+                <value>3</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
                 <y>6</y>
-                <value>1</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
                 <y>7</y>
-                <value>2</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
@@ -3595,7 +3578,7 @@
             <coordinate>
                 <x>5</x>
                 <y>2</y>
-                <value>1</value>
+                <value>3</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
@@ -3605,27 +3588,27 @@
             <coordinate>
                 <x>5</x>
                 <y>4</y>
-                <value>0</value>
+                <value>2</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>5</y>
-                <value>1</value>
+                <value>3</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>6</y>
-                <value>0</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>7</y>
-                <value>0</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>8</y>
-                <value>4</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -3640,7 +3623,7 @@
             <coordinate>
                 <x>6</x>
                 <y>2</y>
-                <value>3</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -3650,7 +3633,7 @@
             <coordinate>
                 <x>6</x>
                 <y>4</y>
-                <value>1</value>
+                <value>3</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -3660,12 +3643,12 @@
             <coordinate>
                 <x>6</x>
                 <y>6</y>
-                <value>0</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
                 <y>7</y>
-                <value>1</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -3675,47 +3658,47 @@
             <coordinate>
                 <x>7</x>
                 <y>0</y>
-                <value>4</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>1</y>
-                <value>4</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>2</y>
-                <value>0</value>
+                <value>7</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>3</y>
-                <value>2</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>4</y>
-                <value>0</value>
+                <value>7</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>5</y>
-                <value>1</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>6</y>
-                <value>0</value>
+                <value>7</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>7</y>
-                <value>2</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>8</y>
-                <value>4</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
@@ -3725,37 +3708,37 @@
             <coordinate>
                 <x>8</x>
                 <y>1</y>
-                <value>4</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>2</y>
-                <value>1</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>3</y>
-                <value>3</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>4</y>
-                <value>0</value>
+                <value>7</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>5</y>
-                <value>2</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>6</y>
-                <value>1</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>7</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
@@ -3775,7 +3758,7 @@
             <coordinate>
                 <x>9</x>
                 <y>2</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -3785,7 +3768,7 @@
             <coordinate>
                 <x>9</x>
                 <y>4</y>
-                <value>4</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -3795,7 +3778,7 @@
             <coordinate>
                 <x>9</x>
                 <y>6</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -3820,7 +3803,7 @@
             <coordinate>
                 <x>10</x>
                 <y>2</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>10</x>
@@ -3830,7 +3813,7 @@
             <coordinate>
                 <x>10</x>
                 <y>4</y>
-                <value>4</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>10</x>
@@ -3840,7 +3823,7 @@
             <coordinate>
                 <x>10</x>
                 <y>6</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>10</x>
@@ -3882,15 +3865,15 @@
             <coordinate>
                 <x>0</x>
                 <y>5</y>
+                <value>5</value>
+            </coordinate>
+            <coordinate>
+                <x>0</x>
+                <y>6</y>
                 <value>4</value>
             </coordinate>
             <coordinate>
                 <x>0</x>
-                <y>6</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>0</x>
                 <y>7</y>
                 <value>3</value>
             </coordinate>
@@ -3907,42 +3890,42 @@
             <coordinate>
                 <x>1</x>
                 <y>1</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>2</y>
-                <value>1</value>
+                <value>3</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>3</y>
-                <value>2</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>4</y>
-                <value>1</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>5</y>
-                <value>0</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>6</y>
-                <value>0</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>7</y>
-                <value>1</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>1</x>
                 <y>8</y>
-                <value>2</value>
+                <value>3</value>
             </coordinate>
             <coordinate>
                 <x>2</x>
@@ -3972,17 +3955,17 @@
             <coordinate>
                 <x>2</x>
                 <y>5</y>
-                <value>2</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>2</x>
                 <y>6</y>
-                <value>2</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>2</x>
                 <y>7</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>2</x>
@@ -4002,39 +3985,39 @@
             <coordinate>
                 <x>3</x>
                 <y>2</y>
-                <value>2</value>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>3</y>
-                <value>3</value>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>4</y>
-                <value>2</value>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>5</y>
-                <value>1</value>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>6</y>
-                <value>0</value>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>7</y>
-                <value>1</value>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>8</y>
                 <value>4</value>
             </coordinate>
             <coordinate>
+                <x>3</x>
+                <y>3</y>
+                <value>5</value>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>4</y>
+                <value>5</value>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>5</y>
+                <value>6</value>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>6</y>
+                <value>7</value>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>7</y>
+                <value>6</value>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>8</y>
+                <value>5</value>
+            </coordinate>
+            <coordinate>
                 <x>4</x>
                 <y>0</y>
                 <value>5</value>
@@ -4047,7 +4030,7 @@
             <coordinate>
                 <x>4</x>
                 <y>2</y>
-                <value>0</value>
+                <value>2</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
@@ -4062,17 +4045,17 @@
             <coordinate>
                 <x>4</x>
                 <y>5</y>
-                <value>0</value>
+                <value>2</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
                 <y>6</y>
-                <value>0</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
                 <y>7</y>
-                <value>1</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>4</x>
@@ -4092,7 +4075,7 @@
             <coordinate>
                 <x>5</x>
                 <y>2</y>
-                <value>0</value>
+                <value>3</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
@@ -4102,27 +4085,27 @@
             <coordinate>
                 <x>5</x>
                 <y>4</y>
-                <value>0</value>
+                <value>2</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>5</y>
-                <value>0</value>
+                <value>2</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>6</y>
-                <value>0</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>7</y>
-                <value>0</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>5</x>
                 <y>8</y>
-                <value>5</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -4137,7 +4120,7 @@
             <coordinate>
                 <x>6</x>
                 <y>2</y>
-                <value>1</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -4147,7 +4130,7 @@
             <coordinate>
                 <x>6</x>
                 <y>4</y>
-                <value>1</value>
+                <value>3</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -4157,12 +4140,12 @@
             <coordinate>
                 <x>6</x>
                 <y>6</y>
-                <value>0</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
                 <y>7</y>
-                <value>1</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -4172,92 +4155,92 @@
             <coordinate>
                 <x>7</x>
                 <y>0</y>
-                <value>4</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>1</y>
-                <value>4</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>2</y>
-                <value>0</value>
+                <value>7</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>3</y>
-                <value>1</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>4</y>
-                <value>0</value>
+                <value>7</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>5</y>
-                <value>0</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>6</y>
-                <value>0</value>
+                <value>7</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>7</y>
-                <value>1</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>7</x>
                 <y>8</y>
-                <value>4</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>0</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>1</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>2</y>
-                <value>0</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>3</y>
-                <value>1</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>4</y>
-                <value>0</value>
+                <value>7</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>5</y>
-                <value>0</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>6</y>
-                <value>0</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>7</y>
-                <value>1</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>8</x>
                 <y>8</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -4272,7 +4255,7 @@
             <coordinate>
                 <x>9</x>
                 <y>2</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -4282,7 +4265,7 @@
             <coordinate>
                 <x>9</x>
                 <y>4</y>
-                <value>5</value>
+                <value>7</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -4292,12 +4275,12 @@
             <coordinate>
                 <x>9</x>
                 <y>6</y>
-                <value>3</value>
+                <value>5</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
                 <y>7</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>9</x>
@@ -4317,7 +4300,7 @@
             <coordinate>
                 <x>10</x>
                 <y>2</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>10</x>
@@ -4327,7 +4310,7 @@
             <coordinate>
                 <x>10</x>
                 <y>4</y>
-                <value>5</value>
+                <value>6</value>
             </coordinate>
             <coordinate>
                 <x>10</x>
@@ -4337,7 +4320,7 @@
             <coordinate>
                 <x>10</x>
                 <y>6</y>
-                <value>3</value>
+                <value>4</value>
             </coordinate>
             <coordinate>
                 <x>10</x>
@@ -4356,7 +4339,7 @@
         <nbBattleshipDestroyed>0</nbBattleshipDestroyed>
         <nbCarrierDestroyed>0</nbCarrierDestroyed>
         <missToExclude>
-            <size>10</size>
+            <size>4</size>
             <coordinate>
                 <x>4</x>
                 <y>4</y>
@@ -4372,34 +4355,10 @@
             <coordinate>
                 <x>2</x>
                 <y>2</y>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>6</y>
-            </coordinate>
-            <coordinate>
-                <x>7</x>
-                <y>2</y>
-            </coordinate>
-            <coordinate>
-                <x>8</x>
-                <y>4</y>
-            </coordinate>
-            <coordinate>
-                <x>7</x>
-                <y>6</y>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>5</y>
-            </coordinate>
-            <coordinate>
-                <x>5</x>
-                <y>7</y>
             </coordinate>
         </missToExclude>
         <toExclude>
-            <size>17</size>
+            <size>8</size>
             <coordinate>
                 <x>4</x>
                 <y>4</y>
@@ -4431,42 +4390,6 @@
             <coordinate>
                 <x>3</x>
                 <y>3</y>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>6</y>
-            </coordinate>
-            <coordinate>
-                <x>7</x>
-                <y>2</y>
-            </coordinate>
-            <coordinate>
-                <x>8</x>
-                <y>4</y>
-            </coordinate>
-            <coordinate>
-                <x>7</x>
-                <y>6</y>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>5</y>
-            </coordinate>
-            <coordinate>
-                <x>5</x>
-                <y>7</y>
-            </coordinate>
-            <coordinate>
-                <x>6</x>
-                <y>1</y>
-            </coordinate>
-            <coordinate>
-                <x>6</x>
-                <y>0</y>
-            </coordinate>
-            <coordinate>
-                <x>6</x>
-                <y>2</y>
             </coordinate>
         </toExclude>
     </AI>

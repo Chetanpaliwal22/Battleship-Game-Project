@@ -109,8 +109,7 @@ public class AI {
 
     /**
      * update a specific grount grid using the new information (or just initialize)
-     * @param countGridToUpdate the grid to be updated
-     * @param shipSize ship size 
+     * @param shipSize ship size
      * @param code code attack result 
      * @return updated grid
      * @throws Exception thorws exception if the ship length is bigger then the board size
@@ -326,55 +325,6 @@ public class AI {
 
 
 	/**
-	 * get the next five move from the AI player
-	 * 
-	 * @return the coordinate list of next move
-	 */
-	public ArrayList<Coordinate> getFiveNextMove() {
-
-		ArrayList<Coordinate> coordinateList = new ArrayList<Coordinate>();
-
-		int[][] copyCountGrid = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
-
-		System.out.println(countGrid);
-		for (int i = 0; i < Constants.BOARD_SIZE.x; i++) {
-			for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
-				copyCountGrid[i][j] = countGrid[i][j];
-			}
-		}
-
-		for (int k = 0; k < 5; k++) {
-			Coordinate currentCoordinate = new Coordinate(0, 0);
-			float currentHighest = 0;
-
-			System.out.println("AI count grid :");
-			for (int i = this.boardSize.x - 1; i >= 0; i--) {
-				for (int j = 0; j < this.boardSize.y; j++) {
-					System.out.print(this.countGrid[i][j] + " ");
-				}
-				System.out.println("");
-			}
-
-			for (int i = 0; i < Constants.BOARD_SIZE.x; i++) {
-				for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
-
-					float value = copyCountGrid[i][j];
-
-					if (value > currentHighest) {
-						currentHighest = value;
-						currentCoordinate.y = i;
-						currentCoordinate.x = j;
-					}
-				}
-			}
-			copyCountGrid[currentCoordinate.y][currentCoordinate.x] = Integer.MIN_VALUE;
-			coordinateList.add(currentCoordinate);
-		}
-		return coordinateList;
-	}
-
-
-	/**
 	 * display the content of the AI count grid in the console
 	 */
 	public void printCountGrid() {
@@ -450,6 +400,29 @@ public class AI {
 		toExclude.add(new Coordinate(this.previousTarget.y, this.previousTarget.x));
 
 		updateCountGrid( code );
+	}
+
+
+	/**
+	 * get the next five move from the AI player
+	 * @return the coordinate list of next move
+	 */
+	public ArrayList<Coordinate> getNextMoveSalvation() {
+
+		ArrayList<Coordinate> coordinateList = new ArrayList<Coordinate>();
+
+		for(int i=0; i<5; i++){ coordinateList.add( this.getNextMove() ); }
+
+		return coordinateList;
+	}
+
+	/**
+	 * get the next five move from the AI player
+	 * @return the coordinate list of next move
+	 */
+	public void receiveResultSalvation(ArrayList<Integer> codeList) throws Exception {
+
+		for(int i=0; i<5; i++){ this.receiveResult( codeList.get( i ) ); }
 	}
 
 }

@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3532a2a-cc23-46d1-9f56-31b65f5e9545" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/view/resources/images/FiveStars.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/images/FourStars.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/images/OneStar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/images/ThreeStars.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/resources/images/TwoStars.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/GameTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/GameTimer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Score.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Renderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/AI.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

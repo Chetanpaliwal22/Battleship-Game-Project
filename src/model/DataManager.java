@@ -270,12 +270,12 @@ public class DataManager {
                 Element pivotElement = document.createElement("pivot");
                 shipElement.appendChild(pivotElement);
 
-                // X element
+                // x element
                 Element xElement = document.createElement("pivotX");
                 xElement.appendChild(document.createTextNode(MainWindow.shipList.get(i).pivotGridX + ""));
                 pivotElement.appendChild(xElement);
 
-                // Y element
+                // y element
                 Element yElement = document.createElement("pivotY");
                 yElement.appendChild(document.createTextNode(MainWindow.shipList.get(i).pivotGridY + ""));
                 pivotElement.appendChild(yElement);
@@ -435,21 +435,21 @@ public class DataManager {
             for (int i = 0; i < targetBoardState.length; i++) {
                 for (int j = 0; j < targetBoardState[0].length; j++) {
 
-                    // Coordinate element
+                    // coordinate element
                     Element coordinateElement = document.createElement("coordinate");
                     waterGridStateElement.appendChild(coordinateElement);
 
-                    // X element
+                    // x element
                     Element xElement = document.createElement("x");
                     xElement.appendChild(document.createTextNode(i + ""));
                     coordinateElement.appendChild(xElement);
 
-                    // Y element
+                    // y element
                     Element yElement = document.createElement("y");
                     yElement.appendChild(document.createTextNode(j + ""));
                     coordinateElement.appendChild(yElement);
 
-                    // State element
+                    // state element
                     Element stateElement = document.createElement("state");
                     stateElement.appendChild(document.createTextNode(targetBoardState[i][j] + ""));
                     coordinateElement.appendChild(stateElement);
@@ -515,6 +515,12 @@ public class DataManager {
             AIElement.appendChild(distanceFromHitElement);
 
 
+            // fixedDirection element
+            Element fixedDirectionElement = document.createElement("fixedDirection");
+            fixedDirectionElement.appendChild(document.createTextNode(MainWindow.myAI.fixedDirection + ""));
+            AIElement.appendChild(fixedDirectionElement);
+
+
             // seekAgain element
             Element seekAgainElement = document.createElement("seekAgain");
             seekAgainElement.appendChild(document.createTextNode(MainWindow.myAI.seekAgain + ""));
@@ -527,12 +533,18 @@ public class DataManager {
 
             // X element
             Element xElement = document.createElement("x");
-            xElement.appendChild(document.createTextNode(MainWindow.myAI.axis.x + ""));
+
+            if (MainWindow.myAI.axis != null)
+                xElement.appendChild(document.createTextNode(MainWindow.myAI.axis.x + ""));
+
             axisElement.appendChild(xElement);
 
             // Y element
             Element yElement = document.createElement("y");
+
+            if (MainWindow.myAI.axis != null)
             yElement.appendChild(document.createTextNode(MainWindow.myAI.axis.y + ""));
+
             axisElement.appendChild(yElement);
 
 
@@ -550,7 +562,7 @@ public class DataManager {
 
             // Y element
             yElement = document.createElement("y");
-            xElement.appendChild(document.createTextNode(previousTarget.y + ""));
+            yElement.appendChild(document.createTextNode(previousTarget.y + ""));
             previousTargetElement.appendChild(yElement);
 
 

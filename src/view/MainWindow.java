@@ -111,8 +111,8 @@ public class MainWindow extends JFrame {
 
         JButton startGameButton = new JButton("Start game");
 
-        startGameButton.setPreferredSize(new Dimension(50, 20));
-        startGameButton.setMaximumSize(new Dimension(50, 20));
+//        startGameButton.setPreferredSize(new Dimension(50, 20));
+//        startGameButton.setMaximumSize(new Dimension(50, 20));
 
         startGameButton.addActionListener((ActionEvent e) -> {
 
@@ -254,12 +254,16 @@ public class MainWindow extends JFrame {
 //                            int result = humanBoard.fireAtTarget(target);
 //                            System.out.println(result + "   ------------");
 //                            myAI.receiveResult(result);
+//
+//                            if (result == 1 | result == 2)
+//                                humanBoard.checkSunk();
 //                        } catch (Exception ex) {
 //                            ex.printStackTrace();
 //                        }
 //                    }
 //                }
 //            }
+
 
             // Start the timer
             GameTimer.start();

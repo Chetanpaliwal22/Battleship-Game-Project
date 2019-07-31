@@ -63,7 +63,7 @@ public class DataManager {
 //                    System.out.print("\nUser name: " + element.getElementsByTagName("userName").item(0).getTextContent() + "\n");
 //                    System.out.print("\nScore: " + element.getElementsByTagName("score").item(0).getTextContent() + "\n");
 //                    System.out.print("\nAction: " + element.getElementsByTagName("action").item(0).getTextContent() + "\n");
-                    System.out.print("\nAction: " + element.getElementsByTagName("numberOfAISunkShips").item(0).getTextContent() + "\n");
+//                    System.out.print("\nAction: " + element.getElementsByTagName("numberOfAISunkShips").item(0).getTextContent() + "\n");
 
                     MainWindow.numberOfAISunkShips = Integer.parseInt(element.getElementsByTagName("numberOfAISunkShips").item(0).getTextContent());
                 }

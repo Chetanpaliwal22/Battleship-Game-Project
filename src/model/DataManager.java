@@ -456,6 +456,7 @@ public class DataManager {
                 }
             }
 
+
             // AIBoard element
             Element AIBoardElement = document.createElement("AIBoard");
             root.appendChild(AIBoardElement);
@@ -495,29 +496,33 @@ public class DataManager {
             Element AIElement = document.createElement("AI");
             root.appendChild(AIElement);
 
+
             // targetMode element
             Element targetModeElement = document.createElement("targetMode");
             targetModeElement.appendChild(document.createTextNode(MainWindow.myAI.targetMode + ""));
             AIElement.appendChild(targetModeElement);
 
+
             // direction element
             Element directionElement = document.createElement("direction");
-            targetModeElement.appendChild(document.createTextNode(MainWindow.myAI.direction + ""));
+            directionElement.appendChild(document.createTextNode(MainWindow.myAI.direction + ""));
             AIElement.appendChild(directionElement);
+
 
             // distanceFromHit element
             Element distanceFromHitElement = document.createElement("distanceFromHit");
             distanceFromHitElement.appendChild(document.createTextNode(MainWindow.myAI.distanceFromHit + ""));
             AIElement.appendChild(distanceFromHitElement);
 
+
             // seekAgain element
             Element seekAgainElement = document.createElement("seekAgain");
             seekAgainElement.appendChild(document.createTextNode(MainWindow.myAI.seekAgain + ""));
             AIElement.appendChild(seekAgainElement);
 
+
             // axis element
             Element axisElement = document.createElement("axis");
-            axisElement.appendChild(document.createTextNode(MainWindow.myAI.axis + ""));
             AIElement.appendChild(axisElement);
 
             // X element
@@ -527,11 +532,12 @@ public class DataManager {
 
             // Y element
             Element yElement = document.createElement("y");
-            xElement.appendChild(document.createTextNode(MainWindow.myAI.axis.y + ""));
+            yElement.appendChild(document.createTextNode(MainWindow.myAI.axis.y + ""));
             axisElement.appendChild(yElement);
 
 
             Coordinate previousTarget = MainWindow.myAI.getPreviousTarget();
+
 
             // previousTarget element
             Element previousTargetElement = document.createElement("previousTarget");
@@ -552,14 +558,14 @@ public class DataManager {
             Element countGridElement = document.createElement("countGrid");
             AIElement.appendChild(countGridElement);
 
-            int[][] copyGrid = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+            int[][] copyGrid = MainWindow.myAI.getCountGrid();
 
             for (int i = 0; i < copyGrid.length; i++) {
                 for (int j = 0; j < copyGrid[0].length; j++) {
 
                     // coordinate element
                     Element coordinateElement = document.createElement("coordinate");
-                    waterGridStateElement.appendChild(coordinateElement);
+                    countGridElement.appendChild(coordinateElement);
 
                     // x element
                     xElement = document.createElement("x");
@@ -579,7 +585,244 @@ public class DataManager {
             }
 
 
-            
+            // destroyerCountGrid element
+            Element destroyerCountGridElement = document.createElement("destroyerCountGrid");
+            AIElement.appendChild(destroyerCountGridElement);
+
+            copyGrid = MainWindow.myAI.getDestroyerCountGrid();
+
+            for (int i = 0; i < copyGrid.length; i++) {
+                for (int j = 0; j < copyGrid[0].length; j++) {
+
+                    // coordinate element
+                    Element coordinateElement = document.createElement("coordinate");
+                    destroyerCountGridElement.appendChild(coordinateElement);
+
+                    // x element
+                    xElement = document.createElement("x");
+                    xElement.appendChild(document.createTextNode(i + ""));
+                    coordinateElement.appendChild(xElement);
+
+                    // y element
+                    yElement = document.createElement("y");
+                    yElement.appendChild(document.createTextNode(j + ""));
+                    coordinateElement.appendChild(yElement);
+
+                    // value element
+                    Element valueElement = document.createElement("value");
+                    valueElement.appendChild(document.createTextNode(copyGrid[i][j] + ""));
+                    coordinateElement.appendChild(valueElement);
+                }
+            }
+
+
+            // submarineCountGrid element
+            Element submarineCountGridElement = document.createElement("submarineCountGrid");
+            AIElement.appendChild(submarineCountGridElement);
+
+            copyGrid = MainWindow.myAI.getSubmarineCountGrid();
+
+            for (int i = 0; i < copyGrid.length; i++) {
+                for (int j = 0; j < copyGrid[0].length; j++) {
+
+                    // coordinate element
+                    Element coordinateElement = document.createElement("coordinate");
+                    submarineCountGridElement.appendChild(coordinateElement);
+
+                    // x element
+                    xElement = document.createElement("x");
+                    xElement.appendChild(document.createTextNode(i + ""));
+                    coordinateElement.appendChild(xElement);
+
+                    // y element
+                    yElement = document.createElement("y");
+                    yElement.appendChild(document.createTextNode(j + ""));
+                    coordinateElement.appendChild(yElement);
+
+                    // value element
+                    Element valueElement = document.createElement("value");
+                    valueElement.appendChild(document.createTextNode(copyGrid[i][j] + ""));
+                    coordinateElement.appendChild(valueElement);
+                }
+            }
+
+
+            // cruiserCountGrid element
+            Element cruiserCountGridElement = document.createElement("cruiserCountGrid");
+            AIElement.appendChild(cruiserCountGridElement);
+
+            copyGrid = MainWindow.myAI.getCruiserCountGrid();
+
+            for (int i = 0; i < copyGrid.length; i++) {
+                for (int j = 0; j < copyGrid[0].length; j++) {
+
+                    // coordinate element
+                    Element coordinateElement = document.createElement("coordinate");
+                    cruiserCountGridElement.appendChild(coordinateElement);
+
+                    // x element
+                    xElement = document.createElement("x");
+                    xElement.appendChild(document.createTextNode(i + ""));
+                    coordinateElement.appendChild(xElement);
+
+                    // y element
+                    yElement = document.createElement("y");
+                    yElement.appendChild(document.createTextNode(j + ""));
+                    coordinateElement.appendChild(yElement);
+
+                    // value element
+                    Element valueElement = document.createElement("value");
+                    valueElement.appendChild(document.createTextNode(copyGrid[i][j] + ""));
+                    coordinateElement.appendChild(valueElement);
+                }
+            }
+
+
+            // battleshipCountGrid element
+            Element battleshipCountGridElement = document.createElement("battleshipCountGrid");
+            AIElement.appendChild(battleshipCountGridElement);
+
+            copyGrid = MainWindow.myAI.getBattleshipCountGrid();
+
+            for (int i = 0; i < copyGrid.length; i++) {
+                for (int j = 0; j < copyGrid[0].length; j++) {
+
+                    // coordinate element
+                    Element coordinateElement = document.createElement("coordinate");
+                    battleshipCountGridElement.appendChild(coordinateElement);
+
+                    // x element
+                    xElement = document.createElement("x");
+                    xElement.appendChild(document.createTextNode(i + ""));
+                    coordinateElement.appendChild(xElement);
+
+                    // y element
+                    yElement = document.createElement("y");
+                    yElement.appendChild(document.createTextNode(j + ""));
+                    coordinateElement.appendChild(yElement);
+
+                    // value element
+                    Element valueElement = document.createElement("value");
+                    valueElement.appendChild(document.createTextNode(copyGrid[i][j] + ""));
+                    coordinateElement.appendChild(valueElement);
+                }
+            }
+
+
+            // carrierCountGrid element
+            Element carrierCountGridElement = document.createElement("carrierCountGrid");
+            AIElement.appendChild(carrierCountGridElement);
+
+            copyGrid = MainWindow.myAI.getCarrierCountGrid();
+
+            for (int i = 0; i < copyGrid.length; i++) {
+                for (int j = 0; j < copyGrid[0].length; j++) {
+
+                    // coordinate element
+                    Element coordinateElement = document.createElement("coordinate");
+                    carrierCountGridElement.appendChild(coordinateElement);
+
+                    // x element
+                    xElement = document.createElement("x");
+                    xElement.appendChild(document.createTextNode(i + ""));
+                    coordinateElement.appendChild(xElement);
+
+                    // y element
+                    yElement = document.createElement("y");
+                    yElement.appendChild(document.createTextNode(j + ""));
+                    coordinateElement.appendChild(yElement);
+
+                    // value element
+                    Element valueElement = document.createElement("value");
+                    valueElement.appendChild(document.createTextNode(copyGrid[i][j] + ""));
+                    coordinateElement.appendChild(valueElement);
+                }
+            }
+
+
+            // nbDestroyerDestroyed element
+            Element nbDestroyerDestroyedElement = document.createElement("nbDestroyerDestroyed");
+            nbDestroyerDestroyedElement.appendChild(document.createTextNode(MainWindow.myAI.getNbDestroyerDestroyed() + ""));
+            AIElement.appendChild(nbDestroyerDestroyedElement);
+
+            // nbSubmarineDestroyed element
+            Element nbSubmarineDestroyedElement = document.createElement("nbSubmarineDestroyed");
+            nbSubmarineDestroyedElement.appendChild(document.createTextNode(MainWindow.myAI.getNbSubmarineDestroyed() + ""));
+            AIElement.appendChild(nbSubmarineDestroyedElement);
+
+            // nbCruiserDestroyed element
+            Element nbCruiserDestroyedElement = document.createElement("nbCruiserDestroyed");
+            nbCruiserDestroyedElement.appendChild(document.createTextNode(MainWindow.myAI.getNbCruiserDestroyed() + ""));
+            AIElement.appendChild(nbCruiserDestroyedElement);
+
+            // nbBattleshipDestroyed element
+            Element nbBattleshipDestroyedElement = document.createElement("nbBattleshipDestroyed");
+            nbBattleshipDestroyedElement.appendChild(document.createTextNode(MainWindow.myAI.getNbBattleshipDestroyed() + ""));
+            AIElement.appendChild(nbBattleshipDestroyedElement);
+
+            // nbCarrierDestroyed element
+            Element nbCarrierDestroyedElement = document.createElement("nbCarrierDestroyed");
+            nbCarrierDestroyedElement.appendChild(document.createTextNode(MainWindow.myAI.getNbCarrierDestroyed() + ""));
+            AIElement.appendChild(nbCarrierDestroyedElement);
+
+
+            // missToExclude element
+            Element missToExcludeElement = document.createElement("missToExclude");
+            AIElement.appendChild(missToExcludeElement);
+
+            ArrayList<Coordinate> copyArrayList = MainWindow.myAI.getMissToExclude();
+
+            // size element
+            Element sizeElement = document.createElement("size");
+            sizeElement.appendChild(document.createTextNode(copyArrayList.size() + ""));
+            missToExcludeElement.appendChild(sizeElement);
+
+            for (int i = 0; i < copyArrayList.size(); i++) {
+
+                // coordinate element
+                Element coordinateElement = document.createElement("coordinate");
+                missToExcludeElement.appendChild(coordinateElement);
+
+                // x element
+                xElement = document.createElement("x");
+                xElement.appendChild(document.createTextNode(copyArrayList.get(i).x + ""));
+                coordinateElement.appendChild(xElement);
+
+                // y element
+                yElement = document.createElement("y");
+                yElement.appendChild(document.createTextNode(copyArrayList.get(i).y + ""));
+                coordinateElement.appendChild(yElement);
+            }
+
+
+            // toExclude element
+            Element toExcludeElement = document.createElement("toExclude");
+            AIElement.appendChild(toExcludeElement);
+
+            copyArrayList = MainWindow.myAI.getToExclude();
+
+            // size element
+            sizeElement = document.createElement("size");
+            sizeElement.appendChild(document.createTextNode(copyArrayList.size() + ""));
+            toExcludeElement.appendChild(sizeElement);
+
+            for (int i = 0; i < copyArrayList.size(); i++) {
+
+                // coordinate element
+                Element coordinateElement = document.createElement("coordinate");
+                toExcludeElement.appendChild(coordinateElement);
+
+                // x element
+                xElement = document.createElement("x");
+                xElement.appendChild(document.createTextNode(copyArrayList.get(i).x + ""));
+                coordinateElement.appendChild(xElement);
+
+                // y element
+                yElement = document.createElement("y");
+                yElement.appendChild(document.createTextNode(copyArrayList.get(i).y + ""));
+                coordinateElement.appendChild(yElement);
+            }
+
 
             // create the xml file
             TransformerFactory transformerFactory = TransformerFactory.newInstance();

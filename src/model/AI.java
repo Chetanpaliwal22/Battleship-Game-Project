@@ -49,8 +49,53 @@ public class AI {
         return countGrid;
     }
 
+    public int[][] getDestroyerCountGrid() {
+        return destroyerCountGrid;
+    }
 
+    public int[][] getSubmarineCountGrid() {
+        return submarineCountGrid;
+    }
 
+    public int[][] getCruiserCountGrid() {
+        return cruiserCountGrid;
+    }
+
+    public int[][] getBattleshipCountGrid() {
+        return battleshipCountGrid;
+    }
+
+    public int[][] getCarrierCountGrid() {
+        return carrierCountGrid;
+    }
+
+    public int getNbDestroyerDestroyed() {
+        return nbDestroyerDestroyed;
+    }
+
+    public int getNbSubmarineDestroyed() {
+        return nbSubmarineDestroyed;
+    }
+
+    public int getNbCruiserDestroyed() {
+        return nbCruiserDestroyed;
+    }
+
+    public int getNbBattleshipDestroyed() {
+        return nbBattleshipDestroyed;
+    }
+
+    public int getNbCarrierDestroyed() {
+        return nbCarrierDestroyed;
+    }
+
+    public ArrayList<Coordinate> getMissToExclude() {
+        return missToExclude;
+    }
+
+    public ArrayList<Coordinate> getToExclude() {
+        return toExclude;
+    }
 
     /**
      * default constructor

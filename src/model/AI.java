@@ -41,6 +41,17 @@ public class AI {
     private ArrayList<Coordinate> toExclude;
 
 
+    public Coordinate getPreviousTarget() {
+        return previousTarget;
+    }
+
+    public int[][] getCountGrid() {
+        return countGrid;
+    }
+
+
+
+
     /**
      * default constructor
      */
@@ -102,7 +113,7 @@ public class AI {
         }
 
         for (int i = 0; i < this.toExclude.size(); i++) {
-            System.out.println(this.toExclude.size() + "   @@@@@@@");
+//            System.out.println(this.toExclude.size() + "   @@@@@@@");
 //            System.out.println(this.toExclude.get(i).y + "   #######");
             countGridToUpdate[this.toExclude.get(i).x][this.toExclude.get(i).y] = 0;
         }

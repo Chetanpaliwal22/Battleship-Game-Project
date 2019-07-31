@@ -1,4 +1,5 @@
 package model;
+
 import tools.Coordinate;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class Ship {
     /**
      * argument constructor
      *
-    * @param size accepts size as input 
+     * @param size     accepts size as input
      * @param position accepts position as input
      */
     public Ship(int size, Coordinate[] position) {
@@ -33,17 +34,24 @@ public class Ship {
     /**
      * get list of coordinate of the ship
      *
-    * @return arraylist of ship coordinate
+     * @return arraylist of ship coordinate
      */
-    public ArrayList<Coordinate> getPosition() { return position; }
+    public ArrayList<Coordinate> getPosition() {
+        return position;
+    }
 
+    public ArrayList<Coordinate> getHitPosition() {
+        return hitPosition;
+    }
 
     /**
      * get size of the ship
      *
      * @return size of the ship
      */
-    public int getSize() { return size; }
+    public int getSize() {
+        return size;
+    }
 
 
     /**
@@ -57,15 +65,20 @@ public class Ship {
 
             return true;
 
-        } else { return false; }
+        } else {
+            return false;
+        }
     }
 
+    public boolean getIsAlive() {
+        return isAlive;
+    }
 
     /**
      * check if provided position is a hit
      *
      * @param target cooridnate of the position
-     * @return boolean 
+     * @return boolean
      */
     public boolean isHit(Coordinate target) {
 
@@ -77,7 +90,9 @@ public class Ship {
 
                     hitPosition.add(this.position.get(i));
 
-                    if (hitPosition.size() == position.size()) { isAlive = false; }
+                    if (hitPosition.size() == position.size()) {
+                        isAlive = false;
+                    }
 
                     return true;
                 }
@@ -91,12 +106,14 @@ public class Ship {
     /**
      * check if position already received a hit
      *
-    * @param target of the hit ship
+     * @param target of the hit ship
      * @return boolean if it is a hit
      */
     public boolean isAlreadyHit(Coordinate target) {
 
-        if (!isAlive) { return true; }
+        if (!isAlive) {
+            return true;
+        }
 
         for (int i = 0; i < hitPosition.size(); i++) {
 

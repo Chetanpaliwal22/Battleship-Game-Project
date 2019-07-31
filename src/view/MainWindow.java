@@ -21,7 +21,7 @@ import constants.Constants;
  */
 public class MainWindow extends JFrame {
 
-    static AI myAI = new AI();
+    public static AI myAI = new AI();
 
     public static Board humanBoard = new Board();
 

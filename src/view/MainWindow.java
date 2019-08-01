@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import controller.Mouse;
+
 import main.Game;
 import model.AI;
 import model.Board;

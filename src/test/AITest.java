@@ -1,11 +1,8 @@
 package test;
 
-import static org.junit.Assert.*;
 import java.util.ArrayList;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
-import constants.Constants;
 import model.AI;
 import tools.Coordinate;
 import view.MainWindow;

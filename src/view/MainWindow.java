@@ -220,51 +220,6 @@ public class MainWindow extends JFrame {
             startedGame = true;
             startGameButton.setVisible(false);
 
-
-//            int[][] targetBoardState = humanBoard.getBoardState();
-//
-//            Coordinate target;
-//
-//            System.out.println(targetBoardState.length + ", " + targetBoardState[0].length + "   ???????");
-//            for (int i = 0; i < targetBoardState.length; i++) {
-//                for (int j = 0; j < targetBoardState[0].length; j++) {
-//                    System.out.println(j + "   ???????");
-//
-//                    if (targetBoardState[i][j] != 0) {
-//                        target = new Coordinate(j, i);
-//
-//                        try {
-//                            AIBoard.fireAtTarget(target);
-//                        } catch (Exception ex) {
-//                            ex.printStackTrace();
-//                        }
-//                    }
-//                }
-//            }
-//
-//
-//            targetBoardState = AIBoard.getBoardState();
-//
-//            for (int i = 0; i < targetBoardState.length; i++) {
-//                for (int j = 0; j < targetBoardState[0].length; j++) {
-//                    if (targetBoardState[i][j] != 0) {
-//                        target = new Coordinate(j, i);
-//
-//                        try {
-//                            int result = humanBoard.fireAtTarget(target);
-//                            System.out.println(result + "   ------------");
-//                            myAI.receiveResult(result);
-//
-//                            if (result == 1 | result == 2)
-//                                humanBoard.checkSunk();
-//                        } catch (Exception ex) {
-//                            ex.printStackTrace();
-//                        }
-//                    }
-//                }
-//            }
-
-
             // Start the timer
             GameTimer.start();
         });

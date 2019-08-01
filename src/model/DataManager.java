@@ -289,19 +289,229 @@ public class DataManager {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
 
-                    System.out.println("targetMode : " + element.getElementsByTagName("targetMode").item(0).getTextContent());
-                    System.out.println("direction : " + element.getElementsByTagName("direction").item(0).getTextContent());
-                    System.out.println("distanceFromHit : " + element.getElementsByTagName("distanceFromHit").item(0).getTextContent());
-                    System.out.println("fixedDirection : " + element.getElementsByTagName("fixedDirection").item(0).getTextContent());
-                    System.out.println("seekAgain : " + element.getElementsByTagName("seekAgain").item(0).getTextContent());
-                    System.out.println("axisX : " + element.getElementsByTagName("axisX").item(0).getTextContent());
-                    System.out.println("axisY : " + element.getElementsByTagName("axisY").item(0).getTextContent());
-                    System.out.println("previousTargetX : " + element.getElementsByTagName("previousTargetX").item(0).getTextContent());
-                    System.out.println("previousTargetY : " + element.getElementsByTagName("previousTargetY").item(0).getTextContent());
+                    if (element.getElementsByTagName("targetMode").item(0).getTextContent().compareToIgnoreCase("true") == 0)
+                        MainWindow.myAI.targetMode = true;
+                    else
+                        MainWindow.myAI.targetMode = false;
 
+                    MainWindow.myAI.direction = Integer.parseInt(element.getElementsByTagName("direction").item(0).getTextContent());
 
+                    MainWindow.myAI.distanceFromHit = Integer.parseInt(element.getElementsByTagName("distanceFromHit").item(0).getTextContent());
+
+                    if (element.getElementsByTagName("fixedDirection").item(0).getTextContent().compareToIgnoreCase("true") == 0)
+                        MainWindow.myAI.fixedDirection = true;
+                    else
+                        MainWindow.myAI.fixedDirection = false;
+
+                    if (element.getElementsByTagName("seekAgain").item(0).getTextContent().compareToIgnoreCase("true") == 0)
+                        MainWindow.myAI.seekAgain = true;
+                    else
+                        MainWindow.myAI.seekAgain = false;
+
+                    MainWindow.myAI.axis = new Coordinate(Integer.parseInt(element.getElementsByTagName("axisX").item(0).getTextContent()), Integer.parseInt(element.getElementsByTagName("axisY").item(0).getTextContent()));
+
+                    MainWindow.myAI.setPreviousTarget(new Coordinate(Integer.parseInt(element.getElementsByTagName("previousTargetX").item(0).getTextContent()), Integer.parseInt(element.getElementsByTagName("previousTargetY").item(0).getTextContent())));
+
+                    MainWindow.myAI.setNbDestroyerDestroyed(Integer.parseInt(element.getElementsByTagName("nbDestroyerDestroyed").item(0).getTextContent()));
+
+                    MainWindow.myAI.setNbSubmarineDestroyed(Integer.parseInt(element.getElementsByTagName("nbSubmarineDestroyed").item(0).getTextContent()));
+
+                    MainWindow.myAI.setNbCruiserDestroyed(Integer.parseInt(element.getElementsByTagName("nbCruiserDestroyed").item(0).getTextContent()));
+
+                    MainWindow.myAI.setNbBattleshipDestroyed(Integer.parseInt(element.getElementsByTagName("nbBattleshipDestroyed").item(0).getTextContent()));
+
+                    MainWindow.myAI.setNbCarrierDestroyed(Integer.parseInt(element.getElementsByTagName("nbCarrierDestroyed").item(0).getTextContent()));
+
+//                    System.out.println("targetMode: " + MainWindow.myAI.targetMode);
+//                    System.out.println("direction: " + MainWindow.myAI.direction);
+//                    System.out.println("distanceFromHit: " + MainWindow.myAI.distanceFromHit);
+//                    System.out.println("fixedDirection: " + MainWindow.myAI.fixedDirection);
+//                    System.out.println("seekAgain: " + MainWindow.myAI.seekAgain);
+//                    System.out.println("axis: " + MainWindow.myAI.axis.x + ", " + MainWindow.myAI.axis.y);
+//                    System.out.println("previousTarget: " + MainWindow.myAI.getPreviousTarget().x + ", " + MainWindow.myAI.getPreviousTarget().y);
                 }
             }
+
+
+            int[][] targetGrid = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+
+            nodeList = (NodeList) xPath.compile("/data/AI/countGrid/coordinate").evaluate(document, XPathConstants.NODESET);
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+
+                    targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
+
+//                    System.out.println("x: " + element.getElementsByTagName("x").item(0).getTextContent());
+//                    System.out.println("y: " + element.getElementsByTagName("y").item(0).getTextContent());
+//                    System.out.println("value: " + element.getElementsByTagName("value").item(0).getTextContent());
+                }
+            }
+
+            MainWindow.myAI.setCountGrid(targetGrid);
+
+
+            targetGrid = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+
+            nodeList = (NodeList) xPath.compile("/data/AI/destroyerCountGrid/coordinate").evaluate(document, XPathConstants.NODESET);
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+
+                    targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
+
+//                    System.out.println("x: " + element.getElementsByTagName("x").item(0).getTextContent());
+//                    System.out.println("y: " + element.getElementsByTagName("y").item(0).getTextContent());
+//                    System.out.println("value: " + element.getElementsByTagName("value").item(0).getTextContent());
+                }
+            }
+
+            MainWindow.myAI.setDestroyerCountGrid(targetGrid);
+
+
+            targetGrid = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+
+            nodeList = (NodeList) xPath.compile("/data/AI/submarineCountGrid/coordinate").evaluate(document, XPathConstants.NODESET);
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+
+                    targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
+
+//                    System.out.println("x: " + element.getElementsByTagName("x").item(0).getTextContent());
+//                    System.out.println("y: " + element.getElementsByTagName("y").item(0).getTextContent());
+//                    System.out.println("value: " + element.getElementsByTagName("value").item(0).getTextContent());
+                }
+            }
+
+            MainWindow.myAI.setSubmarineCountGrid(targetGrid);
+
+
+            targetGrid = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+
+            nodeList = (NodeList) xPath.compile("/data/AI/cruiserCountGrid/coordinate").evaluate(document, XPathConstants.NODESET);
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+
+                    targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
+
+//                    System.out.println("x: " + element.getElementsByTagName("x").item(0).getTextContent());
+//                    System.out.println("y: " + element.getElementsByTagName("y").item(0).getTextContent());
+//                    System.out.println("value: " + element.getElementsByTagName("value").item(0).getTextContent());
+                }
+            }
+
+            MainWindow.myAI.setCruiserCountGrid(targetGrid);
+
+
+            targetGrid = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+
+            nodeList = (NodeList) xPath.compile("/data/AI/battleshipCountGrid/coordinate").evaluate(document, XPathConstants.NODESET);
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+
+                    targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
+
+//                    System.out.println("x: " + element.getElementsByTagName("x").item(0).getTextContent());
+//                    System.out.println("y: " + element.getElementsByTagName("y").item(0).getTextContent());
+//                    System.out.println("value: " + element.getElementsByTagName("value").item(0).getTextContent());
+                }
+            }
+
+            MainWindow.myAI.setBattleshipCountGrid(targetGrid);
+
+
+            targetGrid = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+
+            nodeList = (NodeList) xPath.compile("/data/AI/carrierCountGrid/coordinate").evaluate(document, XPathConstants.NODESET);
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+
+                    targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
+
+//                    System.out.println("x: " + element.getElementsByTagName("x").item(0).getTextContent());
+//                    System.out.println("y: " + element.getElementsByTagName("y").item(0).getTextContent());
+//                    System.out.println("value: " + element.getElementsByTagName("value").item(0).getTextContent());
+                }
+            }
+
+            MainWindow.myAI.setCarrierCountGrid(targetGrid);
+
+
+            nodeList = (NodeList) xPath.compile("/data/AI/missToExclude").evaluate(document, XPathConstants.NODESET);
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+
+                    int missToExcludeSize = Integer.parseInt(element.getElementsByTagName("size").item(0).getTextContent());
+
+                    if (missToExcludeSize != 0) {
+
+                        ArrayList<Coordinate> missToExcludeCoordinate = new ArrayList<Coordinate>();
+
+                        for (int j = 0; j < missToExcludeSize; j++) {
+                            Coordinate coordinate = new Coordinate(Integer.parseInt(element.getElementsByTagName("x").item(j).getTextContent()), Integer.parseInt(element.getElementsByTagName("y").item(j).getTextContent()));
+                            missToExcludeCoordinate.add(coordinate);
+
+//                            System.out.println(coordinate.x + ", " + coordinate.y + " ^&*(^&*%^$%$%^&");
+                        }
+
+                        MainWindow.myAI.setMissToExclude(missToExcludeCoordinate);
+                    }
+                }
+            }
+
+
+            nodeList = (NodeList) xPath.compile("/data/AI/toExclude").evaluate(document, XPathConstants.NODESET);
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+
+                    int toExcludeSize = Integer.parseInt(element.getElementsByTagName("size").item(0).getTextContent());
+
+                    if (toExcludeSize != 0) {
+
+                        ArrayList<Coordinate> toExcludeCoordinate = new ArrayList<Coordinate>();
+
+                        for (int j = 0; j < toExcludeSize; j++) {
+                            Coordinate coordinate = new Coordinate(Integer.parseInt(element.getElementsByTagName("x").item(j).getTextContent()), Integer.parseInt(element.getElementsByTagName("y").item(j).getTextContent()));
+                            toExcludeCoordinate.add(coordinate);
+
+//                            System.out.println(coordinate.x + ", " + coordinate.y + " -------------");
+                        }
+
+                        MainWindow.myAI.setToExclude(toExcludeCoordinate);
+                    }
+                }
+            }
+
 
         } catch (ParserConfigurationException e) {
             e.printStackTrace();

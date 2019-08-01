@@ -97,6 +97,64 @@ public class AI {
         return toExclude;
     }
 
+
+    public void setPreviousTarget(Coordinate targetCoordinate) {
+        previousTarget = targetCoordinate;
+    }
+
+    public void setCountGrid(int[][] targetGrid) {
+        countGrid = targetGrid;
+    }
+
+    public void setDestroyerCountGrid(int[][] targetGrid) {
+        destroyerCountGrid = targetGrid;
+    }
+
+    public void setSubmarineCountGrid(int[][] targetGrid) {
+        submarineCountGrid = targetGrid;
+    }
+
+    public void setCruiserCountGrid(int[][] targetGrid) {
+        cruiserCountGrid = targetGrid;
+    }
+
+    public void setBattleshipCountGrid(int[][] targetGrid) {
+        battleshipCountGrid = targetGrid;
+    }
+
+    public void setCarrierCountGrid(int[][] targetGrid) {
+        carrierCountGrid = targetGrid;
+    }
+
+    public void setNbDestroyerDestroyed(int targetValue) {
+        nbDestroyerDestroyed = targetValue;
+    }
+
+    public void setNbSubmarineDestroyed(int targetValue) {
+        nbSubmarineDestroyed = targetValue;
+    }
+
+    public void setNbCruiserDestroyed(int targetValue) {
+        nbCruiserDestroyed = targetValue;
+    }
+
+    public void setNbBattleshipDestroyed(int targetValue) {
+        nbBattleshipDestroyed = targetValue;
+    }
+
+    public void setNbCarrierDestroyed(int targetValue) {
+        nbCarrierDestroyed = targetValue;
+    }
+
+    public void setMissToExclude(ArrayList<Coordinate> targetCoordinate) {
+        missToExclude = targetCoordinate;
+    }
+
+    public void setToExclude(ArrayList<Coordinate> targetCoordinate) {
+        toExclude = targetCoordinate;
+    }
+
+
     /**
      * default constructor
      */

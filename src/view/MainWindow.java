@@ -38,6 +38,8 @@ public class MainWindow extends JFrame {
 
     private static JLabel gameStateComponent;
 
+    private static JRadioButton basicGameplayRadioButton, advancedGameplayRadioButton;
+
     public static JLabel timerLabel;
 
     // A list contains all the five ships
@@ -45,8 +47,8 @@ public class MainWindow extends JFrame {
 
     static char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'};
 
-    // Button array
-    static JButton[][] buttonArray = new JButton[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+//    // Button array
+//    static JButton[][] buttonArray = new JButton[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
 
     private static int numberOfAISunkShips = 0;
 
@@ -94,6 +96,50 @@ public class MainWindow extends JFrame {
         topPanel.setMaximumSize(new Dimension(Constants.WINDOW_WIDTH, 70));
         topPanel.setBackground(Color.YELLOW);
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
+
+
+        // create and add radio button to top panel//
+        basicGameplayRadioButton = new JRadioButton("Basic Gameplay");
+        basicGameplayRadioButton.setSelected(false);
+
+        // button click method of the radio button
+        basicGameplayRadioButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (basicGameplayRadioButton.isSelected()) {
+                    gameMode = "normal";
+                    advancedGameplayRadioButton.setSelected(false);
+                }
+            }
+        });
+
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new Insets(3, 10, 3, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+
+        topPanel.add(basicGameplayRadioButton, gridBagConstraints);
+
+
+        // create and add radio button to top panel//
+        advancedGameplayRadioButton = new JRadioButton("Advanced Gameplay - Salva Variation");
+        advancedGameplayRadioButton.setSelected(true);
+
+        // button click method of the radio button
+        advancedGameplayRadioButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (advancedGameplayRadioButton.isSelected()) {
+                    gameMode = "advanced";
+                    basicGameplayRadioButton.setSelected(false);
+                }
+            }
+        });
+
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new Insets(3, 10, 3, 5);
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+
+        topPanel.add(advancedGameplayRadioButton, gridBagConstraints);
 
 
         // create and add game state component top panel//
@@ -151,6 +197,9 @@ public class MainWindow extends JFrame {
                 gameStateComponent.setText("Game has started");
                 startedGame = true;
                 startGameButton.setVisible(false);
+
+                basicGameplayRadioButton.setVisible(false);
+                advancedGameplayRadioButton.setVisible(false);
 
                 // Reset the timer
                 GameTimer.reset();
@@ -231,7 +280,7 @@ public class MainWindow extends JFrame {
         shipList.add(new FrontEndShip(5, 3, 4, 9));
     }
 
-    // Button click method
+    // button click method
     public static void buttonClick() {
         if (startedGame & !gameOver) {
             if (Renderer.fireTargetX != -1 & Renderer.fireTargetY != -1) {

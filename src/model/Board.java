@@ -91,6 +91,12 @@ public class Board {
     }
 
 
+    public void updateShip(int shipIndex, ArrayList<Coordinate> targetHitPosition, boolean liveState) {
+        ships.get(shipIndex).setHitPosition(targetHitPosition);
+        ships.get(shipIndex).setIsLive(liveState);
+    }
+
+
     /**
      * process a fire on the board and respond accordingly
      *

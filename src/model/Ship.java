@@ -44,6 +44,14 @@ public class Ship {
         return hitPosition;
     }
 
+    public void setHitPosition(ArrayList<Coordinate> targetHitPosition) {
+        hitPosition = targetHitPosition;
+    }
+
+    public void setIsLive(boolean liveState) {
+        isAlive = liveState;
+    }
+
     /**
      * get size of the ship
      *

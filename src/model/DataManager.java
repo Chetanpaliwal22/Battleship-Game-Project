@@ -22,6 +22,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import sun.applet.Main;
 import tools.Coordinate;
 import view.FrontEndShip;
 import view.MainWindow;
@@ -68,7 +69,7 @@ public class DataManager {
             }
 
 
-            nodeList = (NodeList) xPath.compile("/data/frontEndShipsElement/ship").evaluate(document, XPathConstants.NODESET);
+            nodeList = (NodeList) xPath.compile("/data/frontEndShips/ship").evaluate(document, XPathConstants.NODESET);
 
             MainWindow.shipList = new ArrayList<FrontEndShip>();
 
@@ -106,6 +107,7 @@ public class DataManager {
                 }
             }
 
+
             // update the ships on human board
             for (int i = 0; i < MainWindow.shipList.size(); i++) {
 
@@ -123,6 +125,35 @@ public class DataManager {
             }
 
 
+            nodeList = (NodeList) xPath.compile("/data/playerShips/ship").evaluate(document, XPathConstants.NODESET);
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+
+                    int hitPositionSize = Integer.parseInt(element.getElementsByTagName("hitPositionSize").item(0).getTextContent());
+
+                    if (hitPositionSize != 0) {
+
+                        ArrayList<Coordinate> targetHitPosition = new ArrayList<Coordinate>();
+
+                        for (int j = 0; j < hitPositionSize; j++) {
+                            Coordinate coordinate = new Coordinate(Integer.parseInt(element.getElementsByTagName("hitPositionX").item(j).getTextContent()), Integer.parseInt(element.getElementsByTagName("hitPositionY").item(j).getTextContent()));
+                            targetHitPosition.add(coordinate);
+                        }
+
+                        if (element.getElementsByTagName("isAlive").item(0).getTextContent().compareToIgnoreCase("true") == 0)
+                            MainWindow.humanBoard.updateShip(i, targetHitPosition, true);
+                        else
+                            MainWindow.humanBoard.updateShip(i, targetHitPosition, false);
+                    }
+                }
+            }
+
+
+            // update the AI ships on AI board
             nodeList = (NodeList) xPath.compile("/data/AIShips/ship").evaluate(document, XPathConstants.NODESET);
 
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -151,6 +182,45 @@ public class DataManager {
             }
 
 
+            nodeList = (NodeList) xPath.compile("/data/AIShips/ship").evaluate(document, XPathConstants.NODESET);
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+
+                    int hitPositionSize = Integer.parseInt(element.getElementsByTagName("hitPositionSize").item(0).getTextContent());
+
+                    if (hitPositionSize != 0) {
+
+                        ArrayList<Coordinate> targetHitPosition = new ArrayList<Coordinate>();
+
+                        for (int j = 0; j < hitPositionSize; j++) {
+                            Coordinate coordinate = new Coordinate(Integer.parseInt(element.getElementsByTagName("hitPositionX").item(j).getTextContent()), Integer.parseInt(element.getElementsByTagName("hitPositionY").item(j).getTextContent()));
+                            targetHitPosition.add(coordinate);
+                        }
+
+                        if (element.getElementsByTagName("isAlive").item(0).getTextContent().compareToIgnoreCase("true") == 0)
+                            MainWindow.AIBoard.updateShip(i, targetHitPosition, true);
+                        else
+                            MainWindow.AIBoard.updateShip(i, targetHitPosition, false);
+                    }
+                }
+            }
+
+
+//            ArrayList<Ship> realShips = MainWindow.AIBoard.getShips();
+//
+//            for (int index = 0; index < realShips.size(); index++) {
+//                ArrayList<Coordinate> realPosition = realShips.get(index).getHitPosition();
+//                System.out.println("%%%%%%%%%%");
+//                for (int h = 0; h < realPosition.size(); h++) {
+//                    System.out.println(realPosition.get(h).x + ", " + realPosition.get(h).y + " -------------????????");
+//                }
+//            }
+
+
             nodeList = (NodeList) xPath.compile("/data/humanBoard/waterGridState/coordinate").evaluate(document, XPathConstants.NODESET);
 
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -170,6 +240,14 @@ public class DataManager {
             }
 
             MainWindow.humanBoard.setBoardState(targetBoardState);
+
+//            int[][] realState = MainWindow.humanBoard.getBoardState();
+//            for (int i = 0; i < realState.length; i++) {
+//                for (int j = 0; j < realState[0].length; j++) {
+//                    System.out.print(realState[i][j] + " ");
+//                }
+//                System.out.println("");
+//            }
 
 //            System.out.println("----------------------------");
 //            System.out.println("AI board");
@@ -193,6 +271,37 @@ public class DataManager {
             }
 
             MainWindow.AIBoard.setBoardState(targetBoardState);
+
+//            int[][] realState = MainWindow.AIBoard.getBoardState();
+//            for (int i = 0; i < realState.length; i++) {
+//                for (int j = 0; j < realState[0].length; j++) {
+//                    System.out.print(realState[i][j] + " ");
+//                }
+//                System.out.println("");
+//            }
+
+
+            nodeList = (NodeList) xPath.compile("/data/AI").evaluate(document, XPathConstants.NODESET);
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+
+                    System.out.println("targetMode : " + element.getElementsByTagName("targetMode").item(0).getTextContent());
+                    System.out.println("direction : " + element.getElementsByTagName("direction").item(0).getTextContent());
+                    System.out.println("distanceFromHit : " + element.getElementsByTagName("distanceFromHit").item(0).getTextContent());
+                    System.out.println("fixedDirection : " + element.getElementsByTagName("fixedDirection").item(0).getTextContent());
+                    System.out.println("seekAgain : " + element.getElementsByTagName("seekAgain").item(0).getTextContent());
+                    System.out.println("axisX : " + element.getElementsByTagName("axisX").item(0).getTextContent());
+                    System.out.println("axisY : " + element.getElementsByTagName("axisY").item(0).getTextContent());
+                    System.out.println("previousTargetX : " + element.getElementsByTagName("previousTargetX").item(0).getTextContent());
+                    System.out.println("previousTargetY : " + element.getElementsByTagName("previousTargetY").item(0).getTextContent());
+
+
+                }
+            }
 
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
@@ -532,7 +641,7 @@ public class DataManager {
             AIElement.appendChild(axisElement);
 
             // X element
-            Element xElement = document.createElement("x");
+            Element xElement = document.createElement("axisX");
 
             if (MainWindow.myAI.axis != null)
                 xElement.appendChild(document.createTextNode(MainWindow.myAI.axis.x + ""));
@@ -540,10 +649,10 @@ public class DataManager {
             axisElement.appendChild(xElement);
 
             // Y element
-            Element yElement = document.createElement("y");
+            Element yElement = document.createElement("axisY");
 
             if (MainWindow.myAI.axis != null)
-            yElement.appendChild(document.createTextNode(MainWindow.myAI.axis.y + ""));
+                yElement.appendChild(document.createTextNode(MainWindow.myAI.axis.y + ""));
 
             axisElement.appendChild(yElement);
 
@@ -555,13 +664,13 @@ public class DataManager {
             Element previousTargetElement = document.createElement("previousTarget");
             AIElement.appendChild(previousTargetElement);
 
-            // X element
-            xElement = document.createElement("x");
+            // x element
+            xElement = document.createElement("previousTargetX");
             xElement.appendChild(document.createTextNode(previousTarget.x + ""));
             previousTargetElement.appendChild(xElement);
 
-            // Y element
-            yElement = document.createElement("y");
+            // y element
+            yElement = document.createElement("previousTargetY");
             yElement.appendChild(document.createTextNode(previousTarget.y + ""));
             previousTargetElement.appendChild(yElement);
 

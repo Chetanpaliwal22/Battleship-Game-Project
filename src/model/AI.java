@@ -422,8 +422,8 @@ public class AI {
     /**
      * get the next five move from the AI player
      *
-     * @param sunkNumber
-     * @return
+     * @param sunkNumber total number of sunk ship
+     * @return array list of coordinate
      */
     public ArrayList<Coordinate> getNextMoveSalvation(int sunkNumber) {
 
@@ -440,8 +440,8 @@ public class AI {
 
     /**
      * receive result from shots in salvation mode
-     *
-     * @return the coordinate list of next move
+     *@param codeList Array list of integer
+     *@throws Exception throws exception
      */
     public void receiveResultSalvation(ArrayList<Integer> codeList) throws Exception {
 

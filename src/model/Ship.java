@@ -37,6 +37,17 @@ public class Ship {
      */
     public ArrayList<Coordinate> getPosition() { return position; }
 
+    public ArrayList<Coordinate> getHitPosition() {
+        return hitPosition;
+    }
+
+    public void setHitPosition(ArrayList<Coordinate> targetHitPosition) {
+        hitPosition = targetHitPosition;
+    }
+
+    public void setIsLive(boolean liveState) {
+        isAlive = liveState;
+    }
 
     /**
      * get size of the ship
@@ -58,6 +69,11 @@ public class Ship {
             return true;
 
         } else { return false; }
+    }
+
+
+    public boolean getIsAlive() {
+        return isAlive;
     }
 
 

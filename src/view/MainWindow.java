@@ -3,10 +3,7 @@ package view;
 import constants.Constants;
 import controller.Mouse;
 import main.Game;
-import model.AI;
-import model.Board;
-import model.GameTimer;
-import model.Score;
+import model.*;
 import tools.Coordinate;
 
 import javax.swing.*;
@@ -24,7 +21,7 @@ import java.util.TimerTask;
  */
 public class MainWindow extends JFrame {
 
-    static AI myAI = new AI();
+    public static AI myAI = new AI();
 
     public static Board humanBoard = new Board();
 
@@ -33,6 +30,8 @@ public class MainWindow extends JFrame {
     private static Mouse mouse;
 
     private static Score score = new Score();
+
+    private static DataManager dataManager = new DataManager();
 
     public static boolean startedGame = false;
 
@@ -47,7 +46,7 @@ public class MainWindow extends JFrame {
 
     static char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'};
 
-    private static int numberOfAISunkShips = 0;
+    public static int numberOfAISunkShips = 0;
 
     public static boolean gameOver = false;
 
@@ -233,6 +232,60 @@ public class MainWindow extends JFrame {
         gridBagConstraints.gridy = 1;
 
         topPanel.add(timerLabel, gridBagConstraints);
+
+        // create and add save button to top panel
+
+        JButton saveButton = new JButton("Save");
+
+        saveButton.setPreferredSize(new Dimension(40, 15));
+        saveButton.setMaximumSize(new Dimension(40, 15));
+
+        saveButton.addActionListener((ActionEvent e) -> {
+            dataManager.save();
+        });
+
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+
+        topPanel.add(saveButton, gridBagConstraints);
+
+
+        // create and add load button to top panel
+
+        JButton loadButton = new JButton("Load");
+
+        loadButton.setPreferredSize(new Dimension(40, 15));
+        loadButton.setMaximumSize(new Dimension(40, 15));
+
+        loadButton.addActionListener((ActionEvent e) -> {
+            myAI = new AI();
+
+            humanBoard = new Board();
+
+            AIBoard = new Board();
+
+            // load the data from xml file
+            dataManager.load();
+
+            AIBoard.setGameHasStarted();
+            humanBoard.setGameHasStarted();
+            gameStateComponent.setText("Game has started");
+            startedGame = true;
+            startGameButton.setVisible(false);
+
+            // Start the timer
+            GameTimer.startTimer();
+        });
+
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+
+        topPanel.add(loadButton, gridBagConstraints);
+
 
         add(topPanel); // finally add top panel to window
 

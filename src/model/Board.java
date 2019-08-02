@@ -93,6 +93,12 @@ public class Board {
     }
 
 
+    public void updateShip(int shipIndex, ArrayList<Coordinate> targetHitPosition, boolean liveState) {
+        ships.get(shipIndex).setHitPosition(targetHitPosition);
+        ships.get(shipIndex).setIsLive(liveState);
+    }
+
+
     /**
      * process a fire on the board and respond accordingly
      *
@@ -136,6 +142,11 @@ public class Board {
     }
 
 
+    public ArrayList<Ship> getShips() {
+        return ships;
+    }
+
+
     /**
      * return the state of the board as a 2 dimensional array of integer
      * WIP
@@ -144,6 +155,11 @@ public class Board {
      */
     public int[][] getBoardState() {
         return waterGridState;
+    }
+
+
+    public void setBoardState(int[][] boardState) {
+        waterGridState = boardState;
     }
 
 

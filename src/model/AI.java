@@ -223,7 +223,7 @@ public class AI {
      */
     public Coordinate getNextMove() {
 
-        if (targetMode) {
+        if (targetMode && previousTargetSalvation == null) {
 
             Coordinate bestNextTarget;
 
@@ -315,6 +315,8 @@ public class AI {
         }
 
         toExclude.add(new Coordinate(this.previousTarget.y, this.previousTarget.x));
+
+		this.countGrid[this.previousTarget.y][this.previousTarget.x] = 0;
 
         return this.previousTarget;
     }

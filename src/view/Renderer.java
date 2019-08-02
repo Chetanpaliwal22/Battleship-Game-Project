@@ -314,8 +314,7 @@ public class Renderer extends JComponent {
 
             for (int i = Constants.BOARD_SIZE.x - 1; i >= 0; i--) {
                 for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
-                    double currentDistance = (mouseX - aiBoardHoleLocationX[j][i]) * (mouseX - aiBoardHoleLocationX[j][i])
-                            + (mouseY - aiBoardHoleLocationY[j][i]) * (mouseY - aiBoardHoleLocationY[j][i]);
+                    double currentDistance = (mouseX - aiBoardHoleLocationX[j][i]) * (mouseX - aiBoardHoleLocationX[j][i]) + (mouseY - aiBoardHoleLocationY[j][i] - 30) * (mouseY - aiBoardHoleLocationY[j][i] - 30);
                     if (currentDistance < shortestDistance) {
                         shortestDistance = currentDistance;
 

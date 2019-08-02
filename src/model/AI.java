@@ -1,13 +1,14 @@
 package model;
 
+import constants.Constants;
+import tools.Coordinate;
+import tools.GridHelper;
+
 import java.util.ArrayList;
 
 /**
  * This class contains the backend logic of AI
  */
-import constants.Constants;
-import tools.Coordinate;
-import tools.GridHelper;
 
 public class AI {
 
@@ -22,6 +23,7 @@ public class AI {
 	Coordinate axis;
 
 	private Coordinate previousTarget = new Coordinate(-1, -1);
+	private ArrayList<Coordinate> previousTargetSalvation;
 
 	private int[][] countGrid;
 
@@ -40,6 +42,8 @@ public class AI {
 	private ArrayList<Coordinate> missToExclude;
 	private ArrayList<Coordinate> toExclude;
 
+	private int sunkNumber = 0;
+
 
 	/**
 	 * default constructor
@@ -50,6 +54,8 @@ public class AI {
 
 		this.missToExclude = new ArrayList<Coordinate>(boardSize.x * boardSize.y);
 		this.toExclude = new ArrayList<Coordinate>(boardSize.x * boardSize.y);
+
+        this.previousTargetSalvation = new ArrayList<Coordinate>(5);
 
 		try { updateCountGrid( -1 ); }
 
@@ -298,6 +304,8 @@ public class AI {
 
 		} else { this.previousTarget = getGlobalHighestCount(); }
 
+		toExclude.add(new Coordinate(this.previousTarget.y, this.previousTarget.x));
+
 		return this.previousTarget;
 	}
 
@@ -397,32 +405,36 @@ public class AI {
 			distanceFromHit = 1;
 		}
 
-		toExclude.add(new Coordinate(this.previousTarget.y, this.previousTarget.x));
-
 		updateCountGrid( code );
 	}
 
 
-	/**
-	 * get the next five move from the AI player
-	 * @return the coordinate list of next move
-	 */
-	public ArrayList<Coordinate> getNextMoveSalvation() {
+    /**
+     * get the next five move from the AI player
+     * @param sunkNumber
+     * @return
+     */
+	public ArrayList<Coordinate> getNextMoveSalvation(int sunkNumber) {
 
 		ArrayList<Coordinate> coordinateList = new ArrayList<Coordinate>();
 
-		for(int i=0; i<5; i++){ coordinateList.add( this.getNextMove() ); }
+		for(int i=0; i<5-sunkNumber; i++){ coordinateList.add( this.getNextMove() ); }
+
+		this.previousTargetSalvation = coordinateList;
 
 		return coordinateList;
 	}
 
 	/**
-	 * get the next five move from the AI player
+	 * receive result from shots in salvation mode
 	 * @return the coordinate list of next move
 	 */
 	public void receiveResultSalvation(ArrayList<Integer> codeList) throws Exception {
 
-		for(int i=0; i<5; i++){ this.receiveResult( codeList.get( i ) ); }
+		for(int i=0; i<codeList.size(); i++){
+		    this.previousTarget = this.previousTargetSalvation.get(i);
+		    this.receiveResult( codeList.get( i ) );
+		}
 	}
 
 }

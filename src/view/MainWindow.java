@@ -1,14 +1,6 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
+import constants.Constants;
 import controller.Mouse;
 import main.Game;
 import model.AI;
@@ -16,7 +8,14 @@ import model.Board;
 import model.GameTimer;
 import model.Score;
 import tools.Coordinate;
-import constants.Constants;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -409,6 +408,7 @@ public class MainWindow extends JFrame {
                                 if (gameOver) {
                                     gameStateComponent.setText("AI wins !!!");
                                 }
+
 
                                 // for debugging
                                 AIBoard.printStateGrid();

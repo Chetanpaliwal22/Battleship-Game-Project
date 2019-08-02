@@ -20,6 +20,8 @@ public class Board {
 
     private ArrayList<Ship> ships;
 
+    public int sunkNumber = 0;
+
 
     /**
      * argument constructor
@@ -112,6 +114,7 @@ public class Board {
             if (waterGrid[target.y][target.x].isSunk()) { // ship has sunk
 
                 waterGridState[target.y][target.x] = 2;
+                sunkNumber++;
 
                 return 2;
 

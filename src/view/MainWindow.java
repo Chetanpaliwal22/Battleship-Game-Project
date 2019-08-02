@@ -47,18 +47,21 @@ public class MainWindow extends JFrame {
 
     static char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'};
 
-//    // Button array
-//    static JButton[][] buttonArray = new JButton[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
-
     private static int numberOfAISunkShips = 0;
 
     public static boolean gameOver = false;
 
     public static boolean playerWins = false;
 
-    private static String gameMode = "normal";
+    private static String gameMode = "advanced";
 
-    //   private String gameMode = "advanced";
+    private static Coordinate AIFireTarget;
+
+    private static boolean playerGaveAllShots = false;
+
+    private static int numberOfPlayerShots = 0, numberOfPlayerMaxShots = 5;
+
+    static ArrayList<Coordinate> playerFireTargetList = new ArrayList<Coordinate>();
 
 
     /**
@@ -248,26 +251,6 @@ public class MainWindow extends JFrame {
         mouse = new Mouse();
         addMouseListener(mouse);
 
-//        // create board to display
-//        JPanel boardPanel = new JPanel(new GridLayout(Constants.BOARD_SIZE.x, Constants.BOARD_SIZE.y, 3, 3));
-//        //jPanel2.setMaximumSize(new Dimension(Constants.BOARD_PIXEL_SIZE.x / 2, Constants.BOARD_PIXEL_SIZE.x / 2 - 2 * Renderer.holeImageSize));
-//        boardPanel.setMaximumSize(new Dimension(Constants.WINDOW_WIDTH / 2, Constants.WINDOW_WIDTH / 2 + 2 * Renderer.holeImageSize));
-//
-//        // Generate the grid to display
-//
-//        for (int i = Constants.BOARD_SIZE.x - 1; i >= 0; i--) {
-//            for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
-//
-//                buttonArray[i][j] = new JButton(alphabet[j] + "" + (i + 1));
-//                buttonArray[i][j].setName((j + 1) + "," + (i + 1));
-//                buttonArray[i][j].addActionListener(this);
-//
-//                boardPanel.add(buttonArray[i][j]);
-//            }
-//        }
-//
-//        boardPanel.setBackground(Color.red);
-//        gameBoardPanel.add(boardPanel);
 
         // finally, add all components to main window
         add(gameBoardPanel);
@@ -297,57 +280,39 @@ public class MainWindow extends JFrame {
                             // Start the timer
                             GameTimer.startTimer();
 
-                            System.out.println("Human click on " + alphabet[Renderer.fireTargetX] + "" + (Renderer.fireTargetY + 1) + ", coordinate " + (Renderer.fireTargetX + 1) + ", " + (Renderer.fireTargetY + 1));
+                            int result;
 
-                            Coordinate target = new Coordinate(Renderer.fireTargetX, Renderer.fireTargetY);
+                            if (gameMode.equalsIgnoreCase("normal")) {
+                                System.out.println("Human click on " + alphabet[Renderer.fireTargetX] + "" + (Renderer.fireTargetY + 1) + ", coordinate " + (Renderer.fireTargetX + 1) + ", " + (Renderer.fireTargetY + 1));
 
-                            int result = AIBoard.fireAtTarget(target);
+                                result = AIBoard.fireAtTarget(new Coordinate(Renderer.fireTargetX, Renderer.fireTargetY));
 
-                            if (result == 0) {
+                                checkAIBoardResult(result);
+                            } else if (gameMode.equalsIgnoreCase("advanced")) {
+                                System.out.println("Human click on " + alphabet[Renderer.fireTargetX] + "" + (Renderer.fireTargetY + 1) + ", coordinate " + (Renderer.fireTargetX + 1) + ", " + (Renderer.fireTargetY + 1));
 
-                                Renderer.playWaterSplashAnimation(2, Renderer.fireTargetX, Renderer.fireTargetY);
-                                System.out.println("Human => miss\n");
+                                if (!playerGaveAllShots) {
+                                    playerFireTargetList.add(new Coordinate(Renderer.fireTargetX, Renderer.fireTargetY));
 
-                            } else if (result == 1) {
+                                    // temporarily mark the fire position as missed
+                                    AIBoard.setBoardState(Renderer.fireTargetX, Renderer.fireTargetY);
 
-                                Renderer.playExplosionAnimation(2, Renderer.fireTargetX, Renderer.fireTargetY);
-                                System.out.println("Human => hit !\n");
+                                    numberOfPlayerShots += 1;
 
-                            } else if (result == 2) {
+                                    if (numberOfPlayerShots >= numberOfPlayerMaxShots)
+                                        playerGaveAllShots = true;
+                                }
 
-                                Renderer.playExplosionAnimation(2, Renderer.fireTargetX, Renderer.fireTargetY);
-                                System.out.println("Human => Sunk !!!\n");
+                                if (playerGaveAllShots) {
 
-                                numberOfAISunkShips += 1;
+                                    // Loop through the target list to fire at all positions
+                                    for (int index = 0; index < numberOfPlayerMaxShots; index++) {
+                                        if (!gameOver) {
+                                            result = AIBoard.fireAtTarget(playerFireTargetList.get(index));
 
-                                if (numberOfAISunkShips == 5) {
-
-                                    // Pause the timer
-                                    GameTimer.pauseTimer();
-
-                                    playerWins = true;
-
-                                    timerLabel.setText("Final Score: " + score.calculateFinalScore());
-
-                                    ImageIcon icon = null;
-
-                                    int numberOfStars = score.calculateStars();
-
-                                    if (numberOfStars == 1)
-                                        icon = new ImageIcon(Constants.ONE_STAR);
-                                    else if (numberOfStars == 2)
-                                        icon = new ImageIcon(Constants.TWO_STARS);
-                                    else if (numberOfStars == 3)
-                                        icon = new ImageIcon(Constants.THREE_STARS);
-                                    else if (numberOfStars == 4)
-                                        icon = new ImageIcon(Constants.FOUR_STARS);
-                                    else if (numberOfStars == 5)
-                                        icon = new ImageIcon(Constants.FIVE_STARS);
-
-                                    JOptionPane.showMessageDialog(Game.mainWindow, "Congratulations!! You were able to defeat AI.\nYour score is " + score.returnFinalScore() + " points.\n", "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
-
-                                    gameStateComponent.setText("Player wins !!!");
-                                    gameOver = true;
+                                            checkAIBoardResult(result);
+                                        }
+                                    }
                                 }
                             }
 
@@ -368,93 +333,51 @@ public class MainWindow extends JFrame {
                                 GameTimer.pauseTimer();
 
                                 if (gameMode.equalsIgnoreCase("normal")) {
-                                    target = myAI.getNextMove();
-                                }
+                                    AIFireTarget = myAI.getNextMove();
 
-                                //else if(gameMode.equalsIgnoreCase("advanced")) { myAI.getFiveNextMove(); }
+                                    System.out.println("AI click on " + alphabet[AIFireTarget.x] + (AIFireTarget.y + 1) + ", coordinate " + (AIFireTarget.x + 1) + "," + (AIFireTarget.y + 1));
 
-                                System.out.println("AI click on " + alphabet[target.x] + (target.y + 1) + ", coordinate " + (target.x + 1) + "," + (target.y + 1));
+                                    result = humanBoard.fireAtTarget(AIFireTarget);
 
-                                result = humanBoard.fireAtTarget(target);
+                                    myAI.receiveResult(result);
 
-                                myAI.receiveResult(result);
+                                    checkHumanBoardResult(result);
+                                } else if (gameMode.equalsIgnoreCase("advanced") & playerGaveAllShots) {
 
-                                if (result == 0) {
+                                    ArrayList<Coordinate> coordinateList = myAI.getNextMoveSalvation(humanBoard.sunkNumber);
 
-                                    Renderer.playWaterSplashAnimation(1, target.x, target.y);
-
-                                    gameStateComponent.setText("AI => Miss");
-                                    System.out.println("AI => miss\n");
-
-                                } else if (result == 1) {
-
-                                    humanBoard.checkSunk();
-
-                                    if (humanBoard.checkPlayerSunkShips()) {
-
-                                        // Pause the timer
-                                        GameTimer.pauseTimer();
-
-                                        timerLabel.setText("Final Score: " + score.calculateFinalScore());
-
-                                        ImageIcon icon = null;
-
-                                        int numberOfStars = score.calculateStars();
-
-                                        if (numberOfStars == 1)
-                                            icon = new ImageIcon(Constants.ONE_STAR);
-                                        else if (numberOfStars == 2)
-                                            icon = new ImageIcon(Constants.TWO_STARS);
-                                        else if (numberOfStars == 3)
-                                            icon = new ImageIcon(Constants.THREE_STARS);
-                                        else if (numberOfStars == 4)
-                                            icon = new ImageIcon(Constants.FOUR_STARS);
-                                        else if (numberOfStars == 5)
-                                            icon = new ImageIcon(Constants.FIVE_STARS);
-
-                                        JOptionPane.showMessageDialog(Game.mainWindow, "Boohoo !! AI Won !! Keep Trying.\nYour score is " + score.returnFinalScore() + " points.\n", "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
-                                        gameOver = true;
+                                    for (int i = 0; i < coordinateList.size(); i++) {
+                                        System.out.println(coordinateList.get(i).x + ", " + coordinateList.get(i).y + " ?????");
                                     }
 
-                                    Renderer.playExplosionAnimation(1, target.x, target.y);
+                                    ArrayList<Integer> resultList = new ArrayList<Integer>();
 
-                                    gameStateComponent.setText("AI => Hit !");
-                                    System.out.println("AI => hit !\n");
+                                    for (int i = 0; i < coordinateList.size(); i++) {
+                                        if (!gameOver) {
+                                            AIFireTarget = coordinateList.get(i);
 
-                                } else if (result == 2) {
+                                            System.out.println("AI click on " + alphabet[AIFireTarget.x] + (AIFireTarget.y + 1) + ", coordinate " + (AIFireTarget.x + 1) + "," + (AIFireTarget.y + 1));
 
-                                    Renderer.playExplosionAnimation(1, target.x, target.y);
+                                            result = humanBoard.fireAtTarget(AIFireTarget);
 
-                                    humanBoard.checkSunk();
+                                            resultList.add(result);
 
-                                    if (humanBoard.checkPlayerSunkShips()) {
-
-                                        // Pause the timer
-                                        GameTimer.pauseTimer();
-
-                                        timerLabel.setText("Final Score: " + score.calculateFinalScore());
-
-                                        ImageIcon icon = null;
-
-                                        int numberOfStars = score.calculateStars();
-
-                                        if (numberOfStars == 1)
-                                            icon = new ImageIcon(Constants.ONE_STAR);
-                                        else if (numberOfStars == 2)
-                                            icon = new ImageIcon(Constants.TWO_STARS);
-                                        else if (numberOfStars == 3)
-                                            icon = new ImageIcon(Constants.THREE_STARS);
-                                        else if (numberOfStars == 4)
-                                            icon = new ImageIcon(Constants.FOUR_STARS);
-                                        else if (numberOfStars == 5)
-                                            icon = new ImageIcon(Constants.FIVE_STARS);
-
-                                        JOptionPane.showMessageDialog(Game.mainWindow, "Boohoo !! AI Won !! Keep Trying.\nYou scored " + score.returnFinalScore() + " points.\n", "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
-                                        gameOver = true;
+                                            checkHumanBoardResult(result);
+                                        } else {
+                                            break;
+                                        }
                                     }
 
-                                    gameStateComponent.setText("AI => Sunk !!!");
-                                    System.out.println("AI => Sunk !!!\n");
+                                    // receive a list containing all results of each shot
+                                    myAI.receiveResultSalvation(resultList);
+
+
+                                    // reset player shot attributes
+                                    playerGaveAllShots = false;
+
+                                    numberOfPlayerShots = 0;
+
+                                    playerFireTargetList = new ArrayList<Coordinate>();
                                 }
 
                                 if (gameOver) {
@@ -463,23 +386,133 @@ public class MainWindow extends JFrame {
 
 
                                 // for debugging
-                                AIBoard.printStateGrid();
-                                AIBoard.printShipGrid();
-                                myAI.printCountGrid();
-                                System.out.println("");
+//                                AIBoard.printStateGrid();
+//                                AIBoard.printShipGrid();
+//                                myAI.printCountGrid();
+//                                System.out.println("");
 
                                 // Continue the timer
                                 GameTimer.startTimer();
 
                                 System.out.println("///////////////////////////\n");
                             }
-
                         } catch (Exception exception) {
                             exception.printStackTrace();
                         }
                     }
                 }
             }
+        }
+    }
+
+    private static void checkAIBoardResult(int result) {
+        if (result == 0) {
+            Renderer.playWaterSplashAnimation(2, Renderer.fireTargetX, Renderer.fireTargetY);
+
+            System.out.println("Human => miss\n");
+        } else if (result == 1) {
+            Renderer.playExplosionAnimation(2, Renderer.fireTargetX, Renderer.fireTargetY);
+
+            System.out.println("Human => hit !\n");
+        } else if (result == 2) {
+            Renderer.playExplosionAnimation(2, Renderer.fireTargetX, Renderer.fireTargetY);
+
+            // Reduce the number of shots by 1 when the player sank an AI ship
+            numberOfPlayerMaxShots -= 1;
+
+            System.out.println("Human => Sunk !!!\n");
+
+            numberOfAISunkShips += 1;
+
+            checkPLayerWins();
+        }
+    }
+
+    private static void checkHumanBoardResult(int result) {
+        if (result == 0) {
+            Renderer.playWaterSplashAnimation(1, AIFireTarget.x, AIFireTarget.y);
+
+            gameStateComponent.setText("AI => Miss");
+            System.out.println("AI => miss\n");
+
+        } else if (result == 1) {
+
+            checkAIWins();
+
+            Renderer.playExplosionAnimation(1, AIFireTarget.x, AIFireTarget.y);
+
+            gameStateComponent.setText("AI => Hit !");
+            System.out.println("AI => hit !\n");
+        } else if (result == 2) {
+
+            Renderer.playExplosionAnimation(1, AIFireTarget.x, AIFireTarget.y);
+
+            checkAIWins();
+
+            gameStateComponent.setText("AI => Sunk !!!");
+            System.out.println("AI => Sunk !!!\n");
+        }
+    }
+
+    private static void checkPLayerWins() {
+        if (numberOfAISunkShips == 5) {
+
+            // Pause the timer
+            GameTimer.pauseTimer();
+
+            playerWins = true;
+
+            timerLabel.setText("Final Score: " + score.calculateFinalScore());
+
+            ImageIcon icon = null;
+
+            int numberOfStars = score.calculateStars();
+
+            if (numberOfStars == 1)
+                icon = new ImageIcon(Constants.ONE_STAR);
+            else if (numberOfStars == 2)
+                icon = new ImageIcon(Constants.TWO_STARS);
+            else if (numberOfStars == 3)
+                icon = new ImageIcon(Constants.THREE_STARS);
+            else if (numberOfStars == 4)
+                icon = new ImageIcon(Constants.FOUR_STARS);
+            else if (numberOfStars == 5)
+                icon = new ImageIcon(Constants.FIVE_STARS);
+
+            JOptionPane.showMessageDialog(Game.mainWindow, "Congratulations!! You were able to defeat AI.\nYour score is " + score.returnFinalScore() + " points.\n", "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
+
+            gameStateComponent.setText("Player wins !!!");
+            gameOver = true;
+        }
+    }
+
+    private static void checkAIWins() {
+        humanBoard.checkSunk();
+
+        if (humanBoard.checkPlayerSunkShips()) {
+
+            // Pause the timer
+            GameTimer.pauseTimer();
+
+            timerLabel.setText("Final Score: " + score.calculateFinalScore());
+
+            ImageIcon icon = null;
+
+            int numberOfStars = score.calculateStars();
+
+            if (numberOfStars == 1)
+                icon = new ImageIcon(Constants.ONE_STAR);
+            else if (numberOfStars == 2)
+                icon = new ImageIcon(Constants.TWO_STARS);
+            else if (numberOfStars == 3)
+                icon = new ImageIcon(Constants.THREE_STARS);
+            else if (numberOfStars == 4)
+                icon = new ImageIcon(Constants.FOUR_STARS);
+            else if (numberOfStars == 5)
+                icon = new ImageIcon(Constants.FIVE_STARS);
+
+            JOptionPane.showMessageDialog(Game.mainWindow, "Boohoo !! AI Won !! Keep Trying.\nYou scored " + score.returnFinalScore() + " points.\n", "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
+            gameOver = true;
         }
     }
 

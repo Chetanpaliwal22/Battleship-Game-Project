@@ -31,6 +31,7 @@
     <option name="width" value="1920" />
     <option name="height" value="1067" />
   </component>
+  <component name="ProjectId" id="1OqknJn0Lf7NDWQagrDHyq1b5o5" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -40,6 +41,9 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/view/resources/images" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -64,13 +68,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Game (1)">
-    <configuration name="BattleShip (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.TestSuiteAll">
+    <configuration name="BattleShip" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="view.BattleShip" />
       <module name="Battleship-Game-Project" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="view.*" />
+          <option name="PATTERN" value="test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -109,7 +113,7 @@
       <module name="Battleship-Game-Project" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="view.*" />
+          <option name="PATTERN" value="test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -117,26 +121,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GridbagDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="view.GridbagDemo" />
+    <configuration name="TestSuiteAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Battleship-Game-Project" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="view.*" />
+          <option name="PATTERN" value="test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.TestSuiteAll" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestSuiteAll" />
         <item itemvalue="Application.Game (1)" />
         <item itemvalue="Application.Game" />
         <item itemvalue="Application.BattleShip (1)" />
         <item itemvalue="Application.GridBagLayoutDemo" />
-        <item itemvalue="Application.GridbagDemo" />
       </list>
     </recent_temporary>
   </component>

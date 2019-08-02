@@ -14,7 +14,8 @@ import org.junit.runners.Suite.SuiteClasses;
 			   ShipTest.class,
 			   GameTimerTest.class,
 			   ScoreTest.class,
-			   MouseTest.class
+			   MouseTest.class,
+               FrontEndShipTest.class
 			   })
 
 public class TestSuiteAll {

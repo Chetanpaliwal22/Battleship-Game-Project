@@ -24,7 +24,8 @@ public class BoardTest {
 	private int[][] waterGridState;
 	private Coordinate boardSize;
 	private int resultWaterGrid[][] = {{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0}};
-	
+	int resultfireAtTarget;
+	Coordinate target;
 
 	/**
 	 * The following method sets up the testing context for the unit tests.
@@ -32,9 +33,11 @@ public class BoardTest {
 	@Before
 	public void setUp() {
 		board = new Board();
+		board.setGameHasStarted();
 		boardSize = Constants.BOARD_SIZE;
 		waterGridState = new int[boardSize.x][boardSize.y];
 		this.boardSize = Constants.BOARD_SIZE;
+		target = new Coordinate(1,2);
 	}
 
 	/**
@@ -46,12 +49,28 @@ public class BoardTest {
 		assertEquals(false, resultCheckPlayerSunk);
 	}
 
+	/**
+	 * The following method check the board state.
+	 */
 	@Test
 	public void getBoardStateTest() {
 		waterGridState = board.getBoardState();
 		assertEquals(resultWaterGrid,waterGridState);		
 	}
-
+	
+	/**
+	 * The following method fire at target.
+	 */
+	@Test
+	public void checkfireAtTarget() {
+		try {
+			resultfireAtTarget = board.fireAtTarget(target);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		assertEquals(resultfireAtTarget,0);		
+	}
+	
 	
 
 }

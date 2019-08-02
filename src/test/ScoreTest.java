@@ -45,4 +45,22 @@ public class ScoreTest {
 		assertEquals(0, resultFinalScore);
 	}
 	
+	/**
+	 * The following method test the number of star method.
+	 */
+	@Test
+	public void calculateNumberStarsTest() {
+		resultNumberOfStars = score.calculateStars();
+		assertEquals(0, resultNumberOfStars);
+	}
+	
+	
+	/**
+	 * The following method test the final score of the player.
+	 */
+	@Test
+	public void calculateNumberFinalScoreTest() {
+		resultNumberOfStars = score.calculateStars();
+		assertEquals(0, resultFinalScore);
+	}
 }

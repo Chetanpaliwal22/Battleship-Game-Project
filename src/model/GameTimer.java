@@ -25,7 +25,7 @@ public class GameTimer extends TimerTask {
                     totalSeconds -= 1;
                 else {
                     score.numberOfMissedTime += 1;
-                    pause();
+                    pauseTimer();
                 }
 
                 formatTime();
@@ -55,15 +55,15 @@ public class GameTimer extends TimerTask {
     /*
      * This method Return the time in unit of second
      */
-    public static int returnTime() {
+    public static int getRemainingTime() {
         return totalMinutes * 60 + totalSeconds;
     }
 
-    public static void start() {
+    public static void startTimer() {
         startTimer = true;
     }
 
-    public static void pause() {
+    public static void pauseTimer() {
         startTimer = false;
 
         formatTime();
@@ -71,7 +71,7 @@ public class GameTimer extends TimerTask {
         MainWindow.timerLabel.setText("Paused " + timeString);
     }
 
-    public static void reset() {
+    public static void resetTimer() {
         totalSeconds = 10;
         totalMinutes = 0;
     }

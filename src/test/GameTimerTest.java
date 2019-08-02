@@ -32,7 +32,7 @@ public class GameTimerTest {
 	 */
 	@Test
 	public void returnTimeTest() {
-		resultReturnTime = gameTimer.returnTime();
+		resultReturnTime = gameTimer.getRemainingTime();
 		assertEquals(10, resultReturnTime);
 	}
 }

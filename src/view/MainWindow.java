@@ -202,10 +202,10 @@ public class MainWindow extends JFrame {
                 advancedGameplayRadioButton.setVisible(false);
 
                 // Reset the timer
-                GameTimer.reset();
+                GameTimer.resetTimer();
 
                 // Start the timer
-                GameTimer.start();
+                GameTimer.startTimer();
 
             } else {
                 gameStateComponent.setText("Positions of your ships are illegal");
@@ -290,10 +290,10 @@ public class MainWindow extends JFrame {
                             // Human player turn to play //
 
                             // Reset the timer
-                            GameTimer.reset();
+                            GameTimer.resetTimer();
 
                             // Start the timer
-                            GameTimer.start();
+                            GameTimer.startTimer();
 
                             System.out.println("Human click on " + alphabet[Renderer.fireTargetX] + "" + (Renderer.fireTargetY + 1) + ", coordinate " + (Renderer.fireTargetX + 1) + ", " + (Renderer.fireTargetY + 1));
 
@@ -321,7 +321,7 @@ public class MainWindow extends JFrame {
                                 if (numberOfAISunkShips == 5) {
 
                                     // Pause the timer
-                                    GameTimer.pause();
+                                    GameTimer.pauseTimer();
 
                                     playerWins = true;
 
@@ -363,7 +363,7 @@ public class MainWindow extends JFrame {
                                 // AI turn to play //
 
                                 // Pause the timer
-                                GameTimer.pause();
+                                GameTimer.pauseTimer();
 
                                 if (gameMode.equalsIgnoreCase("normal")) {
                                     target = myAI.getNextMove();
@@ -391,7 +391,7 @@ public class MainWindow extends JFrame {
                                     if (humanBoard.checkPlayerSunkShips()) {
 
                                         // Pause the timer
-                                        GameTimer.pause();
+                                        GameTimer.pauseTimer();
 
                                         timerLabel.setText("Final Score: " + score.calculateFinalScore());
 
@@ -428,7 +428,7 @@ public class MainWindow extends JFrame {
                                     if (humanBoard.checkPlayerSunkShips()) {
 
                                         // Pause the timer
-                                        GameTimer.pause();
+                                        GameTimer.pauseTimer();
 
                                         timerLabel.setText("Final Score: " + score.calculateFinalScore());
 
@@ -467,7 +467,7 @@ public class MainWindow extends JFrame {
                                 System.out.println("");
 
                                 // Continue the timer
-                                GameTimer.start();
+                                GameTimer.startTimer();
 
                                 System.out.println("///////////////////////////\n");
                             }

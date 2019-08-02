@@ -53,13 +53,13 @@ public class MainWindow extends JFrame {
 
     public static boolean playerWins = false;
 
-    private static String gameMode = "advanced";
+    public static String gameMode = "advanced";
 
-    private static Coordinate AIFireTarget;
+    private static Coordinate playerFireTarget, AIFireTarget;
 
     private static boolean playerGaveAllShots = false;
 
-    private static int numberOfPlayerShots = 0, numberOfPlayerMaxShots = 5;
+    public static int numberOfPlayerShots = 0, numberOfPlayerMaxShots = 5;
 
     static ArrayList<Coordinate> playerFireTargetList = new ArrayList<Coordinate>();
 
@@ -109,10 +109,9 @@ public class MainWindow extends JFrame {
         // button click method of the radio button
         basicGameplayRadioButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (basicGameplayRadioButton.isSelected()) {
-                    gameMode = "normal";
-                    advancedGameplayRadioButton.setSelected(false);
-                }
+                gameMode = "normal";
+                basicGameplayRadioButton.setSelected(true);
+                advancedGameplayRadioButton.setSelected(false);
             }
         });
 
@@ -132,10 +131,9 @@ public class MainWindow extends JFrame {
         // button click method of the radio button
         advancedGameplayRadioButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (advancedGameplayRadioButton.isSelected()) {
-                    gameMode = "advanced";
-                    basicGameplayRadioButton.setSelected(false);
-                }
+                gameMode = "advanced";
+                basicGameplayRadioButton.setSelected(false);
+                advancedGameplayRadioButton.setSelected(true);
             }
         });
 
@@ -274,18 +272,14 @@ public class MainWindow extends JFrame {
                         try {
                             // Human player turn to play //
 
-                            // Reset the timer
-                            GameTimer.resetTimer();
-
-                            // Start the timer
-                            GameTimer.startTimer();
-
                             int result;
 
                             if (gameMode.equalsIgnoreCase("normal")) {
                                 System.out.println("Human click on " + alphabet[Renderer.fireTargetX] + "" + (Renderer.fireTargetY + 1) + ", coordinate " + (Renderer.fireTargetX + 1) + ", " + (Renderer.fireTargetY + 1));
 
-                                result = AIBoard.fireAtTarget(new Coordinate(Renderer.fireTargetX, Renderer.fireTargetY));
+                                playerFireTarget = new Coordinate(Renderer.fireTargetX, Renderer.fireTargetY);
+
+                                result = AIBoard.fireAtTarget(playerFireTarget);
 
                                 checkAIBoardResult(result);
                             } else if (gameMode.equalsIgnoreCase("advanced")) {
@@ -308,7 +302,10 @@ public class MainWindow extends JFrame {
                                     // Loop through the target list to fire at all positions
                                     for (int index = 0; index < numberOfPlayerMaxShots; index++) {
                                         if (!gameOver) {
-                                            result = AIBoard.fireAtTarget(playerFireTargetList.get(index));
+
+                                            playerFireTarget = playerFireTargetList.get(index);
+
+                                            result = AIBoard.fireAtTarget(playerFireTarget);
 
                                             checkAIBoardResult(result);
                                         }
@@ -326,13 +323,13 @@ public class MainWindow extends JFrame {
                             System.out.println("");
 
                             if (!gameOver) {
-
                                 // AI turn to play //
 
-                                // Pause the timer
-                                GameTimer.pauseTimer();
-
                                 if (gameMode.equalsIgnoreCase("normal")) {
+
+                                    // Pause the timer
+                                    GameTimer.pauseTimer();
+
                                     AIFireTarget = myAI.getNextMove();
 
                                     System.out.println("AI click on " + alphabet[AIFireTarget.x] + (AIFireTarget.y + 1) + ", coordinate " + (AIFireTarget.x + 1) + "," + (AIFireTarget.y + 1));
@@ -345,10 +342,6 @@ public class MainWindow extends JFrame {
                                 } else if (gameMode.equalsIgnoreCase("advanced") & playerGaveAllShots) {
 
                                     ArrayList<Coordinate> coordinateList = myAI.getNextMoveSalvation(humanBoard.sunkNumber);
-
-                                    for (int i = 0; i < coordinateList.size(); i++) {
-                                        System.out.println(coordinateList.get(i).x + ", " + coordinateList.get(i).y + " ?????");
-                                    }
 
                                     ArrayList<Integer> resultList = new ArrayList<Integer>();
 
@@ -391,7 +384,10 @@ public class MainWindow extends JFrame {
 //                                myAI.printCountGrid();
 //                                System.out.println("");
 
-                                // Continue the timer
+                                // Reset the timer
+                                GameTimer.resetTimer();
+
+                                // Start the timer
                                 GameTimer.startTimer();
 
                                 System.out.println("///////////////////////////\n");
@@ -407,18 +403,15 @@ public class MainWindow extends JFrame {
 
     private static void checkAIBoardResult(int result) {
         if (result == 0) {
-            Renderer.playWaterSplashAnimation(2, Renderer.fireTargetX, Renderer.fireTargetY);
+            Renderer.playWaterSplashAnimation(2, playerFireTarget.x, playerFireTarget.y);
 
             System.out.println("Human => miss\n");
         } else if (result == 1) {
-            Renderer.playExplosionAnimation(2, Renderer.fireTargetX, Renderer.fireTargetY);
+            Renderer.playExplosionAnimation(2, playerFireTarget.x, playerFireTarget.y);
 
             System.out.println("Human => hit !\n");
         } else if (result == 2) {
-            Renderer.playExplosionAnimation(2, Renderer.fireTargetX, Renderer.fireTargetY);
-
-            // Reduce the number of shots by 1 when the player sank an AI ship
-            numberOfPlayerMaxShots -= 1;
+            Renderer.playExplosionAnimation(2, playerFireTarget.x, playerFireTarget.y);
 
             System.out.println("Human => Sunk !!!\n");
 
@@ -442,14 +435,19 @@ public class MainWindow extends JFrame {
             Renderer.playExplosionAnimation(1, AIFireTarget.x, AIFireTarget.y);
 
             gameStateComponent.setText("AI => Hit !");
+
             System.out.println("AI => hit !\n");
         } else if (result == 2) {
 
             Renderer.playExplosionAnimation(1, AIFireTarget.x, AIFireTarget.y);
 
+            // Reduce the number of shots by 1 when the player sank an AI ship
+            numberOfPlayerMaxShots -= 1;
+
             checkAIWins();
 
             gameStateComponent.setText("AI => Sunk !!!");
+
             System.out.println("AI => Sunk !!!\n");
         }
     }

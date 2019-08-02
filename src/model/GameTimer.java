@@ -2,6 +2,7 @@ package model;
 
 import view.MainWindow;
 
+import javax.swing.*;
 import java.util.TimerTask;
 
 
@@ -29,7 +30,11 @@ public class GameTimer extends TimerTask {
                 }
 
                 formatTime();
-                MainWindow.timerLabel.setText("Time " + timeString);
+
+                if (MainWindow.gameMode.equalsIgnoreCase("advanced"))
+                    MainWindow.timerLabel.setText("<html>Number of shots: " + MainWindow.numberOfPlayerShots + "/" + MainWindow.numberOfPlayerMaxShots + "<br>Time " + timeString + "</html>");
+                else
+                    MainWindow.timerLabel.setText("Time" + timeString);
             }
         }
     }
@@ -37,7 +42,7 @@ public class GameTimer extends TimerTask {
     /*
      * This method Formats the display of time
      *
-     */ 
+     */
     private static void formatTime() {
         if (totalMinutes < 10) {
             if (totalSeconds < 10)

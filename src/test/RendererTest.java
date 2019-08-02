@@ -1,18 +1,20 @@
-package view;
+package test;
 
 import constants.Constants;
 import controller.Mouse;
 import jaco.mp3.player.MP3Player;
+import org.junit.Before;
+import org.junit.Test;
+import view.MainWindow;
+import view.Renderer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
+import static org.junit.Assert.*;
 
-/**
- * Handle graphic rendering
- */
-public class Renderer extends JComponent {
+public class RendererTest extends JComponent {
     private boolean calculatedHolePositions = false;
 
     public static int[][] holeLocationX = new int[9][11], holeLocationY = new int[9][11];
@@ -54,7 +56,94 @@ public class Renderer extends JComponent {
 
     private Image oceanImageLeft, oceanImageRight;
 
-    public Renderer() {
+
+    @Before
+    public void setUp() {
+        RendererTest rendererTest = new RendererTest();
+    }
+
+    @Test
+    public void calculatedHolePositionsTest() {
+        assertEquals(false, calculatedHolePositions);
+    }
+
+    @Test
+    public void targetShipIdTest() {
+        assertEquals(-1, targetShipId);
+    }
+
+    @Test
+    public void fireTargetXTest() {
+        assertEquals(-1, fireTargetX);
+    }
+
+    @Test
+    public void fireTargetYTest() {
+        assertEquals(-1, fireTargetY);
+    }
+
+    @Test
+    public void explosionBoardIdTest() {
+        assertEquals(5, explosionBoardId.length);
+    }
+
+    @Test
+    public void explosionXTest() {
+        assertEquals(5, explosionX.length);
+    }
+
+    @Test
+    public void explosionYTest() {
+        assertEquals(5, explosionY.length);
+    }
+
+    @Test
+    public void explosionFrameIndexTest() {
+        assertEquals(5, explosionFrameIndex.length);
+    }
+
+    @Test
+    public void explosionImageTest() {
+        assertEquals(40, explosionImage.length);
+    }
+
+    @Test
+    public void waterSplashBoardIdTest() {
+        assertEquals(5, waterSplashBoardId.length);
+    }
+
+    @Test
+    public void waterSplashXTest() {
+        assertEquals(5, waterSplashX.length);
+    }
+
+    @Test
+    public void waterSplashYTest() {
+        assertEquals(5, waterSplashY.length);
+    }
+
+    @Test
+    public void waterSplashFrameIndexTest() {
+        assertEquals(5, waterSplashFrameIndex.length);
+    }
+
+    @Test
+    public void waterSplashImageTest() {
+        assertEquals(30, waterSplashImage.length);
+    }
+
+    @Test
+    public void oceanImageLeftTest() {
+        assertEquals(false, oceanImageLeft.equals(oceanImageRight));
+    }
+
+    @Test
+    public void oceanImageRightTest() {
+        assertEquals(false, oceanImageRight.equals(oceanImageLeft));
+    }
+
+
+    public RendererTest() {
         holeImageSize = (Constants.WINDOW_WIDTH / 2) / Constants.BOARD_SIZE.y - 2;
 
         holeImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/Hole.png");
@@ -323,8 +412,8 @@ public class Renderer extends JComponent {
             }
 
             // Render the target image following the cursor
-            if (Renderer.fireTargetX != -1 & Renderer.fireTargetY != -1) {
-                if (shortestDistance < 1000 & MainWindow.AIBoard.getBoardState()[Renderer.fireTargetY][Renderer.fireTargetX] == 0) {
+            if (view.Renderer.fireTargetX != -1 & view.Renderer.fireTargetY != -1) {
+                if (shortestDistance < 1000 & MainWindow.AIBoard.getBoardState()[view.Renderer.fireTargetY][Renderer.fireTargetX] == 0) {
                     graphics2D.drawImage(targetImage, aiBoardHoleLocationX[fireTargetX][fireTargetY] - 35, aiBoardHoleLocationY[fireTargetX][fireTargetY] - 35, 70, 70, this);
                 } else {
                     fireTargetX = -1;
@@ -421,5 +510,4 @@ public class Renderer extends JComponent {
             }
         }
     }
-
 }

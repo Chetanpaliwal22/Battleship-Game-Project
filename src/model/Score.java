@@ -28,7 +28,7 @@ public class Score {
     public int calculateStars() {
         if (finalScore > 90 & finalScore <= 100)
             return 5;
-        else if (finalScore >= 80 & finalScore <= 90)
+        else if (finalScore >= 80 & finalScore < 100)
             return 4;
         else if (finalScore >= 70 & finalScore <= 80)
             return 3;

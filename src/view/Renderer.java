@@ -424,11 +424,4 @@ public class Renderer extends JComponent {
         }
     }
 
-//    public static void playWaterSplashSound() {
-//        try {
-//            new MP3Player(new File(Constants.WATER_SPLASH_SOUND)).play();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 }

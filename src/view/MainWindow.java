@@ -100,6 +100,7 @@ public class MainWindow extends JFrame {
 
         // create and add radio button to top panel//
         basicGameplayRadioButton = new JRadioButton("Basic Gameplay");
+        basicGameplayRadioButton.setOpaque(false);
         basicGameplayRadioButton.setSelected(false);
 
         // button click method of the radio button
@@ -122,6 +123,7 @@ public class MainWindow extends JFrame {
 
         // create and add radio button to top panel//
         advancedGameplayRadioButton = new JRadioButton("Advanced Gameplay - Salva Variation");
+        advancedGameplayRadioButton.setOpaque(false);
         advancedGameplayRadioButton.setSelected(true);
 
         // button click method of the radio button

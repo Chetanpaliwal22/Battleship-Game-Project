@@ -25,7 +25,7 @@ public class GameTimer extends TimerTask {
                 if (totalSeconds > 0)
                     totalSeconds -= 1;
                 else {
-                    score.numberOfMissedTime += 1;
+                    Score.numberOfMissedTime += 1;
                     pauseTimer();
                 }
 
@@ -46,14 +46,14 @@ public class GameTimer extends TimerTask {
     private static void formatTime() {
         if (totalMinutes < 10) {
             if (totalSeconds < 10)
-                timeString = "0" + totalMinutes + ":0" + totalSeconds + " Missed Time: " + score.numberOfMissedTime;
+                timeString = "0" + totalMinutes + ":0" + totalSeconds + " Missed Time: " + Score.numberOfMissedTime;
             else
-                timeString = "0" + totalMinutes + ":" + totalSeconds + " Missed Time: " + score.numberOfMissedTime;
+                timeString = "0" + totalMinutes + ":" + totalSeconds + " Missed Time: " + Score.numberOfMissedTime;
         } else {
             if (totalSeconds < 10)
-                timeString = totalMinutes + ":0" + totalSeconds + " Missed Time: " + score.numberOfMissedTime;
+                timeString = totalMinutes + ":0" + totalSeconds + " Missed Time: " + Score.numberOfMissedTime;
             else
-                timeString = totalMinutes + ":" + totalSeconds + " Missed Time: " + score.numberOfMissedTime;
+                timeString = totalMinutes + ":" + totalSeconds + " Missed Time: " + Score.numberOfMissedTime;
         }
     }
 

@@ -389,7 +389,7 @@ public class MainWindow extends JFrame {
 
                                 // Start the timer
                                 GameTimer.startTimer();
-
+                                System.out.println(Score.numberOfMissedTime + " ???\n");
                                 System.out.println("///////////////////////////\n");
                             }
                         } catch (Exception exception) {

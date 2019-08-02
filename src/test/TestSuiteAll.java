@@ -13,7 +13,8 @@ import org.junit.runners.Suite.SuiteClasses;
 			   BoardTest.class,
 			   ShipTest.class,
 			   GameTimerTest.class,
-			   ScoreTest.class
+			   ScoreTest.class,
+			   MouseTest.class
 			   })
 
 public class TestSuiteAll {

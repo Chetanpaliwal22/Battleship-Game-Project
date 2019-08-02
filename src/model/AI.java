@@ -55,8 +55,6 @@ public class AI {
         this.missToExclude = new ArrayList<Coordinate>(boardSize.x * boardSize.y);
         this.toExclude = new ArrayList<Coordinate>(boardSize.x * boardSize.y);
 
-        this.previousTargetSalvation = new ArrayList<Coordinate>(5);
-
         try {
             updateCountGrid(-1);
         } catch (Exception e) {

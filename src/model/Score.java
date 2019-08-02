@@ -2,6 +2,10 @@ package model;
 
 import view.MainWindow;
 
+
+/**
+ * This class handles the score logic.
+ */
 public class Score {
 
     public int numberOfMissedTime = 0;

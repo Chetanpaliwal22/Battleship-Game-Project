@@ -4,6 +4,10 @@ import view.MainWindow;
 
 import java.util.TimerTask;
 
+
+/**
+ * This class handles the timer logic.
+ */
 public class GameTimer extends TimerTask {
     private static Score score = new Score();
 
@@ -16,12 +20,6 @@ public class GameTimer extends TimerTask {
     public void run() {
         if (!MainWindow.gameOver) {
             if (startTimer) {
-//            if (totalSeconds >= 60) {
-//                totalSeconds = 0;
-//                totalMinutes += 1;
-//            } else {
-//                totalSeconds += 1;
-//            }
 
                 if (totalSeconds > 0)
                     totalSeconds -= 1;
@@ -36,7 +34,10 @@ public class GameTimer extends TimerTask {
         }
     }
 
-    // Format the display of time
+    /*
+     * This method Formats the display of time
+     *
+     */ 
     private static void formatTime() {
         if (totalMinutes < 10) {
             if (totalSeconds < 10)
@@ -51,7 +52,9 @@ public class GameTimer extends TimerTask {
         }
     }
 
-    // Return the time in unit of second
+    /*
+     * This method Return the time in unit of second
+     */
     public static int returnTime() {
         return totalMinutes * 60 + totalSeconds;
     }

@@ -12,6 +12,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({AITest.class,
 			   BoardTest.class,
 			   ShipTest.class, 
+			   GameTimerTest.class,
+			   ScoreTest.class
 			   })
 
 public class TestSuiteModel {

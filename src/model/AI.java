@@ -197,9 +197,9 @@ public class AI {
 
 	/**
 	 * check if x and y coordinate are in bound
-	 * @param x
-	 * @param y
-	 * @return
+	 * @param x x Parameter
+	 * @param y y Parameter
+	 * @return boolean bound or not
 	 */
 	public boolean inBound(int x, int y){
 

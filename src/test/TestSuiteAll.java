@@ -11,7 +11,9 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({AITest.class,
 			   BoardTest.class,
-			   ShipTest.class, 
+			   ShipTest.class,
+			   GameTimerTest.class,
+			   ScoreTest.class
 			   })
 
 public class TestSuiteAll {

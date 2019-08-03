@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.sun.tools.javac.Main;
 import constants.Constants;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -64,6 +65,32 @@ public class DataManager {
 //                    System.out.print("\nAction: " + element.getElementsByTagName("numberOfAISunkShips").item(0).getTextContent() + "\n");
 
                     MainWindow.numberOfAISunkShips = Integer.parseInt(element.getElementsByTagName("numberOfAISunkShips").item(0).getTextContent());
+
+
+                    MainWindow.gameMode = element.getElementsByTagName("gameMode").item(0).getTextContent();
+
+                    MainWindow.playerFireTarget = new Coordinate(Integer.parseInt(element.getElementsByTagName("playerFireTargetX").item(0).getTextContent()), Integer.parseInt(element.getElementsByTagName("playerFireTargetY").item(0).getTextContent()));
+
+                    MainWindow.AIFireTarget = new Coordinate(Integer.parseInt(element.getElementsByTagName("AIFireTargetX").item(0).getTextContent()), Integer.parseInt(element.getElementsByTagName("AIFireTargetY").item(0).getTextContent()));
+
+                    if (element.getElementsByTagName("playerGaveAllShots").item(0).getTextContent().compareToIgnoreCase("true") == 0)
+                        MainWindow.playerGaveAllShots = true;
+                    else
+                        MainWindow.playerGaveAllShots = false;
+
+                    MainWindow.numberOfPlayerShots = Integer.parseInt(element.getElementsByTagName("numberOfPlayerShots").item(0).getTextContent());
+
+                    MainWindow.numberOfPlayerMaxShots = Integer.parseInt(element.getElementsByTagName("numberOfPlayerMaxShots").item(0).getTextContent());
+
+                    ArrayList<Coordinate> targetCoordinate = new ArrayList<Coordinate>();
+
+                    int size = Integer.parseInt(element.getElementsByTagName("playerFireTargetListSize").item(0).getTextContent());
+
+                    for (int j = 0; j < size; j++) {
+                        targetCoordinate.add(new Coordinate(Integer.parseInt(element.getElementsByTagName("x").item(j).getTextContent()), Integer.parseInt(element.getElementsByTagName("y").item(j).getTextContent())));
+                    }
+
+                    MainWindow.playerFireTargetList = targetCoordinate;
                 }
             }
 
@@ -594,16 +621,16 @@ public class DataManager {
             root.appendChild(playerFireTargetElement);
 
 
-            // x element
-            Element xElement = document.createElement("x");
-            xElement.appendChild(document.createTextNode(MainWindow.playerFireTarget.x + ""));
-            playerFireTargetElement.appendChild(xElement);
+            // playerFireTargetX element
+            Element playerFireTargetXElement = document.createElement("playerFireTargetX");
+            playerFireTargetXElement.appendChild(document.createTextNode(MainWindow.playerFireTarget.x + ""));
+            playerFireTargetElement.appendChild(playerFireTargetXElement);
 
 
-            // y element
-            Element yElement = document.createElement("y");
-            yElement.appendChild(document.createTextNode(MainWindow.playerFireTarget.y + ""));
-            playerFireTargetElement.appendChild(yElement);
+            // playerFireTargetY element
+            Element playerFireTargetYElement = document.createElement("playerFireTargetY");
+            playerFireTargetYElement.appendChild(document.createTextNode(MainWindow.playerFireTarget.y + ""));
+            playerFireTargetElement.appendChild(playerFireTargetYElement);
 
 
             // playerFireTarget element
@@ -611,16 +638,16 @@ public class DataManager {
             root.appendChild(AIFireTargetElement);
 
 
-            // x element
-            xElement = document.createElement("x");
-            xElement.appendChild(document.createTextNode(MainWindow.AIFireTarget.x + ""));
-            AIFireTargetElement.appendChild(xElement);
+            // AIFireTargetX element
+            Element AIFireTargetXElement = document.createElement("AIFireTargetX");
+            AIFireTargetXElement.appendChild(document.createTextNode(MainWindow.AIFireTarget.x + ""));
+            AIFireTargetElement.appendChild(AIFireTargetXElement);
 
 
-            // y element
-            yElement = document.createElement("y");
-            yElement.appendChild(document.createTextNode(MainWindow.AIFireTarget.y + ""));
-            AIFireTargetElement.appendChild(yElement);
+            // AIFireTargetY element
+            Element AIFireTargetYElement = document.createElement("AIFireTargetY");
+            AIFireTargetYElement.appendChild(document.createTextNode(MainWindow.AIFireTarget.y + ""));
+            AIFireTargetElement.appendChild(AIFireTargetYElement);
 
             // playerGaveAllShots element
             Element playerGaveAllShotsElement = document.createElement("playerGaveAllShots");
@@ -658,12 +685,12 @@ public class DataManager {
                 playerFireTargetListElement.appendChild(coordinateElement);
 
                 // x element
-                xElement = document.createElement("x");
+                Element xElement = document.createElement("x");
                 xElement.appendChild(document.createTextNode(MainWindow.playerFireTargetList.get(i).x + ""));
                 coordinateElement.appendChild(xElement);
 
                 // y element
-                yElement = document.createElement("y");
+                Element yElement = document.createElement("y");
                 yElement.appendChild(document.createTextNode(MainWindow.playerFireTargetList.get(i).y + ""));
                 coordinateElement.appendChild(yElement);
             }
@@ -686,12 +713,12 @@ public class DataManager {
                     shipElement.appendChild(coordinateElement);
 
                     // x element
-                    xElement = document.createElement("x");
+                    Element xElement = document.createElement("x");
                     xElement.appendChild(document.createTextNode(MainWindow.shipList.get(i).occupiedGridX.get(j) + ""));
                     coordinateElement.appendChild(xElement);
 
                     // y element
-                    yElement = document.createElement("y");
+                    Element yElement = document.createElement("y");
                     yElement.appendChild(document.createTextNode(MainWindow.shipList.get(i).occupiedGridY.get(j) + ""));
                     coordinateElement.appendChild(yElement);
                 }
@@ -706,12 +733,12 @@ public class DataManager {
                 shipElement.appendChild(pivotElement);
 
                 // x element
-                xElement = document.createElement("pivotX");
+                Element xElement = document.createElement("pivotX");
                 xElement.appendChild(document.createTextNode(MainWindow.shipList.get(i).pivotGridX + ""));
                 pivotElement.appendChild(xElement);
 
                 // y element
-                yElement = document.createElement("pivotY");
+                Element yElement = document.createElement("pivotY");
                 yElement.appendChild(document.createTextNode(MainWindow.shipList.get(i).pivotGridY + ""));
                 pivotElement.appendChild(yElement);
 
@@ -880,12 +907,12 @@ public class DataManager {
                     waterGridStateElement.appendChild(coordinateElement);
 
                     // x element
-                    xElement = document.createElement("x");
+                    Element xElement = document.createElement("x");
                     xElement.appendChild(document.createTextNode(i + ""));
                     coordinateElement.appendChild(xElement);
 
                     // y element
-                    yElement = document.createElement("y");
+                    Element yElement = document.createElement("y");
                     yElement.appendChild(document.createTextNode(j + ""));
                     coordinateElement.appendChild(yElement);
 
@@ -920,12 +947,12 @@ public class DataManager {
                     waterGridStateElement.appendChild(coordinateElement);
 
                     // X element
-                    xElement = document.createElement("x");
+                    Element xElement = document.createElement("x");
                     xElement.appendChild(document.createTextNode(i + ""));
                     coordinateElement.appendChild(xElement);
 
                     // Y element
-                    yElement = document.createElement("y");
+                    Element yElement = document.createElement("y");
                     yElement.appendChild(document.createTextNode(j + ""));
                     coordinateElement.appendChild(yElement);
 
@@ -977,7 +1004,7 @@ public class DataManager {
             AIElement.appendChild(axisElement);
 
             // X element
-            xElement = document.createElement("axisX");
+            Element xElement = document.createElement("axisX");
 
             if (MainWindow.myAI.axis != null)
                 xElement.appendChild(document.createTextNode(MainWindow.myAI.axis.x + ""));
@@ -985,7 +1012,7 @@ public class DataManager {
             axisElement.appendChild(xElement);
 
             // Y element
-            yElement = document.createElement("axisY");
+            Element yElement = document.createElement("axisY");
 
             if (MainWindow.myAI.axis != null)
                 yElement.appendChild(document.createTextNode(MainWindow.myAI.axis.y + ""));

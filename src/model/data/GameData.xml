@@ -2,28 +2,24 @@
 <data>
     <userName>???</userName>
     <score>100</score>
-    <numberOfAISunkShips>0</numberOfAISunkShips>
+    <numberOfAISunkShips>1</numberOfAISunkShips>
     <gameMode>advanced</gameMode>
     <playerFireTarget>
-        <x>1</x>
-        <y>6</y>
+        <playerFireTargetX>5</playerFireTargetX>
+        <playerFireTargetY>7</playerFireTargetY>
     </playerFireTarget>
     <AIFireTarget>
-        <x>7</x>
-        <y>4</y>
+        <AIFireTargetX>7</AIFireTargetX>
+        <AIFireTargetY>4</AIFireTargetY>
     </AIFireTarget>
     <playerGaveAllShots>false</playerGaveAllShots>
-    <numberOfPlayerShots>2</numberOfPlayerShots>
+    <numberOfPlayerShots>1</numberOfPlayerShots>
     <numberOfPlayerMaxShots>5</numberOfPlayerMaxShots>
     <playerFireTargetList>
-        <playerFireTargetListSize>2</playerFireTargetListSize>
+        <playerFireTargetListSize>1</playerFireTargetListSize>
         <coordinate>
             <x>5</x>
-            <y>7</y>
-        </coordinate>
-        <coordinate>
-            <x>5</x>
-            <y>6</y>
+            <y>8</y>
         </coordinate>
     </playerFireTargetList>
     <frontEndShips>
@@ -258,9 +254,17 @@
                 <positionX>4</positionX>
                 <positionY>2</positionY>
             </position>
-            <hitPositionSize>0</hitPositionSize>
+            <hitPositionSize>2</hitPositionSize>
+            <hitPosition>
+                <hitPositionX>4</hitPositionX>
+                <hitPositionY>2</hitPositionY>
+            </hitPosition>
+            <hitPosition>
+                <hitPositionX>4</hitPositionX>
+                <hitPositionY>1</hitPositionY>
+            </hitPosition>
             <size>2</size>
-            <isAlive>true</isAlive>
+            <isAlive>false</isAlive>
         </ship>
         <ship>
             <position>
@@ -275,7 +279,11 @@
                 <positionX>5</positionX>
                 <positionY>7</positionY>
             </position>
-            <hitPositionSize>0</hitPositionSize>
+            <hitPositionSize>1</hitPositionSize>
+            <hitPosition>
+                <hitPositionX>5</hitPositionX>
+                <hitPositionY>7</hitPositionY>
+            </hitPosition>
             <size>3</size>
             <isAlive>true</isAlive>
         </ship>
@@ -295,7 +303,7 @@
             <hitPositionSize>1</hitPositionSize>
             <hitPosition>
                 <hitPositionX>0</hitPositionX>
-                <hitPositionY>3</hitPositionY>
+                <hitPositionY>1</hitPositionY>
             </hitPosition>
             <size>3</size>
             <isAlive>true</isAlive>
@@ -346,18 +354,14 @@
                 <positionX>2</positionX>
                 <positionY>4</positionY>
             </position>
-            <hitPositionSize>3</hitPositionSize>
+            <hitPositionSize>2</hitPositionSize>
             <hitPosition>
                 <hitPositionX>2</hitPositionX>
-                <hitPositionY>4</hitPositionY>
+                <hitPositionY>3</hitPositionY>
             </hitPosition>
             <hitPosition>
                 <hitPositionX>2</hitPositionX>
-                <hitPositionY>1</hitPositionY>
-            </hitPosition>
-            <hitPosition>
-                <hitPositionX>2</hitPositionX>
-                <hitPositionY>0</hitPositionY>
+                <hitPositionY>2</hitPositionY>
             </hitPosition>
             <size>5</size>
             <isAlive>true</isAlive>
@@ -869,17 +873,17 @@
             <coordinate>
                 <x>0</x>
                 <y>0</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>0</x>
                 <y>1</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>0</x>
                 <y>2</y>
-                <state>2</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>0</x>
@@ -914,154 +918,154 @@
             <coordinate>
                 <x>1</x>
                 <y>0</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>1</y>
-                <state>1</state>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>2</y>
                 <state>2</state>
             </coordinate>
             <coordinate>
                 <x>1</x>
-                <y>3</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>4</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>5</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>6</y>
-                <state>1</state>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>7</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>1</x>
-                <y>8</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>2</x>
-                <y>0</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>2</x>
                 <y>1</y>
                 <state>1</state>
             </coordinate>
             <coordinate>
-                <x>2</x>
+                <x>1</x>
                 <y>2</y>
                 <state>0</state>
             </coordinate>
             <coordinate>
-                <x>2</x>
+                <x>1</x>
                 <y>3</y>
                 <state>0</state>
             </coordinate>
             <coordinate>
-                <x>2</x>
+                <x>1</x>
                 <y>4</y>
-                <state>0</state>
+                <state>2</state>
             </coordinate>
             <coordinate>
-                <x>2</x>
+                <x>1</x>
                 <y>5</y>
                 <state>0</state>
             </coordinate>
             <coordinate>
-                <x>2</x>
+                <x>1</x>
                 <y>6</y>
                 <state>0</state>
             </coordinate>
             <coordinate>
-                <x>2</x>
-                <y>7</y>
-                <state>1</state>
-            </coordinate>
-            <coordinate>
-                <x>2</x>
-                <y>8</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>0</y>
-                <state>2</state>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>1</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>2</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>3</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>4</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>5</y>
-                <state>2</state>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
-                <y>6</y>
-                <state>0</state>
-            </coordinate>
-            <coordinate>
-                <x>3</x>
+                <x>1</x>
                 <y>7</y>
                 <state>0</state>
             </coordinate>
             <coordinate>
-                <x>3</x>
+                <x>1</x>
                 <y>8</y>
                 <state>0</state>
             </coordinate>
             <coordinate>
-                <x>4</x>
+                <x>2</x>
                 <y>0</y>
                 <state>0</state>
             </coordinate>
             <coordinate>
-                <x>4</x>
+                <x>2</x>
                 <y>1</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
-                <x>4</x>
+                <x>2</x>
                 <y>2</y>
                 <state>2</state>
             </coordinate>
             <coordinate>
+                <x>2</x>
+                <y>3</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>2</x>
+                <y>4</y>
+                <state>2</state>
+            </coordinate>
+            <coordinate>
+                <x>2</x>
+                <y>5</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>2</x>
+                <y>6</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>2</x>
+                <y>7</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>2</x>
+                <y>8</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>0</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>1</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>2</y>
+                <state>2</state>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>3</y>
+                <state>1</state>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>4</y>
+                <state>1</state>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>5</y>
+                <state>2</state>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>6</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>7</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>3</x>
+                <y>8</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>4</x>
+                <y>0</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>4</x>
+                <y>1</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
+                <x>4</x>
+                <y>2</y>
+                <state>0</state>
+            </coordinate>
+            <coordinate>
                 <x>4</x>
                 <y>3</y>
                 <state>0</state>
@@ -1119,7 +1123,7 @@
             <coordinate>
                 <x>5</x>
                 <y>5</y>
-                <state>0</state>
+                <state>1</state>
             </coordinate>
             <coordinate>
                 <x>5</x>
@@ -1144,12 +1148,12 @@
             <coordinate>
                 <x>6</x>
                 <y>1</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>6</x>
                 <y>2</y>
-                <state>0</state>
+                <state>1</state>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -1164,7 +1168,7 @@
             <coordinate>
                 <x>6</x>
                 <y>5</y>
-                <state>1</state>
+                <state>0</state>
             </coordinate>
             <coordinate>
                 <x>6</x>
@@ -1194,7 +1198,7 @@
             <coordinate>
                 <x>7</x>
                 <y>2</y>
-                <state>0</state>
+                <state>1</state>
             </coordinate>
             <coordinate>
                 <x>7</x>
@@ -1209,7 +1213,7 @@
             <coordinate>
                 <x>7</x>
                 <y>5</y>
-                <state>1</state>
+                <state>2</state>
             </coordinate>
             <coordinate>
                 <x>7</x>
@@ -1254,7 +1258,7 @@
             <coordinate>
                 <x>8</x>
                 <y>5</y>
-                <state>0</state>
+                <state>1</state>
             </coordinate>
             <coordinate>
                 <x>8</x>

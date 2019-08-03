@@ -10,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -61,6 +63,8 @@ public class MainWindow extends JFrame {
     public static int numberOfPlayerShots = 0, numberOfPlayerMaxShots = 5;
 
     public static ArrayList<Coordinate> playerFireTargetList = new ArrayList<Coordinate>();
+
+    public static boolean enableDynamicOcean = false, enableSpecialEffect = true, enableSoundEffect = true;
 
 
     /**
@@ -222,7 +226,7 @@ public class MainWindow extends JFrame {
         // Create a timer text to the top panel
         timerLabel = new JLabel();
         timerLabel.setText("Time 00:00");
-        timerLabel.setSize(10, 5);
+        timerLabel.setSize(10, 10);
         timerLabel.setHorizontalAlignment(JLabel.CENTER);
 
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
@@ -291,6 +295,106 @@ public class MainWindow extends JFrame {
 
 
         add(topPanel); // finally add top panel to window
+
+
+        // create top panel
+
+        JPanel settingsPanel = new JPanel();
+        settingsPanel.setLayout(new GridBagLayout());
+        settingsPanel.setPreferredSize(new Dimension(Constants.WINDOW_WIDTH, 30));
+        settingsPanel.setMaximumSize(new Dimension(Constants.WINDOW_WIDTH, 30));
+        settingsPanel.setBackground(Color.YELLOW);
+        gridBagConstraints = new GridBagConstraints();
+
+
+        // create and add graphics setting to top panel//
+
+        JLabel settingsJLabel = new JLabel();
+        settingsJLabel.setText("Settings:");
+        settingsJLabel.setSize(10, 2);
+        settingsJLabel.setHorizontalAlignment(JLabel.CENTER);
+
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+
+        settingsPanel.add(settingsJLabel, gridBagConstraints);
+
+
+        // create and add dynamic background checkbox to top panel
+
+        JCheckBox dynamicBackgroundCheckBox = new JCheckBox("Dynamic Background");
+        dynamicBackgroundCheckBox.setPreferredSize(new Dimension(40, 15));
+        dynamicBackgroundCheckBox.setMaximumSize(new Dimension(40, 15));
+        dynamicBackgroundCheckBox.setOpaque(false);
+
+        dynamicBackgroundCheckBox.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == 1)
+                    enableDynamicOcean = true;
+                else
+                    enableDynamicOcean = false;
+            }
+        });
+
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+
+        settingsPanel.add(dynamicBackgroundCheckBox, gridBagConstraints);
+
+
+        // create and add special effect checkbox to top panel
+
+        JCheckBox specialEffectCheckBox = new JCheckBox("Special Effect");
+        specialEffectCheckBox.setSelected(true);
+        specialEffectCheckBox.setPreferredSize(new Dimension(40, 15));
+        specialEffectCheckBox.setMaximumSize(new Dimension(40, 15));
+        specialEffectCheckBox.setOpaque(false);
+
+        specialEffectCheckBox.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == 1)
+                    enableSpecialEffect = true;
+                else
+                    enableSpecialEffect = false;
+            }
+        });
+
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+
+        settingsPanel.add(specialEffectCheckBox, gridBagConstraints);
+
+
+        // create and add sound effect checkbox to top panel
+
+        JCheckBox soundEffectCheckBox = new JCheckBox("Sound Effect");
+        soundEffectCheckBox.setSelected(true);
+        soundEffectCheckBox.setPreferredSize(new Dimension(40, 15));
+        soundEffectCheckBox.setMaximumSize(new Dimension(40, 15));
+        soundEffectCheckBox.setOpaque(false);
+
+        soundEffectCheckBox.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == 1)
+                    enableSoundEffect = true;
+                else
+                    enableSoundEffect = false;
+            }
+        });
+
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+
+        settingsPanel.add(soundEffectCheckBox, gridBagConstraints);
+
+
+        add(settingsPanel); // finally add graphics setting panel to window
+
 
         // create and add main game panel that contains the two game boards //
 

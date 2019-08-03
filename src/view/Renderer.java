@@ -7,6 +7,7 @@ import jaco.mp3.player.MP3Player;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.util.Random;
 
 
 /**
@@ -52,7 +53,19 @@ public class Renderer extends JComponent {
 
     private Image waterSplashImage[] = new Image[30];
 
+    private int frameCount = 0;
+
+    private Random random = new Random();
+
     private Image oceanImageLeft, oceanImageRight;
+
+    private int oceanImageLeftPositionX = 0, oceanImageLeftPositionY = 0;
+
+    private int oceanImageLeftMovingDirectionX = 1, oceanImageLeftMovingDirectionY = 1;
+
+    private int oceanImageRightPositionX = 0, oceanImageRightPositionY = 0;
+
+    private int oceanImageRightMovingDirectionX = -1, oceanImageRightMovingDirectionY = -1;
 
     public Renderer() {
         holeImageSize = (Constants.WINDOW_WIDTH / 2) / Constants.BOARD_SIZE.y - 2;
@@ -87,18 +100,82 @@ public class Renderer extends JComponent {
 
         Graphics2D graphics2D = (Graphics2D) g;
 
-        // Human board background
-        g.setColor(new Color(99, 222, 231));
-        g.fillRect(0, 0, Constants.WINDOW_WIDTH / 2, Constants.WINDOW_HEIGHT);
+        frameCount += 1;
 
-        // AI board background
-        g.setColor(new Color(168, 255, 0));
-        g.fillRect(Constants.WINDOW_WIDTH / 2, 0, Constants.WINDOW_WIDTH / 2, Constants.WINDOW_HEIGHT);
+        if (frameCount > 999999)
+            frameCount = 0;
+
+        // Human board and AI board background
+        if (!MainWindow.enableDynamicOcean) {
+            // Human board background
+            g.setColor(new Color(99, 222, 231));
+            g.fillRect(0, 0, Constants.WINDOW_WIDTH / 2, Constants.WINDOW_HEIGHT);
+
+            // AI board background
+            g.setColor(new Color(168, 255, 0));
+            g.fillRect(Constants.WINDOW_WIDTH / 2, 0, Constants.WINDOW_WIDTH / 2, Constants.WINDOW_HEIGHT);
+        } else {
+            g.drawImage(oceanImageLeft, oceanImageLeftPositionX - 15, oceanImageLeftPositionY - 15, Constants.WINDOW_WIDTH / 2 + 30, Constants.WINDOW_HEIGHT + 30, this);
+
+            if (frameCount % 6 == 0) {
+                oceanImageLeftPositionX += oceanImageLeftMovingDirectionX;
+                oceanImageLeftPositionY += oceanImageLeftMovingDirectionY;
+            }
+ 
+            if (oceanImageLeftPositionX <= -15) {
+                oceanImageLeftPositionX = -15;
+
+                oceanImageLeftMovingDirectionX = random.nextInt(3) + 1;
+            } else if (oceanImageLeftPositionX > 15) {
+                oceanImageLeftPositionX = 15;
+
+                oceanImageLeftMovingDirectionX = -random.nextInt(3) - 1;
+            }
+
+            if (oceanImageLeftPositionY <= -15) {
+                oceanImageLeftPositionY = -15;
+
+                oceanImageLeftMovingDirectionY = random.nextInt(3) + 1;
+            } else if (oceanImageLeftPositionY > 15) {
+                oceanImageLeftPositionY = 15;
+
+                oceanImageLeftMovingDirectionY = -random.nextInt(3) - 1;
+            }
+
+
+            g.drawImage(oceanImageRight, Constants.WINDOW_WIDTH / 2 + oceanImageRightPositionX, oceanImageRightPositionY - 15, Constants.WINDOW_WIDTH / 2 + 30, Constants.WINDOW_HEIGHT + 30, this);
+
+            if (frameCount % 5 == 0) {
+//                oceanImageRightPositionX += oceanImageRightMovingDirectionX;
+                oceanImageRightPositionY += oceanImageRightMovingDirectionY;
+            }
+
+//            if (oceanImageRightPositionX <= -15) {
+//                oceanImageRightPositionX = -15;
+//
+//                oceanImageRightMovingDirectionX = random.nextInt(3) + 1;
+//            } else if (oceanImageRightPositionX > 15) {
+//                oceanImageRightPositionX = 15;
+//
+//                oceanImageRightMovingDirectionX = -random.nextInt(3) - 1;
+//            }
+
+            if (oceanImageRightPositionY <= -15) {
+                oceanImageRightPositionY = -15;
+
+                oceanImageRightMovingDirectionY = random.nextInt(3) + 1;
+            } else if (oceanImageRightPositionY > 15) {
+                oceanImageRightPositionY = 15;
+
+                oceanImageRightMovingDirectionY = -random.nextInt(3) - 1;
+            }
+        }
+
 
         int nearestX = 0, nearestY = 0;
 
         mouseX = MouseInfo.getPointerInfo().getLocation().x - MainWindow.getWindowLocationX();
-        mouseY = MouseInfo.getPointerInfo().getLocation().y - MainWindow.getWindowLocationY() - 70;
+        mouseY = MouseInfo.getPointerInfo().getLocation().y - MainWindow.getWindowLocationY() - 100;
 
         // Check if the mouse is clicked
         if (Mouse.leftClicked && !MainWindow.startedGame) {
@@ -379,12 +456,15 @@ public class Renderer extends JComponent {
     }
 
     public static void playWaterSplashAnimation(int boardId, int targetWaterSplashX, int targetWaterSplashY) {
-        assignWaterSplashAnimation(boardId, targetWaterSplashX, targetWaterSplashY);
+        if (MainWindow.enableSpecialEffect)
+            assignWaterSplashAnimation(boardId, targetWaterSplashX, targetWaterSplashY);
 
-        try {
-            new MP3Player(new File(Constants.WATER_SPLASH_SOUND)).play();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (MainWindow.enableSoundEffect) {
+            try {
+                new MP3Player(new File(Constants.WATER_SPLASH_SOUND)).play();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -401,12 +481,15 @@ public class Renderer extends JComponent {
     }
 
     public static void playExplosionAnimation(int boardId, int targetExplosionX, int targetExplosionY) {
-        assignExplosionAnimation(boardId, targetExplosionX, targetExplosionY);
+        if (MainWindow.enableSpecialEffect)
+            assignExplosionAnimation(boardId, targetExplosionX, targetExplosionY);
 
-        try {
-            new MP3Player(new File(Constants.EXPLOSION_SOUND)).play();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (MainWindow.enableSoundEffect) {
+            try {
+                new MP3Player(new File(Constants.EXPLOSION_SOUND)).play();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -421,5 +504,4 @@ public class Renderer extends JComponent {
             }
         }
     }
-
 }

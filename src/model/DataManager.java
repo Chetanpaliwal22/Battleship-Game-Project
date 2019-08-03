@@ -388,6 +388,33 @@ public class DataManager {
             }
 
 
+            ArrayList<Coordinate> targetCoordinateList = new ArrayList<Coordinate>();
+
+            nodeList = (NodeList) xPath.compile("/data/AI/previousTargetSalvation").evaluate(document, XPathConstants.NODESET);
+
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+
+                    int size = Integer.parseInt(element.getElementsByTagName("previousTargetSalvationSize").item(0).getTextContent());
+
+                    for (int j = 0; j < size; j++)
+                        targetCoordinateList.add(new Coordinate(Integer.parseInt(element.getElementsByTagName("x").item(j).getTextContent()), Integer.parseInt(element.getElementsByTagName("y").item(j).getTextContent())));
+                }
+            }
+
+            MainWindow.myAI.setPreviousTargetSalvation(targetCoordinateList);
+
+            targetCoordinateList = MainWindow.myAI.getPreviousTargetSalvation();
+
+            for (int i = 0; i < targetCoordinateList.size(); i++) {
+                System.out.println(targetCoordinateList.get(i).x + ", " + targetCoordinateList.get(i).y + " ??");
+            }
+
+
             int[][] targetGrid = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
 
             nodeList = (NodeList) xPath.compile("/data/AI/countGrid/coordinate").evaluate(document, XPathConstants.NODESET);
@@ -1036,6 +1063,35 @@ public class DataManager {
             yElement = document.createElement("previousTargetY");
             yElement.appendChild(document.createTextNode(previousTarget.y + ""));
             previousTargetElement.appendChild(yElement);
+
+
+            // previousTargetSalvation element
+            Element previousTargetSalvationElement = document.createElement("previousTargetSalvation");
+            AIElement.appendChild(previousTargetSalvationElement);
+
+            ArrayList<Coordinate> targetCoordinateList = MainWindow.myAI.getPreviousTargetSalvation();
+
+            // previousTargetSalvationSize element
+            Element previousTargetSalvationSizeElement = document.createElement("previousTargetSalvationSize");
+            previousTargetSalvationSizeElement.appendChild(document.createTextNode(targetCoordinateList.size() + ""));
+            previousTargetSalvationElement.appendChild(previousTargetSalvationSizeElement);
+
+            for (int i = 0; i < targetCoordinateList.size(); i++) {
+
+                // coordinate element
+                Element coordinateElement = document.createElement("coordinate");
+                previousTargetSalvationElement.appendChild(coordinateElement);
+
+                // x element
+                xElement = document.createElement("x");
+                xElement.appendChild(document.createTextNode(targetCoordinateList.get(i).x + ""));
+                coordinateElement.appendChild(xElement);
+
+                // y element
+                yElement = document.createElement("y");
+                yElement.appendChild(document.createTextNode(targetCoordinateList.get(i).y + ""));
+                coordinateElement.appendChild(yElement);
+            }
 
 
             // countGrid element

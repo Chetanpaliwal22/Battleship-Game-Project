@@ -275,6 +275,9 @@ public class MainWindow extends JFrame {
             startedGame = true;
             startGameButton.setVisible(false);
 
+            basicGameplayRadioButton.setVisible(false);
+            advancedGameplayRadioButton.setVisible(false);
+
             // Start the timer
             GameTimer.startTimer();
         });

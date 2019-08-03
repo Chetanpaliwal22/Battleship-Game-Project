@@ -49,6 +49,10 @@ public class AI {
         return previousTarget;
     }
 
+    public ArrayList<Coordinate> getPreviousTargetSalvation() {
+        return previousTargetSalvation;
+    }
+
     public int[][] getCountGrid() {
         return countGrid;
     }
@@ -104,6 +108,10 @@ public class AI {
 
     public void setPreviousTarget(Coordinate targetCoordinate) {
         previousTarget = targetCoordinate;
+    }
+
+    public void setPreviousTargetSalvation(ArrayList<Coordinate> targetCoordinateList) {
+        previousTargetSalvation = targetCoordinateList;
     }
 
     public void setCountGrid(int[][] targetGrid) {
@@ -427,7 +435,7 @@ public class AI {
 
         toExclude.add(new Coordinate(this.previousTarget.y, this.previousTarget.x));
 
-		this.countGrid[this.previousTarget.y][this.previousTarget.x] = 0;
+        this.countGrid[this.previousTarget.y][this.previousTarget.x] = 0;
 
         return this.previousTarget;
     }
@@ -553,8 +561,9 @@ public class AI {
 
     /**
      * receive result from shots in salvation mode
-     *@param codeList Array list of integer
-     *@throws Exception throws exception
+     *
+     * @param codeList Array list of integer
+     * @throws Exception throws exception
      */
     public void receiveResultSalvation(ArrayList<Integer> codeList) throws Exception {
 

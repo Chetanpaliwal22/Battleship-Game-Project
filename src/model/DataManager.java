@@ -220,6 +220,21 @@ public class DataManager {
 //            }
 
 
+            nodeList = (NodeList) xPath.compile("/data/humanBoard").evaluate(document, XPathConstants.NODESET);
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+
+                    MainWindow.humanBoard.sunkNumber = Integer.parseInt(element.getElementsByTagName("sunkNumber").item(0).getTextContent());
+                }
+            }
+
+
+//            targetBoardState = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
+
             nodeList = (NodeList) xPath.compile("/data/humanBoard/waterGridState/coordinate").evaluate(document, XPathConstants.NODESET);
 
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -250,6 +265,20 @@ public class DataManager {
 
 //            System.out.println("----------------------------");
 //            System.out.println("AI board");
+
+
+            nodeList = (NodeList) xPath.compile("/data/AIBoard").evaluate(document, XPathConstants.NODESET);
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+
+                    MainWindow.AIBoard.sunkNumber = Integer.parseInt(element.getElementsByTagName("sunkNumber").item(0).getTextContent());
+                }
+            }
+
 
             targetBoardState = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
 
@@ -542,6 +571,7 @@ public class DataManager {
             userNameElement.appendChild(document.createTextNode("???"));
             root.appendChild(userNameElement);
 
+
             // score element
             Element scoreElement = document.createElement("score");
             scoreElement.appendChild(document.createTextNode("100"));
@@ -551,6 +581,93 @@ public class DataManager {
             Element numberOfAISunkShipsElement = document.createElement("numberOfAISunkShips");
             numberOfAISunkShipsElement.appendChild(document.createTextNode(MainWindow.numberOfAISunkShips + ""));
             root.appendChild(numberOfAISunkShipsElement);
+
+
+            // gameMode element
+            Element gameModeElement = document.createElement("gameMode");
+            gameModeElement.appendChild(document.createTextNode(MainWindow.gameMode));
+            root.appendChild(gameModeElement);
+
+
+            // playerFireTarget element
+            Element playerFireTargetElement = document.createElement("playerFireTarget");
+            root.appendChild(playerFireTargetElement);
+
+
+            // x element
+            Element xElement = document.createElement("x");
+            xElement.appendChild(document.createTextNode(MainWindow.playerFireTarget.x + ""));
+            playerFireTargetElement.appendChild(xElement);
+
+
+            // y element
+            Element yElement = document.createElement("y");
+            yElement.appendChild(document.createTextNode(MainWindow.playerFireTarget.y + ""));
+            playerFireTargetElement.appendChild(yElement);
+
+
+            // playerFireTarget element
+            Element AIFireTargetElement = document.createElement("AIFireTarget");
+            root.appendChild(AIFireTargetElement);
+
+
+            // x element
+            xElement = document.createElement("x");
+            xElement.appendChild(document.createTextNode(MainWindow.AIFireTarget.x + ""));
+            AIFireTargetElement.appendChild(xElement);
+
+
+            // y element
+            yElement = document.createElement("y");
+            yElement.appendChild(document.createTextNode(MainWindow.AIFireTarget.y + ""));
+            AIFireTargetElement.appendChild(yElement);
+
+            // playerGaveAllShots element
+            Element playerGaveAllShotsElement = document.createElement("playerGaveAllShots");
+            playerGaveAllShotsElement.appendChild(document.createTextNode(MainWindow.playerGaveAllShots + ""));
+            root.appendChild(playerGaveAllShotsElement);
+
+
+            // numberOfPlayerShots element
+            Element numberOfPlayerShotsElement = document.createElement("numberOfPlayerShots");
+            numberOfPlayerShotsElement.appendChild(document.createTextNode(MainWindow.numberOfPlayerShots + ""));
+            root.appendChild(numberOfPlayerShotsElement);
+
+
+            // numberOfPlayerMaxShots element
+            Element numberOfPlayerMaxShotsElement = document.createElement("numberOfPlayerMaxShots");
+            numberOfPlayerMaxShotsElement.appendChild(document.createTextNode(MainWindow.numberOfPlayerMaxShots + ""));
+            root.appendChild(numberOfPlayerMaxShotsElement);
+
+
+            // playerFireTargetList element
+            Element playerFireTargetListElement = document.createElement("playerFireTargetList");
+            root.appendChild(playerFireTargetListElement);
+
+
+            // playerFireTargetListSize element
+            Element playerFireTargetListSizeElement = document.createElement("playerFireTargetListSize");
+            playerFireTargetListSizeElement.appendChild(document.createTextNode(MainWindow.playerFireTargetList.size() + ""));
+            playerFireTargetListElement.appendChild(playerFireTargetListSizeElement);
+
+
+            for (int i = 0; i < MainWindow.playerFireTargetList.size(); i++) {
+
+                // coordinate element
+                Element coordinateElement = document.createElement("coordinate");
+                playerFireTargetListElement.appendChild(coordinateElement);
+
+                // x element
+                xElement = document.createElement("x");
+                xElement.appendChild(document.createTextNode(MainWindow.playerFireTargetList.get(i).x + ""));
+                coordinateElement.appendChild(xElement);
+
+                // y element
+                yElement = document.createElement("y");
+                yElement.appendChild(document.createTextNode(MainWindow.playerFireTargetList.get(i).y + ""));
+                coordinateElement.appendChild(yElement);
+            }
+
 
             // frontEndShips element
             Element frontEndShipsElement = document.createElement("frontEndShips");
@@ -569,12 +686,12 @@ public class DataManager {
                     shipElement.appendChild(coordinateElement);
 
                     // x element
-                    Element xElement = document.createElement("x");
+                    xElement = document.createElement("x");
                     xElement.appendChild(document.createTextNode(MainWindow.shipList.get(i).occupiedGridX.get(j) + ""));
                     coordinateElement.appendChild(xElement);
 
                     // y element
-                    Element yElement = document.createElement("y");
+                    yElement = document.createElement("y");
                     yElement.appendChild(document.createTextNode(MainWindow.shipList.get(i).occupiedGridY.get(j) + ""));
                     coordinateElement.appendChild(yElement);
                 }
@@ -589,12 +706,12 @@ public class DataManager {
                 shipElement.appendChild(pivotElement);
 
                 // x element
-                Element xElement = document.createElement("pivotX");
+                xElement = document.createElement("pivotX");
                 xElement.appendChild(document.createTextNode(MainWindow.shipList.get(i).pivotGridX + ""));
                 pivotElement.appendChild(xElement);
 
                 // y element
-                Element yElement = document.createElement("pivotY");
+                yElement = document.createElement("pivotY");
                 yElement.appendChild(document.createTextNode(MainWindow.shipList.get(i).pivotGridY + ""));
                 pivotElement.appendChild(yElement);
 
@@ -744,6 +861,11 @@ public class DataManager {
             Element humanBoardElement = document.createElement("humanBoard");
             root.appendChild(humanBoardElement);
 
+            // humanBoardSunkNumber element
+            Element humanBoardSunkNumberElement = document.createElement("sunkNumber");
+            humanBoardSunkNumberElement.appendChild(document.createTextNode(MainWindow.humanBoard.sunkNumber + ""));
+            humanBoardElement.appendChild(humanBoardSunkNumberElement);
+
             // waterGridState element
             Element waterGridStateElement = document.createElement("waterGridState");
             humanBoardElement.appendChild(waterGridStateElement);
@@ -758,12 +880,12 @@ public class DataManager {
                     waterGridStateElement.appendChild(coordinateElement);
 
                     // x element
-                    Element xElement = document.createElement("x");
+                    xElement = document.createElement("x");
                     xElement.appendChild(document.createTextNode(i + ""));
                     coordinateElement.appendChild(xElement);
 
                     // y element
-                    Element yElement = document.createElement("y");
+                    yElement = document.createElement("y");
                     yElement.appendChild(document.createTextNode(j + ""));
                     coordinateElement.appendChild(yElement);
 
@@ -779,6 +901,11 @@ public class DataManager {
             Element AIBoardElement = document.createElement("AIBoard");
             root.appendChild(AIBoardElement);
 
+            // AIBoardSunkNumber element
+            Element AIBoardSunkNumberElement = document.createElement("sunkNumber");
+            AIBoardSunkNumberElement.appendChild(document.createTextNode(MainWindow.humanBoard.sunkNumber + ""));
+            AIBoardElement.appendChild(AIBoardSunkNumberElement);
+
             // waterGridState element
             waterGridStateElement = document.createElement("waterGridState");
             AIBoardElement.appendChild(waterGridStateElement);
@@ -793,12 +920,12 @@ public class DataManager {
                     waterGridStateElement.appendChild(coordinateElement);
 
                     // X element
-                    Element xElement = document.createElement("x");
+                    xElement = document.createElement("x");
                     xElement.appendChild(document.createTextNode(i + ""));
                     coordinateElement.appendChild(xElement);
 
                     // Y element
-                    Element yElement = document.createElement("y");
+                    yElement = document.createElement("y");
                     yElement.appendChild(document.createTextNode(j + ""));
                     coordinateElement.appendChild(yElement);
 
@@ -850,7 +977,7 @@ public class DataManager {
             AIElement.appendChild(axisElement);
 
             // X element
-            Element xElement = document.createElement("axisX");
+            xElement = document.createElement("axisX");
 
             if (MainWindow.myAI.axis != null)
                 xElement.appendChild(document.createTextNode(MainWindow.myAI.axis.x + ""));
@@ -858,7 +985,7 @@ public class DataManager {
             axisElement.appendChild(xElement);
 
             // Y element
-            Element yElement = document.createElement("axisY");
+            yElement = document.createElement("axisY");
 
             if (MainWindow.myAI.axis != null)
                 yElement.appendChild(document.createTextNode(MainWindow.myAI.axis.y + ""));

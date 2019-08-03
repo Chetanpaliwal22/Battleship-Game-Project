@@ -54,13 +54,13 @@ public class MainWindow extends JFrame {
 
     public static String gameMode = "advanced";
 
-    private static Coordinate playerFireTarget, AIFireTarget;
+    public static Coordinate playerFireTarget, AIFireTarget;
 
-    private static boolean playerGaveAllShots = false;
+    public static boolean playerGaveAllShots = false;
 
     public static int numberOfPlayerShots = 0, numberOfPlayerMaxShots = 5;
 
-    static ArrayList<Coordinate> playerFireTargetList = new ArrayList<Coordinate>();
+    public static ArrayList<Coordinate> playerFireTargetList = new ArrayList<Coordinate>();
 
 
     /**
@@ -436,7 +436,7 @@ public class MainWindow extends JFrame {
 
                                 // Start the timer
                                 GameTimer.startTimer();
-                                System.out.println(Score.numberOfMissedTime + " ???\n");
+
                                 System.out.println("///////////////////////////\n");
                             }
                         } catch (Exception exception) {

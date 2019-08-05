@@ -16,7 +16,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.sun.tools.javac.Main;
 import constants.Constants;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

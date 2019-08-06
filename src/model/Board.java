@@ -11,253 +11,255 @@ import java.util.ArrayList;
  */
 public class Board {
 
-	Coordinate boardSize;
-
-	boolean gameHasStarted = false;
-
-	Ship[][] waterGrid;
-	int[][] waterGridState;
-
-	private ArrayList<Ship> ships;
-
-	public int sunkNumber = 0;
-
-	/**
-	 * argument constructor
-	 */
-	public Board() {
-
-		this.boardSize = Constants.BOARD_SIZE;
-
-		this.waterGrid = new Ship[this.boardSize.x][this.boardSize.y];
-		this.waterGridState = new int[this.boardSize.x][this.boardSize.y];
+    Coordinate boardSize;
+
+    boolean gameHasStarted = false;
+
+    Ship[][] waterGrid;
+    int[][] waterGridState;
+
+    private ArrayList<Ship> ships;
 
-		int nbShips = Constants.DESTROYER_NB + Constants.SUBMARINE_NB + Constants.CRUISER_NB + Constants.BATTLESHIP_NB
-				+ Constants.CARRIER_NB;
-		this.ships = new ArrayList<Ship>();
-	}
+    public int sunkNumber = 0;
 
-	/**
-	 * set that the game has started
-	 */
-	public void setGameHasStarted() {
-		gameHasStarted = true;
-	}
+    /**
+     * argument constructor
+     */
+    public Board() {
 
-	public void placeShipsRandomly() {
+        this.boardSize = Constants.BOARD_SIZE;
 
-		// hardcoded for now
+        this.waterGrid = new Ship[this.boardSize.x][this.boardSize.y];
+        this.waterGridState = new int[this.boardSize.x][this.boardSize.y];
 
-		Coordinate[] ship1Coordinate = { new Coordinate(4, 1), new Coordinate(4, 2) };
-		Coordinate[] ship2Coordinate = { new Coordinate(3, 7), new Coordinate(4, 7), new Coordinate(5, 7) };
-		Coordinate[] ship3Coordinate = { new Coordinate(0, 1), new Coordinate(0, 2), new Coordinate(0, 3) };
-		Coordinate[] ship4Coordinate = { new Coordinate(5, 3), new Coordinate(6, 3), new Coordinate(7, 3),
-				new Coordinate(8, 3) };
-		Coordinate[] ship5Coordinate = { new Coordinate(2, 0), new Coordinate(2, 1), new Coordinate(2, 2),
-				new Coordinate(2, 3), new Coordinate(2, 4) };
+        int nbShips = Constants.DESTROYER_NB + Constants.SUBMARINE_NB + Constants.CRUISER_NB + Constants.BATTLESHIP_NB
+                + Constants.CARRIER_NB;
+        this.ships = new ArrayList<Ship>();
+    }
 
-		try {
-			placeShip(ship1Coordinate);
-			placeShip(ship2Coordinate);
-			placeShip(ship3Coordinate);
-			placeShip(ship4Coordinate);
-			placeShip(ship5Coordinate);
+    /**
+     * set that the game has started
+     */
+    public void setGameHasStarted() {
+        gameHasStarted = true;
+    }
 
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
+    public void placeShipsRandomly() {
 
-	/**
-	 * Allow human or AI to place a new ship on the board
-	 *
-	 * @param newShipCoordinate
-	 *            - New Ship Coordinate
-	 * @throws Exception
-	 *             - Throws Error if the ships are moved after the game has started.
-	 */
-	public void placeShip(Coordinate[] newShipCoordinate) throws Exception {
-
-		if (gameHasStarted) {
-			throw new Exception("Can't move the ships after the beginning of the game.");
-		}
-
-		// create a new ship
-		Ship newShip = new Ship(newShipCoordinate.length, newShipCoordinate);
-
-		// add ship reference to the grid
-		for (int i = 0; i < newShipCoordinate.length; i++) {
-			waterGrid[newShipCoordinate[i].y][newShipCoordinate[i].x] = newShip;
-		}
+        // hardcoded for now
 
-		// add ship to ship index
-		ships.add(newShip);
-	}
+        Coordinate[] ship1Coordinate = {new Coordinate(4, 1), new Coordinate(4, 2)};
+        Coordinate[] ship2Coordinate = {new Coordinate(3, 7), new Coordinate(4, 7), new Coordinate(5, 7)};
+        Coordinate[] ship3Coordinate = {new Coordinate(0, 1), new Coordinate(0, 2), new Coordinate(0, 3)};
+        Coordinate[] ship4Coordinate = {new Coordinate(5, 3), new Coordinate(6, 3), new Coordinate(7, 3),
+                new Coordinate(8, 3)};
+        Coordinate[] ship5Coordinate = {new Coordinate(2, 0), new Coordinate(2, 1), new Coordinate(2, 2),
+                new Coordinate(2, 3), new Coordinate(2, 4)};
 
-	public void updateShip(int shipIndex, ArrayList<Coordinate> targetHitPosition, boolean liveState) {
-		ships.get(shipIndex).setHitPosition(targetHitPosition);
-		ships.get(shipIndex).setIsLive(liveState);
-	}
+        try {
+            placeShip(ship1Coordinate);
+            placeShip(ship2Coordinate);
+            placeShip(ship3Coordinate);
+            placeShip(ship4Coordinate);
+            placeShip(ship5Coordinate);
 
-	/**
-	 * process a fire on the board and respond accordingly
-	 *
-	 * @param target
-	 *            accept target as prameter
-	 * @return the code for result
-	 * @throws Exception
-	 *             throws exception
-	 */
-	public int fireAtTarget(Coordinate target) throws Exception {
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
-		if (!gameHasStarted) {
-			throw new Exception("Ships should be placed before playing.");
-		}
+    /**
+     * Allow human or AI to place a new ship on the board
+     *
+     * @param newShipCoordinate - New Ship Coordinate
+     * @throws Exception - Throws Error if the ships are moved after the game has started.
+     */
+    public void placeShip(Coordinate[] newShipCoordinate) throws Exception {
 
-		if (waterGrid[target.y][target.x] == null) { // That's a miss
+        if (gameHasStarted) {
+            throw new Exception("Can't move the ships after the beginning of the game.");
+        }
 
-			waterGridState[target.y][target.x] = 1;
+        // create a new ship
+        Ship newShip = new Ship(newShipCoordinate.length, newShipCoordinate);
 
-			return 0;
+        // add ship reference to the grid
+        for (int i = 0; i < newShipCoordinate.length; i++) {
+            waterGrid[newShipCoordinate[i].y][newShipCoordinate[i].x] = newShip;
+        }
 
-		} else if (waterGrid[target.y][target.x].isHit(target)) { // that's a hit !
+        // add ship to ship index
+        ships.add(newShip);
+    }
 
-			if (waterGrid[target.y][target.x].isSunk()) { // ship has sunk
+    public void updateShip(int shipIndex, ArrayList<Coordinate> targetHitPosition, boolean liveState) {
+        ships.get(shipIndex).setHitPosition(targetHitPosition);
+        ships.get(shipIndex).setIsLive(liveState);
+    }
 
-				waterGridState[target.y][target.x] = 2;
-				sunkNumber++;
+    /**
+     * process a fire on the board and respond accordingly
+     *
+     * @param target accept target as prameter
+     * @return the code for result
+     * @throws Exception throws exception
+     */
+    public int fireAtTarget(Coordinate target) throws Exception {
 
-				return 2;
+        if (!gameHasStarted) {
+            throw new Exception("Ships should be placed before playing.");
+        }
 
-			} else {
+        if (waterGrid[target.y][target.x] == null) { // That's a miss
 
-				waterGridState[target.y][target.x] = 2;
+            waterGridState[target.y][target.x] = 1;
 
-				return 1;
-			}
+            return 0;
 
-			// invalid coordinate
-		} else {
-			throw new Exception("Invalid coordinate provided as target.");
-		}
+        } else if (waterGrid[target.y][target.x].isHit(target)) { // that's a hit !
 
-	}
+            if (waterGrid[target.y][target.x].isSunk()) { // ship has sunk
 
-	public ArrayList<Ship> getShips() {
-		return ships;
-	}
+                waterGridState[target.y][target.x] = 2;
+                sunkNumber++;
 
-	/**
-	 * return the state of the board as a 2 dimensional array of integer WIP
-	 *
-	 * @return the board state
-	 */
-	public int[][] getBoardState() {
-		return waterGridState;
-	}
+                return 2;
 
-	public void setBoardState(int[][] boardState) {
-		waterGridState = boardState;
-	}
+            } else {
 
-	public void setBoardState(int x, int y) {
-		waterGridState[y][x] = 1;
-	}
+                waterGridState[target.y][target.x] = 2;
 
-	/**
-	 * print the state grid in the console
-	 */
-	public void printStateGrid() {
+                return 1;
+            }
 
-		System.out.println("State grid :");
+            // invalid coordinate
+        } else {
+            throw new Exception("Invalid coordinate provided as target.");
+        }
 
-		for (int i = this.boardSize.x - 1; i >= 0; i--) {
-			for (int j = 0; j < this.boardSize.y; j++) {
-				System.out.print(waterGridState[i][j]);
-			}
-			System.out.println();
-		}
-	}
+    }
 
-	/**
-	 * print the ship grid in the console
-	 */
-	public void printShipGrid() {
+    public ArrayList<Ship> getShips() {
+        return ships;
+    }
 
-		System.out.println("Ship grid :");
+    /**
+     * return the state of the board as a 2 dimensional array of integer WIP
+     *
+     * @return the board state
+     */
+    public int[][] getBoardState() {
+        return waterGridState;
+    }
 
-		for (int i = this.boardSize.x - 1; i >= 0; i--) {
-			for (int j = 0; j < this.boardSize.y; j++) {
+    public void setBoardState(int[][] boardState) {
+        waterGridState = boardState;
+    }
 
-				if (waterGrid[i][j] != null) {
+    public void setBoardState(int x, int y) {
+        waterGridState[y][x] = 1;
+    }
 
-					System.out.print(1);
+    /**
+     * print the state grid in the console
+     */
+    public void printStateGrid() {
 
-				} else {
-					System.out.print(0);
-				}
+        System.out.println("State grid :");
 
-			}
-			System.out.println();
-		}
+        for (int i = this.boardSize.x - 1; i >= 0; i--) {
+            for (int j = 0; j < this.boardSize.y; j++) {
+                System.out.print(waterGridState[i][j]);
+            }
+            System.out.println();
+        }
+    }
 
-	}
+    /**
+     * print the ship grid in the console
+     */
+    public void printShipGrid() {
 
-	/**
-	 * check if all ship are sunk
-	 */
-	public boolean checkSunk() {
-		boolean shipResult = false;
+        System.out.println("Ship grid :");
 
-		for (int i = 0; i < MainWindow.shipList.size(); i++) {
+        for (int i = this.boardSize.x - 1; i >= 0; i--) {
+            for (int j = 0; j < this.boardSize.y; j++) {
 
-			if (!MainWindow.shipList.get(i).sunk) {
-				int hitCount = 0;
+                if (waterGrid[i][j] != null) {
 
-				for (int j = 0; j < MainWindow.shipList.get(i).occupiedGridX.size(); j++) {
+                    System.out.print(1);
 
-					if (MainWindow.humanBoard.getBoardState()[MainWindow.shipList.get(i).occupiedGridY
-							.get(j)][MainWindow.shipList.get(i).occupiedGridX.get(j)] == 1
-							| MainWindow.humanBoard.getBoardState()[MainWindow.shipList.get(i).occupiedGridY
-									.get(j)][MainWindow.shipList.get(i).occupiedGridX.get(j)] == 2) {
+                } else {
+                    System.out.print(0);
+                }
 
-						hitCount += 1;
-					}
-				}
+            }
+            System.out.println();
+        }
 
-				if (hitCount == MainWindow.shipList.get(i).size) {
-					MainWindow.shipList.get(i).sunk = true;
+    }
 
-					shipResult = true;
-				}
-			}
-		}
+    /**
+     * check if all ship are sunk
+     */
+    public boolean checkSunk() {
+        boolean shipResult = false;
 
-		return shipResult;
-	}
+        for (int i = 0; i < MainWindow.shipList.size(); i++) {
 
-	/**
-	 * check number of sunk ship
-	 *
-	 * @return the board state
-	 */
-	public boolean checkPlayerSunkShips() {
+            if (!MainWindow.shipList.get(i).sunk) {
+                int hitCount = 0;
 
-		int numberOfSunkShips = 0;
+                for (int j = 0; j < MainWindow.shipList.get(i).occupiedGridX.size(); j++) {
 
-		for (int i = 0; i < MainWindow.shipList.size(); i++) {
+                    if (MainWindow.humanBoard.getBoardState()[MainWindow.shipList.get(i).occupiedGridY
+                            .get(j)][MainWindow.shipList.get(i).occupiedGridX.get(j)] == 1
+                            | MainWindow.humanBoard.getBoardState()[MainWindow.shipList.get(i).occupiedGridY
+                            .get(j)][MainWindow.shipList.get(i).occupiedGridX.get(j)] == 2) {
 
-			if (MainWindow.shipList.get(i).sunk) {
-				numberOfSunkShips += 1;
-			}
-		}
+                        hitCount += 1;
+                    }
+                }
 
-		if (numberOfSunkShips == 5) {
+                if (!MainWindow.shipList.get(i).sunk) {
+                    if (hitCount == MainWindow.shipList.get(i).size) {
+                        MainWindow.shipList.get(i).sunk = true;
 
-			return true;
+                        // Reduce the number of shots by 1 when the player lost ship
+                        MainWindow.numberOfPlayerMaxShots -= 1;
+						MainWindow.timerLabel.setText("<html>Number of shots: " + MainWindow.numberOfPlayerShots + "/" + MainWindow.numberOfPlayerMaxShots + "</html>");
 
-		} else {
-			return false;
-		}
-	}
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return shipResult;
+    }
+
+    /**
+     * check number of sunk ship
+     *
+     * @return the board state
+     */
+    public boolean checkPlayerSunkShips() {
+
+        int numberOfSunkShips = 0;
+
+        for (int i = 0; i < MainWindow.shipList.size(); i++) {
+
+            if (MainWindow.shipList.get(i).sunk) {
+                numberOfSunkShips += 1;
+            }
+        }
+
+        if (numberOfSunkShips == 5) {
+
+            return true;
+
+        } else {
+            return false;
+        }
+    }
 }

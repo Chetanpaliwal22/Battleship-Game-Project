@@ -5,107 +5,116 @@ import java.net.InetAddress;
 
 import org.junit.validator.PublicClassValidator;
 
+import tools.Coordinate;
 import view.MainWindow;
 import view.Renderer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 public class Data implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	int clientID;
+    int clientID;
 
-	String Message;
+    String Message;
 
-	boolean gameStartedFromBoard = false;
+    boolean gameStartedFromBoard = false;
 
-	public boolean client1Ready = false, client2Ready = false;
+    public boolean client1Ready = false, client2Ready = false;
 
-	public int fireTargetX = -99, fireTargetY = -99;
+    public int fireTargetX = -99, fireTargetY = -99;
 
-	public boolean receiveResult = false;
+    public ArrayList<Integer> fireTargetXList = new ArrayList<Integer>(), fireTargetYList = new ArrayList<Integer>();
 
-	public int resultId = 0;
+    public boolean receiveResult = false;
 
-	public boolean freezing = false, releaseControl = false;
+    public ArrayList<Integer> resultIdList = new ArrayList<Integer>();
 
-	private InetAddress address;
+    public boolean freezing = false, releaseControl = false;
 
-	private InetAddress opponentAddress;
+    private InetAddress address;
 
-	private boolean gameStart;
+    private InetAddress opponentAddress;
 
-	public String getMessage() {
-		return Message;
-	}
+    private boolean gameStart;
 
-	public int getClientId() {
-		return clientID;
-	}
+    public String getMessage() {
+        return Message;
+    }
 
-	public InetAddress getAddress() {
-		return this.address;
-	}
+    public int getClientId() {
+        return clientID;
+    }
 
-	public void setAddress(InetAddress address) {
-		this.address = address;
-	}
+    public InetAddress getAddress() {
+        return this.address;
+    }
 
-	public void setgameStart(boolean gameStart) {
-		this.gameStart = gameStart;
-	}
+    public void setAddress(InetAddress address) {
+        this.address = address;
+    }
 
-	public boolean getgameStart() {
-		return gameStart;
-	}
+    public void setgameStart(boolean gameStart) {
+        this.gameStart = gameStart;
+    }
 
-	public void setOpponent(InetAddress opponentAddress) {
-		this.opponentAddress = opponentAddress;
-	}
+    public boolean getgameStart() {
+        return gameStart;
+    }
 
-	public InetAddress getOpponent() {
-		return opponentAddress;
-	}
+    public void setOpponent(InetAddress opponentAddress) {
+        this.opponentAddress = opponentAddress;
+    }
 
-	Data(int clientID, String Message) {
-		this.clientID = clientID;
-		this.Message = Message;
-		this.address = null;
-		gameStart = false;
-	}
+    public InetAddress getOpponent() {
+        return opponentAddress;
+    }
 
-	public Data(int clientID, String Message, InetAddress address, InetAddress opponentAddress, boolean gameStart) {
+    Data(int clientID, String Message) {
+        this.clientID = clientID;
+        this.Message = Message;
+        this.address = null;
+        gameStart = false;
+    }
 
-		gameStartedFromBoard = MainWindow.startedGame;
+    public Data(int clientID, String Message, InetAddress address, InetAddress opponentAddress, boolean gameStart) {
 
-		this.clientID = clientID;
-		this.Message = Message;
-		this.address = address;
-		this.opponentAddress = opponentAddress;
-		this.gameStart = gameStart;
-	}
+        gameStartedFromBoard = MainWindow.startedGame;
 
-	public byte[] getBytes() throws IOException {
-		Data obj = new Data(clientID, Message, address, opponentAddress, gameStart);
+        this.clientID = clientID;
+        this.Message = Message;
+        this.address = address;
+        this.opponentAddress = opponentAddress;
+        this.gameStart = gameStart;
+    }
 
-		obj.freezing = this.freezing;
-		obj.releaseControl = this.releaseControl;
+    public byte[] getBytes() throws IOException {
+        Data obj = new Data(clientID, Message, address, opponentAddress, gameStart);
 
-		obj.fireTargetX = this.fireTargetX;
-		obj.fireTargetY = this.fireTargetY;
-		obj.resultId = this.resultId;
-		obj.receiveResult = this.receiveResult;
-		System.out.println(" this is the data obj " + " (" + obj.fireTargetX + " , " + obj.fireTargetY + " )");
-		ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-		ObjectOutputStream oos = new ObjectOutputStream(byteStream);
-		oos.writeObject(obj);
+        obj.freezing = this.freezing;
+        obj.releaseControl = this.releaseControl;
 
-		oos.flush();
-		byte[] data = byteStream.toByteArray();
-		return data;
-	}
+        obj.fireTargetX = this.fireTargetX;
+        obj.fireTargetY = this.fireTargetY;
+
+        obj.fireTargetXList = this.fireTargetXList;
+        obj.fireTargetYList = this.fireTargetYList;
+
+        obj.resultIdList = this.resultIdList;
+        obj.receiveResult = this.receiveResult;
+
+        System.out.println(" this is the data obj " + " (" + obj.fireTargetX + " , " + obj.fireTargetY + " )");
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(byteStream);
+        oos.writeObject(obj);
+
+        oos.flush();
+        byte[] data = byteStream.toByteArray();
+        return data;
+    }
 
 }

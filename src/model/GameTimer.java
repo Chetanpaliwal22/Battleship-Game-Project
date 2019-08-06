@@ -31,10 +31,12 @@ public class GameTimer extends TimerTask {
 
                 formatTime();
 
-                if (MainWindow.gameMode.equalsIgnoreCase("advanced"))
-                    MainWindow.timerLabel.setText("<html>Number of shots: " + MainWindow.numberOfPlayerShots + "/" + MainWindow.numberOfPlayerMaxShots + "<br>Time " + timeString + "</html>");
-                else
-                    MainWindow.timerLabel.setText("Time" + timeString);
+                if (!MainWindow.onlineMode) {
+                    if (MainWindow.gameMode.equalsIgnoreCase("advanced"))
+                        MainWindow.timerLabel.setText("<html>Number of shots: " + MainWindow.numberOfPlayerShots + "/" + MainWindow.numberOfPlayerMaxShots + "<br>Time " + timeString + "</html>");
+                    else
+                        MainWindow.timerLabel.setText("Time" + timeString);
+                }
             }
         }
     }
@@ -73,7 +75,8 @@ public class GameTimer extends TimerTask {
 
         formatTime();
 
-        MainWindow.timerLabel.setText("Paused " + timeString);
+        if (!MainWindow.onlineMode)
+            MainWindow.timerLabel.setText("Paused " + timeString);
     }
 
     public static void resetTimer() {

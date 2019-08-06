@@ -1,8 +1,9 @@
 /doc/
+/model/
 /view/
 /constants/
 /controller/
+/exception/
 /main/
-/model/
 /test/
 /tools/

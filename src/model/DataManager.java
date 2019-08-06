@@ -16,8 +16,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.sun.tools.javac.Main;
+//import com.sun.tools.javac.Main;
 import constants.Constants;
+import exception.CustomException;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -608,7 +610,7 @@ public class DataManager {
         }
     }
 
-    public void save() {
+    public void save() throws CustomException {
         try {
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 
@@ -650,6 +652,9 @@ public class DataManager {
 
             // playerFireTargetX element
             Element playerFireTargetXElement = document.createElement("playerFireTargetX");
+            if(MainWindow.playerFireTarget == null) {
+            	throw new CustomException("Fire at target is null.");
+            }
             playerFireTargetXElement.appendChild(document.createTextNode(MainWindow.playerFireTarget.x + ""));
             playerFireTargetElement.appendChild(playerFireTargetXElement);
 

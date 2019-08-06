@@ -2,6 +2,7 @@ package view;
 
 import constants.Constants;
 import controller.Mouse;
+import exception.CustomException;
 import main.Game;
 import model.*;
 import tools.Coordinate;
@@ -245,7 +246,11 @@ public class MainWindow extends JFrame {
         saveButton.setMaximumSize(new Dimension(40, 15));
 
         saveButton.addActionListener((ActionEvent e) -> {
-            dataManager.save();
+            try {
+				dataManager.save();
+			} catch (CustomException e1) {
+				e1.getMessage();
+			}
         });
 
         gridBagConstraints.weightx = 0.5;

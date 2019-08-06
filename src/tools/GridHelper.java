@@ -1,5 +1,7 @@
 package tools;
 
+import exception.CustomException;
+
 /**
  * This util class contains the basic method applied of the grid across the
  * applicaiton
@@ -17,10 +19,10 @@ public class GridHelper {
 	 * @throws Exception
 	 *             if any error occured
 	 */
-	public static float[][] add(float[][] a, float[][] b) throws Exception {
+	public static float[][] add(float[][] a, float[][] b) throws CustomException {
 
 		if (a.length != b.length || a[0].length != b[0].length) {
-			throw new Exception("Provided arrays are not of the same shape.");
+			throw new CustomException("Provided arrays are not of the same shape.");
 		}
 
 		float[][] result = new float[a.length][a[0].length];
@@ -45,10 +47,10 @@ public class GridHelper {
 	 * @throws Exception
 	 *             if any error
 	 */
-	public static int[][] add(int[][] a, int[][] b) throws Exception {
+	public static int[][] add(int[][] a, int[][] b) throws CustomException {
 
 		if (a.length != b.length || a[0].length != b[0].length) {
-			throw new Exception("Provided arrays are not of the same shape.");
+			throw new CustomException("Provided arrays are not of the same shape.");
 		}
 
 		int[][] result = new int[a.length][a[0].length];

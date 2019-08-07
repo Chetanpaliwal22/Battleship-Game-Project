@@ -19,7 +19,7 @@ import java.util.TimerTask;
 
 
 /**
- * This class is main window of the game
+ * This class is main window of the game containing all UI components
  */
 public class MainWindow extends JFrame {
 
@@ -555,6 +555,9 @@ public class MainWindow extends JFrame {
         }
     }
 
+    /**
+     * Check the fire target result on the AI board
+     */
     private static void checkAIBoardResult(int result) {
         if (result == 0) {
             Renderer.playWaterSplashAnimation(2, playerFireTarget.x, playerFireTarget.y);
@@ -575,6 +578,9 @@ public class MainWindow extends JFrame {
         }
     }
 
+    /**
+     * Check the fire target result on the human board
+     */
     private static void checkHumanBoardResult(int result) {
         if (result == 0) {
             Renderer.playWaterSplashAnimation(1, AIFireTarget.x, AIFireTarget.y);
@@ -606,6 +612,9 @@ public class MainWindow extends JFrame {
         }
     }
 
+    /**
+     * Check if player wins by looping through all AI ship states
+     */
     private static void checkPLayerWins() {
         if (numberOfAISunkShips == 5) {
 
@@ -638,6 +647,9 @@ public class MainWindow extends JFrame {
         }
     }
 
+    /**
+     * Check if AI wins by looping through all human ship states
+     */
     private static void checkAIWins() {
         humanBoard.checkSunk();
 
@@ -668,10 +680,16 @@ public class MainWindow extends JFrame {
         }
     }
 
+    /**
+     * Return the window position x value
+     */
     public static int getWindowLocationX() {
         return Game.mainWindow.getLocationOnScreen().x;
     }
 
+    /**
+     * Return the window position y value
+     */
     public static int getWindowLocationY() {
         return Game.mainWindow.getLocationOnScreen().y;
     }

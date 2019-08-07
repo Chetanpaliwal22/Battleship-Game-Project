@@ -11,6 +11,9 @@ public class Score {
     public static int numberOfMissedTime = 0;
     private int finalScore = 0;
 
+    /**
+     * Uses a formula to calculate the final score
+     */
     public int calculateFinalScore() {
 
         if (MainWindow.playerWins)
@@ -21,10 +24,16 @@ public class Score {
         return finalScore;
     }
 
+    /**
+     * Returns the final score value
+     */
     public int returnFinalScore() {
         return finalScore;
     }
 
+    /**
+     * Calculates the number of stars based on the final score
+     */
     public int calculateStars() {
         if (finalScore > 90 & finalScore <= 100)
             return 5;

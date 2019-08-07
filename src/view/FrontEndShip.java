@@ -7,7 +7,7 @@ import java.util.List;
 
 
 /**
- * This class contains the description of the front end ship
+ * a class contains the attributes of visualized ship entities
  */
 public class FrontEndShip {
 
@@ -29,7 +29,10 @@ public class FrontEndShip {
 
     public boolean sunk = false;
 
-    // Constructor for initializing the attributes
+
+    /**
+     * every time the direction or location of the ship changed, recalculate its occupied grids
+     */
     public FrontEndShip(int shipSize, int shipDirection, int shipPivotGridX, int shipPivotGridY) {
 
         size = shipSize;
@@ -37,8 +40,10 @@ public class FrontEndShip {
         recalculate(shipDirection, shipPivotGridX, shipPivotGridY);
     }
 
-    // Every time the direction or location of the ship changed, recalculate its
-    // occupied grids
+
+    /**
+     * constructor for initializing the attributes
+     */
     public void recalculate(int shipDirection, int shipPivotGridX, int shipPivotGridY) {
 
         direction = shipDirection;
@@ -185,7 +190,9 @@ public class FrontEndShip {
         }
     }
 
-    // Check if the ship is outside the board
+    /**
+     * check if the ship is outside the board or there is overlapping
+     */
     public boolean validateLocation() {
         for (int i = 0; i < occupiedGridX.size(); i++) {
             if (occupiedGridX.get(i) < 0 | occupiedGridX.get(i) >= Constants.BOARD_SIZE.y) {

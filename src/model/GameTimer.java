@@ -39,9 +39,8 @@ public class GameTimer extends TimerTask {
         }
     }
 
-    /*
+    /**
      * This method Formats the display of time
-     *
      */
     private static void formatTime() {
         if (totalMinutes < 10) {
@@ -57,17 +56,23 @@ public class GameTimer extends TimerTask {
         }
     }
 
-    /*
+    /**
      * This method Return the time in unit of second
      */
     public static int getRemainingTime() {
         return totalMinutes * 60 + totalSeconds;
     }
 
+    /**
+     * This method is used for starting the timer object
+     */
     public static void startTimer() {
         startTimer = true;
     }
 
+    /**
+     * This method is used for pausing the timer object
+     */
     public static void pauseTimer() {
         startTimer = false;
 
@@ -76,6 +81,9 @@ public class GameTimer extends TimerTask {
         MainWindow.timerLabel.setText("Paused " + timeString);
     }
 
+    /**
+     * This method is used for reseting the timer object
+     */
     public static void resetTimer() {
         totalSeconds = 10;
         totalMinutes = 0;

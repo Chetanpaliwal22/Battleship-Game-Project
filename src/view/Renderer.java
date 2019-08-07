@@ -11,7 +11,7 @@ import java.util.Random;
 
 
 /**
- * Handle graphic rendering
+ * Handles graphic rendering including game board, ships, animation
  */
 public class Renderer extends JComponent {
     private boolean calculatedHolePositions = false;
@@ -455,6 +455,9 @@ public class Renderer extends JComponent {
         }
     }
 
+    /**
+     * Play the water splash animation and sound effect
+     */
     public static void playWaterSplashAnimation(int boardId, int targetWaterSplashX, int targetWaterSplashY) {
         if (MainWindow.enableSpecialEffect)
             assignWaterSplashAnimation(boardId, targetWaterSplashX, targetWaterSplashY);
@@ -468,6 +471,9 @@ public class Renderer extends JComponent {
         }
     }
 
+    /**
+     * Get a water splash animation object from the object pool
+     */
     private static void assignWaterSplashAnimation(int boardId, int targetWaterSplashX, int targetWaterSplashY) {
         for (int i = 0; i < waterSplashX.length; i++) {
             if (waterSplashX[i] == -1) {
@@ -480,6 +486,9 @@ public class Renderer extends JComponent {
         }
     }
 
+    /**
+     * Play the explosion animation and sound effect
+     */
     public static void playExplosionAnimation(int boardId, int targetExplosionX, int targetExplosionY) {
         if (MainWindow.enableSpecialEffect)
             assignExplosionAnimation(boardId, targetExplosionX, targetExplosionY);
@@ -493,6 +502,9 @@ public class Renderer extends JComponent {
         }
     }
 
+    /**
+     * Get an explosion animation object from the object pool
+     */
     private static void assignExplosionAnimation(int boardId, int targetExplosionX, int targetExplosionY) {
         for (int i = 0; i < explosionX.length; i++) {
             if (explosionX[i] == -1) {

@@ -27,10 +27,16 @@ import tools.Coordinate;
 import view.FrontEndShip;
 import view.MainWindow;
 
+/**
+ * Class to handle the game progress saving and loading functionality
+ */
 public class DataManager {
 
     public static final String xmlFilePath = "src/model/data/GameData.xml";
 
+    /**
+     * Parse the xml file and extract the data then load them to corresponding classes
+     */
     public void load() {
         try {
             File inputFile = new File(xmlFilePath);
@@ -608,6 +614,9 @@ public class DataManager {
         }
     }
 
+    /**
+     * Write all necessary attributes to the xml file
+     */
     public void save() {
         try {
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();

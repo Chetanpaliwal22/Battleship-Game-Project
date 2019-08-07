@@ -57,7 +57,7 @@ public class MainWindow extends JFrame {
 
     public static String gameMode = "advanced";
 
-    public static Coordinate playerFireTarget, AIFireTarget;
+    public static Coordinate playerFireTarget = new Coordinate(-1, -1), AIFireTarget = new Coordinate(-1, -1);
 
     public static boolean playerGaveAllShots = false;
 

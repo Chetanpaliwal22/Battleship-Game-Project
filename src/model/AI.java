@@ -21,10 +21,10 @@ public class AI {
     int distanceFromHit = 1;
     boolean fixedDirection = false;
     boolean seekAgain = false;
-    Coordinate axis;
+    Coordinate axis = new Coordinate(0, 0);
 
     private Coordinate previousTarget = new Coordinate(-1, -1);
-    private ArrayList<Coordinate> previousTargetSalvation;
+    private ArrayList<Coordinate> previousTargetSalvation = new ArrayList<Coordinate>();
 
     private int[][] countGrid;
 
@@ -244,7 +244,7 @@ public class AI {
      * @return updated grid
      * @throws Exception thorws exception if the ship length is bigger then the board size
      */
-    private int[][] updateSpecificCountGrid(int shipSize, int code) throws CustomException  {
+    private int[][] updateSpecificCountGrid(int shipSize, int code) throws CustomException {
 
         int[][] countGridX = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
         int[][] countGridY = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];

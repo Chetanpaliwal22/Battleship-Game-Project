@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a3532a2a-cc23-46d1-9f56-31b65f5e9545" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/AI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/data/GameData.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/data/GameData.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainWindow.java" afterDir="false" />
     </list>
@@ -25,11 +26,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="13" />
-    <option name="width" value="1920" />
-    <option name="height" value="1067" />
   </component>
   <component name="ProjectId" id="1OqknJn0Lf7NDWQagrDHyq1b5o5" />
   <component name="ProjectLevelVcsManager">

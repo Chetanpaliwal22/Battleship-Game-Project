@@ -36,6 +36,8 @@ public class Data implements Serializable {
 
     public boolean freezing = false, releaseControl = false;
 
+    public boolean gameOver = false;
+
     private InetAddress address;
 
     private InetAddress opponentAddress;
@@ -106,6 +108,8 @@ public class Data implements Serializable {
 
         obj.resultIdList = this.resultIdList;
         obj.receiveResult = this.receiveResult;
+
+        obj.gameOver = this.gameOver;
 
         System.out.println(" this is the data obj " + " (" + obj.fireTargetX + " , " + obj.fireTargetY + " )");
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();

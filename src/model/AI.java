@@ -23,7 +23,7 @@ public class AI {
     Coordinate axis;
 
     private Coordinate previousTarget = new Coordinate(-1, -1);
-    private ArrayList<Coordinate> previousTargetSalvation;
+    private ArrayList<Coordinate> previousTargetSalvation = new ArrayList<Coordinate>();
 
     private int[][] countGrid;
 

@@ -10,8 +10,11 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+import main.Game;
 import view.MainWindow;
 import view.Renderer;
+
+import javax.swing.*;
 
 public class Client {
     private static int GET_PORT_NUMBER = 1234;
@@ -126,9 +129,9 @@ public class Client {
 
                 if (MainWindow.bothPlayersReady) {
                     if (data.receiveResult) {
-                        MainWindow.receiveResultFromOpponent(data.fireTargetXList,data.fireTargetYList, data.resultIdList);
+                        MainWindow.receiveResultFromOpponent(data.fireTargetXList, data.fireTargetYList, data.resultIdList);
                     } else {
-                        MainWindow.receiveFireTarget(data.fireTargetXList,data.fireTargetYList);
+                        MainWindow.receiveFireTarget(data.fireTargetXList, data.fireTargetYList);
                     }
 
                     if (data.releaseControl)
@@ -142,6 +145,18 @@ public class Client {
                         MainWindow.freezing = false;
                 }
 
+
+                if (data.gameOver) {
+                    MainWindow.gameOver = true;
+
+                    if (!MainWindow.humanBoard.checkPlayerSunkShips()) {
+                        JOptionPane.showMessageDialog(
+                                Game.mainWindow, "Congratulations!! You were able to defeat your opponent.", "Game Over", JOptionPane.INFORMATION_MESSAGE, null);
+                    }
+                }
+
+                System.out.println("Data game over: " + data.gameOver);
+                System.out.println("MainWindow game over: " + MainWindow.gameOver);
 
                 // sendServer(data);
             }
@@ -200,7 +215,7 @@ public class Client {
 
     public Client() {
         try {
-            SERVER_ADDRESS = InetAddress.getByName("132.205.94.192");
+            SERVER_ADDRESS = InetAddress.getByName("132.205.94.197");
         } catch (UnknownHostException e) {
             System.out.println("UnknownHostException Client main()");
             e.printStackTrace();

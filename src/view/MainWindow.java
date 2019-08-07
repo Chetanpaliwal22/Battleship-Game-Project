@@ -747,6 +747,17 @@ public class MainWindow extends JFrame {
             }
         }
 
+        System.out.println("Game over: " + gameOver + " " + humanBoard.checkPlayerSunkShips());
+
+        if (gameOver) {
+            if (!humanBoard.checkPlayerSunkShips()) {
+                JOptionPane.showMessageDialog(
+                        Game.mainWindow, "Congratulations!! You were able to defeat your opponent.\nYour score is "
+                                + score.returnFinalScore() + " points.\n",
+                        "Game Over", JOptionPane.INFORMATION_MESSAGE, null);
+            }
+        }
+
         // reset player shot attributes
         playerGaveAllShots = false;
 
@@ -833,6 +844,15 @@ public class MainWindow extends JFrame {
                 resultIdList.add(result);
             }
 
+            if (gameOver) {
+                if (!humanBoard.checkPlayerSunkShips()) {
+                    JOptionPane.showMessageDialog(
+                            Game.mainWindow, "Congratulations!! You were able to defeat your opponent.\nYour score is "
+                                    + score.returnFinalScore() + " points.\n",
+                            "Game Over", JOptionPane.INFORMATION_MESSAGE, null);
+                }
+            }
+
             Data data = client.getDefaultClient();
 
             data.fireTargetX = fireTargetXList.get(0);
@@ -844,6 +864,9 @@ public class MainWindow extends JFrame {
             data.receiveResult = true;
 
             data.resultIdList = resultIdList;
+
+            if (gameOver)
+                data.gameOver = true;
 
             client.sendServer(data);
         }
@@ -898,7 +921,7 @@ public class MainWindow extends JFrame {
     }
 
     private static void checkPLayerWins() {
-        if (numberOfAISunkShips == 5) {
+        if (!gameOver & numberOfAISunkShips == 5) {
 
             // Pause the timer
             GameTimer.pauseTimer();
@@ -935,7 +958,7 @@ public class MainWindow extends JFrame {
     private static void checkOpponentWins() {
         humanBoard.checkSunk();
 
-        if (humanBoard.checkPlayerSunkShips()) {
+        if (!gameOver & humanBoard.checkPlayerSunkShips()) {
 
             // Pause the timer
             GameTimer.pauseTimer();
@@ -957,9 +980,14 @@ public class MainWindow extends JFrame {
             else if (numberOfStars == 5)
                 icon = new ImageIcon(Constants.FIVE_STARS);
 
-            JOptionPane.showMessageDialog(Game.mainWindow,
-                    "Boohoo !! You lost !! Keep Trying.\nYou scored " + score.returnFinalScore() + " points.\n",
-                    "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
+            if (!onlineMode) {
+                JOptionPane.showMessageDialog(Game.mainWindow,
+                        "Boohoo !! You lost !! Keep Trying.\nYou scored " + score.returnFinalScore() + " points.\n",
+                        "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
+            } else {
+                JOptionPane.showMessageDialog(Game.mainWindow,
+                        "Boohoo !! You lost !! Keep Trying.", "Game Over", JOptionPane.INFORMATION_MESSAGE, null);
+            }
             gameOver = true;
         }
     }

@@ -246,11 +246,7 @@ public class MainWindow extends JFrame {
         saveButton.setMaximumSize(new Dimension(40, 15));
 
         saveButton.addActionListener((ActionEvent e) -> {
-            try {
-				dataManager.save();
-			} catch (CustomException e1) {
-				e1.getMessage();
-			}
+            dataManager.save();
         });
 
         gridBagConstraints.weightx = 0.5;

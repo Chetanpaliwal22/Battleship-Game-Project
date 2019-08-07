@@ -1,6 +1,7 @@
 package model;
 
 import constants.Constants;
+import exception.CustomException;
 import tools.Coordinate;
 import tools.GridHelper;
 
@@ -192,7 +193,7 @@ public class AI {
      * @param code attack result
      * @throws Exception thorws exception if the ship length is bigger then the board size
      */
-    private void updateCountGrid(int code) throws Exception {
+    private void updateCountGrid(int code) throws CustomException {
 
         // to temporarily hold the new count grid
         int[][] countGridToUpdate = new int[boardSize.x][boardSize.y];
@@ -243,13 +244,13 @@ public class AI {
      * @return updated grid
      * @throws Exception thorws exception if the ship length is bigger then the board size
      */
-    private int[][] updateSpecificCountGrid(int shipSize, int code) throws Exception {
+    private int[][] updateSpecificCountGrid(int shipSize, int code) throws CustomException  {
 
         int[][] countGridX = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
         int[][] countGridY = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
 
         if (shipSize > boardSize.x || shipSize > boardSize.y) {
-            throw new Exception("shipLength cannot be bigger x or y");
+            throw new CustomException("shipLength cannot be bigger x or y");
         }
 
         // vertical ship position count //
@@ -484,7 +485,7 @@ public class AI {
      * @param code AI accepts code as input
      * @throws Exception throws exception
      */
-    public void receiveResult(int code) throws Exception {
+    public void receiveResult(int code) throws CustomException {
 
         if (code == 0) { // change direction to seek ship position
 
@@ -565,7 +566,7 @@ public class AI {
      * @param codeList Array list of integer
      * @throws Exception throws exception
      */
-    public void receiveResultSalvation(ArrayList<Integer> codeList) throws Exception {
+    public void receiveResultSalvation(ArrayList<Integer> codeList) throws CustomException {
 
         for (int i = 0; i < codeList.size(); i++) {
             this.previousTarget = this.previousTargetSalvation.get(i);

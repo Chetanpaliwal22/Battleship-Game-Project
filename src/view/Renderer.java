@@ -22,7 +22,9 @@ public class Renderer extends JComponent {
 
     public static int holeImageSize = 0;
 
-    private Image holeImage, missedHoleImage, hitHoleImage, shipImage, horizontalShipImage, redShipImage, horizontalRedShipImage;
+    private Image holeImage, missedHoleImage, hitHoleImage;
+
+//    private Image shipImage, horizontalShipImage, redShipImage, horizontalRedShipImage;
 
     private Image targetImage;
 
@@ -59,6 +61,21 @@ public class Renderer extends JComponent {
 
     private Image oceanImageLeft, oceanImageRight;
 
+    private Image destroyerImage1, destroyerImage2, destroyerImage3, destroyerImage4;
+    private Image destroyerRedImage1, destroyerRedImage2, destroyerRedImage3, destroyerRedImage4;
+
+    private Image submarineImage1, submarineImage2, submarineImage3, submarineImage4;
+    private Image submarineRedImage1, submarineRedImage2, submarineRedImage3, submarineRedImage4;
+
+    private Image cruiserImage1, cruiserImage2, cruiserImage3, cruiserImage4;
+    private Image cruiserRedImage1, cruiserRedImage2, cruiserRedImage3, cruiserRedImage4;
+
+    private Image battleshipImage1, battleshipImage2, battleshipImage3, battleshipImage4;
+    private Image battleshipRedImage1, battleshipRedImage2, battleshipRedImage3, battleshipRedImage4;
+
+    private Image carrierImage1, carrierImage2, carrierImage3, carrierImage4;
+    private Image carrierRedImage1, carrierRedImage2, carrierRedImage3, carrierRedImage4;
+
     private int oceanImageLeftPositionX = 0, oceanImageLeftPositionY = 0;
 
     private int oceanImageLeftMovingDirectionX = 1, oceanImageLeftMovingDirectionY = 1;
@@ -73,11 +90,67 @@ public class Renderer extends JComponent {
         holeImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/Hole.png");
         missedHoleImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/MissedHole.png");
         hitHoleImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/HitHole.png");
-        shipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/Ship.png");
-        horizontalShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ShipHorizontal.png");
-        redShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/RedShip.png");
-        horizontalRedShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/RedShipHorizontal.png");
+//        shipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/Ship.png");
+//        horizontalShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ShipHorizontal.png");
+//        redShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/RedShip.png");
+//        horizontalRedShipImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/RedShipHorizontal.png");
         targetImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/Target.png");
+
+        destroyerImage1 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Destroyer1.png");
+        destroyerImage2 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Destroyer2.png");
+        destroyerImage3 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Destroyer3.png");
+        destroyerImage4 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Destroyer4.png");
+
+        destroyerRedImage1 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedDestroyer1.png");
+        destroyerRedImage2 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedDestroyer2.png");
+        destroyerRedImage3 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedDestroyer3.png");
+        destroyerRedImage4 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedDestroyer4.png");
+
+
+        submarineImage1 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Submarine1.png");
+        submarineImage2 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Submarine2.png");
+        submarineImage3 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Submarine3.png");
+        submarineImage4 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Submarine4.png");
+
+        submarineRedImage1 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedSubmarine1.png");
+        submarineRedImage2 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedSubmarine2.png");
+        submarineRedImage3 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedSubmarine3.png");
+        submarineRedImage4 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedSubmarine4.png");
+
+
+        cruiserImage1 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Cruiser1.png");
+        cruiserImage2 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Cruiser2.png");
+        cruiserImage3 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Cruiser3.png");
+        cruiserImage4 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Cruiser4.png");
+
+        cruiserRedImage1 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedCruiser1.png");
+        cruiserRedImage2 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedCruiser2.png");
+        cruiserRedImage3 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedCruiser3.png");
+        cruiserRedImage4 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedCruiser4.png");
+
+
+        battleshipImage1 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/BattleShip1.png");
+        battleshipImage2 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/BattleShip2.png");
+        battleshipImage3 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/BattleShip3.png");
+        battleshipImage4 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/BattleShip4.png");
+
+        battleshipRedImage1 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedBattleShip1.png");
+        battleshipRedImage2 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedBattleShip2.png");
+        battleshipRedImage3 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedBattleShip3.png");
+        battleshipRedImage4 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedBattleShip4.png");
+
+
+        carrierImage1 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Carrier1.png");
+        carrierImage2 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Carrier2.png");
+        carrierImage3 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Carrier3.png");
+        carrierImage4 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Carrier4.png");
+
+        carrierRedImage1 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedCarrier1.png");
+        carrierRedImage2 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedCarrier2.png");
+        carrierRedImage3 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedCarrier3.png");
+        carrierRedImage4 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/RedCarrier4.png");
+
+
         oceanImageLeft = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/OceanLeft.png");
         oceanImageRight = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/OceanRight.png");
 
@@ -121,7 +194,7 @@ public class Renderer extends JComponent {
                 oceanImageLeftPositionX += oceanImageLeftMovingDirectionX;
                 oceanImageLeftPositionY += oceanImageLeftMovingDirectionY;
             }
- 
+
             if (oceanImageLeftPositionX <= -15) {
                 oceanImageLeftPositionX = -15;
 
@@ -217,112 +290,6 @@ public class Renderer extends JComponent {
             targetShipId = -1;
         }
 
-        // Render all five ships
-        for (int i = 0; i < MainWindow.shipList.size(); i++) {
-            double offset = 0;
-
-            switch (MainWindow.shipList.get(i).size) {
-                case 2:
-                    if (MainWindow.shipList.get(i).direction == 1)
-                        offset = 0.5;
-                    else if (MainWindow.shipList.get(i).direction == 2)
-                        offset = 0.5;
-                    else if (MainWindow.shipList.get(i).direction == 3)
-                        offset = 1.25;
-                    else
-                        offset = 1.25;
-                    break;
-                case 3:
-                    offset = 1.25;
-                    break;
-                case 4:
-                    if (MainWindow.shipList.get(i).direction == 1)
-                        offset = 1.25;
-                    else if (MainWindow.shipList.get(i).direction == 2)
-                        offset = 1.25;
-                    else if (MainWindow.shipList.get(i).direction == 3)
-                        offset = 2.25;
-                    else
-                        offset = 2.25;
-                    break;
-                case 5:
-                    offset = 2.25;
-                    break;
-            }
-
-            if (i != targetShipId) {
-
-                if (Mouse.leftClicked && !MainWindow.startedGame)
-                    MainWindow.shipList.get(i).validateLocation();
-
-                if (MainWindow.shipList.get(i).direction == 1 | MainWindow.shipList.get(i).direction == 3) {
-                    if (MainWindow.shipList.get(i).validity & !MainWindow.shipList.get(i).sunk)
-                        graphics2D.drawImage(shipImage,
-                                holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
-                                        .get(i).pivotGridY] - (int) (offset * holeImageSize),
-                                holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
-                                        .get(i).pivotGridY] - 30 / 2,
-                                MainWindow.shipList.get(i).size * holeImageSize - 5, 40, this);
-                    else
-                        graphics2D.drawImage(redShipImage,
-                                holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
-                                        .get(i).pivotGridY] - (int) (offset * holeImageSize),
-                                holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
-                                        .get(i).pivotGridY] - 30 / 2,
-                                MainWindow.shipList.get(i).size * holeImageSize - 5, 40, this);
-                } else {
-                    if (MainWindow.shipList.get(i).validity & !MainWindow.shipList.get(i).sunk)
-                        graphics2D.drawImage(horizontalShipImage,
-                                holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
-                                        .get(i).pivotGridY] - 30 / 2,
-                                holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
-                                        .get(i).pivotGridY] - (int) (offset * holeImageSize),
-                                40, MainWindow.shipList.get(i).size * holeImageSize - 5, this);
-                    else
-                        graphics2D.drawImage(horizontalRedShipImage,
-                                holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
-                                        .get(i).pivotGridY] - 30 / 2,
-                                holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList
-                                        .get(i).pivotGridY] - (int) (offset * holeImageSize),
-                                40, MainWindow.shipList.get(i).size * holeImageSize - 5, this);
-                }
-
-            } else {
-
-                if (targetShipId > -1) {
-                    MainWindow.shipList.get(targetShipId)
-                            .recalculate(MainWindow.shipList.get(targetShipId).direction, nearestX, nearestY);
-
-                    MainWindow.shipList.get(targetShipId).validateLocation();
-
-                    if (MainWindow.shipList.get(targetShipId).validity & !MainWindow.shipList.get(targetShipId).sunk) {
-                        if (MainWindow.shipList.get(targetShipId).direction == 1
-                                | MainWindow.shipList.get(targetShipId).direction == 3) {
-                            graphics2D.drawImage(shipImage,
-                                    holeLocationX[nearestX][nearestY] - (int) (offset * holeImageSize),
-                                    holeLocationY[nearestX][nearestY] - 30 / 2,
-                                    MainWindow.shipList.get(i).size * holeImageSize - 5, 40, this);
-                        } else {
-                            graphics2D.drawImage(horizontalShipImage, holeLocationX[nearestX][nearestY] - 30 / 2,
-                                    holeLocationY[nearestX][nearestY] - (int) (offset * holeImageSize), 40,
-                                    MainWindow.shipList.get(i).size * holeImageSize - 5, this);
-                        }
-                    } else {
-                        if (MainWindow.shipList.get(targetShipId).direction == 1
-                                | MainWindow.shipList.get(targetShipId).direction == 3) {
-                            graphics2D.drawImage(redShipImage,
-                                    holeLocationX[nearestX][nearestY] - (int) (offset * holeImageSize),
-                                    holeLocationY[nearestX][nearestY] - 30 / 2,
-                                    MainWindow.shipList.get(i).size * holeImageSize - 5, 40, this);
-                        } else {
-                            graphics2D.drawImage(horizontalRedShipImage, holeLocationX[nearestX][nearestY] - 30 / 2,
-                                    holeLocationY[nearestX][nearestY] - (int) (offset * holeImageSize), 40,
-                                    MainWindow.shipList.get(i).size * holeImageSize - 5, this);
-                        }
-                    }
-                }
-            }
-        }
 
         // Render all grids
         for (int i = Constants.BOARD_SIZE.x - 1; i >= 0; i--) {
@@ -406,6 +373,287 @@ public class Renderer extends JComponent {
                 } else {
                     fireTargetX = -1;
                     fireTargetY = -1;
+                }
+            }
+        }
+
+//        graphics2D.drawImage(destroyerImage1, holeLocationX[3][4] - 15, holeLocationY[5][5] - 15, 86, 35, this);
+//        graphics2D.drawImage(destroyerImage2, holeLocationX[2][7] - 15, holeLocationY[3][3] - 15, 35, 86, this);
+//        graphics2D.drawImage(destroyerImage3, holeLocationX[5][1] - 15, holeLocationY[8][7] - 15, 86, 35, this);
+//        graphics2D.drawImage(destroyerImage4, holeLocationX[7][7] - 15, holeLocationY[5][5] - 15, 35, 86, this);
+
+//        graphics2D.drawImage(submarineImage1, holeLocationX[3][4] - 15, holeLocationY[5][5] - 15, 157, 40, this);
+//        graphics2D.drawImage(submarineImage2, holeLocationX[2][7] - 15, holeLocationY[3][3] - 15, 40, 157, this);
+//        graphics2D.drawImage(submarineImage3, holeLocationX[5][1] - 15, holeLocationY[8][7] - 15, 157, 40, this);
+//        graphics2D.drawImage(submarineImage4, holeLocationX[7][7] - 15, holeLocationY[5][5] - 15, 40, 157, this);
+
+//        graphics2D.drawImage(cruiserImage1, holeLocationX[3][4] - 15, holeLocationY[5][5] - 15, 141, 40, this);
+//        graphics2D.drawImage(cruiserImage2, holeLocationX[2][7] - 15, holeLocationY[3][3] - 15, 40, 141, this);
+//        graphics2D.drawImage(cruiserImage3, holeLocationX[5][1] - 15, holeLocationY[8][7] - 15, 141, 40, this);
+//        graphics2D.drawImage(cruiserImage4, holeLocationX[7][7] - 15, holeLocationY[5][5] - 15, 40, 141, this);
+
+//        graphics2D.drawImage(battleshipImage1, holeLocationX[3][4] - 15, holeLocationY[5][5] - 15, 196, 40, this);
+//        graphics2D.drawImage(battleshipImage2, holeLocationX[2][7] - 15, holeLocationY[3][3] - 15, 40, 196, this);
+//        graphics2D.drawImage(battleshipImage3, holeLocationX[5][1] - 15, holeLocationY[8][7] - 15, 196, 40, this);
+//        graphics2D.drawImage(battleshipImage4, holeLocationX[7][7] - 15, holeLocationY[5][5] - 15, 40, 196, this);
+
+//        graphics2D.drawImage(carrierImage1, holeLocationX[3][4] - 15, holeLocationY[5][5] - 15, 245, 48, this);
+//        graphics2D.drawImage(carrierImage2, holeLocationX[2][7] - 15, holeLocationY[3][3] - 15, 48, 245, this);
+//        graphics2D.drawImage(carrierImage3, holeLocationX[5][1] - 15, holeLocationY[8][7] - 15, 245, 48, this);
+//        graphics2D.drawImage(carrierImage4, holeLocationX[7][7] - 15, holeLocationY[5][5] - 15, 48, 245, this);
+
+
+        // Render all five ships
+        for (int i = 0; i < MainWindow.shipList.size(); i++) {
+            double offset = 0;
+
+            switch (MainWindow.shipList.get(i).size) {
+                case 2:
+                    if (MainWindow.shipList.get(i).direction == 1)
+                        offset = 0.2;
+                    else if (MainWindow.shipList.get(i).direction == 2)
+                        offset = 0.2;
+                    else if (MainWindow.shipList.get(i).direction == 3)
+                        offset = 1.25;
+                    else
+                        offset = 1.25;
+                    break;
+                case 3:
+                    offset = 1.25;
+                    break;
+                case 4:
+                    if (MainWindow.shipList.get(i).direction == 1)
+                        offset = 1.25;
+                    else if (MainWindow.shipList.get(i).direction == 2)
+                        offset = 1.25;
+                    else if (MainWindow.shipList.get(i).direction == 3)
+                        offset = 2.25;
+                    else
+                        offset = 2.25;
+                    break;
+                case 5:
+                    offset = 2.25;
+                    break;
+            }
+
+            if (i != targetShipId) {
+
+                if (Mouse.leftClicked && !MainWindow.startedGame)
+                    MainWindow.shipList.get(i).validateLocation();
+
+                if (MainWindow.shipList.get(i).direction == 1 | MainWindow.shipList.get(i).direction == 3) {
+                    if (MainWindow.shipList.get(i).validity & !MainWindow.shipList.get(i).sunk) {
+                        if (MainWindow.shipList.get(i).direction == 1) {
+                            if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
+                                graphics2D.drawImage(destroyerImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 86, 35, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
+                                graphics2D.drawImage(submarineImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, 157, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Cruiser") == 0)
+                                graphics2D.drawImage(cruiserImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 141, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Battleship") == 0)
+                                graphics2D.drawImage(battleshipImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 196, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
+                                graphics2D.drawImage(carrierImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 245, 48, this);
+                        } else if (MainWindow.shipList.get(i).direction == 3) {
+                            if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
+                                graphics2D.drawImage(destroyerImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 86, 35, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
+                                graphics2D.drawImage(submarineImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, 157, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Cruiser") == 0)
+                                graphics2D.drawImage(cruiserImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 141, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Battleship") == 0)
+                                graphics2D.drawImage(battleshipImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 196, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
+                                graphics2D.drawImage(carrierImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 245, 48, this);
+                        }
+//                        graphics2D.drawImage(shipImage, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 30 / 2, MainWindow.shipList.get(i).size * holeImageSize - 5, 40, this);
+                    } else {
+                        if (MainWindow.shipList.get(i).direction == 1) {
+                            if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
+                                graphics2D.drawImage(destroyerRedImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 86, 35, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
+                                graphics2D.drawImage(submarineRedImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, 157, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Cruiser") == 0)
+                                graphics2D.drawImage(cruiserRedImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 141, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Battleship") == 0)
+                                graphics2D.drawImage(battleshipRedImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 196, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
+                                graphics2D.drawImage(carrierRedImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 245, 48, this);
+                        } else if (MainWindow.shipList.get(i).direction == 3) {
+                            if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
+                                graphics2D.drawImage(destroyerRedImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 86, 35, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
+                                graphics2D.drawImage(submarineRedImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, 157, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Cruiser") == 0)
+                                graphics2D.drawImage(cruiserRedImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 141, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Battleship") == 0)
+                                graphics2D.drawImage(battleshipRedImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 196, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
+                                graphics2D.drawImage(carrierRedImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 245, 48, this);
+                        }
+//                        graphics2D.drawImage(redShipImage, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 30 / 2, MainWindow.shipList.get(i).size * holeImageSize - 5, 40, this);
+                    }
+                } else {
+                    if (MainWindow.shipList.get(i).validity & !MainWindow.shipList.get(i).sunk) {
+                        if (MainWindow.shipList.get(i).direction == 2) {
+                            if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
+                                graphics2D.drawImage(destroyerImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 35, 86, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
+                                graphics2D.drawImage(submarineImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 147, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Cruiser") == 0)
+                                graphics2D.drawImage(cruiserImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 141, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Battleship") == 0)
+                                graphics2D.drawImage(battleshipImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 196, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
+                                graphics2D.drawImage(carrierImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 48, 245, this);
+                        } else if (MainWindow.shipList.get(i).direction == 4) {
+                            if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
+                                graphics2D.drawImage(destroyerImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 35, 86, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
+                                graphics2D.drawImage(submarineImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 147, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Cruiser") == 0)
+                                graphics2D.drawImage(cruiserImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 141, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Battleship") == 0)
+                                graphics2D.drawImage(battleshipImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 196, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
+                                graphics2D.drawImage(carrierImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 48, 245, this);
+                        }
+//                        graphics2D.drawImage(horizontalShipImage, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 30 / 2, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, MainWindow.shipList.get(i).size * holeImageSize - 5, this);
+                    } else {
+                        if (MainWindow.shipList.get(i).direction == 2) {
+                            if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
+                                graphics2D.drawImage(destroyerRedImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 35, 86, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
+                                graphics2D.drawImage(submarineRedImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 147, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Cruiser") == 0)
+                                graphics2D.drawImage(cruiserRedImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 141, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Battleship") == 0)
+                                graphics2D.drawImage(battleshipRedImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 196, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
+                                graphics2D.drawImage(carrierRedImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 48, 245, this);
+                        } else if (MainWindow.shipList.get(i).direction == 4) {
+                            if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
+                                graphics2D.drawImage(destroyerRedImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 35, 86, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
+                                graphics2D.drawImage(submarineRedImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 147, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Cruiser") == 0)
+                                graphics2D.drawImage(cruiserRedImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 141, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Battleship") == 0)
+                                graphics2D.drawImage(battleshipRedImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 196, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
+                                graphics2D.drawImage(carrierRedImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 48, 245, this);
+                        }
+
+//                        graphics2D.drawImage(horizontalRedShipImage, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 30 / 2, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, MainWindow.shipList.get(i).size * holeImageSize - 5, this);
+                    }
+                }
+            } else {
+                if (targetShipId > -1) {
+                    MainWindow.shipList.get(targetShipId).recalculate(MainWindow.shipList.get(targetShipId).direction, nearestX, nearestY);
+
+                    MainWindow.shipList.get(targetShipId).validateLocation();
+
+                    if (MainWindow.shipList.get(targetShipId).validity & !MainWindow.shipList.get(targetShipId).sunk) {
+                        if (MainWindow.shipList.get(i).direction == 1) {
+                            if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
+                                graphics2D.drawImage(destroyerImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 86, 35, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
+                                graphics2D.drawImage(submarineImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, 157, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Cruiser") == 0)
+                                graphics2D.drawImage(cruiserImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 141, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Battleship") == 0)
+                                graphics2D.drawImage(battleshipImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 196, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
+                                graphics2D.drawImage(carrierImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 245, 48, this);
+                        } else if (MainWindow.shipList.get(i).direction == 3) {
+                            if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
+                                graphics2D.drawImage(destroyerImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 86, 35, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
+                                graphics2D.drawImage(submarineImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, 157, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Cruiser") == 0)
+                                graphics2D.drawImage(cruiserImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 141, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Battleship") == 0)
+                                graphics2D.drawImage(battleshipImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 196, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
+                                graphics2D.drawImage(carrierImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 245, 48, this);
+                        }
+                        else if (MainWindow.shipList.get(i).direction == 2) {
+                            if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
+                                graphics2D.drawImage(destroyerImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 35, 86, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
+                                graphics2D.drawImage(submarineImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 147, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Cruiser") == 0)
+                                graphics2D.drawImage(cruiserImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 141, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Battleship") == 0)
+                                graphics2D.drawImage(battleshipImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 196, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
+                                graphics2D.drawImage(carrierImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 48, 245, this);
+                        } else if (MainWindow.shipList.get(i).direction == 4) {
+                            if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
+                                graphics2D.drawImage(destroyerImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 35, 86, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
+                                graphics2D.drawImage(submarineImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 147, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Cruiser") == 0)
+                                graphics2D.drawImage(cruiserImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 141, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Battleship") == 0)
+                                graphics2D.drawImage(battleshipImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 196, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
+                                graphics2D.drawImage(carrierImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 48, 245, this);
+                        }
+
+//                        if (MainWindow.shipList.get(targetShipId).direction == 1 | MainWindow.shipList.get(targetShipId).direction == 3) {
+//                            graphics2D.drawImage(shipImage, holeLocationX[nearestX][nearestY] - (int) (offset * holeImageSize), holeLocationY[nearestX][nearestY] - 30 / 2, MainWindow.shipList.get(i).size * holeImageSize - 5, 40, this);
+//                        } else {
+//                            graphics2D.drawImage(horizontalShipImage, holeLocationX[nearestX][nearestY] - 30 / 2, holeLocationY[nearestX][nearestY] - (int) (offset * holeImageSize), 40, MainWindow.shipList.get(i).size * holeImageSize - 5, this);
+//                        }
+                    } else {
+                        if (MainWindow.shipList.get(i).direction == 1) {
+                            if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
+                                graphics2D.drawImage(destroyerRedImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 86, 35, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
+                                graphics2D.drawImage(submarineRedImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, 157, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Cruiser") == 0)
+                                graphics2D.drawImage(cruiserRedImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 141, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Battleship") == 0)
+                                graphics2D.drawImage(battleshipRedImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 196, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
+                                graphics2D.drawImage(carrierRedImage1, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 245, 48, this);
+                        } else if (MainWindow.shipList.get(i).direction == 3) {
+                            if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
+                                graphics2D.drawImage(destroyerRedImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 86, 35, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
+                                graphics2D.drawImage(submarineRedImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, 157, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Cruiser") == 0)
+                                graphics2D.drawImage(cruiserRedImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 141, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Battleship") == 0)
+                                graphics2D.drawImage(battleshipRedImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 196, 40, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
+                                graphics2D.drawImage(carrierRedImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 245, 48, this);
+                        }
+                        else if (MainWindow.shipList.get(i).direction == 2) {
+                            if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
+                                graphics2D.drawImage(destroyerRedImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 35, 86, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
+                                graphics2D.drawImage(submarineRedImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 147, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Cruiser") == 0)
+                                graphics2D.drawImage(cruiserRedImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 141, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Battleship") == 0)
+                                graphics2D.drawImage(battleshipRedImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 196, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
+                                graphics2D.drawImage(carrierRedImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 48, 245, this);
+                        } else if (MainWindow.shipList.get(i).direction == 4) {
+                            if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
+                                graphics2D.drawImage(destroyerRedImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 35, 86, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
+                                graphics2D.drawImage(submarineRedImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 147, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Cruiser") == 0)
+                                graphics2D.drawImage(cruiserRedImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 141, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Battleship") == 0)
+                                graphics2D.drawImage(battleshipRedImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 40, 196, this);
+                            else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
+                                graphics2D.drawImage(carrierRedImage4, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 48, 245, this);
+                        }
+                    }
                 }
             }
         }

@@ -47,6 +47,8 @@ public class MainWindow extends JFrame {
     // A list contains all the five ships
     public static List<FrontEndShip> shipList = new ArrayList<FrontEndShip>();
 
+    public static boolean submarineNamed = false;
+
     static char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'};
 
     public static int numberOfAISunkShips = 0;
@@ -270,6 +272,8 @@ public class MainWindow extends JFrame {
             humanBoard = new Board();
 
             AIBoard = new Board();
+
+            submarineNamed = false;
 
             // load the data from xml file
             dataManager.load();

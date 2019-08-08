@@ -25,6 +25,8 @@ public class FrontEndShip {
     // The pivot of the ship, also known as the reference point
     public int pivotGridX = 0, pivotGridY = 0;
 
+    public String name = "";
+
     public boolean validity = true;
 
     public boolean sunk = false;
@@ -36,6 +38,21 @@ public class FrontEndShip {
     public FrontEndShip(int shipSize, int shipDirection, int shipPivotGridX, int shipPivotGridY) {
 
         size = shipSize;
+
+        if (size == 2) {
+            name = "Destroyer";
+        } else if (size == 3) {
+            if (!MainWindow.submarineNamed) {
+                name = "Submarine";
+                MainWindow.submarineNamed = true;
+            } else {
+                name = "Cruiser";
+            }
+        } else if (size == 4) {
+            name = "Battleship";
+        } else if (size == 5) {
+            name = "Carrier";
+        }
 
         recalculate(shipDirection, shipPivotGridX, shipPivotGridY);
     }

@@ -22,7 +22,7 @@ public class Game {
 		mainWindow = new MainWindow();
 		mainWindow.setVisible(true);
 		try {
-			new MP3Player(new File(Constants.MUSIC_FILE_NAME)).play();
+//			new MP3Player(new File(Constants.MUSIC_FILE_NAME)).play();
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

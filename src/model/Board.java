@@ -210,7 +210,8 @@ public class Board {
     /**
      * check if all ship are sunk
      */
-    public void checkSunk() {
+    public boolean checkSunk() {
+        boolean shipResult = false;
 
         for (int i = 0; i < MainWindow.shipList.size(); i++) {
 
@@ -219,18 +220,30 @@ public class Board {
 
                 for (int j = 0; j < MainWindow.shipList.get(i).occupiedGridX.size(); j++) {
 
-                    if (MainWindow.humanBoard.getBoardState()[MainWindow.shipList.get(i).occupiedGridY.get(j)][MainWindow.shipList.get(i).occupiedGridX.get(j)] == 1 |
-                            MainWindow.humanBoard.getBoardState()[MainWindow.shipList.get(i).occupiedGridY.get(j)][MainWindow.shipList.get(i).occupiedGridX.get(j)] == 2) {
+                    if (MainWindow.humanBoard.getBoardState()[MainWindow.shipList.get(i).occupiedGridY
+                            .get(j)][MainWindow.shipList.get(i).occupiedGridX.get(j)] == 1
+                            | MainWindow.humanBoard.getBoardState()[MainWindow.shipList.get(i).occupiedGridY
+                            .get(j)][MainWindow.shipList.get(i).occupiedGridX.get(j)] == 2) {
 
                         hitCount += 1;
                     }
                 }
 
-                if (hitCount == MainWindow.shipList.get(i).size) {
-                    MainWindow.shipList.get(i).sunk = true;
+                if (!MainWindow.shipList.get(i).sunk) {
+                    if (hitCount == MainWindow.shipList.get(i).size) {
+                        MainWindow.shipList.get(i).sunk = true;
+
+                        // Reduce the number of shots by 1 when the player lost ship
+                        MainWindow.numberOfPlayerMaxShots -= 1;
+                        MainWindow.timerLabel.setText("<html>Number of shots: " + MainWindow.numberOfPlayerShots + "/" + MainWindow.numberOfPlayerMaxShots + "</html>");
+
+                        return true;
+                    }
                 }
             }
         }
+
+        return shipResult;
     }
 
 

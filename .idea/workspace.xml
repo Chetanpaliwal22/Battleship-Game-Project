@@ -3,46 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a3532a2a-cc23-46d1-9f56-31b65f5e9545" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/BattleShip1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/BattleShip1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/BattleShip2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/BattleShip2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/BattleShip3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/BattleShip3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/BattleShip4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/BattleShip4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/Carrier1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/Carrier1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/Carrier2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/Carrier2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/Carrier3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/Carrier3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/Carrier4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/Carrier4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/Cruiser1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/Cruiser1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/Cruiser2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/Cruiser2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/Cruiser3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/Cruiser3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/Cruiser4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/Cruiser4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/Destroyer1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/Destroyer1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/Destroyer2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/Destroyer2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/Destroyer3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/Destroyer3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/Destroyer4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/Destroyer4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedBattleShip1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedBattleShip1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedBattleShip2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedBattleShip2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedBattleShip3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedBattleShip3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedBattleShip4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedBattleShip4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedCarrier1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedCarrier1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedCarrier2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedCarrier2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedCarrier3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedCarrier3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedCarrier4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedCarrier4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedCruiser1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedCruiser1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedCruiser2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedCruiser2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedCruiser3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedCruiser3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedCruiser4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedCruiser4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedDestroyer1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedDestroyer1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedDestroyer2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedDestroyer2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedDestroyer3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedDestroyer3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedDestroyer4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedDestroyer4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedSubmarine1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedSubmarine1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedSubmarine2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedSubmarine2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedSubmarine3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedSubmarine3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/RedSubmarine4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/RedSubmarine4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/Submarine1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/Submarine1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/Submarine2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/Submarine2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/Submarine3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/Submarine3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/resources/images/ships/Submarine4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/resources/images/ships/Submarine4.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

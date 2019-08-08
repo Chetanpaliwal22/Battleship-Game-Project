@@ -2,9 +2,11 @@ package view;
 
 import constants.Constants;
 import controller.Mouse;
-import exception.CustomException;
 import main.Game;
 import model.*;
+import network.Client;
+import network.Data;
+import network.Server;
 import tools.Coordinate;
 
 import javax.swing.*;
@@ -18,9 +20,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 /**
- * This class is main window of the game containing all UI components
+ * This class is main window of the game
  */
 public class MainWindow extends JFrame {
 
@@ -44,6 +45,8 @@ public class MainWindow extends JFrame {
 
     public static JLabel timerLabel;
 
+    private static JButton offlineGameButton, onlineButton;
+
     // A list contains all the five ships
     public static List<FrontEndShip> shipList = new ArrayList<FrontEndShip>();
 
@@ -59,7 +62,7 @@ public class MainWindow extends JFrame {
 
     public static String gameMode = "advanced";
 
-    public static Coordinate playerFireTarget = new Coordinate(-1, -1), AIFireTarget = new Coordinate(-1, -1);
+    public static Coordinate playerFireTarget, AIFireTarget;
 
     public static boolean playerGaveAllShots = false;
 
@@ -69,6 +72,13 @@ public class MainWindow extends JFrame {
 
     public static boolean enableDynamicOcean = false, enableSpecialEffect = true, enableSoundEffect = true;
 
+    public static boolean onlineMode = false;
+
+    public static boolean freezing = false;
+
+    private static Client client;
+
+    public static boolean client1Ready = false, client2Ready = false, bothPlayersReady = false;
 
     /**
      * default constructor
@@ -91,21 +101,14 @@ public class MainWindow extends JFrame {
         setBackground(Color.green);
         setResizable(false);
 
-        // Initialize the timer class
-        java.util.Timer timer = new Timer();
-        TimerTask task = new GameTimer();
-
-        timer.schedule(task, 0, 1000);
-
         // create top panel
 
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new GridBagLayout());
-        topPanel.setPreferredSize(new Dimension(Constants.WINDOW_WIDTH, 70));
-        topPanel.setMaximumSize(new Dimension(Constants.WINDOW_WIDTH, 70));
+        topPanel.setPreferredSize(new Dimension(Constants.WINDOW_WIDTH, 80));
+        topPanel.setMaximumSize(new Dimension(Constants.WINDOW_WIDTH, 80));
         topPanel.setBackground(Color.YELLOW);
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
-
 
         // create and add radio button to top panel//
         basicGameplayRadioButton = new JRadioButton("Basic Gameplay");
@@ -128,7 +131,6 @@ public class MainWindow extends JFrame {
 
         topPanel.add(basicGameplayRadioButton, gridBagConstraints);
 
-
         // create and add radio button to top panel//
         advancedGameplayRadioButton = new JRadioButton("Advanced Gameplay - Salva Variation");
         advancedGameplayRadioButton.setOpaque(false);
@@ -150,7 +152,6 @@ public class MainWindow extends JFrame {
 
         topPanel.add(advancedGameplayRadioButton, gridBagConstraints);
 
-
         // create and add game state component top panel//
 
         gameStateComponent = new JLabel();
@@ -165,12 +166,19 @@ public class MainWindow extends JFrame {
 
         topPanel.add(gameStateComponent, gridBagConstraints);
 
+        // create and add start game button to top panel //
 
-        //  create and add start game button to top panel //
+        offlineGameButton = new JButton("Offline");
 
-        JButton startGameButton = new JButton("Start game");
+        offlineGameButton.addActionListener((ActionEvent e) -> {
 
-        startGameButton.addActionListener((ActionEvent e) -> {
+            if (!onlineMode) {
+                // Initialize the timer class
+                java.util.Timer timer = new Timer();
+                TimerTask task = new GameTimer();
+
+                timer.schedule(task, 0, 1000);
+            }
 
             boolean positionsAreCorrect = true;
 
@@ -189,7 +197,8 @@ public class MainWindow extends JFrame {
                     Coordinate[] CoordinateArray = new Coordinate[shipList.get(i).size];
 
                     for (int j = 0; j < shipList.get(i).occupiedGridX.size(); j++) {
-                        CoordinateArray[j] = new Coordinate(shipList.get(i).occupiedGridX.get(j), shipList.get(i).occupiedGridY.get(j));
+                        CoordinateArray[j] = new Coordinate(shipList.get(i).occupiedGridX.get(j),
+                                shipList.get(i).occupiedGridY.get(j));
                     }
 
                     try {
@@ -203,9 +212,12 @@ public class MainWindow extends JFrame {
 
                 AIBoard.setGameHasStarted();
                 humanBoard.setGameHasStarted();
-                gameStateComponent.setText("Game has started");
+                gameStateComponent.setText("Offline game has started");
                 startedGame = true;
-                startGameButton.setVisible(false);
+                offlineGameButton.setVisible(false);
+
+                onlineButton.setVisible(false);
+                offlineGameButton.setVisible(false);
 
                 basicGameplayRadioButton.setVisible(false);
                 advancedGameplayRadioButton.setVisible(false);
@@ -224,7 +236,7 @@ public class MainWindow extends JFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
 
-        topPanel.add(startGameButton, gridBagConstraints);
+        topPanel.add(offlineGameButton, gridBagConstraints);
 
         // Create a timer text to the top panel
         timerLabel = new JLabel();
@@ -248,7 +260,8 @@ public class MainWindow extends JFrame {
         saveButton.setMaximumSize(new Dimension(40, 15));
 
         saveButton.addActionListener((ActionEvent e) -> {
-            dataManager.save();
+            if (!freezing)
+                dataManager.save();
         });
 
         gridBagConstraints.weightx = 0.5;
@@ -258,7 +271,6 @@ public class MainWindow extends JFrame {
 
         topPanel.add(saveButton, gridBagConstraints);
 
-
         // create and add load button to top panel
 
         JButton loadButton = new JButton("Load");
@@ -267,28 +279,31 @@ public class MainWindow extends JFrame {
         loadButton.setMaximumSize(new Dimension(40, 15));
 
         loadButton.addActionListener((ActionEvent e) -> {
-            myAI = new AI();
+            if (!freezing) {
 
-            humanBoard = new Board();
+                myAI = new AI();
 
-            AIBoard = new Board();
+                humanBoard = new Board();
 
-            submarineNamed = false;
+                AIBoard = new Board();
 
-            // load the data from xml file
-            dataManager.load();
+                // load the data from xml file
+                dataManager.load();
 
-            AIBoard.setGameHasStarted();
-            humanBoard.setGameHasStarted();
-            gameStateComponent.setText("Game has started");
-            startedGame = true;
-            startGameButton.setVisible(false);
+                AIBoard.setGameHasStarted();
+                humanBoard.setGameHasStarted();
+                gameStateComponent.setText("Game has started");
+                startedGame = true;
 
-            basicGameplayRadioButton.setVisible(false);
-            advancedGameplayRadioButton.setVisible(false);
+                onlineButton.setVisible(false);
+                offlineGameButton.setVisible(false);
 
-            // Start the timer
-            GameTimer.startTimer();
+                basicGameplayRadioButton.setVisible(false);
+                advancedGameplayRadioButton.setVisible(false);
+
+                // Start the timer
+                GameTimer.startTimer();
+            }
         });
 
         gridBagConstraints.weightx = 0.5;
@@ -298,19 +313,65 @@ public class MainWindow extends JFrame {
 
         topPanel.add(loadButton, gridBagConstraints);
 
+        // create and add online button to top panel //
+
+        onlineButton = new JButton("Online");
+        onlineButton.setPreferredSize(new Dimension(40, 15));
+        onlineButton.setMaximumSize(new Dimension(40, 15));
+
+        onlineButton.addActionListener((ActionEvent e) -> {
+            boolean positionsAreCorrect = true;
+
+            for (int i = 0; i < shipList.size(); i++) {
+
+                if (!shipList.get(i).validity) {
+                    positionsAreCorrect = false;
+                    break;
+                }
+            }
+
+            if (positionsAreCorrect) {
+
+                onlineMode = true;
+
+                saveButton.setVisible(false);
+                loadButton.setVisible(false);
+
+                if (gameMode.compareToIgnoreCase("advanced") == 0)
+                    MainWindow.timerLabel.setText("<html>Number of shots: " + MainWindow.numberOfPlayerShots + "/" + MainWindow.numberOfPlayerMaxShots + "</html>");
+                else
+                    MainWindow.timerLabel.setVisible(false);
+
+                client = new Client();
+
+                gameStateComponent.setText("Online game has started");
+                startedGame = true;
+
+                onlineButton.setVisible(false);
+                offlineGameButton.setVisible(false);
+
+                basicGameplayRadioButton.setVisible(false);
+                advancedGameplayRadioButton.setVisible(false);
+            } else {
+                gameStateComponent.setText("Positions of your ships are illegal");
+            }
+        });
+
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+
+        topPanel.add(onlineButton, gridBagConstraints);
 
         add(topPanel); // finally add top panel to window
-
 
         // create top panel
 
         JPanel settingsPanel = new JPanel();
         settingsPanel.setLayout(new GridBagLayout());
-        settingsPanel.setPreferredSize(new Dimension(Constants.WINDOW_WIDTH, 30));
-        settingsPanel.setMaximumSize(new Dimension(Constants.WINDOW_WIDTH, 30));
+        settingsPanel.setPreferredSize(new Dimension(Constants.WINDOW_WIDTH, 25));
+        settingsPanel.setMaximumSize(new Dimension(Constants.WINDOW_WIDTH, 25));
         settingsPanel.setBackground(Color.YELLOW);
         gridBagConstraints = new GridBagConstraints();
-
 
         // create and add graphics setting to top panel//
 
@@ -325,7 +386,6 @@ public class MainWindow extends JFrame {
         gridBagConstraints.gridy = 5;
 
         settingsPanel.add(settingsJLabel, gridBagConstraints);
-
 
         // create and add dynamic background checkbox to top panel
 
@@ -348,7 +408,6 @@ public class MainWindow extends JFrame {
         gridBagConstraints.gridy = 5;
 
         settingsPanel.add(dynamicBackgroundCheckBox, gridBagConstraints);
-
 
         // create and add special effect checkbox to top panel
 
@@ -373,7 +432,6 @@ public class MainWindow extends JFrame {
 
         settingsPanel.add(specialEffectCheckBox, gridBagConstraints);
 
-
         // create and add sound effect checkbox to top panel
 
         JCheckBox soundEffectCheckBox = new JCheckBox("Sound Effect");
@@ -397,9 +455,7 @@ public class MainWindow extends JFrame {
 
         settingsPanel.add(soundEffectCheckBox, gridBagConstraints);
 
-
         add(settingsPanel); // finally add graphics setting panel to window
-
 
         // create and add main game panel that contains the two game boards //
 
@@ -413,7 +469,6 @@ public class MainWindow extends JFrame {
         // Register the mouse event
         mouse = new Mouse();
         addMouseListener(mouse);
-
 
         // finally, add all components to main window
         add(gameBoardPanel);
@@ -435,59 +490,168 @@ public class MainWindow extends JFrame {
                 if (MainWindow.AIBoard.getBoardState()[Renderer.fireTargetY][Renderer.fireTargetX] == 0) {
                     if (startedGame & !gameOver) {
                         try {
-                            // Human player turn to play //
+                            if (onlineMode) {
+                                if (!freezing) {
 
-                            int result;
+                                    int result;
 
-                            if (gameMode.equalsIgnoreCase("normal")) {
-                                System.out.println("Human click on " + alphabet[Renderer.fireTargetX] + "" + (Renderer.fireTargetY + 1) + ", coordinate " + (Renderer.fireTargetX + 1) + ", " + (Renderer.fireTargetY + 1));
+                                    if (gameMode.equalsIgnoreCase("normal")) {
+                                        freezing = true;
 
-                                playerFireTarget = new Coordinate(Renderer.fireTargetX, Renderer.fireTargetY);
+                                        Data data = client.getDefaultClient();
 
-                                result = AIBoard.fireAtTarget(playerFireTarget);
+                                        // System.out.println("Initial: " + data.fireTargetX + ", " + data.fireTargetY +
+                                        // " ");
 
-                                checkAIBoardResult(result);
-                            } else if (gameMode.equalsIgnoreCase("advanced")) {
-                                System.out.println("Human click on " + alphabet[Renderer.fireTargetX] + "" + (Renderer.fireTargetY + 1) + ", coordinate " + (Renderer.fireTargetX + 1) + ", " + (Renderer.fireTargetY + 1));
+                                        ArrayList<Integer> fireTargetXList = new ArrayList<Integer>();
+                                        ArrayList<Integer> fireTargetYList = new ArrayList<Integer>();
 
-                                if (!playerGaveAllShots) {
-                                    playerFireTargetList.add(new Coordinate(Renderer.fireTargetX, Renderer.fireTargetY));
+                                        playerFireTarget = new Coordinate(Renderer.fireTargetX, Renderer.fireTargetY);
 
-                                    // temporarily mark the fire position as missed
-                                    AIBoard.setBoardState(Renderer.fireTargetX, Renderer.fireTargetY);
+                                        fireTargetXList.add(playerFireTarget.x);
+                                        fireTargetYList.add(playerFireTarget.y);
 
-                                    numberOfPlayerShots += 1;
+                                        data.freezing = true;
 
-                                    if (numberOfPlayerShots >= numberOfPlayerMaxShots)
-                                        playerGaveAllShots = true;
-                                }
+                                        data.receiveResult = false;
 
-                                if (playerGaveAllShots) {
+                                        data.fireTargetX = playerFireTarget.x;
+                                        data.fireTargetY = playerFireTarget.y;
 
-                                    // Loop through the target list to fire at all positions
-                                    for (int index = 0; index < numberOfPlayerMaxShots; index++) {
-                                        if (!gameOver) {
+                                        data.fireTargetXList = fireTargetXList;
+                                        data.fireTargetYList = fireTargetYList;
 
-                                            playerFireTarget = playerFireTargetList.get(index);
+                                        data.gameMode = gameMode;
 
-                                            result = AIBoard.fireAtTarget(playerFireTarget);
+                                        client.sendServer(data);
 
-                                            checkAIBoardResult(result);
+                                    } else if (gameMode.equalsIgnoreCase("advanced")) {
+                                        if (!playerGaveAllShots) {
+                                            playerFireTargetList
+                                                    .add(new Coordinate(Renderer.fireTargetX, Renderer.fireTargetY));
+
+                                            // temporarily mark the fire position as missed
+                                            AIBoard.setBoardState(Renderer.fireTargetX, Renderer.fireTargetY);
+
+                                            numberOfPlayerShots += 1;
+
+                                            if (numberOfPlayerShots >= numberOfPlayerMaxShots)
+                                                playerGaveAllShots = true;
                                         }
+
+                                        if (playerGaveAllShots) {
+                                            freezing = true;
+
+                                            numberOfPlayerShots = 0;
+
+                                            Data data = client.getDefaultClient();
+
+                                            ArrayList<Integer> fireTargetXList = new ArrayList<Integer>();
+                                            ArrayList<Integer> fireTargetYList = new ArrayList<Integer>();
+
+                                            // Loop through the target list to fire at all positions
+                                            for (int index = 0; index < numberOfPlayerMaxShots; index++) {
+                                                if (!gameOver) {
+
+                                                    playerFireTarget = playerFireTargetList.get(index);
+
+                                                    fireTargetXList.add(playerFireTarget.x);
+                                                    fireTargetYList.add(playerFireTarget.y);
+                                                }
+                                            }
+
+                                            playerFireTarget = new Coordinate(Renderer.fireTargetX,
+                                                    Renderer.fireTargetY);
+
+                                            fireTargetXList.add(playerFireTarget.x);
+                                            fireTargetYList.add(playerFireTarget.y);
+
+                                            data.freezing = true;
+
+                                            data.receiveResult = false;
+
+                                            data.fireTargetX = playerFireTarget.x;
+                                            data.fireTargetY = playerFireTarget.y;
+
+                                            data.fireTargetXList = fireTargetXList;
+                                            data.fireTargetYList = fireTargetYList;
+
+                                            data.gameMode = gameMode;
+
+                                            client.sendServer(data);
+                                        }
+
+                                        MainWindow.timerLabel.setText("<html>Number of shots: " + numberOfPlayerShots + "/" + numberOfPlayerMaxShots + "</html>");
                                     }
                                 }
-                            }
+                            } else {
+                                if (!freezing) {
 
-                            if (gameOver) {
-                                gameStateComponent.setText("Player wins !!!");
+                                    // Human player turn to play //
+
+                                    int result;
+
+                                    if (gameMode.equalsIgnoreCase("normal")) {
+
+                                        freezing = true;
+
+                                        // System.out.println("Human click on " + alphabet[Renderer.fireTargetX] + ""
+                                        // + (Renderer.fireTargetY + 1) + ", coordinate " + (Renderer.fireTargetX + 1)
+                                        // + ", " + (Renderer.fireTargetY + 1));
+
+                                        playerFireTarget = new Coordinate(Renderer.fireTargetX, Renderer.fireTargetY);
+
+                                        result = AIBoard.fireAtTarget(playerFireTarget);
+
+                                        checkAIBoardResult(result);
+                                    } else if (gameMode.equalsIgnoreCase("advanced")) {
+                                        System.out.println("Human click on " + alphabet[Renderer.fireTargetX] + ""
+                                                + (Renderer.fireTargetY + 1) + ", coordinate "
+                                                + (Renderer.fireTargetX + 1) + ", " + (Renderer.fireTargetY + 1));
+
+                                        if (!playerGaveAllShots) {
+                                            playerFireTargetList
+                                                    .add(new Coordinate(Renderer.fireTargetX, Renderer.fireTargetY));
+
+                                            // temporarily mark the fire position as missed
+                                            AIBoard.setBoardState(Renderer.fireTargetX, Renderer.fireTargetY);
+
+                                            numberOfPlayerShots += 1;
+
+                                            if (numberOfPlayerShots >= numberOfPlayerMaxShots)
+                                                playerGaveAllShots = true;
+                                        }
+
+                                        if (playerGaveAllShots) {
+
+                                            // Loop through the target list to fire at all positions
+                                            for (int index = 0; index < numberOfPlayerMaxShots; index++) {
+                                                if (!gameOver) {
+
+                                                    playerFireTarget = playerFireTargetList.get(index);
+
+                                                    result = AIBoard.fireAtTarget(playerFireTarget);
+
+                                                    checkAIBoardResult(result);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    if (gameOver) {
+                                        gameStateComponent.setText("Player wins !!!");
+                                    }
+
+                                }
                             }
 
                             // for debugging
-                            humanBoard.printStateGrid();
-                            humanBoard.printShipGrid();
-                            System.out.println("");
+                            // humanBoard.printStateGrid();
+                            // humanBoard.printShipGrid();
+                            // System.out.println("");
 
-                            if (!gameOver) {
+                            if (!gameOver & !onlineMode) {
+
                                 // AI turn to play //
 
                                 if (gameMode.equalsIgnoreCase("normal")) {
@@ -497,16 +661,19 @@ public class MainWindow extends JFrame {
 
                                     AIFireTarget = myAI.getNextMove();
 
-                                    System.out.println("AI click on " + alphabet[AIFireTarget.x] + (AIFireTarget.y + 1) + ", coordinate " + (AIFireTarget.x + 1) + "," + (AIFireTarget.y + 1));
+                                    // System.out.println("AI click on " + alphabet[AIFireTarget.x] +
+                                    // (AIFireTarget.y + 1)
+                                    // + ", coordinate " + (AIFireTarget.x + 1) + "," + (AIFireTarget.y + 1));
 
-                                    result = humanBoard.fireAtTarget(AIFireTarget);
+                                    int result = humanBoard.fireAtTarget(AIFireTarget);
 
                                     myAI.receiveResult(result);
 
                                     checkHumanBoardResult(result);
                                 } else if (gameMode.equalsIgnoreCase("advanced") & playerGaveAllShots) {
 
-                                    ArrayList<Coordinate> coordinateList = myAI.getNextMoveSalvation(humanBoard.sunkNumber);
+                                    ArrayList<Coordinate> coordinateList = myAI
+                                            .getNextMoveSalvation(humanBoard.sunkNumber);
 
                                     ArrayList<Integer> resultList = new ArrayList<Integer>();
 
@@ -514,9 +681,11 @@ public class MainWindow extends JFrame {
                                         if (!gameOver) {
                                             AIFireTarget = coordinateList.get(i);
 
-                                            System.out.println("AI click on " + alphabet[AIFireTarget.x] + (AIFireTarget.y + 1) + ", coordinate " + (AIFireTarget.x + 1) + "," + (AIFireTarget.y + 1));
+                                            // System.out.println("AI click on " + alphabet[AIFireTarget.x]
+                                            // + (AIFireTarget.y + 1) + ", coordinate " + (AIFireTarget.x + 1)
+                                            // + "," + (AIFireTarget.y + 1));
 
-                                            result = humanBoard.fireAtTarget(AIFireTarget);
+                                            int result = humanBoard.fireAtTarget(AIFireTarget);
 
                                             resultList.add(result);
 
@@ -528,7 +697,6 @@ public class MainWindow extends JFrame {
 
                                     // receive a list containing all results of each shot
                                     myAI.receiveResultSalvation(resultList);
-
 
                                     // reset player shot attributes
                                     playerGaveAllShots = false;
@@ -542,12 +710,13 @@ public class MainWindow extends JFrame {
                                     gameStateComponent.setText("AI wins !!!");
                                 }
 
-
                                 // Reset the timer
                                 GameTimer.resetTimer();
 
                                 // Start the timer
                                 GameTimer.startTimer();
+
+                                freezing = false;
 
                                 System.out.println("///////////////////////////\n");
                             }
@@ -560,22 +729,187 @@ public class MainWindow extends JFrame {
         }
     }
 
-    /**
-     * Check the fire target result on the AI board
-     */
+    // send the result to opponent to update the board
+    public static void receiveResultFromOpponent(ArrayList<Integer> fireTargetXList, ArrayList<Integer> fireTargetYList,
+                                                 ArrayList<Integer> resultIdList) {
+
+        // System.out.println("Receive: " + fireTargetX + ", " + fireTargetY);
+        // System.out.println("Receive result: " + result);
+
+        int[][] targetGridState = MainWindow.AIBoard.getBoardState();
+
+        for (int index = 0; index < resultIdList.size(); index++) {
+            // Check the result
+            if (resultIdList.get(index) == 0) {
+                targetGridState[fireTargetYList.get(index)][fireTargetXList.get(index)] = 1;
+
+                MainWindow.AIBoard.setBoardState(targetGridState);
+
+                Renderer.playWaterSplashAnimation(2, fireTargetXList.get(index), fireTargetYList.get(index));
+
+                gameStateComponent.setText("You => Miss");
+
+            } else if (resultIdList.get(index) == 1) {
+                targetGridState[fireTargetYList.get(index)][fireTargetXList.get(index)] = 2;
+
+                MainWindow.AIBoard.setBoardState(targetGridState);
+
+                Renderer.playExplosionAnimation(2, fireTargetXList.get(index), fireTargetYList.get(index));
+
+                gameStateComponent.setText("You => Hit !");
+            } else if (resultIdList.get(index) == 2) {
+                targetGridState[fireTargetYList.get(index)][fireTargetXList.get(index)] = 2;
+
+                MainWindow.AIBoard.setBoardState(targetGridState);
+
+                Renderer.playExplosionAnimation(2, fireTargetXList.get(index), fireTargetYList.get(index));
+
+                gameStateComponent.setText("You => Hit !");
+            }
+        }
+
+        System.out.println("Game over: " + gameOver + " " + humanBoard.checkPlayerSunkShips());
+
+        if (gameOver) {
+            if (!humanBoard.checkPlayerSunkShips()) {
+
+                ImageIcon icon = null;
+                icon = new ImageIcon(Constants.FIVE_STARS);
+
+                JOptionPane.showMessageDialog(Game.mainWindow, "Congratulations!! You were able to defeat your opponent.", "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+        }
+
+        // reset player shot attributes
+        playerGaveAllShots = false;
+
+        numberOfPlayerShots = 0;
+
+        playerFireTargetList = new ArrayList<Coordinate>();
+    }
+
+    // receive the fire target from opponent
+    public static void receiveFireTarget(ArrayList<Integer> fireTargetXList, ArrayList<Integer> fireTargetYList) {
+        if (fireTargetXList.size() >= 1) {
+
+            int result;
+
+            ArrayList<Integer> resultIdList = new ArrayList<Integer>();
+
+            for (int index = 0; index < fireTargetXList.size(); index++) {
+
+                result = 0;
+
+                for (int i = 0; i < shipList.size(); i++) {
+                    for (int gridIndex = 0; gridIndex < MainWindow.shipList.get(i).occupiedGridX.size(); gridIndex++) {
+                        // System.out.println("Checking position: " + " " +
+                        // MainWindow.shipList.get(i).occupiedGridX.get(gridIndex) + "," +
+                        // MainWindow.shipList.get(i).occupiedGridY.get(gridIndex));
+                        int gridX = MainWindow.shipList.get(i).occupiedGridX.get(gridIndex),
+                                gridY = MainWindow.shipList.get(i).occupiedGridY.get(gridIndex),
+                                fireX = fireTargetXList.get(index), fireY = fireTargetYList.get(index);
+
+                        // System.out.println(" X : " + (gridX == fireX));
+                        // System.out.println(" Y : " + (gridY == fireY));
+
+                        if ((gridX == fireX) & (gridY == fireY))
+                            result = 1;
+                    }
+                }
+
+                humanBoard.checkSunk();
+
+                // if (result == 1 & humanBoard.checkSunk()) {
+                // result = 2;
+                //// System.out.println("Sunkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+                // }
+
+                int[][] targetGridState = MainWindow.humanBoard.getBoardState();
+
+                // Check the result
+                // System.out.println("Checking with 0 " + result + " " + (result == 0));
+                // System.out.println("Checking with 1" + result + " " + (result == 1));
+                // System.out.println("Checking with 2" + result + " " + (result == 2));
+                if (result == 0) {
+                    targetGridState[fireTargetYList.get(index)][fireTargetXList.get(index)] = 1;
+
+                    MainWindow.humanBoard.setBoardState(targetGridState);
+
+                    Renderer.playWaterSplashAnimation(1, fireTargetXList.get(index), fireTargetYList.get(index));
+
+                    gameStateComponent.setText("Opponent => Miss");
+
+                } else if (result == 1) {
+                    targetGridState[fireTargetYList.get(index)][fireTargetXList.get(index)] = 2;
+
+                    MainWindow.humanBoard.setBoardState(targetGridState);
+
+                    checkOpponentWins();
+
+                    Renderer.playExplosionAnimation(1, fireTargetXList.get(index), fireTargetYList.get(index));
+
+                    gameStateComponent.setText("Opponent => Hit !");
+                } else if (result == 2) {
+                    targetGridState[fireTargetYList.get(index)][fireTargetXList.get(index)] = 2;
+
+                    MainWindow.humanBoard.setBoardState(targetGridState);
+
+                    Renderer.playExplosionAnimation(1, fireTargetXList.get(index), fireTargetYList.get(index));
+
+                    System.out.println("numberOfPlayerMaxShots " + numberOfPlayerMaxShots);
+
+                    checkOpponentWins();
+
+                    gameStateComponent.setText("Opponent => Sunk !!!");
+                }
+
+                resultIdList.add(result);
+            }
+
+            if (gameOver) {
+                if (!humanBoard.checkPlayerSunkShips()) {
+
+                    ImageIcon icon = null;
+                    icon = new ImageIcon(Constants.FIVE_STARS);
+
+                    JOptionPane.showMessageDialog(Game.mainWindow, "Congratulations!! You were able to defeat your opponent.", "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
+                }
+            }
+
+            Data data = client.getDefaultClient();
+
+            data.fireTargetX = fireTargetXList.get(0);
+            data.fireTargetY = fireTargetYList.get(0);
+
+            data.fireTargetXList = fireTargetXList;
+            data.fireTargetYList = fireTargetYList;
+
+            data.receiveResult = true;
+
+            data.resultIdList = resultIdList;
+
+            if (gameOver)
+                data.gameOver = true;
+
+            data.gameMode = gameMode;
+
+            client.sendServer(data);
+        }
+    }
+
     private static void checkAIBoardResult(int result) {
         if (result == 0) {
             Renderer.playWaterSplashAnimation(2, playerFireTarget.x, playerFireTarget.y);
 
-            System.out.println("Human => miss\n");
+            // System.out.println("Human => miss\n");
         } else if (result == 1) {
             Renderer.playExplosionAnimation(2, playerFireTarget.x, playerFireTarget.y);
 
-            System.out.println("Human => hit !\n");
+            // System.out.println("Human => hit !\n");
         } else if (result == 2) {
             Renderer.playExplosionAnimation(2, playerFireTarget.x, playerFireTarget.y);
 
-            System.out.println("Human => Sunk !!!\n");
+            // System.out.println("Human => Sunk !!!\n");
 
             numberOfAISunkShips += 1;
 
@@ -583,52 +917,44 @@ public class MainWindow extends JFrame {
         }
     }
 
-    /**
-     * Check the fire target result on the human board
-     */
     private static void checkHumanBoardResult(int result) {
         if (result == 0) {
             Renderer.playWaterSplashAnimation(1, AIFireTarget.x, AIFireTarget.y);
 
             gameStateComponent.setText("AI => Miss");
-            System.out.println("AI => miss\n");
+            // System.out.println("AI => miss\n");
 
         } else if (result == 1) {
 
-            checkAIWins();
+            checkOpponentWins();
 
             Renderer.playExplosionAnimation(1, AIFireTarget.x, AIFireTarget.y);
 
             gameStateComponent.setText("AI => Hit !");
 
-            System.out.println("AI => hit !\n");
+            // System.out.println("AI => hit !\n");
         } else if (result == 2) {
 
             Renderer.playExplosionAnimation(1, AIFireTarget.x, AIFireTarget.y);
 
-            // Reduce the number of shots by 1 when the player sank an AI ship
-            numberOfPlayerMaxShots -= 1;
-
-            checkAIWins();
+            checkOpponentWins();
 
             gameStateComponent.setText("AI => Sunk !!!");
 
-            System.out.println("AI => Sunk !!!\n");
+            // System.out.println("AI => Sunk !!!\n");
         }
     }
 
-    /**
-     * Check if player wins by looping through all AI ship states
-     */
     private static void checkPLayerWins() {
-        if (numberOfAISunkShips == 5) {
+        if (!gameOver & numberOfAISunkShips == 5) {
 
             // Pause the timer
             GameTimer.pauseTimer();
 
             playerWins = true;
 
-            timerLabel.setText("Final Score: " + score.calculateFinalScore());
+            if (!onlineMode)
+                timerLabel.setText("Final Score: " + score.calculateFinalScore());
 
             ImageIcon icon = null;
 
@@ -645,25 +971,24 @@ public class MainWindow extends JFrame {
             else if (numberOfStars == 5)
                 icon = new ImageIcon(Constants.FIVE_STARS);
 
-            JOptionPane.showMessageDialog(Game.mainWindow, "Congratulations!! You were able to defeat AI.\nYour score is " + score.returnFinalScore() + " points.\n", "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
+            if (!onlineMode)
+                JOptionPane.showMessageDialog(Game.mainWindow, "Congratulations!! You were able to defeat your opponent.\nYour score is " + score.returnFinalScore() + " points.\n", "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
 
             gameStateComponent.setText("Player wins !!!");
             gameOver = true;
         }
     }
 
-    /**
-     * Check if AI wins by looping through all human ship states
-     */
-    private static void checkAIWins() {
+    private static void checkOpponentWins() {
         humanBoard.checkSunk();
 
-        if (humanBoard.checkPlayerSunkShips()) {
+        if (!gameOver & humanBoard.checkPlayerSunkShips()) {
 
             // Pause the timer
             GameTimer.pauseTimer();
 
-            timerLabel.setText("Final Score: " + score.calculateFinalScore());
+            if (!onlineMode)
+                timerLabel.setText("Final Score: " + score.calculateFinalScore());
 
             ImageIcon icon = null;
 
@@ -680,21 +1005,23 @@ public class MainWindow extends JFrame {
             else if (numberOfStars == 5)
                 icon = new ImageIcon(Constants.FIVE_STARS);
 
-            JOptionPane.showMessageDialog(Game.mainWindow, "Boohoo !! AI Won !! Keep Trying.\nYou scored " + score.returnFinalScore() + " points.\n", "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
+            if (!onlineMode) {
+                JOptionPane.showMessageDialog(Game.mainWindow, "Boohoo !! You lost !! Keep Trying.\nYou scored " + score.returnFinalScore() + " points.\n", "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
+            } else {
+                gameStateComponent.setText("");
+
+
+                icon = new ImageIcon(Constants.ONE_STAR);
+                JOptionPane.showMessageDialog(Game.mainWindow, "Boohoo !! You lost !! Keep Trying.", "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
+            }
             gameOver = true;
         }
     }
 
-    /**
-     * Return the window position x value
-     */
     public static int getWindowLocationX() {
         return Game.mainWindow.getLocationOnScreen().x;
     }
 
-    /**
-     * Return the window position y value
-     */
     public static int getWindowLocationY() {
         return Game.mainWindow.getLocationOnScreen().y;
     }

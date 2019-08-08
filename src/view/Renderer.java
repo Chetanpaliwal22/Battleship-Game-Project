@@ -248,7 +248,7 @@ public class Renderer extends JComponent {
         int nearestX = 0, nearestY = 0;
 
         mouseX = MouseInfo.getPointerInfo().getLocation().x - MainWindow.getWindowLocationX();
-        mouseY = MouseInfo.getPointerInfo().getLocation().y - MainWindow.getWindowLocationY() - 100;
+        mouseY = MouseInfo.getPointerInfo().getLocation().y - MainWindow.getWindowLocationY() - 105;
 
         // Check if the mouse is clicked
         if (Mouse.leftClicked && !MainWindow.startedGame) {
@@ -367,12 +367,14 @@ public class Renderer extends JComponent {
             }
 
             // Render the target image following the cursor
-            if (Renderer.fireTargetX != -1 & Renderer.fireTargetY != -1) {
-                if (shortestDistance < 1000 & MainWindow.AIBoard.getBoardState()[Renderer.fireTargetY][Renderer.fireTargetX] == 0) {
-                    graphics2D.drawImage(targetImage, aiBoardHoleLocationX[fireTargetX][fireTargetY] - 35, aiBoardHoleLocationY[fireTargetX][fireTargetY] - 35, 70, 70, this);
-                } else {
-                    fireTargetX = -1;
-                    fireTargetY = -1;
+            if (!MainWindow.freezing) {
+                if (Renderer.fireTargetX != -1 & Renderer.fireTargetY != -1) {
+                    if (shortestDistance < 1000 & MainWindow.AIBoard.getBoardState()[Renderer.fireTargetY][Renderer.fireTargetX] == 0) {
+                        graphics2D.drawImage(targetImage, aiBoardHoleLocationX[fireTargetX][fireTargetY] - 35, aiBoardHoleLocationY[fireTargetX][fireTargetY] - 35, 70, 70, this);
+                    } else {
+                        fireTargetX = -1;
+                        fireTargetY = -1;
+                    }
                 }
             }
         }

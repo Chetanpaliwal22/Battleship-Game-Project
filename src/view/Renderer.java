@@ -258,7 +258,7 @@ public class Renderer extends JComponent {
             for (int i = Constants.BOARD_SIZE.x - 1; i >= 0; i--) {
                 for (int j = 0; j < Constants.BOARD_SIZE.y; j++) {
                     double currentDistance = (mouseX - holeLocationX[j][i]) * (mouseX - holeLocationX[j][i])
-                            + (mouseY - holeLocationY[j][i]) * (mouseY - holeLocationY[j][i]);
+                            + (mouseY - holeLocationY[j][i] - 30) * (mouseY - holeLocationY[j][i] - 30);
                     if (currentDistance < shortestDistance) {
                         shortestDistance = currentDistance;
 
@@ -576,8 +576,7 @@ public class Renderer extends JComponent {
                                 graphics2D.drawImage(battleshipImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 196, 40, this);
                             else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
                                 graphics2D.drawImage(carrierImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 245, 48, this);
-                        }
-                        else if (MainWindow.shipList.get(i).direction == 2) {
+                        } else if (MainWindow.shipList.get(i).direction == 2) {
                             if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
                                 graphics2D.drawImage(destroyerImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 35, 86, this);
                             else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)
@@ -629,8 +628,7 @@ public class Renderer extends JComponent {
                                 graphics2D.drawImage(battleshipRedImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 196, 40, this);
                             else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Carrier") == 0)
                                 graphics2D.drawImage(carrierRedImage3, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 17, 245, 48, this);
-                        }
-                        else if (MainWindow.shipList.get(i).direction == 2) {
+                        } else if (MainWindow.shipList.get(i).direction == 2) {
                             if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
                                 graphics2D.drawImage(destroyerRedImage2, holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - 15, holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY] - (int) (offset * holeImageSize), 35, 86, this);
                             else if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Submarine") == 0)

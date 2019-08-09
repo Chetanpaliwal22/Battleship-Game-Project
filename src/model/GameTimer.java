@@ -58,6 +58,7 @@ public class GameTimer extends TimerTask {
 
     /**
      * This method Return the time in unit of second
+     * @return int returns the remaining time
      */
     public static int getRemainingTime() {
         return totalMinutes * 60 + totalSeconds;

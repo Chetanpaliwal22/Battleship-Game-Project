@@ -13,6 +13,7 @@ public class Score {
 
     /**
      * Uses a formula to calculate the final score
+     * @return final score of the game
      */
     public int calculateFinalScore() {
 
@@ -25,14 +26,14 @@ public class Score {
     }
 
     /**
-     * Returns the final score value
+     * @return returnFinalScore Returns the final score value
      */
     public int returnFinalScore() {
         return finalScore;
     }
 
     /**
-     * Calculates the number of stars based on the final score
+     * @return numberof stars Calculates the number of stars based on the final score
      */
     public int calculateStars() {
         if (finalScore > 90 & finalScore <= 100)

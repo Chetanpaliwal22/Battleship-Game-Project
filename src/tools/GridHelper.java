@@ -16,7 +16,7 @@ public class GridHelper {
 	 * @param b
 	 *            for the second grid
 	 * @return the sum of two float grid
-	 * @throws Exception
+	 * @throws CustomException
 	 *             if any error occured
 	 */
 	public static float[][] add(float[][] a, float[][] b) throws CustomException {
@@ -44,7 +44,7 @@ public class GridHelper {
 	 * @param b
 	 *            for the second array
 	 * @return the sum of two int array
-	 * @throws Exception
+	 * @throws CustomException
 	 *             if any error
 	 */
 	public static int[][] add(int[][] a, int[][] b) throws CustomException {

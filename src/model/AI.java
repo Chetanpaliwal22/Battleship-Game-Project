@@ -111,6 +111,9 @@ public class AI {
         return toExclude;
     }
 
+    public void setSalvationMode(boolean targetValue) {
+        salvationMode = targetValue;
+    }
 
     public void setPreviousTarget(Coordinate targetCoordinate) {
         previousTarget = targetCoordinate;
@@ -348,7 +351,7 @@ public class AI {
      */
     public Coordinate getNextMove() {
 
-        if (targetMode && salvationMode == false ) {
+        if (targetMode && salvationMode == false) {
 
             Coordinate bestNextTarget;
 

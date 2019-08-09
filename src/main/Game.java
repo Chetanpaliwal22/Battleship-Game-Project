@@ -24,7 +24,7 @@ public class Game {
 		});
 
 		t.start();
-		// Start the game //
+		// Start the game 
 
 		mainWindow = new MainWindow();
 		mainWindow.setVisible(true);

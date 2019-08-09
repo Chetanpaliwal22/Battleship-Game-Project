@@ -257,7 +257,7 @@ public class Client {
 	 */
 	public Client() {
 		try {
-			SERVER_ADDRESS = InetAddress.getByName("132.205.94.11");
+			SERVER_ADDRESS = InetAddress.getByName(Constants.SERVER_IP_ADDRESS);
 		} catch (UnknownHostException e) {
 			System.out.println("UnknownHostException Client main()");
 			e.printStackTrace();

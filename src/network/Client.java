@@ -18,267 +18,268 @@ import view.Renderer;
 import javax.swing.*;
 
 public class Client {
-    private static int GET_PORT_NUMBER = 1234;
+	private static int GET_PORT_NUMBER = 1234;
 
-    private static int SEND_PORT_NUMBER = 2345;// port number of the get function of the server
+	private static int SEND_PORT_NUMBER = 2345;// port number of the get function of the server
 
-    private static int PULSE_PORT_NUMBER = 5678;
+	private static int PULSE_PORT_NUMBER = 5678;
 
-    private static boolean STARTED_GAME = false;
+	private static boolean STARTED_GAME = false;
 
-    private static InetAddress SERVER_ADDRESS; // should be used in the RequestServer() method
+	private static InetAddress SERVER_ADDRESS; // should be used in the RequestServer() method
 
-    private static InetAddress OPPONENT_ADDRESS;
+	private static InetAddress OPPONENT_ADDRESS;
 
-    private static InetAddress LOCAL_ADDRESS;
+	private static InetAddress LOCAL_ADDRESS;
 
-    private static int PLAY_SEND_PORT;
+	private static int PLAY_SEND_PORT;
 
-    private static int PLAY_RECIEVE_PORT;
+	private static int PLAY_RECIEVE_PORT;
 
-    /*
-        deserailize() function:
-        takes in a byte array and returns a Object type in our case the object returned is of
-        type "Data"
-     */
-    public static Object deserialize(byte[] data) {
+	/*
+	 * deserailize() function: takes in a byte array and returns a Object type in
+	 * our case the object returned is of type "Data"
+	 * @param data as a parameter
+	 */
+	public static Object deserialize(byte[] data) {
 
-        ByteArrayInputStream in = new ByteArrayInputStream(data);
-        ObjectInputStream is;
-        Data ret = null;
-        try {
-            is = new ObjectInputStream(in);
+		ByteArrayInputStream in = new ByteArrayInputStream(data);
+		ObjectInputStream is;
+		Data ret = null;
+		try {
+			is = new ObjectInputStream(in);
 
-            ret = (Data) is.readObject();
+			ret = (Data) is.readObject();
 
-        } catch (IOException e) {
-            System.out.println("IOException deserialize()");
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println("ClassNotFound deserialize()");
-            e.printStackTrace();
-        }
-        return ret;
+		} catch (IOException e) {
+			System.out.println("IOException deserialize()");
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			System.out.println("ClassNotFound deserialize()");
+			e.printStackTrace();
+		}
+		return ret;
 
-    }
+	}
 
-    /*
-        getDefaultClient() function:
-        creates a Data object with all the necessary parameters and return the object
-    */
-    public static Data getDefaultClient() {
-        return new Data(1, "", LOCAL_ADDRESS, OPPONENT_ADDRESS, true);
-    }
+	/*
+	 * getDefaultClient() function: creates a Data object with all the necessary
+	 * parameters and return the object
+	 */
+	public static Data getDefaultClient() {
+		return new Data(1, "", LOCAL_ADDRESS, OPPONENT_ADDRESS, true);
+	}
 
+	/*
+	 * sendServer() function: sends a data object to the server using the Port
+	 * Number 2345(SEND_PORT_NUMBER)
+	 *@param data data as parameter
+	 */
+	public static void sendServer(Data data) {
+		try {
+			System.out.println("Sending: " + data.fireTargetX + ", " + data.fireTargetY);
+			DatagramSocket ds = new DatagramSocket();
+			InetAddress address = SERVER_ADDRESS;// THIS SHOULD BE THE ADDRESS OF THE SERVER
+			System.out.println(address);
+			data.setAddress(InetAddress.getLocalHost());// the client's local Machine Address
 
-    /*
-    sendServer() function:
-    sends a data object to the server using the Port Number 2345(SEND_PORT_NUMBER)
-*/
+			byte[] byteArray = data.getBytes();
+			DatagramPacket packet = new DatagramPacket(byteArray, byteArray.length, address, SEND_PORT_NUMBER);
+			System.out.println("packet length " + packet.getLength());
+			ds.send(packet);
 
-    public static void sendServer(Data data) {
-        try {
-            System.out.println("Sending: " + data.fireTargetX + ", " + data.fireTargetY);
-            DatagramSocket ds = new DatagramSocket();
-            InetAddress address = SERVER_ADDRESS;// THIS SHOULD BE THE ADDRESS OF THE SERVER
-            System.out.println(address);
-            data.setAddress(InetAddress.getLocalHost());// the client's local Machine Address
+			// Data test = (Data) deserialize(byteArray);
+			// System.out.println("Testing deserializing " + test.getMessage());
+			ds.close();
 
-            byte[] byteArray = data.getBytes();
-            DatagramPacket packet = new DatagramPacket(byteArray, byteArray.length, address, SEND_PORT_NUMBER);
-            System.out.println("packet length " + packet.getLength());
-            ds.send(packet);
+		} catch (SocketException e) {
+			System.out.println("SocketException sendRequest()");
+			e.printStackTrace();
+		} catch (UnknownHostException e) {
+			System.out.println("UnknownHostException sendRequest()");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("IOException sendRequest()");
+			e.printStackTrace();
+		}
 
-            // Data test = (Data) deserialize(byteArray);
-            // System.out.println("Testing deserializing " + test.getMessage());
-            ds.close();
+	}
+	/*
+	 * recieveServer() function: A Java thread that is constantly looking for
+	 * incoming requests from the server. The port number used is 1234
+	 * (GET_PORT_NUMBER). the datatype recieved is a byte array that is sent to the
+	 * deserailize() function which returns a Data object.
+	 */
 
-        } catch (SocketException e) {
-            System.out.println("SocketException sendRequest()");
-            e.printStackTrace();
-        } catch (UnknownHostException e) {
-            System.out.println("UnknownHostException sendRequest()");
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("IOException sendRequest()");
-            e.printStackTrace();
-        }
+	public static void recieveServer() {
+		DatagramSocket ds;
 
-    }
-/*
-    recieveServer() function:
-    A Java thread that is constantly looking for incoming requests from the server.
-    The port number used is 1234 (GET_PORT_NUMBER).
-    the datatype recieved is a byte array that is sent to the deserailize() function
-    which returns a Data object.
-    */
+		try {
+			ds = new DatagramSocket(GET_PORT_NUMBER);
+			while (true) {
 
-    public static void recieveServer() {
-        DatagramSocket ds;
+				DatagramPacket DpRecieve = null;
+				byte[] recieve = new byte[65535];
 
-        try {
-            ds = new DatagramSocket(GET_PORT_NUMBER);
-            while (true) {
+				DpRecieve = new DatagramPacket(recieve, recieve.length);
 
-                DatagramPacket DpRecieve = null;
-                byte[] recieve = new byte[65535];
+				ds.receive(DpRecieve);
 
-                DpRecieve = new DatagramPacket(recieve, recieve.length);
+				Data data = (Data) deserialize(recieve);
 
-                ds.receive(DpRecieve);
+				STARTED_GAME = data.getgameStart();
+				OPPONENT_ADDRESS = data.getOpponent();
+				LOCAL_ADDRESS = data.getAddress();
+				System.out.println("Game started: " + data.gameStartedFromBoard);
 
-                Data data = (Data) deserialize(recieve);
+				if (!MainWindow.client2Ready & data.client2Ready)
+					MainWindow.client2Ready = true;
 
-                STARTED_GAME = data.getgameStart();
-                OPPONENT_ADDRESS = data.getOpponent();
-                LOCAL_ADDRESS = data.getAddress();
-                System.out.println("Game started: " + data.gameStartedFromBoard);
+				if (!MainWindow.client1Ready & data.client1Ready)
+					MainWindow.client1Ready = true;
 
-                if (!MainWindow.client2Ready & data.client2Ready)
-                    MainWindow.client2Ready = true;
+				if (!MainWindow.bothPlayersReady & MainWindow.client1Ready & MainWindow.client2Ready) {
+					MainWindow.bothPlayersReady = true;
+				}
 
-                if (!MainWindow.client1Ready & data.client1Ready)
-                    MainWindow.client1Ready = true;
+				if (data.gameMode.compareToIgnoreCase("normal") == 0) {
+					MainWindow.gameMode = "normal";
 
-                if (!MainWindow.bothPlayersReady & MainWindow.client1Ready & MainWindow.client2Ready) {
-                    MainWindow.bothPlayersReady = true;
-                }
+					MainWindow.timerLabel.setVisible(false);
+				} else if (data.gameMode.compareToIgnoreCase("advanced") == 0) {
+					MainWindow.gameMode = "advanced";
 
-                if (data.gameMode.compareToIgnoreCase("normal") == 0) {
-                    MainWindow.gameMode = "normal";
+					MainWindow.timerLabel.setText("<html>Number of shots: " + MainWindow.numberOfPlayerShots + "/"
+							+ MainWindow.numberOfPlayerMaxShots + "</html>");
+					MainWindow.timerLabel.setVisible(true);
+				}
 
-                    MainWindow.timerLabel.setVisible(false);
-                } else if (data.gameMode.compareToIgnoreCase("advanced") == 0) {
-                    MainWindow.gameMode = "advanced";
+				System.out.println("Client1 ready: " + MainWindow.client1Ready);
+				System.out.println("Client2 ready: " + MainWindow.client2Ready);
+				System.out.println("Both ready: " + MainWindow.bothPlayersReady);
 
-                    MainWindow.timerLabel.setText("<html>Number of shots: " + MainWindow.numberOfPlayerShots + "/" + MainWindow.numberOfPlayerMaxShots + "</html>");
-                    MainWindow.timerLabel.setVisible(true);
-                }
+				System.out.println("Fire target received from server: " + data.fireTargetX + ", " + data.fireTargetY);
 
-                System.out.println("Client1 ready: " + MainWindow.client1Ready);
-                System.out.println("Client2 ready: " + MainWindow.client2Ready);
-                System.out.println("Both ready: " + MainWindow.bothPlayersReady);
+				if (MainWindow.bothPlayersReady) {
+					if (data.receiveResult) {
+						MainWindow.receiveResultFromOpponent(data.fireTargetXList, data.fireTargetYList,
+								data.resultIdList);
+					} else {
+						MainWindow.receiveFireTarget(data.fireTargetXList, data.fireTargetYList);
+					}
 
-                System.out.println("Fire target received from server: " + data.fireTargetX + ", " + data.fireTargetY);
+					if (data.releaseControl)
+						MainWindow.freezing = false;
+				}
 
-                if (MainWindow.bothPlayersReady) {
-                    if (data.receiveResult) {
-                        MainWindow.receiveResultFromOpponent(data.fireTargetXList, data.fireTargetYList, data.resultIdList);
-                    } else {
-                        MainWindow.receiveFireTarget(data.fireTargetXList, data.fireTargetYList);
-                    }
+				if (data.fireTargetX < 0) {
+					if (!data.releaseControl)
+						MainWindow.freezing = true;
+					else
+						MainWindow.freezing = false;
+				}
 
-                    if (data.releaseControl)
-                        MainWindow.freezing = false;
-                }
+				if (data.gameOver) {
+					MainWindow.gameOver = true;
 
-                if (data.fireTargetX < 0) {
-                    if (!data.releaseControl)
-                        MainWindow.freezing = true;
-                    else
-                        MainWindow.freezing = false;
-                }
+					if (!MainWindow.humanBoard.checkPlayerSunkShips()) {
+						ImageIcon icon = null;
+						icon = new ImageIcon(Constants.FIVE_STARS);
 
+						JOptionPane.showMessageDialog(Game.mainWindow,
+								"Congratulations!! You were able to defeat your opponent.", "Game Over",
+								JOptionPane.INFORMATION_MESSAGE, icon);
+					}
+				}
 
-                if (data.gameOver) {
-                    MainWindow.gameOver = true;
+				System.out.println("Data game over: " + data.gameOver);
+				System.out.println("MainWindow game over: " + MainWindow.gameOver);
 
-                    if (!MainWindow.humanBoard.checkPlayerSunkShips()) {
-                        ImageIcon icon = null;
-                        icon = new ImageIcon(Constants.FIVE_STARS);
+				// sendServer(data);
+			}
 
-                        JOptionPane.showMessageDialog(Game.mainWindow, "Congratulations!! You were able to defeat your opponent.", "Game Over", JOptionPane.INFORMATION_MESSAGE, icon);
-                    }
-                }
+		} catch (SocketException e) {
+			System.out.println("SocketException getRequest()");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("IOException getRequest()");
+			e.printStackTrace();
+		}
 
-                System.out.println("Data game over: " + data.gameOver);
-                System.out.println("MainWindow game over: " + MainWindow.gameOver);
+	}
 
-                // sendServer(data);
-            }
+	/*
+	 * pulse() function: The function is activated at the beginning of the program
+	 * when it is telling the server that it is ready to connect online to play
+	 * opponents remotely
+	 */
+	public static void pulse() {
+		try {
+			Data data = new Data(0, "");
+			DatagramSocket ds = new DatagramSocket();
+			InetAddress address = SERVER_ADDRESS;// THIS SHOULD BE THE ADDRESS OF THE SERVER
+			System.out.println(address);
+			data.setAddress(InetAddress.getLocalHost());// the client's local Machine Address
+			byte[] byteArray = data.getBytes();
+			DatagramPacket packet = new DatagramPacket(byteArray, byteArray.length, address, PULSE_PORT_NUMBER);
+			ds.send(packet);
+			ds.close();
 
-        } catch (SocketException e) {
-            System.out.println("SocketException getRequest()");
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("IOException getRequest()");
-            e.printStackTrace();
-        }
+		} catch (SocketException e) {
+			System.out.println("SocketException sendRequest()");
+			e.printStackTrace();
+		} catch (UnknownHostException e) {
+			System.out.println("UnknownHostException sendRequest()");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("IOException sendRequest()");
+			e.printStackTrace();
+		}
+	}
 
-    }
+	/*
+	 * createClient() function: Intializes the 1st client request to the server
+	 * after connecting to an opponent.
+	 */
+	public static void createClient() {
+		Data data = new Data(1, "", LOCAL_ADDRESS, OPPONENT_ADDRESS, true);
+		sendServer(data);
+	}
 
-    /*
-        pulse() function:
-        The function is activated at the beginning of the program when it is telling the server
-        that it is ready to connect online to play opponents remotely
-    */
-    public static void pulse() {
-        try {
-            Data data = new Data(0, "");
-            DatagramSocket ds = new DatagramSocket();
-            InetAddress address = SERVER_ADDRESS;// THIS SHOULD BE THE ADDRESS OF THE SERVER
-            System.out.println(address);
-            data.setAddress(InetAddress.getLocalHost());// the client's local Machine Address
-            byte[] byteArray = data.getBytes();
-            DatagramPacket packet = new DatagramPacket(byteArray, byteArray.length, address, PULSE_PORT_NUMBER);
-            ds.send(packet);
-            ds.close();
+	/*
+	 * Client() Constructor: Creates an object of type Client, it has a set server
+	 * address.
+	 */
+	public Client() {
+		try {
+			SERVER_ADDRESS = InetAddress.getByName("132.205.94.82");
+		} catch (UnknownHostException e) {
+			System.out.println("UnknownHostException Client main()");
+			e.printStackTrace();
+		}
 
-        } catch (SocketException e) {
-            System.out.println("SocketException sendRequest()");
-            e.printStackTrace();
-        } catch (UnknownHostException e) {
-            System.out.println("UnknownHostException sendRequest()");
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("IOException sendRequest()");
-            e.printStackTrace();
-        }
-    }
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				recieveServer();
+			}
+		});
 
-    /*
-        createClient() function:
-        Intializes the 1st client request to the server after connecting to an opponent.
-    * */
-    public static void createClient() {
-        Data data = new Data(1, "", LOCAL_ADDRESS, OPPONENT_ADDRESS, true);
-        sendServer(data);
-    }
+		t.start();
 
-    /*
-        Client() Constructor:
-        Creates an object of type Client, it has a set server address.
-    */
-    public Client() {
-        try {
-            SERVER_ADDRESS = InetAddress.getByName("132.205.94.11");
-        } catch (UnknownHostException e) {
-            System.out.println("UnknownHostException Client main()");
-            e.printStackTrace();
-        }
+		System.out.println("Waiting for another player to join ... ");
 
-        Thread t = new Thread(new Runnable() {
-            public void run() {
-                recieveServer();
-            }
-        });
+		pulse();
+		while (!STARTED_GAME) {
+			System.out.println(STARTED_GAME);
+		} /**/
 
-        t.start();
+		System.out.println(STARTED_GAME);
 
-        System.out.println("Waiting for another player to join ... ");
+		System.out.println("The GAME HAS STARTED");
 
-        pulse();
-        while (!STARTED_GAME) {
-            System.out.println(STARTED_GAME);
-        } /**/
+		System.out.println("Local Client " + LOCAL_ADDRESS + " Opponent Client " + OPPONENT_ADDRESS);
 
-        System.out.println(STARTED_GAME);
-
-        System.out.println("The GAME HAS STARTED");
-
-        System.out.println("Local Client " + LOCAL_ADDRESS + " Opponent Client " + OPPONENT_ADDRESS);
-
-        createClient();
-    }
+		createClient();
+	}
 
 }

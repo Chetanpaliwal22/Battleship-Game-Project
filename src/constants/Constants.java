@@ -42,5 +42,4 @@ public class Constants {
     public static final String EXPLOSION_SOUND = "src/view/resources/audio/ExplosionSound.mp3";
     public static final String WATER_SPLASH_SOUND = "src/view/resources/audio/WaterSplashSound.mp3";
     	
-	public static final String SERVER_IP_ADDRESS = "132.205.94.83";
 }

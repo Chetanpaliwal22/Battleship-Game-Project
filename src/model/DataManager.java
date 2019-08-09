@@ -64,11 +64,6 @@ public class DataManager {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
 
-//                    System.out.print("\nUser name: " + element.getElementsByTagName("userName").item(0).getTextContent() + "\n");
-//                    System.out.print("\nScore: " + element.getElementsByTagName("score").item(0).getTextContent() + "\n");
-//                    System.out.print("\nAction: " + element.getElementsByTagName("action").item(0).getTextContent() + "\n");
-//                    System.out.print("\nAction: " + element.getElementsByTagName("numberOfAISunkShips").item(0).getTextContent() + "\n");
-
                     MainWindow.numberOfAISunkShips = Integer.parseInt(element.getElementsByTagName("numberOfAISunkShips").item(0).getTextContent());
 
 
@@ -107,35 +102,18 @@ public class DataManager {
             for (int i = 0; i < nodeList.getLength(); i++) {
                 node = nodeList.item(i);
 
-//                System.out.println("\nCurrent Element: " + node.getNodeName());
 
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
 
-//                    System.out.println("??????-----------------------");
-//
-//                    System.out.println("size: " + element.getElementsByTagName("size").item(0).getTextContent());
-//
-//                    System.out.println("direction: " + element.getElementsByTagName("direction").item(0).getTextContent());
-//
-//                    System.out.println("sunk: " + element.getElementsByTagName("sunk").item(0).getTextContent());
-//
-//                    System.out.println("pivotX: " + element.getElementsByTagName("pivotX").item(0).getTextContent());
-//                    System.out.println("pivotY: " + element.getElementsByTagName("pivotY").item(0).getTextContent());
-
-                    MainWindow.shipList.add(new FrontEndShip(Integer.parseInt(element.getElementsByTagName("size").item(0).getTextContent()), Integer.parseInt(element.getElementsByTagName("direction").item(0).getTextContent()), Integer.parseInt(element.getElementsByTagName("pivotX").item(0).getTextContent()), Integer.parseInt(element.getElementsByTagName("pivotY").item(0).getTextContent())));
+                  MainWindow.shipList.add(new FrontEndShip(Integer.parseInt(element.getElementsByTagName("size").item(0).getTextContent()), Integer.parseInt(element.getElementsByTagName("direction").item(0).getTextContent()), Integer.parseInt(element.getElementsByTagName("pivotX").item(0).getTextContent()), Integer.parseInt(element.getElementsByTagName("pivotY").item(0).getTextContent())));
 
                     if (element.getElementsByTagName("sunk").item(0).getTextContent().compareToIgnoreCase("true") == 0)
                         MainWindow.shipList.get(MainWindow.shipList.size() - 1).sunk = true;
                     else
                         MainWindow.shipList.get(MainWindow.shipList.size() - 1).sunk = false;
 
-//                    System.out.println("x: " + element.getElementsByTagName("x").item(0).getTextContent());
-//                    System.out.println("y: " + element.getElementsByTagName("y").item(0).getTextContent());
-
-
-//                    System.out.println("state : " + element.getElementsByTagName("state").item(0).getTextContent());
-                }
+               }
             }
 
 
@@ -200,16 +178,12 @@ public class DataManager {
                     for (int j = 0; j < size; j++) {
                         shipCoordinates[j] = new Coordinate(Integer.parseInt(element.getElementsByTagName("positionX").item(j).getTextContent()), Integer.parseInt(element.getElementsByTagName("positionY").item(j).getTextContent()));
 
-//                        System.out.println("???: " + ship1Coordinate[j].x + ", " + ship1Coordinate[j].y);
                     }
 
                     MainWindow.AIBoard.placeShip(shipCoordinates);
 
 
-//                    System.out.println("size: " + element.getElementsByTagName("size").item(0).getTextContent());
-//                    System.out.println("x: " + element.getElementsByTagName("x").item(0).getTextContent());
-//                    System.out.println("y: " + element.getElementsByTagName("y").item(0).getTextContent());
-                }
+               }
             }
 
 
@@ -241,17 +215,6 @@ public class DataManager {
             }
 
 
-//            ArrayList<Ship> realShips = MainWindow.AIBoard.getShips();
-//
-//            for (int index = 0; index < realShips.size(); index++) {
-//                ArrayList<Coordinate> realPosition = realShips.get(index).getHitPosition();
-//                System.out.println("%%%%%%%%%%");
-//                for (int h = 0; h < realPosition.size(); h++) {
-//                    System.out.println(realPosition.get(h).x + ", " + realPosition.get(h).y + " -------------????????");
-//                }
-//            }
-
-
             nodeList = (NodeList) xPath.compile("/data/humanBoard").evaluate(document, XPathConstants.NODESET);
 
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -265,38 +228,22 @@ public class DataManager {
             }
 
 
-//            targetBoardState = new int[Constants.BOARD_SIZE.x][Constants.BOARD_SIZE.y];
 
             nodeList = (NodeList) xPath.compile("/data/humanBoard/waterGridState/coordinate").evaluate(document, XPathConstants.NODESET);
 
             for (int i = 0; i < nodeList.getLength(); i++) {
                 node = nodeList.item(i);
 
-//                System.out.println("\nCurrent Element: " + node.getNodeName());
 
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
 
                     targetBoardState[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("state").item(0).getTextContent());
 
-//                    System.out.println("x : " + element.getElementsByTagName("x").item(0).getTextContent());
-//                    System.out.println("y : " + element.getElementsByTagName("y").item(0).getTextContent());
-//                    System.out.println("state : " + element.getElementsByTagName("state").item(0).getTextContent());
-                }
+               }
             }
 
             MainWindow.humanBoard.setBoardState(targetBoardState);
-
-//            int[][] realState = MainWindow.humanBoard.getBoardState();
-//            for (int i = 0; i < realState.length; i++) {
-//                for (int j = 0; j < realState[0].length; j++) {
-//                    System.out.print(realState[i][j] + " ");
-//                }
-//                System.out.println("");
-//            }
-
-//            System.out.println("----------------------------");
-//            System.out.println("AI board");
 
 
             nodeList = (NodeList) xPath.compile("/data/AIBoard").evaluate(document, XPathConstants.NODESET);
@@ -324,21 +271,10 @@ public class DataManager {
 
                     targetBoardState[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("state").item(0).getTextContent());
 
-//                    System.out.println("x : " + element.getElementsByTagName("x").item(0).getTextContent());
-//                    System.out.println("y : " + element.getElementsByTagName("y").item(0).getTextContent());
-//                    System.out.println("state : " + element.getElementsByTagName("state").item(0).getTextContent());
-                }
+               }
             }
 
             MainWindow.AIBoard.setBoardState(targetBoardState);
-
-//            int[][] realState = MainWindow.AIBoard.getBoardState();
-//            for (int i = 0; i < realState.length; i++) {
-//                for (int j = 0; j < realState[0].length; j++) {
-//                    System.out.print(realState[i][j] + " ");
-//                }
-//                System.out.println("");
-//            }
 
 
             nodeList = (NodeList) xPath.compile("/data/AI").evaluate(document, XPathConstants.NODESET);

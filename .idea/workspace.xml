@@ -5,7 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/AI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/data/GameData.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/data/GameData.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/DataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DataManager.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

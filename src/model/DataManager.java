@@ -354,6 +354,11 @@ public class DataManager {
                     else
                         MainWindow.myAI.targetMode = false;
 
+                    if (element.getElementsByTagName("salvationMode").item(0).getTextContent().compareToIgnoreCase("true") == 0)
+                        MainWindow.myAI.setSalvationMode(true);
+                    else
+                        MainWindow.myAI.setSalvationMode(false);
+
                     MainWindow.myAI.direction = Integer.parseInt(element.getElementsByTagName("direction").item(0).getTextContent());
 
                     MainWindow.myAI.distanceFromHit = Integer.parseInt(element.getElementsByTagName("distanceFromHit").item(0).getTextContent());
@@ -1008,6 +1013,12 @@ public class DataManager {
             Element targetModeElement = document.createElement("targetMode");
             targetModeElement.appendChild(document.createTextNode(MainWindow.myAI.targetMode + ""));
             AIElement.appendChild(targetModeElement);
+
+
+            // salvationMode element
+            Element salvationModeElement = document.createElement("salvationMode");
+            salvationModeElement.appendChild(document.createTextNode(MainWindow.myAI.getSalvationMode() + ""));
+            AIElement.appendChild(salvationModeElement);
 
 
             // direction element

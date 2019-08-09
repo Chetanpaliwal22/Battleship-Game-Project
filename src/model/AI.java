@@ -16,6 +16,7 @@ public class AI {
     private Coordinate boardSize;
 
     boolean targetMode = false;
+    boolean salvationMode = false;
 
     int direction = -1;
     int distanceFromHit = 1;
@@ -52,6 +53,10 @@ public class AI {
 
     public ArrayList<Coordinate> getPreviousTargetSalvation() {
         return previousTargetSalvation;
+    }
+
+    public boolean getSalvationMode() {
+        return salvationMode;
     }
 
     public int[][] getCountGrid() {
@@ -343,7 +348,7 @@ public class AI {
      */
     public Coordinate getNextMove() {
 
-        if (targetMode && previousTargetSalvation == null) {
+        if (targetMode && salvationMode == false ) {
 
             Coordinate bestNextTarget;
 
@@ -548,6 +553,8 @@ public class AI {
      * @return array list of coordinate
      */
     public ArrayList<Coordinate> getNextMoveSalvation(int sunkNumber) {
+
+        salvationMode = true;
 
         ArrayList<Coordinate> coordinateList = new ArrayList<Coordinate>();
 

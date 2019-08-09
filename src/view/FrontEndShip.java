@@ -37,7 +37,7 @@ public class FrontEndShip {
      * @param shipSize ship size	
      * @param shipDirection ship direction
      * @param shipPivotGridX ship pivot x
-     * @oaran shipPivotGridY ship pivot y
+     * @paran shipPivotGridY ship pivot y
      */
     public FrontEndShip(int shipSize, int shipDirection, int shipPivotGridX, int shipPivotGridY) {
 
@@ -64,7 +64,7 @@ public class FrontEndShip {
 
     /**
      * constructor for initializing the attributes
-     * @param shipdirection shows the ship direction
+     * @param shipDirection shows the ship direction
      * @param shipPivotGridX x pivot
      * @param shipPivotGridY y pivot
      */

@@ -191,7 +191,7 @@ public class AI {
      * update the count grid given the new information (or just initialize)
      *
      * @param code attack result
-     * @throws Exception thorws exception if the ship length is bigger then the board size
+     * @throws CustomException thorws exception if the ship length is bigger then the board size
      */
     private void updateCountGrid(int code) throws CustomException {
 
@@ -242,7 +242,7 @@ public class AI {
      * @param shipSize ship size
      * @param code     code attack result
      * @return updated grid
-     * @throws Exception thorws exception if the ship length is bigger then the board size
+     * @throws CustomException thorws exception if the ship length is bigger then the board size
      */
     private int[][] updateSpecificCountGrid(int shipSize, int code) throws CustomException {
 
@@ -483,7 +483,7 @@ public class AI {
      * register the result of the previous move
      *
      * @param code AI accepts code as input
-     * @throws Exception throws exception
+     * @throws CustomException throws exception
      */
     public void receiveResult(int code) throws CustomException {
 
@@ -564,7 +564,7 @@ public class AI {
      * receive result from shots in salvation mode
      *
      * @param codeList Array list of integer
-     * @throws Exception throws exception
+     * @throws CustomException throws exception
      */
     public void receiveResultSalvation(ArrayList<Integer> codeList) throws CustomException {
 

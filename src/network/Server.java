@@ -190,9 +190,10 @@ public class Server {
     }/**/
 
     /*
-        sendRequest() function:
-        this function sends the request to the clients according to the Client address to
-        which the object is to be sent to.
+      *  sendRequest() function:
+      *  this function sends the request to the clients according to the Client address to
+      *  which the object is to be sent to.
+     * @param data data object for send request
      */
     private static void sendRequest(Data data) {
         try {
@@ -218,9 +219,10 @@ public class Server {
     }
 
     /*
-        startGame() function:
-        Alerts the server and the clients about who has placed their ships and is ready to
-        start the game.
+      *  startGame() function:
+      *  Alerts the server and the clients about who has placed their ships and is ready to
+      *  start the game.
+      *  @param ClientAddress ClientAddress for online version
     */
     public static Data startGame(InetAddress ClientAddress) {
         if (ClientAddress == Client1) {
@@ -233,10 +235,10 @@ public class Server {
     }
 
     /*
-        getPulse() function:
-        Acts as a listener to see which clients are ready to play online.
+     *   getPulse() function:  to find out the list of all the available clients
+   
+      *  Acts as a listener to see which clients are ready to play online.
     */
-    // to find out the list of all the available clients
     public static void getPulse() {
         DatagramSocket ds;
 

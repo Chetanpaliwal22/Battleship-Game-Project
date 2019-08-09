@@ -89,14 +89,7 @@ public class Renderer extends JComponent {
 		holeImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/Hole.png");
 		missedHoleImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/MissedHole.png");
 		hitHoleImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/HitHole.png");
-		// shipImage =
-		// Toolkit.getDefaultToolkit().getImage("src/view/resources/images/Ship.png");
-		// horizontalShipImage =
-		// Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ShipHorizontal.png");
-		// redShipImage =
-		// Toolkit.getDefaultToolkit().getImage("src/view/resources/images/RedShip.png");
-		// horizontalRedShipImage =
-		// Toolkit.getDefaultToolkit().getImage("src/view/resources/images/RedShipHorizontal.png");
+		
 		targetImage = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/Target.png");
 
 		destroyerImage1 = Toolkit.getDefaultToolkit().getImage("src/view/resources/images/ships/Destroyer1.png");
@@ -228,16 +221,6 @@ public class Renderer extends JComponent {
 				// oceanImageRightPositionX += oceanImageRightMovingDirectionX;
 				oceanImageRightPositionY += oceanImageRightMovingDirectionY;
 			}
-
-			// if (oceanImageRightPositionX <= -15) {
-			// oceanImageRightPositionX = -15;
-			//
-			// oceanImageRightMovingDirectionX = random.nextInt(3) + 1;
-			// } else if (oceanImageRightPositionX > 15) {
-			// oceanImageRightPositionX = 15;
-			//
-			// oceanImageRightMovingDirectionX = -random.nextInt(3) - 1;
-			// }
 
 			if (oceanImageRightPositionY <= -15) {
 				oceanImageRightPositionY = -15;
@@ -399,51 +382,6 @@ public class Renderer extends JComponent {
 			}
 		}
 
-		// graphics2D.drawImage(destroyerImage1, holeLocationX[3][4] - 15,
-		// holeLocationY[5][5] - 15, 86, 35, this);
-		// graphics2D.drawImage(destroyerImage2, holeLocationX[2][7] - 15,
-		// holeLocationY[3][3] - 15, 35, 86, this);
-		// graphics2D.drawImage(destroyerImage3, holeLocationX[5][1] - 15,
-		// holeLocationY[8][7] - 15, 86, 35, this);
-		// graphics2D.drawImage(destroyerImage4, holeLocationX[7][7] - 15,
-		// holeLocationY[5][5] - 15, 35, 86, this);
-
-		// graphics2D.drawImage(submarineImage1, holeLocationX[3][4] - 15,
-		// holeLocationY[5][5] - 15, 157, 40, this);
-		// graphics2D.drawImage(submarineImage2, holeLocationX[2][7] - 15,
-		// holeLocationY[3][3] - 15, 40, 157, this);
-		// graphics2D.drawImage(submarineImage3, holeLocationX[5][1] - 15,
-		// holeLocationY[8][7] - 15, 157, 40, this);
-		// graphics2D.drawImage(submarineImage4, holeLocationX[7][7] - 15,
-		// holeLocationY[5][5] - 15, 40, 157, this);
-
-		// graphics2D.drawImage(cruiserImage1, holeLocationX[3][4] - 15,
-		// holeLocationY[5][5] - 15, 141, 40, this);
-		// graphics2D.drawImage(cruiserImage2, holeLocationX[2][7] - 15,
-		// holeLocationY[3][3] - 15, 40, 141, this);
-		// graphics2D.drawImage(cruiserImage3, holeLocationX[5][1] - 15,
-		// holeLocationY[8][7] - 15, 141, 40, this);
-		// graphics2D.drawImage(cruiserImage4, holeLocationX[7][7] - 15,
-		// holeLocationY[5][5] - 15, 40, 141, this);
-
-		// graphics2D.drawImage(battleshipImage1, holeLocationX[3][4] - 15,
-		// holeLocationY[5][5] - 15, 196, 40, this);
-		// graphics2D.drawImage(battleshipImage2, holeLocationX[2][7] - 15,
-		// holeLocationY[3][3] - 15, 40, 196, this);
-		// graphics2D.drawImage(battleshipImage3, holeLocationX[5][1] - 15,
-		// holeLocationY[8][7] - 15, 196, 40, this);
-		// graphics2D.drawImage(battleshipImage4, holeLocationX[7][7] - 15,
-		// holeLocationY[5][5] - 15, 40, 196, this);
-
-		// graphics2D.drawImage(carrierImage1, holeLocationX[3][4] - 15,
-		// holeLocationY[5][5] - 15, 245, 48, this);
-		// graphics2D.drawImage(carrierImage2, holeLocationX[2][7] - 15,
-		// holeLocationY[3][3] - 15, 48, 245, this);
-		// graphics2D.drawImage(carrierImage3, holeLocationX[5][1] - 15,
-		// holeLocationY[8][7] - 15, 245, 48, this);
-		// graphics2D.drawImage(carrierImage4, holeLocationX[7][7] - 15,
-		// holeLocationY[5][5] - 15, 48, 245, this);
-
 		// Render all five ships
 		for (int i = 0; i < MainWindow.shipList.size(); i++) {
 			double offset = 0;
@@ -557,11 +495,7 @@ public class Renderer extends JComponent {
 												.get(i).pivotGridY] - 17,
 										245, 48, this);
 						}
-						// graphics2D.drawImage(shipImage,
-						// holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY]
-						// - (int) (offset * holeImageSize),
-						// holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY]
-						// - 30 / 2, MainWindow.shipList.get(i).size * holeImageSize - 5, 40, this);
+					
 					} else {
 						if (MainWindow.shipList.get(i).direction == 1) {
 							if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
@@ -636,11 +570,7 @@ public class Renderer extends JComponent {
 												.get(i).pivotGridY] - 17,
 										245, 48, this);
 						}
-						// graphics2D.drawImage(redShipImage,
-						// holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY]
-						// - (int) (offset * holeImageSize),
-						// holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY]
-						// - 30 / 2, MainWindow.shipList.get(i).size * holeImageSize - 5, 40, this);
+					
 					}
 				} else {
 					if (MainWindow.shipList.get(i).validity & !MainWindow.shipList.get(i).sunk) {
@@ -717,12 +647,7 @@ public class Renderer extends JComponent {
 												.get(i).pivotGridY] - (int) (offset * holeImageSize),
 										48, 245, this);
 						}
-						// graphics2D.drawImage(horizontalShipImage,
-						// holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY]
-						// - 30 / 2,
-						// holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY]
-						// - (int) (offset * holeImageSize), 40, MainWindow.shipList.get(i).size *
-						// holeImageSize - 5, this);
+				
 					} else {
 						if (MainWindow.shipList.get(i).direction == 2) {
 							if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)
@@ -798,12 +723,7 @@ public class Renderer extends JComponent {
 										48, 245, this);
 						}
 
-						// graphics2D.drawImage(horizontalRedShipImage,
-						// holeLocationX[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY]
-						// - 30 / 2,
-						// holeLocationY[MainWindow.shipList.get(i).pivotGridX][MainWindow.shipList.get(i).pivotGridY]
-						// - (int) (offset * holeImageSize), 40, MainWindow.shipList.get(i).size *
-						// holeImageSize - 5, this);
+					
 					}
 				}
 			} else {
@@ -960,16 +880,7 @@ public class Renderer extends JComponent {
 										48, 245, this);
 						}
 
-						// if (MainWindow.shipList.get(targetShipId).direction == 1 |
-						// MainWindow.shipList.get(targetShipId).direction == 3) {
-						// graphics2D.drawImage(shipImage, holeLocationX[nearestX][nearestY] - (int)
-						// (offset * holeImageSize), holeLocationY[nearestX][nearestY] - 30 / 2,
-						// MainWindow.shipList.get(i).size * holeImageSize - 5, 40, this);
-						// } else {
-						// graphics2D.drawImage(horizontalShipImage, holeLocationX[nearestX][nearestY] -
-						// 30 / 2, holeLocationY[nearestX][nearestY] - (int) (offset * holeImageSize),
-						// 40, MainWindow.shipList.get(i).size * holeImageSize - 5, this);
-						// }
+						
 					} else {
 						if (MainWindow.shipList.get(i).direction == 1) {
 							if (MainWindow.shipList.get(i).name.compareToIgnoreCase("Destroyer") == 0)

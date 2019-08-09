@@ -323,14 +323,7 @@ public class DataManager {
 
                     MainWindow.myAI.setNbCarrierDestroyed(Integer.parseInt(element.getElementsByTagName("nbCarrierDestroyed").item(0).getTextContent()));
 
-//                    System.out.println("targetMode: " + MainWindow.myAI.targetMode);
-//                    System.out.println("direction: " + MainWindow.myAI.direction);
-//                    System.out.println("distanceFromHit: " + MainWindow.myAI.distanceFromHit);
-//                    System.out.println("fixedDirection: " + MainWindow.myAI.fixedDirection);
-//                    System.out.println("seekAgain: " + MainWindow.myAI.seekAgain);
-//                    System.out.println("axis: " + MainWindow.myAI.axis.x + ", " + MainWindow.myAI.axis.y);
-//                    System.out.println("previousTarget: " + MainWindow.myAI.getPreviousTarget().x + ", " + MainWindow.myAI.getPreviousTarget().y);
-                }
+               }
             }
 
 
@@ -373,9 +366,6 @@ public class DataManager {
 
                     targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
 
-//                    System.out.println("x: " + element.getElementsByTagName("x").item(0).getTextContent());
-//                    System.out.println("y: " + element.getElementsByTagName("y").item(0).getTextContent());
-//                    System.out.println("value: " + element.getElementsByTagName("value").item(0).getTextContent());
                 }
             }
 
@@ -394,10 +384,7 @@ public class DataManager {
 
                     targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
 
-//                    System.out.println("x: " + element.getElementsByTagName("x").item(0).getTextContent());
-//                    System.out.println("y: " + element.getElementsByTagName("y").item(0).getTextContent());
-//                    System.out.println("value: " + element.getElementsByTagName("value").item(0).getTextContent());
-                }
+               }
             }
 
             MainWindow.myAI.setDestroyerCountGrid(targetGrid);
@@ -415,10 +402,7 @@ public class DataManager {
 
                     targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
 
-//                    System.out.println("x: " + element.getElementsByTagName("x").item(0).getTextContent());
-//                    System.out.println("y: " + element.getElementsByTagName("y").item(0).getTextContent());
-//                    System.out.println("value: " + element.getElementsByTagName("value").item(0).getTextContent());
-                }
+               }
             }
 
             MainWindow.myAI.setSubmarineCountGrid(targetGrid);
@@ -436,10 +420,7 @@ public class DataManager {
 
                     targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
 
-//                    System.out.println("x: " + element.getElementsByTagName("x").item(0).getTextContent());
-//                    System.out.println("y: " + element.getElementsByTagName("y").item(0).getTextContent());
-//                    System.out.println("value: " + element.getElementsByTagName("value").item(0).getTextContent());
-                }
+               }
             }
 
             MainWindow.myAI.setCruiserCountGrid(targetGrid);
@@ -457,10 +438,7 @@ public class DataManager {
 
                     targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
 
-//                    System.out.println("x: " + element.getElementsByTagName("x").item(0).getTextContent());
-//                    System.out.println("y: " + element.getElementsByTagName("y").item(0).getTextContent());
-//                    System.out.println("value: " + element.getElementsByTagName("value").item(0).getTextContent());
-                }
+               }
             }
 
             MainWindow.myAI.setBattleshipCountGrid(targetGrid);
@@ -478,10 +456,7 @@ public class DataManager {
 
                     targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
 
-//                    System.out.println("x: " + element.getElementsByTagName("x").item(0).getTextContent());
-//                    System.out.println("y: " + element.getElementsByTagName("y").item(0).getTextContent());
-//                    System.out.println("value: " + element.getElementsByTagName("value").item(0).getTextContent());
-                }
+               }
             }
 
             MainWindow.myAI.setCarrierCountGrid(targetGrid);
@@ -505,7 +480,6 @@ public class DataManager {
                             Coordinate coordinate = new Coordinate(Integer.parseInt(element.getElementsByTagName("x").item(j).getTextContent()), Integer.parseInt(element.getElementsByTagName("y").item(j).getTextContent()));
                             missToExcludeCoordinate.add(coordinate);
 
-//                            System.out.println(coordinate.x + ", " + coordinate.y + " ^&*(^&*%^$%$%^&");
                         }
 
                         MainWindow.myAI.setMissToExclude(missToExcludeCoordinate);
@@ -532,7 +506,6 @@ public class DataManager {
                             Coordinate coordinate = new Coordinate(Integer.parseInt(element.getElementsByTagName("x").item(j).getTextContent()), Integer.parseInt(element.getElementsByTagName("y").item(j).getTextContent()));
                             toExcludeCoordinate.add(coordinate);
 
-//                            System.out.println(coordinate.x + ", " + coordinate.y + " -------------");
                         }
 
                         MainWindow.myAI.setToExclude(toExcludeCoordinate);

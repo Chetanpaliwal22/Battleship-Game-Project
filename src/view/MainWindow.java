@@ -661,9 +661,7 @@ public class MainWindow extends JFrame {
 
                                     AIFireTarget = myAI.getNextMove();
 
-                                    // System.out.println("AI click on " + alphabet[AIFireTarget.x] +
-                                    // (AIFireTarget.y + 1)
-                                    // + ", coordinate " + (AIFireTarget.x + 1) + "," + (AIFireTarget.y + 1));
+                                
 
                                     int result = humanBoard.fireAtTarget(AIFireTarget);
 
@@ -683,10 +681,7 @@ public class MainWindow extends JFrame {
                                         if (!gameOver) {
                                             AIFireTarget = coordinateList.get(i);
 
-                                            // System.out.println("AI click on " + alphabet[AIFireTarget.x]
-                                            // + (AIFireTarget.y + 1) + ", coordinate " + (AIFireTarget.x + 1)
-                                            // + "," + (AIFireTarget.y + 1));
-
+                                         
                                             int result = humanBoard.fireAtTarget(AIFireTarget);
 
                                             resultList.add(result);
@@ -735,8 +730,7 @@ public class MainWindow extends JFrame {
     public static void receiveResultFromOpponent(ArrayList<Integer> fireTargetXList, ArrayList<Integer> fireTargetYList,
                                                  ArrayList<Integer> resultIdList) {
 
-        // System.out.println("Receive: " + fireTargetX + ", " + fireTargetY);
-        // System.out.println("Receive result: " + result);
+    
 
         int[][] targetGridState = MainWindow.AIBoard.getBoardState();
 
@@ -804,16 +798,12 @@ public class MainWindow extends JFrame {
 
                 for (int i = 0; i < shipList.size(); i++) {
                     for (int gridIndex = 0; gridIndex < MainWindow.shipList.get(i).occupiedGridX.size(); gridIndex++) {
-                        // System.out.println("Checking position: " + " " +
-                        // MainWindow.shipList.get(i).occupiedGridX.get(gridIndex) + "," +
-                        // MainWindow.shipList.get(i).occupiedGridY.get(gridIndex));
+                       
                         int gridX = MainWindow.shipList.get(i).occupiedGridX.get(gridIndex),
                                 gridY = MainWindow.shipList.get(i).occupiedGridY.get(gridIndex),
                                 fireX = fireTargetXList.get(index), fireY = fireTargetYList.get(index);
 
-                        // System.out.println(" X : " + (gridX == fireX));
-                        // System.out.println(" Y : " + (gridY == fireY));
-
+                      
                         if ((gridX == fireX) & (gridY == fireY))
                             result = 1;
                     }
@@ -821,17 +811,11 @@ public class MainWindow extends JFrame {
 
                 humanBoard.checkSunk();
 
-                // if (result == 1 & humanBoard.checkSunk()) {
-                // result = 2;
-                //// System.out.println("Sunkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-                // }
+              
 
                 int[][] targetGridState = MainWindow.humanBoard.getBoardState();
 
-                // Check the result
-                // System.out.println("Checking with 0 " + result + " " + (result == 0));
-                // System.out.println("Checking with 1" + result + " " + (result == 1));
-                // System.out.println("Checking with 2" + result + " " + (result == 2));
+              
                 if (result == 0) {
                     targetGridState[fireTargetYList.get(index)][fireTargetXList.get(index)] = 1;
 

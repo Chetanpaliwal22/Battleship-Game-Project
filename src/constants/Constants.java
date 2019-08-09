@@ -18,6 +18,7 @@ public class Constants {
     public static final int CRUISER_SIZE = 3;
     public static final int SUBMARINE_SIZE = 3;
     public static final int DESTROYER_SIZE = 2;
+    public static final int[] SHIP_SIZES = {2,3,3,4,5};
 
     public static final int CARRIER_NB = 1;
     public static final int BATTLESHIP_NB = 1;

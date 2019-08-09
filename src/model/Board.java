@@ -5,6 +5,7 @@ import constants.Constants;
 import view.MainWindow;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Class to represent a player board
@@ -21,7 +22,6 @@ public class Board {
     private ArrayList<Ship> ships;
 
     public int sunkNumber = 0;
-
 
     /**
      * argument constructor
@@ -46,25 +46,93 @@ public class Board {
 
     public void placeShipsRandomly() {
 
-        // hardcoded for now
-
+        /*
         Coordinate[] ship1Coordinate = {new Coordinate(4, 1), new Coordinate(4, 2)};
         Coordinate[] ship2Coordinate = {new Coordinate(3, 7), new Coordinate(4, 7), new Coordinate(5, 7)};
         Coordinate[] ship3Coordinate = {new Coordinate(0, 1), new Coordinate(0, 2), new Coordinate(0, 3)};
         Coordinate[] ship4Coordinate = {new Coordinate(5, 3), new Coordinate(6, 3), new Coordinate(7, 3), new Coordinate(8, 3)};
         Coordinate[] ship5Coordinate = {new Coordinate(2, 0), new Coordinate(2, 1), new Coordinate(2, 2), new Coordinate(2, 3), new Coordinate(2, 4)};
+         */
 
+        Random random = new Random();
+        for(int i=0; i<Constants.SHIP_NB; i++){
 
-        try {
-            placeShip(ship1Coordinate);
-            placeShip(ship2Coordinate);
-            placeShip(ship3Coordinate);
-            placeShip(ship4Coordinate);
-            placeShip(ship5Coordinate);
+            boolean validPosition = false;
+            while(!validPosition) {
 
-        } catch (Exception e) {
-            System.out.println(e);
+                int shipSize = Constants.SHIP_SIZES[i];
+                Coordinate[] shipCoordinate = new Coordinate[shipSize];
+
+                int direction = random.nextInt(4);
+                int x = random.nextInt(boardSize.x);
+                int y = random.nextInt(boardSize.y);
+                shipCoordinate[0] = new Coordinate(x, y);
+
+                if (direction == 0) { // north
+                    for (int j = 1; j < shipSize; j++) {
+                        shipCoordinate[j] = new Coordinate(x, y + j);
+                    }
+
+                } else if (direction == 1) { // east
+                    for (int j = 1; j < shipSize; j++) {
+                        shipCoordinate[j] = new Coordinate(x + j, y);
+                    }
+
+                } else if (direction == 2) { // south
+                    for (int j = 1; j < shipSize; j++) {
+                        shipCoordinate[j] = new Coordinate(x, y - j);
+                    }
+
+                } else if (direction == 3) { // west
+                    for (int j = 1; j < shipSize; j++) {
+                        shipCoordinate[j] = new Coordinate(x - j, y);
+                    }
+                }
+
+                if( checkShipPosition( shipCoordinate ) == true ){
+                    validPosition = true;
+                    try {
+                        placeShip(shipCoordinate);
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+                }
+
+            }
+
         }
+    }
+
+    /**
+     * check if new ship position is valid
+     * @param newShipCoordinate
+     * @return
+     */
+    private boolean checkShipPosition(Coordinate[] newShipCoordinate) {
+
+        // check out of bound
+        for(int i=0; i<newShipCoordinate.length; i++){
+            if( newShipCoordinate[i].x < 0 || newShipCoordinate[i].x >= boardSize.y ){
+                return false;
+            }
+            if( newShipCoordinate[i].y < 0 || newShipCoordinate[i].y >= boardSize.x ){
+                return false;
+            }
+        }
+
+        for(int u=0; u<newShipCoordinate.length; u++){
+            for(int j=0; j<boardSize.x; j++){
+                for(int t=0; t<boardSize.y; t++){
+                    if(waterGrid[j][t] != null){
+                        if( newShipCoordinate[u].y == j && newShipCoordinate[u].x == t){
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 
 

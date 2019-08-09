@@ -669,6 +669,8 @@ public class MainWindow extends JFrame {
 
                                     myAI.receiveResult(result);
 
+                                    AIBoard.printShipGrid();
+
                                     checkHumanBoardResult(result);
                                 } else if (gameMode.equalsIgnoreCase("advanced") & playerGaveAllShots) {
 

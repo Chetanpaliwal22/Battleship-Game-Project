@@ -34,6 +34,10 @@ public class FrontEndShip {
 
     /**
      * every time the direction or location of the ship changed, recalculate its occupied grids
+     * @param shipSize ship size	
+     * @param shipDirection ship direction
+     * @param shipPivotGridX ship pivot x
+     * @oaran shipPivotGridY ship pivot y
      */
     public FrontEndShip(int shipSize, int shipDirection, int shipPivotGridX, int shipPivotGridY) {
 
@@ -60,6 +64,9 @@ public class FrontEndShip {
 
     /**
      * constructor for initializing the attributes
+     * @param shipdirection shows the ship direction
+     * @param shipPivotGridX x pivot
+     * @param shipPivotGridY y pivot
      */
     public void recalculate(int shipDirection, int shipPivotGridX, int shipPivotGridY) {
 
@@ -209,6 +216,7 @@ public class FrontEndShip {
 
     /**
      * check if the ship is outside the board or there is overlapping
+     * @return boolean retun true if its a valid locaiton
      */
     public boolean validateLocation() {
         for (int i = 0; i < occupiedGridX.size(); i++) {

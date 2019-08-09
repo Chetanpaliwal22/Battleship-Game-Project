@@ -209,6 +209,7 @@ public class Board {
 
     /**
      * check if all ship are sunk
+     * @return return true if sunk
      */
     public boolean checkSunk() {
         boolean shipResult = false;

@@ -1,5 +1,6 @@
 package model;
 
+import com.sun.tools.javac.Main;
 import view.MainWindow;
 
 
@@ -9,7 +10,7 @@ import view.MainWindow;
 public class Score {
 
     public static int numberOfMissedTime = 0;
-    private int finalScore = 0;
+    private static int finalScore = 0;
 
     /**
      * Uses a formula to calculate the final score
@@ -22,13 +23,15 @@ public class Score {
         else
             finalScore = -1 * numberOfMissedTime * 5 + 90;
 
+        MainWindow.dataManager.save();
+
         return finalScore;
     }
 
     /**
      * @return returnFinalScore Returns the final score value
      */
-    public int returnFinalScore() {
+    public static int returnFinalScore() {
         return finalScore;
     }
 

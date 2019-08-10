@@ -35,7 +35,7 @@ public class MainWindow extends JFrame {
 
     private static Score score = new Score();
 
-    private static DataManager dataManager = new DataManager();
+    public static DataManager dataManager = new DataManager();
 
     public static boolean startedGame = false;
 
@@ -44,6 +44,8 @@ public class MainWindow extends JFrame {
     private static JRadioButton basicGameplayRadioButton, advancedGameplayRadioButton;
 
     public static JLabel timerLabel;
+
+    public static JTextField userNameTextField;
 
     private static JButton offlineGameButton, onlineButton;
 
@@ -62,7 +64,7 @@ public class MainWindow extends JFrame {
 
     public static String gameMode = "advanced";
 
-    public static Coordinate playerFireTarget, AIFireTarget;
+    public static Coordinate playerFireTarget = new Coordinate(0, 0), AIFireTarget = new Coordinate(0, 0);
 
     public static boolean playerGaveAllShots = false;
 
@@ -151,6 +153,20 @@ public class MainWindow extends JFrame {
         gridBagConstraints.anchor = GridBagConstraints.WEST;
 
         topPanel.add(advancedGameplayRadioButton, gridBagConstraints);
+
+        // create and add game state component top panel//
+
+        userNameTextField = new JTextField();
+        userNameTextField.setText("Player1");
+        userNameTextField.setSize(8, 5);
+        userNameTextField.setHorizontalAlignment(JLabel.CENTER);
+
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+
+        topPanel.add(userNameTextField, gridBagConstraints);
 
         // create and add game state component top panel//
 
@@ -260,7 +276,7 @@ public class MainWindow extends JFrame {
         saveButton.setMaximumSize(new Dimension(40, 15));
 
         saveButton.addActionListener((ActionEvent e) -> {
-            if (!freezing)
+            if (startedGame & !freezing)
                 dataManager.save();
         });
 
@@ -661,7 +677,6 @@ public class MainWindow extends JFrame {
 
                                     AIFireTarget = myAI.getNextMove();
 
-                                
 
                                     int result = humanBoard.fireAtTarget(AIFireTarget);
 
@@ -681,7 +696,7 @@ public class MainWindow extends JFrame {
                                         if (!gameOver) {
                                             AIFireTarget = coordinateList.get(i);
 
-                                         
+
                                             int result = humanBoard.fireAtTarget(AIFireTarget);
 
                                             resultList.add(result);
@@ -730,7 +745,6 @@ public class MainWindow extends JFrame {
     public static void receiveResultFromOpponent(ArrayList<Integer> fireTargetXList, ArrayList<Integer> fireTargetYList,
                                                  ArrayList<Integer> resultIdList) {
 
-    
 
         int[][] targetGridState = MainWindow.AIBoard.getBoardState();
 
@@ -798,12 +812,12 @@ public class MainWindow extends JFrame {
 
                 for (int i = 0; i < shipList.size(); i++) {
                     for (int gridIndex = 0; gridIndex < MainWindow.shipList.get(i).occupiedGridX.size(); gridIndex++) {
-                       
+
                         int gridX = MainWindow.shipList.get(i).occupiedGridX.get(gridIndex),
                                 gridY = MainWindow.shipList.get(i).occupiedGridY.get(gridIndex),
                                 fireX = fireTargetXList.get(index), fireY = fireTargetYList.get(index);
 
-                      
+
                         if ((gridX == fireX) & (gridY == fireY))
                             result = 1;
                     }
@@ -811,11 +825,10 @@ public class MainWindow extends JFrame {
 
                 humanBoard.checkSunk();
 
-              
 
                 int[][] targetGridState = MainWindow.humanBoard.getBoardState();
 
-              
+
                 if (result == 0) {
                     targetGridState[fireTargetYList.get(index)][fireTargetXList.get(index)] = 1;
 

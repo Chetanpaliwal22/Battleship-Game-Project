@@ -64,6 +64,8 @@ public class DataManager {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
 
+                    MainWindow.userNameTextField.setText(element.getElementsByTagName("userName").item(0).getTextContent() + " Score: " + element.getElementsByTagName("score").item(0).getTextContent());
+
                     MainWindow.numberOfAISunkShips = Integer.parseInt(element.getElementsByTagName("numberOfAISunkShips").item(0).getTextContent());
 
 
@@ -106,14 +108,14 @@ public class DataManager {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
 
-                  MainWindow.shipList.add(new FrontEndShip(Integer.parseInt(element.getElementsByTagName("size").item(0).getTextContent()), Integer.parseInt(element.getElementsByTagName("direction").item(0).getTextContent()), Integer.parseInt(element.getElementsByTagName("pivotX").item(0).getTextContent()), Integer.parseInt(element.getElementsByTagName("pivotY").item(0).getTextContent())));
+                    MainWindow.shipList.add(new FrontEndShip(Integer.parseInt(element.getElementsByTagName("size").item(0).getTextContent()), Integer.parseInt(element.getElementsByTagName("direction").item(0).getTextContent()), Integer.parseInt(element.getElementsByTagName("pivotX").item(0).getTextContent()), Integer.parseInt(element.getElementsByTagName("pivotY").item(0).getTextContent())));
 
                     if (element.getElementsByTagName("sunk").item(0).getTextContent().compareToIgnoreCase("true") == 0)
                         MainWindow.shipList.get(MainWindow.shipList.size() - 1).sunk = true;
                     else
                         MainWindow.shipList.get(MainWindow.shipList.size() - 1).sunk = false;
 
-               }
+                }
             }
 
 
@@ -183,7 +185,7 @@ public class DataManager {
                     MainWindow.AIBoard.placeShip(shipCoordinates);
 
 
-               }
+                }
             }
 
 
@@ -228,7 +230,6 @@ public class DataManager {
             }
 
 
-
             nodeList = (NodeList) xPath.compile("/data/humanBoard/waterGridState/coordinate").evaluate(document, XPathConstants.NODESET);
 
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -240,7 +241,7 @@ public class DataManager {
 
                     targetBoardState[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("state").item(0).getTextContent());
 
-               }
+                }
             }
 
             MainWindow.humanBoard.setBoardState(targetBoardState);
@@ -271,7 +272,7 @@ public class DataManager {
 
                     targetBoardState[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("state").item(0).getTextContent());
 
-               }
+                }
             }
 
             MainWindow.AIBoard.setBoardState(targetBoardState);
@@ -323,7 +324,7 @@ public class DataManager {
 
                     MainWindow.myAI.setNbCarrierDestroyed(Integer.parseInt(element.getElementsByTagName("nbCarrierDestroyed").item(0).getTextContent()));
 
-               }
+                }
             }
 
 
@@ -384,7 +385,7 @@ public class DataManager {
 
                     targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
 
-               }
+                }
             }
 
             MainWindow.myAI.setDestroyerCountGrid(targetGrid);
@@ -402,7 +403,7 @@ public class DataManager {
 
                     targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
 
-               }
+                }
             }
 
             MainWindow.myAI.setSubmarineCountGrid(targetGrid);
@@ -420,7 +421,7 @@ public class DataManager {
 
                     targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
 
-               }
+                }
             }
 
             MainWindow.myAI.setCruiserCountGrid(targetGrid);
@@ -438,7 +439,7 @@ public class DataManager {
 
                     targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
 
-               }
+                }
             }
 
             MainWindow.myAI.setBattleshipCountGrid(targetGrid);
@@ -456,7 +457,7 @@ public class DataManager {
 
                     targetGrid[Integer.parseInt(element.getElementsByTagName("x").item(0).getTextContent())][Integer.parseInt(element.getElementsByTagName("y").item(0).getTextContent())] = Integer.parseInt(element.getElementsByTagName("value").item(0).getTextContent());
 
-               }
+                }
             }
 
             MainWindow.myAI.setCarrierCountGrid(targetGrid);
@@ -544,13 +545,13 @@ public class DataManager {
 
             // userName element
             Element userNameElement = document.createElement("userName");
-            userNameElement.appendChild(document.createTextNode("???"));
+            userNameElement.appendChild(document.createTextNode(MainWindow.userNameTextField.getText()));
             root.appendChild(userNameElement);
 
 
             // score element
             Element scoreElement = document.createElement("score");
-            scoreElement.appendChild(document.createTextNode("100"));
+            scoreElement.appendChild(document.createTextNode(Score.returnFinalScore() + ""));
             root.appendChild(scoreElement);
 
             // numberOfAISunkShips element
